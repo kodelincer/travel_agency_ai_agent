@@ -103,3 +103,10 @@ Changed: CLAUDE.md (new) and loop/PROMPT.md now require every visible text in bo
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
 Next: P1 — translate The whole job and Who works in an agency.
+
+## Iteration 13 · 2026-10-17
+Task: P1 — translate "The whole job" and "Who works in an agency" into Persian.
+Changed: Both chapters fully bilingual: headings, leads, filter chips, callouts (tax e-invoice checklist, exit tax, jobs only a person can hold) and all script data (7 stages / 44 tasks, 16 jobs) with Persian text; role names shown in the active language. MAX_TODO lowered 20 → 18.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate the AI office chapter (13 roles with duties, orchestration, fare watch, control room).

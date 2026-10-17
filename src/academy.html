@@ -443,16 +443,17 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== FULL JOB -->
-<section id="fulljob" data-title="The whole job" data-group="Understand" data-title-fa="همه‌ی کارهای آژانس" data-fa="todo" hidden>
+<section id="fulljob" data-title="The whole job" data-group="Understand" data-title-fa="همه‌ی کارهای آژانس" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>The whole job, including the parts nobody mentions</h2>
-  <p class="lead">From outside, an agent seems to spend the day booking flights. In reality the office also runs on money flows, paperwork, rules and many small promises to customers. Here is the complete map by stage of a trip. Items marked <span class="pill high">Often forgotten</span> are where small offices lose the most time or money. Each task names the AI role that can take it on, explained in the AI office of 10 chapter.</p>
+  <h2><span class="l-en">The whole job, including the parts nobody mentions</span><span class="l-fa">همه‌ی کارهای آژانس، حتی آن‌هایی که کسی به زبان نمی‌آورد</span></h2>
+  <p class="lead l-en">From outside, an agent seems to spend the day booking flights. In reality the office also runs on money flows, paperwork, rules and many small promises to customers. Here is the complete map by stage of a trip. Items marked <span class="pill high">Often forgotten</span> are where small offices lose the most time or money. Each task names the AI role that can take it on, explained in the AI office chapter.</p>
+  <p class="lead l-fa">از بیرون به نظر می‌رسد کارمند آژانس تمام روز فقط بلیت می‌فروشد. در واقع دفتر روی جریان پول، کاغذبازی، قوانین و قول‌های کوچک فراوان به مشتری هم می‌چرخد. این نقشه‌ی کامل کارها به ترتیب مراحل یک سفر است. کارهایی که با <span class="pill high">اغلب فراموش می‌شود</span> مشخص شده‌اند، جایی هستند که دفترهای کوچک بیشترین وقت یا پول را از دست می‌دهند. برای هر کار، نقش هوش مصنوعی‌ای که می‌تواند آن را بر عهده بگیرد آمده است (توضیح در فصل «دفتر هوش مصنوعی»).</p>
   <div class="filters" id="jobFilters" role="group" aria-label="Filter tasks">
-    <button class="chip" type="button" aria-pressed="true" data-f="all">All tasks</button>
-    <button class="chip" type="button" aria-pressed="false" data-f="forgotten">Only the often-forgotten</button>
+    <button class="chip" type="button" aria-pressed="true" data-f="all"><span class="l-en">All tasks</span><span class="l-fa">همه‌ی کارها</span></button>
+    <button class="chip" type="button" aria-pressed="false" data-f="forgotten"><span class="l-en">Only the often-forgotten</span><span class="l-fa">فقط کارهایی که اغلب فراموش می‌شوند</span></button>
   </div>
   <div style="display:grid;gap:22px" id="jobStages"></div>
-  <div class="callout"><h4>Tax e-invoices (<span class="fa">سامانه مودیان</span>): a checklist for your accountant</h4>
+  <div class="callout l-en"><h4>Tax e-invoices (<span class="fa">سامانه مودیان</span>): a checklist for your accountant</h4>
     <p>Agencies, like other taxpayers, send electronic invoices through the tax system. Accounting guides describe an airline-ticket invoice pattern with full seller and buyer details, a deadline of about one week to send, and a goods-and-service code (<span class="fa">شناسه کالا و خدمت</span>) for every item. The guides disagree on two points, so settle them with a tax adviser: which invoice type to use, and whether an agency selling as an airline’s agent reports the <b>full ticket price</b> or only <b>its commission</b>. One accounting guide calls reporting the full price as your own sale a tax risk.</p>
     <ul>
       <li>Confirm your registration and the invoice type for each service you sell.</li>
@@ -461,28 +462,46 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
       <li>Make sure your booking or accounting software sends invoices within the deadline.</li>
       <li>Let the AI Accountant prepare the invoice data each evening; a person reviews and sends it.</li>
     </ul>
-    <p class="src">Sources (Persian, accounting guides, not official rulings): <a href="https://hesabno.com/question/%D8%B3%D8%A7%D9%85%D8%A7%D9%86%D9%87-%D9%85%D9%88%D8%AF%DB%8C%D8%A7%D9%86-%D9%88-%D8%AA%DA%A9%D9%84%DB%8C%D9%81-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%87%D9%88%D8%A7%D9%BE%DB%8C%D9%85/" target="_blank" rel="noopener">Hesabno</a> · <a href="https://wallbill.net/blog/modian-system-for-airline-agencies/" target="_blank" rel="noopener">Wallbill</a> · <a href="https://yassystem.com/%D8%B5%D9%88%D8%B1%D8%AA%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%DA%A9%D8%AA%D8%B1%D9%88%D9%86%DB%8C%DA%A9-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%87%D9%88%D8%A7%DB%8C%DB%8C/" target="_blank" rel="noopener">Yas System</a> · <a href="https://www.heyvalaw.com/web/news/view/822/" target="_blank" rel="noopener">Heyva Law: VAT on air tickets</a></p>
   </div>
-  <div class="callout"><h4>Check these with the source</h4><p><b>Exit tax 1405</b> (<span class="fa">عوارض خروج</span>): most 1405 guides give, for ordinary travelers, 900,000 tomans for the first foreign trip of the Iranian year, 1,500,000 for the second, and 2,200,000 for the third and later trips. Hajj and Umrah pilgrims pay less, and pilgrims to Iraq pay a flat amount. These figures come from the 1405 budget bill, and some sites still show 1404 tables, so the Documents officer should tell travelers to check the amount when they pay through the official channels. A receipt is valid until the end of the Iranian year (end of Esfand). Sources: <a href="https://snapp.ir/blog/departure-tax/" target="_blank" rel="noopener">Snapp</a> · <a href="https://www.pateh.com/blog/departure-tax-increase/" target="_blank" rel="noopener">Pateh</a> · <a href="https://www.azki.com/blog/departure-tax/" target="_blank" rel="noopener">Azki</a> (Persian).</p><p> Exit-permission rules for men of military-service age and for minors change; verify each case with the official systems.</p></div>
+  <div class="callout l-fa"><h4>صورتحساب الکترونیکی (سامانه مودیان): چک‌لیست برای حسابدار شما</h4>
+    <p>آژانس‌ها هم مانند سایر مودیان صورتحساب الکترونیکی را از طریق سامانه مودیان ارسال می‌کنند. راهنماهای حسابداری از الگوی صورتحساب بلیت هواپیما با مشخصات کامل فروشنده و خریدار، مهلت حدود یک هفته برای ارسال، و شناسه‌ی کالا و خدمت برای هر قلم صحبت می‌کنند. این راهنماها در دو نکته اختلاف دارند که باید با مشاور مالیاتی روشن کنید: کدام نوع صورتحساب، و اینکه آژانسی که به‌عنوان نماینده‌ی ایرلاین می‌فروشد <b>کل مبلغ بلیت</b> را ثبت کند یا <b>فقط کارمزد</b> خود را. یکی از راهنماها ثبت کل مبلغ به‌عنوان فروش خود آژانس را ریسک مالیاتی می‌داند.</p>
+    <ul>
+      <li>ثبت‌نام و نوع صورتحساب را برای هر خدمتی که می‌فروشید تأیید کنید.</li>
+      <li>بر اساس قراردادها مشخص کنید هر محصول فروش خود شماست یا فروش به‌عنوان نماینده (فقط کارمزد).</li>
+      <li>برای بلیت، تور، هتل، ویزا، بیمه و کارمزد خدمات، شناسه‌ی کالا و خدمت بگیرید.</li>
+      <li>مطمئن شوید نرم‌افزار رزرو یا حسابداری صورتحساب‌ها را در مهلت ارسال می‌کند.</li>
+      <li>حسابدار هوش مصنوعی هر عصر داده‌ی صورتحساب را آماده کند؛ یک نفر بررسی و ارسال کند.</li>
+    </ul>
+  </div>
+  <p class="src"><span class="l-en">Sources (Persian accounting guides, not official rulings):</span><span class="l-fa">منابع (راهنماهای حسابداری، نه حکم رسمی):</span> <a href="https://hesabno.com/question/%D8%B3%D8%A7%D9%85%D8%A7%D9%86%D9%87-%D9%85%D9%88%D8%AF%DB%8C%D8%A7%D9%86-%D9%88-%D8%AA%DA%A9%D9%84%DB%8C%D9%81-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%87%D9%88%D8%A7%D9%BE%DB%8C%D9%85/" target="_blank" rel="noopener">Hesabno</a> · <a href="https://wallbill.net/blog/modian-system-for-airline-agencies/" target="_blank" rel="noopener">Wallbill</a> · <a href="https://yassystem.com/%D8%B5%D9%88%D8%B1%D8%AA%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%DA%A9%D8%AA%D8%B1%D9%88%D9%86%DB%8C%DA%A9-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%87%D9%88%D8%A7%DB%8C%DB%8C/" target="_blank" rel="noopener">Yas System</a> · <a href="https://www.heyvalaw.com/web/news/view/822/" target="_blank" rel="noopener">Heyva Law</a></p>
+  <div class="callout l-en"><h4>Check these with the source</h4><p><b>Exit tax 1405</b> (<span class="fa">عوارض خروج</span>): most 1405 guides give, for ordinary travelers, 900,000 tomans for the first foreign trip of the Iranian year, 1,500,000 for the second, and 2,200,000 for the third and later trips. Hajj and Umrah pilgrims pay less, and pilgrims to Iraq pay a flat amount. These figures come from the 1405 budget bill, and some sites still show 1404 tables, so the Documents officer should tell travelers to check the amount when they pay through the official channels. A receipt is valid until the end of the Iranian year (end of Esfand).</p><p>Exit-permission rules for men of military-service age and for minors change; verify each case with the official systems.</p></div>
+  <div class="callout l-fa"><h4>این موارد را با منبع رسمی چک کنید</h4><p><b>عوارض خروج ۱۴۰۵:</b> بیشتر راهنماهای ۱۴۰۵ برای مسافر عادی این مبالغ را می‌گویند: سفر اول سال ۹۰۰ هزار تومان، سفر دوم یک میلیون و ۵۰۰ هزار تومان، و سفر سوم به بعد دو میلیون و ۲۰۰ هزار تومان. زائران حج و عمره کمتر می‌پردازند و زائران عراق مبلغ ثابتی دارند. این ارقام از لایحه‌ی بودجه‌ی ۱۴۰۵ آمده و برخی سایت‌ها هنوز جدول ۱۴۰۴ را نشان می‌دهند؛ پس کارشناس مدارک باید به مسافر بگوید هنگام پرداخت از مسیر رسمی، مبلغ را چک کند. رسید پرداخت تا پایان همان سال (پایان اسفند) معتبر است.</p><p>قوانین مجوز خروج برای آقایان مشمول نظام وظیفه و برای افراد زیر ۱۸ سال تغییر می‌کند؛ هر مورد را در سامانه‌های رسمی بررسی کنید.</p></div>
+  <p class="src"><span class="l-en">Sources (Persian):</span><span class="l-fa">منابع:</span> <a href="https://snapp.ir/blog/departure-tax/" target="_blank" rel="noopener">Snapp</a> · <a href="https://www.pateh.com/blog/departure-tax-increase/" target="_blank" rel="noopener">Pateh</a> · <a href="https://www.azki.com/blog/departure-tax/" target="_blank" rel="noopener">Azki</a></p>
 </section>
-
-<!-- =========================================================== TEAM -->
-<section id="team" data-title="Who works in an agency" data-group="Understand" data-title-fa="چه کسانی در آژانس کار می‌کنند" data-fa="todo" hidden>
+<section id="team" data-title="Who works in an agency" data-group="Understand" data-title-fa="چه کسانی در آژانس کار می‌کنند" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Who works in a travel agency, and the AI partner for each job</h2>
-  <p class="lead">A full agency has more jobs than people usually see. Some are required by law in Iran, some by the size of the business. A small office combines several jobs in one person; the AI agents take the routine part of each job so that one person can cover many. The right column names the AI agent from the AI office chapter that supports each job.</p>
+  <h2><span class="l-en">Who works in a travel agency, and the AI partner for each job</span><span class="l-fa">چه کسانی در آژانس کار می‌کنند، و دستیار هوش مصنوعی هر شغل</span></h2>
+  <p class="lead l-en">A full agency has more jobs than people usually see. Some are required by law in Iran, some by the size of the business. A small office combines several jobs in one person; the AI agents take the routine part of each job so that one person can cover many. The last column names the AI agent from the AI office chapter that supports each job.</p>
+  <p class="lead l-fa">یک آژانس کامل شغل‌هایی بیشتر از آنچه معمولاً دیده می‌شود دارد. بعضی را قانون در ایران الزامی کرده و بعضی را اندازه‌ی کسب‌وکار. در یک دفتر کوچک چند شغل بر عهده‌ی یک نفر است؛ عامل‌های هوش مصنوعی بخش تکراری هر شغل را انجام می‌دهند تا یک نفر بتواند چند کار را پوشش دهد. ستون آخر نام دستیار هوش مصنوعی (از فصل «دفتر هوش مصنوعی») را که پشتیبان آن شغل است نشان می‌دهد.</p>
   <div class="tablewrap"><table class="grid">
-    <thead><tr><th>Job (English)</th><th>Persian title</th><th>What the person does</th><th>AI partner</th></tr></thead>
+    <thead><tr><th><span class="l-en">Job</span><span class="l-fa">شغل</span></th><th><span class="l-en">Other-language title</span><span class="l-fa">عنوان انگلیسی</span></th><th><span class="l-en">What the person does</span><span class="l-fa">کار این شخص</span></th><th><span class="l-en">AI partner</span><span class="l-fa">دستیار هوش مصنوعی</span></th></tr></thead>
     <tbody id="teamRows"></tbody>
   </table></div>
-  <div class="callout"><h4>Jobs only a person can hold</h4>
+  <div class="callout l-en"><h4>Jobs only a person can hold</h4>
     <ul>
       <li><b>Technical managers.</b> In Iran an air-ticket licence needs a Technical Manager for air (<span class="fa">مدیر فنی بند الف</span>): counters, airline contracts, charter planning and the daily sales report. A tour licence needs a Technical Manager for tours (<span class="fa">مدیر فنی بند ب</span>): designing and running tours. The licence is tied to these people; AI can prepare their reports, never replace them.</li>
       <li><b>Auditor</b> (<span class="fa">حسابرس</span>). An auditor checks the books independently, usually once a year, and many companies must have one by law or for tax. An AI “controller” can pre-check every transaction so the audit is fast and clean, but the audit itself is signed by a qualified person. Ask your accountant what your company type requires.</li>
       <li><b>Tour leader</b> (<span class="fa">تورلیدر</span>). Travels with the group and handles people on the ground. AI briefs and supports the leader by phone.</li>
     </ul>
-    <p class="src">Sources: <a href="https://arasbaran.org/news.cfm?id=2314" target="_blank" rel="noopener">Arasbaran: technical manager duties</a> · <a href="https://arasbaran.org/news.cfm?id=2685" target="_blank" rel="noopener">Technical manager for tours</a> · <a href="https://www.alaedin.travel/blog/10708/%DA%86%D8%A7%D8%B1%D8%AA-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%DB%8C-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C" target="_blank" rel="noopener">Alaedin Travel: agency org chart</a> (Persian) · <a href="https://www.organimi.com/?p=13077" target="_blank" rel="noopener">Organimi: travel agency org chart</a></p>
   </div>
+  <div class="callout l-fa"><h4>شغل‌هایی که فقط انسان می‌تواند داشته باشد</h4>
+    <ul>
+      <li><b>مدیران فنی.</b> در ایران مجوز فروش بلیت هواپیما به <b>مدیر فنی بند الف</b> نیاز دارد: کانترها، قرارداد با ایرلاین‌ها، برنامه‌ریزی چارتر و گزارش فروش روزانه. مجوز تور به <b>مدیر فنی بند ب</b> نیاز دارد: طراحی و برگزاری تور. مجوز به این افراد گره خورده است؛ هوش مصنوعی گزارش‌های آن‌ها را آماده می‌کند، اما هرگز جای آن‌ها را نمی‌گیرد.</li>
+      <li><b>حسابرس.</b> حسابرس دفاتر را به‌طور مستقل، معمولاً سالی یک بار، بررسی می‌کند و بسیاری از شرکت‌ها طبق قانون یا برای مالیات به آن نیاز دارند. «کنترلر» هوش مصنوعی می‌تواند همه‌ی تراکنش‌ها را پیشاپیش بررسی کند تا حسابرسی سریع و تمیز باشد، اما گزارش حسابرسی را یک فرد واجد شرایط امضا می‌کند. از حسابدارتان بپرسید نوع شرکت شما چه الزامی دارد.</li>
+      <li><b>تورلیدر.</b> همراه گروه سفر می‌کند و در مقصد مسئول مسافران است. هوش مصنوعی به او اطلاعات می‌دهد و از راه تلفن پشتیبانش است.</li>
+    </ul>
+  </div>
+  <p class="src"><span class="l-en">Sources:</span><span class="l-fa">منابع:</span> <a href="https://arasbaran.org/news.cfm?id=2314" target="_blank" rel="noopener">Arasbaran: technical manager duties</a> · <a href="https://arasbaran.org/news.cfm?id=2685" target="_blank" rel="noopener">Technical manager for tours</a> · <a href="https://www.alaedin.travel/blog/10708/%DA%86%D8%A7%D8%B1%D8%AA-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%DB%8C-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C" target="_blank" rel="noopener">Alaedin Travel: agency org chart</a> · <a href="https://www.organimi.com/?p=13077" target="_blank" rel="noopener">Organimi: travel agency org chart</a></p>
 </section>
 
 <!-- =========================================================== 4 AGENTS -->
@@ -1376,101 +1395,104 @@ $("#lifecycle").replaceChildren(...LIFE.map(([step, role, owner]) => el("li", { 
   el("b", { text: step }), el("span", { class: "note", text: roleById[role].en + (owner ? " prepares · you approve" : " handles it") }))));
 
 /* ================================================= who works in an agency */
+// [job en, job fa, does en, does fa, AI partner role ids]
 const TEAM = [
-  ["Managing director", "مدیرعامل", "Strategy, contracts, licences, hiring, final decisions", ["manager"]],
-  ["Technical manager, air", "مدیر فنی بند الف", "Required for the air-ticket licence; airline contracts, counters, charter planning, daily sales report", ["ticketing", "farewatch"]],
-  ["Technical manager, tours", "مدیر فنی بند ب", "Required for the tour licence; designs and runs tours, oversees tour sales", ["designer"]],
-  ["Ticketing agent (counter)", "کانتر فروش بلیت", "Searches, books and issues flight, train and bus tickets; changes and refunds", ["ticketing", "farewatch"]],
-  ["Hotel reservations agent", "کارشناس رزرواسیون هتل", "Books hotels, issues vouchers, handles changes", ["hotel"]],
-  ["Tour designer / product manager", "طراح تور", "Designs packages: flights, transfers, hotels, guides, activities, prices", ["designer", "hotel"]],
-  ["Tour operations coordinator", "کارشناس عملیات تور", "Transfers, guides, suppliers, rooming lists, day-to-day running of tours", ["operations", "hotel"]],
-  ["Tour leader", "تورلیدر", "Travels with the group; handles people on the ground", ["operations"]],
-  ["Travel consultant (sales)", "مشاور و کارشناس فروش", "Understands the customer, presents options, closes the sale", ["sales"]],
-  ["Visa and documents consultant", "کارشناس ویزا و مدارک", "Visa files, appointments, document checks, insurance policies", ["documents"]],
-  ["Customer service", "پشتیبانی مشتریان", "Questions, complaints, refunds, follow-ups", ["care"]],
-  ["Receptionist", "منشی و پذیرش", "Phones, messages, walk-ins, routing", ["reception"]],
-  ["Marketing", "بازاریابی", "Social media, offers, partners, reviews", ["marketing"]],
-  ["Accountant", "حسابدار", "Invoices, payments, supplier balances, tax e-invoices, monthly accounts", ["accountant"]],
-  ["Auditor", "حسابرس", "Independent check of the books, usually yearly; signs the audit report", ["controller"]],
-  ["IT and website", "فناوری اطلاعات و سایت", "Systems, website, backups, security", ["manager"]],
+  ["Managing director", "مدیرعامل", "Strategy, contracts, licences, hiring, final decisions", "راهبرد، قراردادها، مجوزها، استخدام و تصمیم نهایی", ["manager"]],
+  ["Technical manager, air", "مدیر فنی بند الف", "Required for the air-ticket licence; airline contracts, counters, charter planning, daily sales report", "برای مجوز فروش بلیت هواپیما الزامی است؛ قرارداد با ایرلاین‌ها، کانترها، برنامه‌ریزی چارتر، گزارش فروش روزانه", ["ticketing", "farewatch"]],
+  ["Technical manager, tours", "مدیر فنی بند ب", "Required for the tour licence; designs and runs tours, oversees tour sales", "برای مجوز تور الزامی است؛ طراحی و برگزاری تور و نظارت بر فروش تور", ["designer"]],
+  ["Ticketing agent (counter)", "کانتر فروش بلیت", "Searches, books and issues flight, train and bus tickets; changes and refunds", "جستجو، رزرو و صدور بلیت هواپیما، قطار و اتوبوس؛ تغییر و استرداد", ["ticketing", "farewatch"]],
+  ["Hotel reservations agent", "کارشناس رزرواسیون هتل", "Books hotels, issues vouchers, handles changes", "رزرو هتل، صدور واچر و پیگیری تغییرات", ["hotel"]],
+  ["Tour designer / product manager", "طراح تور", "Designs packages: flights, transfers, hotels, guides, activities, prices", "طراحی بسته‌ی سفر: پرواز، ترانسفر، هتل، راهنما، تفریحات و قیمت", ["designer", "hotel"]],
+  ["Tour operations coordinator", "کارشناس عملیات تور", "Transfers, guides, suppliers, rooming lists, day-to-day running of tours", "ترانسفر، راهنما، تأمین‌کنندگان، فهرست اتاق‌ها و اجرای روزانه‌ی تور", ["operations", "hotel"]],
+  ["Tour leader", "تورلیدر", "Travels with the group; handles people on the ground", "همراه گروه سفر می‌کند و در مقصد مسئول مسافران است", ["operations"]],
+  ["Travel consultant (sales)", "مشاور و کارشناس فروش", "Understands the customer, presents options, closes the sale", "نیاز مشتری را می‌فهمد، گزینه‌ها را ارائه می‌کند و فروش را نهایی می‌کند", ["sales"]],
+  ["Visa and documents consultant", "کارشناس ویزا و مدارک", "Visa files, appointments, document checks, insurance policies", "پرونده‌ی ویزا، نوبت سفارت، بررسی مدارک و بیمه‌نامه", ["documents"]],
+  ["Customer service", "پشتیبانی مشتریان", "Questions, complaints, refunds, follow-ups", "پاسخ به سؤال‌ها، شکایت‌ها، استرداد و پیگیری", ["care"]],
+  ["Receptionist", "منشی و پذیرش", "Phones, messages, walk-ins, routing", "تلفن، پیام‌ها، مراجعه‌ی حضوری و ارجاع به کارشناس", ["reception"]],
+  ["Marketing", "بازاریابی", "Social media, offers, partners, reviews", "شبکه‌های اجتماعی، پیشنهادها، همکاران و نظرات مشتریان", ["marketing"]],
+  ["Accountant", "حسابدار", "Invoices, payments, supplier balances, tax e-invoices, monthly accounts", "فاکتور، پرداخت‌ها، مانده‌ی تأمین‌کنندگان، صورتحساب مودیان و حساب‌های ماهانه", ["accountant"]],
+  ["Auditor", "حسابرس", "Independent check of the books, usually yearly; signs the audit report", "بررسی مستقل دفاتر، معمولاً سالانه؛ گزارش حسابرسی را امضا می‌کند", ["controller"]],
+  ["IT and website", "فناوری اطلاعات و سایت", "Systems, website, backups, security", "سامانه‌ها، سایت، پشتیبان‌گیری و امنیت", ["manager"]],
 ];
-$("#teamRows").replaceChildren(...TEAM.map(([en, fa, does, ai]) => el("tr", {},
-  el("td", {}, el("b", { text: en })), el("td", { class: "fa", text: fa }), el("td", { text: does }),
-  el("td", { text: ai.map(id => roleById[id].en).join(" + ") }))));
+const roleNames = ids => T(ids.map(id => roleById[id].en).join(" + "), ids.map(id => roleById[id].fa).join(" + "));
+$("#teamRows").replaceChildren(...TEAM.map(([en, fa, doesEn, doesFa, ai]) => el("tr", {},
+  el("td", {}, el("b", {}, T(en, fa))), el("td", {}, T(fa, en)), el("td", {}, T(doesEn, doesFa)),
+  el("td", {}, roleNames(ai)))));
 
 /* ================================================= the whole job */
+// stage: [en, fa, tasks]; task: [en, fa, role id, often forgotten]
 const JOBS = [
-  ["Before the sale", [
-    ["Collect requests from Instagram, Bale, Telegram, phone, website and walk-ins into one list", "reception", false],
-    ["Remember repeat customers’ preferences and past trips", "reception", false],
-    ["Answer partner agencies (همکار) with partner rates and commission", "sales", true],
-    ["Build quotes and itineraries", "sales", false],
-    ["Offer payment plans or instalment tours where your rules allow, and track the credit risk", "accountant", true],
-    ["Follow up quotes nobody answered", "sales", false],
+  ["Before the sale", "پیش از فروش", [
+    ["Collect requests from Instagram, Bale, Telegram, phone, website and walk-ins into one list", "جمع کردن درخواست‌های اینستاگرام، بله، تلگرام، تلفن، سایت و مراجعه‌ی حضوری در یک فهرست", "reception", false],
+    ["Remember repeat customers’ preferences and past trips", "به خاطر سپردن سلیقه و سفرهای قبلی مشتریان ثابت", "reception", false],
+    ["Answer partner agencies (همکار) with partner rates and commission", "پاسخ به آژانس‌های همکار با نرخ همکار و کمیسیون", "sales", true],
+    ["Build quotes and itineraries", "تهیه‌ی پیش‌فاکتور و برنامه‌ی سفر", "sales", false],
+    ["Offer payment plans or instalment tours where your rules allow, and track the credit risk", "ارائه‌ی پرداخت مرحله‌ای یا تور اقساطی در حد قوانین خودتان و پیگیری ریسک اعتباری", "accountant", true],
+    ["Follow up quotes nobody answered", "پیگیری پیش‌فاکتورهایی که بی‌جواب مانده‌اند", "sales", false],
   ]],
-  ["Booking", [
-    ["Search and compare Sepehr, Parto, Charter724 and airline panels", "ticketing", false],
-    ["Train and bus tickets (Raja and private operators) for domestic trips", "ticketing", true],
-    ["Enter passenger data once and reuse it in every system", "ticketing", false],
-    ["Hotel bookings, vouchers and confirmation letters", "hotel", false],
-    ["Tours: programme, tour leader, guides, rooming lists", "hotel", false],
-    ["Transfers, CIP and airport services", "hotel", true],
-    ["Issue travel-insurance policies in the insurer’s system", "documents", true],
+  ["Booking", "رزرو", [
+    ["Search and compare Sepehr, Parto, Charter724 and airline panels", "جستجو و مقایسه در سپهر، پرتو، چارتر۷۲۴ و پنل ایرلاین‌ها", "ticketing", false],
+    ["Train and bus tickets (Raja and private operators) for domestic trips", "بلیت قطار و اتوبوس (رجا و شرکت‌های خصوصی) برای سفرهای داخلی", "ticketing", true],
+    ["Enter passenger data once and reuse it in every system", "یک بار وارد کردن اطلاعات مسافر و استفاده‌ی دوباره در همه‌ی سامانه‌ها", "ticketing", false],
+    ["Hotel bookings, vouchers and confirmation letters", "رزرو هتل، واچر و تأییدیه‌ی رزرو", "hotel", false],
+    ["Tours: programme, tour leader, guides, rooming lists", "تور: برنامه، تورلیدر، راهنما و فهرست اتاق‌ها", "hotel", false],
+    ["Transfers, CIP and airport services", "ترانسفر، خدمات CIP و فرودگاهی", "hotel", true],
+    ["Issue travel-insurance policies in the insurer’s system", "صدور بیمه‌نامه‌ی مسافرتی در سامانه‌ی بیمه‌گر", "documents", true],
   ]],
-  ["Money", [
-    ["Watch balances and credit with charter sellers and web services; top up before issuing is blocked", "accountant", true],
-    ["Check customer payments: gateway links, card-to-card receipts, bank deposits", "accountant", false],
-    ["Track cheques from companies and partner agencies, with due dates", "accountant", true],
-    ["Pay and record partner commissions", "accountant", true],
-    ["Refunds owed to customers and by suppliers, with penalties by fare rule", "care", false],
-    ["E-invoices in the tax system (سامانه مودیان) and tax filing, with your accountant", "accountant", true],
-    ["Daily cash and bank reconciliation", "accountant", false],
-    ["Reprice foreign-currency items when the exchange rate moves", "accountant", false],
+  ["Money", "پول و حساب", [
+    ["Watch balances and credit with charter sellers and web services; top up before issuing is blocked", "پایش مانده و اعتبار نزد چارترکننده‌ها و وب‌سرویس‌ها و شارژ پیش از آنکه صدور بلیت متوقف شود", "accountant", true],
+    ["Check customer payments: gateway links, card-to-card receipts, bank deposits", "بررسی پرداخت مشتری: لینک درگاه، رسید کارت‌به‌کارت، واریز بانکی", "accountant", false],
+    ["Track cheques from companies and partner agencies, with due dates", "پیگیری چک‌های شرکت‌ها و آژانس‌های همکار و تاریخ سررسید", "accountant", true],
+    ["Pay and record partner commissions", "پرداخت و ثبت کمیسیون همکاران", "accountant", true],
+    ["Refunds owed to customers and by suppliers, with penalties by fare rule", "استرداد بدهکار به مشتری و طلب از تأمین‌کننده، با جریمه طبق قوانین نرخ", "care", false],
+    ["E-invoices in the tax system (سامانه مودیان) and tax filing, with your accountant", "صورتحساب الکترونیکی در سامانه مودیان و اظهارنامه‌ی مالیاتی، با حسابدار", "accountant", true],
+    ["Daily cash and bank reconciliation", "تطبیق روزانه‌ی صندوق و حساب بانکی", "accountant", false],
+    ["Reprice foreign-currency items when the exchange rate moves", "قیمت‌گذاری دوباره‌ی اقلام ارزی هنگام تغییر نرخ ارز", "accountant", false],
   ]],
-  ["Documents & rules", [
-    ["Passport validity, and names exactly as in the passport", "documents", false],
-    ["Exit tax (عوارض خروج): remind travelers how and where to pay", "documents", true],
-    ["Exit permission for men of military-service age; guardian consent for minors’ passports", "documents", true],
-    ["Visa checklists, appointment tracking and file status", "documents", false],
-    ["Samah registration data for Arbaeen pilgrims", "documents", false],
-    ["Renew the licence, e-trust badge and supplier contracts on time", "manager", true],
-    ["Follow Civil Aviation Organization circulars on sales and refunds", "manager", false],
-    ["Protect customer data such as passports and national IDs", "manager", true],
+  ["Documents & rules", "مدارک و مقررات", [
+    ["Passport validity, and names exactly as in the passport", "اعتبار گذرنامه و نوشتن نام دقیقاً مطابق گذرنامه", "documents", false],
+    ["Exit tax (عوارض خروج): remind travelers how and where to pay", "عوارض خروج: یادآوری به مسافر که چطور و کجا بپردازد", "documents", true],
+    ["Exit permission for men of military-service age; guardian consent for minors’ passports", "مجوز خروج آقایان مشمول نظام وظیفه؛ رضایت ولی برای گذرنامه‌ی افراد زیر ۱۸ سال", "documents", true],
+    ["Visa checklists, appointment tracking and file status", "چک‌لیست ویزا، پیگیری نوبت سفارت و وضعیت پرونده", "documents", false],
+    ["Samah registration data for Arbaeen pilgrims", "اطلاعات ثبت‌نام زائران اربعین در سامانه سماح", "documents", false],
+    ["Renew the licence, e-trust badge and supplier contracts on time", "تمدید به‌موقع مجوز، اینماد و قرارداد تأمین‌کنندگان", "manager", true],
+    ["Follow Civil Aviation Organization circulars on sales and refunds", "رعایت بخشنامه‌های سازمان هواپیمایی کشوری درباره‌ی فروش و استرداد", "manager", false],
+    ["Protect customer data such as passports and national IDs", "حفاظت از اطلاعات مشتری مانند گذرنامه و کد ملی", "manager", true],
   ]],
-  ["Before & during the trip", [
-    ["Reminder 48 hours before: documents, terminal, check-in time, baggage", "operations", false],
-    ["Watch delays and schedule changes; inform affected passengers", "operations", false],
-    ["After-hours emergency line for travelers abroad", "operations", true],
-    ["Group broadcasts and tour-leader coordination", "operations", false],
+  ["Before & during the trip", "پیش از سفر و در طول سفر", [
+    ["Reminder 48 hours before: documents, terminal, check-in time, baggage", "یادآوری ۴۸ ساعت قبل: مدارک، ترمینال، زمان پذیرش و بار", "operations", false],
+    ["Watch delays and schedule changes; inform affected passengers", "پایش تأخیر و تغییر برنامه‌ی پرواز و اطلاع به مسافران مربوط", "operations", false],
+    ["After-hours emergency line for travelers abroad", "خط اضطراری خارج از ساعت کاری برای مسافران خارج از کشور", "operations", true],
+    ["Group broadcasts and tour-leader coordination", "پیام‌رسانی گروهی و هماهنگی با تورلیدر", "operations", false],
   ]],
-  ["After the trip", [
-    ["Ask for feedback and reviews", "care", false],
-    ["Handle complaints and close refunds", "care", false],
-    ["Birthday, anniversary and next-season offers based on past trips", "marketing", true],
-    ["Referral rewards", "marketing", false],
+  ["After the trip", "پس از سفر", [
+    ["Ask for feedback and reviews", "درخواست نظر و امتیاز از مسافر", "care", false],
+    ["Handle complaints and close refunds", "رسیدگی به شکایت‌ها و بستن پرونده‌ی استرداد", "care", false],
+    ["Birthday, anniversary and next-season offers based on past trips", "پیام تولد، سالگرد و پیشنهاد فصل بعد بر اساس سفرهای قبلی", "marketing", true],
+    ["Referral rewards", "پاداش معرفی مشتری جدید", "marketing", false],
   ]],
-  ["Running the office", [
-    ["Morning brief and end-of-day summary", "manager", false],
-    ["Marketing calendar: Nowruz, summer, Arbaeen, Yalda, school holidays", "marketing", false],
-    ["Instagram and Bale channel posts and offers", "marketing", false],
-    ["Keep your listing right on Neshan, Balad and Google Maps", "marketing", true],
-    ["Keep price lists and supplier contracts current", "hotel", false],
-    ["Back up customer and booking data, with an offline copy", "manager", true],
-    ["Train new staff with your own procedures", "manager", false],
+  ["Running the office", "اداره‌ی دفتر", [
+    ["Morning brief and end-of-day summary", "گزارش صبح و جمع‌بندی پایان روز", "manager", false],
+    ["Marketing calendar: Nowruz, summer, Arbaeen, Yalda, school holidays", "تقویم بازاریابی: نوروز، تابستان، اربعین، یلدا و تعطیلات مدارس", "marketing", false],
+    ["Instagram and Bale channel posts and offers", "پست و پیشنهاد در اینستاگرام و کانال بله", "marketing", false],
+    ["Keep your listing right on Neshan, Balad and Google Maps", "به‌روز نگه داشتن مشخصات دفتر در نشان، بلد و نقشه‌ی گوگل", "marketing", true],
+    ["Keep price lists and supplier contracts current", "به‌روز نگه داشتن فهرست قیمت‌ها و قرارداد تأمین‌کنندگان", "hotel", false],
+    ["Back up customer and booking data, with an offline copy", "پشتیبان‌گیری از اطلاعات مشتری و رزرو، همراه با یک نسخه‌ی آفلاین", "manager", true],
+    ["Train new staff with your own procedures", "آموزش همکاران جدید با دستورالعمل‌های خود دفتر", "manager", false],
   ]],
 ];
 let jobF = "all";
 function renderJobs() {
-  $("#jobStages").replaceChildren(...JOBS.map(([stage, tasks]) => {
-    const shown = tasks.filter(t => jobF === "all" || t[2]);
+  $("#jobStages").replaceChildren(...JOBS.map(([stageEn, stageFa, tasks]) => {
+    const shown = tasks.filter(t => jobF === "all" || t[3]);
     if (!shown.length) return null;
-    return el("div", { style: "display:grid;gap:10px" }, el("h3", { text: stage }),
+    return el("div", { style: "display:grid;gap:10px" }, el("h3", {}, T(stageEn, stageFa)),
       el("div", { class: "tablewrap" }, el("table", { class: "grid" },
-        el("thead", {}, el("tr", {}, el("th", { text: "Task" }), el("th", { text: "AI role" }), el("th", { text: "" }))),
-        el("tbody", {}, ...shown.map(([task, role, forgotten]) => el("tr", {},
-          el("td", { text: task }),
-          el("td", {}, el("span", { text: roleById[role].en }), el("br"), el("span", { class: "meta fa", text: roleById[role].fa })),
-          el("td", {}, forgotten ? el("span", { class: "pill high", text: "Often forgotten" }) : null)))))));
+        el("thead", {}, el("tr", {}, el("th", {}, T("Task", "کار")), el("th", {}, T("AI role", "نقش هوش مصنوعی")), el("th", { text: "" }))),
+        el("tbody", {}, ...shown.map(([en, fa, role, forgotten]) => el("tr", {},
+          el("td", {}, T(en, fa)),
+          el("td", {}, roleNames([role])),
+          el("td", {}, forgotten ? el("span", { class: "pill high" }, T("Often forgotten", "اغلب فراموش می‌شود")) : null)))))));
   }).filter(Boolean));
 }
 wireChips($("#jobFilters"), v => { jobF = v; renderJobs(); });
