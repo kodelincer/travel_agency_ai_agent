@@ -4,7 +4,7 @@ Priorities: **P1** = wrong, broken or high value for the owner now · **P2** = c
 The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new findings here with a priority and one line on why.
 
 ## P1
-- **Translate every chapter into Persian** (owner rule: the whole app must be bilingual). Remaining chapters carry `data-fa="todo"`; translate one or two per iteration, remove the marker, and lower `MAX_TODO` in `tests/smoke.cjs`. Order: The whole job, Who works in an agency, AI office, The AI-run office, Watch one working day, Online business ideas, Tool stack, then the rest.
+- (done 2026-10-17) All 22 chapters are bilingual; `MAX_TODO` is 0. Keep every new text bilingual (CLAUDE.md).
 
 ## P2
 - **Platform partner terms:** confirm current supplier/host terms and commissions for Alibaba group tours, Snapptrip and Jabama (official partner pages or the owner asking directly); check whether any official affiliate programme exists. (Follow-up from iteration 3.)

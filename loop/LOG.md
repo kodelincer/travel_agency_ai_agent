@@ -230,3 +230,10 @@ Changed: Whole chapter bilingual: the corrections table and the five "still unce
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate Sources (the last chapter); then remove the todo machinery check (MAX_TODO 0).
+
+## Iteration 31 · 2026-10-17
+Task: P1 — translate "Sources", the last untranslated chapter.
+Changed: Heading, lead (with the Persian date range 23–25 Mehr 1405 and a note that most sources are in their original language), group headings and all 72 link labels bilingual; URLs unchanged. Removed the now-stale "untranslated chapters are marked" note from the Persian quick guide. MAX_TODO 1 → 0: the whole app is bilingual. P1 translation item closed in BACKLOG.md.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 5 · clarity 4
+Next: P2 — glossary chapter (bilingual), then accessibility pass.
