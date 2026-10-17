@@ -33,3 +33,12 @@ Sources: https://www.nature.com/articles/s41599-026-06782-3 · https://www.aliba
 Tests: All checks passed (new: idea filters)
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — Persian model evaluation guide.
+
+## Iteration 4 · 2026-10-17
+Task: Persian model evaluation guide (P1; facts #17, #18).
+Changed: Tool stack chapter has a new card "Choose your model in one afternoon": 5 steps (collect 50 anonymised messages, pull Gemma 3 27B / Qwen3 32B, start Ollama with OLLAMA_CONTEXT_LENGTH=65536, run the same task, score) and a 12-point scoring sheet. Templates chapter has a "Model test script (Python)" that calls Ollama's /api/chat and saves replies with timings. Self-review note updated.
+Bug found and fixed: the script's \n escapes became real line breaks inside the page's template string, so the copied script was invalid Python. Found by running the copied text end to end against a fake Ollama server; fixed the escaping; added a regression test.
+Sources: https://arxiv.org/pdf/2510.22616 · https://arxiv.org/pdf/2508.00673 · https://kaxo.io/insights/ollama-num-ctx-context-length/ · https://www.betterclaw.io/blog/ollama-context-window-truncates-agent-config
+Tests: All checks passed (new: model test script keeps its escapes)
+Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
+Next: P1 — re-check the Iran situation (facts #9, #10, #11).

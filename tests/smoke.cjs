@@ -92,6 +92,11 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#ideaFilters [data-f="all"]');
         check(allIdeas === 12 && partnerIdeas > 0 && partnerIdeas < allIdeas, `idea filters work (${allIdeas} all, ${partnerIdeas} partner)`);
 
+        // templates: the Python model-test script must keep its \n escapes (a raw newline breaks it)
+        await page.evaluate(() => { location.hash = "templates"; });
+        const script = await page.evaluate(() => { const t = [...document.querySelectorAll("#tplList .tpl")].find(e => /Model test script/.test(e.textContent)); return t ? t.querySelector("pre").textContent : ""; });
+        check(script.includes('split("\\n---\\n")') && script.includes('+ "\\n")'), "model test script keeps its escapes");
+
         // progress button
         await page.click("#doneBtn");
         check(/1 of/.test(await page.textContent("#overall")), "mark-as-done updates progress");

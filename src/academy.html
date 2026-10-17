@@ -532,6 +532,31 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     </ol>
     <p class="src">Based on integrators’ own pages (no independent documentation is public): <a href="https://citynet.ir/service/sepehr/" target="_blank" rel="noopener">CityNet Sepehr</a> · <a href="https://citynet.ir/service/charter-724/" target="_blank" rel="noopener">CityNet Charter724</a> · <a href="https://citynet.ir/web-service/airline/" target="_blank" rel="noopener">CityNet flight API</a> · <a href="https://www.iran-tech.com/parto" target="_blank" rel="noopener">Iran-Tech Parto</a> · <a href="https://basisfly.com/%D9%88%D8%A8-%D8%B3%D8%B1%D9%88%DB%8C%D8%B3-%D8%B3%D9%BE%D9%87%D8%B1" target="_blank" rel="noopener">BasisFly Sepehr</a> · <a href="https://hiholiday.ir/webservice/flight/document" target="_blank" rel="noopener">HiHoliday flight API docs</a> (all Persian).</p>
   </div>
+  <div class="card" id="modelTest">
+    <div class="kicker">Choose your model in one afternoon</div>
+    <h4>Test 2–3 open models on your own Persian messages</h4>
+    <ol>
+      <li><b>Collect 50 real messages</b> from Bale, Telegram, SMS and email. Remove names, phone numbers and passport data. Save them in <code>messages.txt</code>, separated by a line with <code>---</code>.</li>
+      <li><b>Pull the candidates.</b> Research points to Gemma 3 27B and Qwen3 around 27–32B for Persian; newer releases have not been tested on Persian yet. Example: <code>ollama pull gemma3:27b</code> and <code>ollama pull qwen3:32b</code>.</li>
+      <li><b>Give the server a long memory.</b> Hermes needs at least 64k tokens of context. Start the server with <code>OLLAMA_CONTEXT_LENGTH=65536 ollama serve</code>. Setting it per request does not work on the <code>/v1</code> endpoint Hermes uses. Check the CONTEXT column in <code>ollama ps</code>.</li>
+      <li><b>Run the same task on every model.</b> Use the “Message triage prompt” and the “Model test script” from the Templates chapter. The script saves each reply and how many seconds it took.</li>
+      <li><b>Score every reply</b> with the sheet below, then pick the model with the best total that is also fast enough on your hardware.</li>
+    </ol>
+    <div class="tablewrap"><table class="grid">
+      <thead><tr><th>Check per message</th><th>Points</th><th>How to judge</th></tr></thead>
+      <tbody>
+        <tr><td>Intent correct (new trip, change, refund…)</td><td class="num">0–2</td><td>Would your staff file it the same way?</td></tr>
+        <tr><td>Persian dates converted correctly</td><td class="num">0–2</td><td>Check against a calendar; 1 Dey 1405 = 22 Dec 2026</td></tr>
+        <tr><td>Passengers and budget extracted</td><td class="num">0–2</td><td>Adults, children with ages, budget in tomans</td></tr>
+        <tr><td>Draft reply in natural Persian</td><td class="num">0–2</td><td>Polite, short, would you send it?</td></tr>
+        <tr><td>No invented facts</td><td class="num">0 or 2</td><td>Any made-up price, flight or rule = 0</td></tr>
+        <tr><td>Valid JSON</td><td class="num">0–1</td><td>The script can read it without fixing</td></tr>
+        <tr><td>Speed</td><td class="num">0–1</td><td>1 point if under about 30 seconds on your server</td></tr>
+      </tbody>
+    </table></div>
+    <p class="meta">Maximum 12 points per message, 600 for all 50. Re-run the test whenever a new model appears; the scoring sheet stays the same.</p>
+    <p class="src">Sources: <a href="https://arxiv.org/pdf/2510.22616" target="_blank" rel="noopener">PerCoR Persian benchmark</a> · <a href="https://arxiv.org/pdf/2508.00673" target="_blank" rel="noopener">MELAC Persian cultural benchmark</a> · <a href="https://kaxo.io/insights/ollama-num-ctx-context-length/" target="_blank" rel="noopener">Ollama context length guide</a> · <a href="https://www.betterclaw.io/blog/ollama-context-window-truncates-agent-config" target="_blank" rel="noopener">num_ctx and the /v1 endpoint</a> · <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" target="_blank" rel="noopener">Hermes with Ollama</a></p>
+  </div>
   <div class="callout"><h4>About Iranian AI gateways</h4><p>AvalAI exposes an OpenAI-compatible endpoint, and GapGPT says it offers GPT, Claude and Gemini models for rials. They are convenient for quick tests. Do not make them your backbone: they depend on international links that were cut for most of 2026, and reselling may break the original providers’ terms.</p></div>
 </section>
 
@@ -733,7 +758,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <ul>
       <li>Licence rules for online sales: the joint tourism–CAO directive I found dates from about 1395–1397, and the 1405 Arbaeen rules confirm the main principle. A newer version may exist; ask your association (انجمن صنفی دفاتر خدمات مسافرتی).</li>
       <li>Technical details and contract terms of Sepehr, Parto and Charter724 APIs: only integrators’ own pages are public, and full documentation comes after you subscribe. Use the 14 questions in the Tool stack chapter.</li>
-      <li>Which open model is best for Persian in late 2026: the benchmarks I found test older models. Run your own test on 50 real messages.</li>
+      <li>Which open model is best for Persian in late 2026: the benchmarks I found test Gemma 3 and Qwen3, not newer releases. Use the one-afternoon model test in the Tool stack chapter.</li>
       <li>The October 2026 flight-resumption reports conflict with the April reopening reports; the situation may change again.</li>
       <li>Market statistics in the worldwide and Iran chapters come from news reports and vendor research with different methods. Use them as direction, not exact figures.</li>
     </ul>
@@ -1338,6 +1363,36 @@ or disruption. Complaints and refunds always go to a person.`],
 ۲) استرداد طبق قوانین [ایرلاین/سامانه] — پیگیری با ما
 لطفاً شماره گزینه را پاسخ دهید. همکار ما [نام کارمند] تا [ساعت] با شما تماس می‌گیرد.
 آژانس پرواز — [شماره تماس]`],
+  ["Model test script (Python)", "Save as evaluate.py next to messages.txt and triage_prompt.txt. Run: python3 evaluate.py messages.txt gemma3:27b — then repeat for each model.", false,
+`import json, sys, time, urllib.request
+
+prompt = open("triage_prompt.txt", encoding="utf-8").read()
+text = open(sys.argv[1], encoding="utf-8").read()
+messages = [m.strip() for m in text.split("\\n---\\n") if m.strip()]
+model = sys.argv[2]
+out_name = "results_" + model.replace(":", "_").replace("/", "_") + ".jsonl"
+
+with open(out_name, "w", encoding="utf-8") as out:
+    for i, msg in enumerate(messages, 1):
+        body = {
+            "model": model,
+            "stream": False,
+            "options": {"num_ctx": 65536},  # honoured by the native /api/chat endpoint
+            "messages": [{"role": "user", "content": prompt + "\\n\\nMESSAGE:\\n" + msg}],
+        }
+        req = urllib.request.Request(
+            "http://localhost:11434/api/chat",
+            data=json.dumps(body).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+        )
+        start = time.time()
+        with urllib.request.urlopen(req, timeout=600) as r:
+            reply = json.loads(r.read())["message"]["content"]
+        row = {"n": i, "seconds": round(time.time() - start, 1), "message": msg, "reply": reply}
+        out.write(json.dumps(row, ensure_ascii=False) + "\\n")
+        print(f"{i}/{len(messages)} done in {row['seconds']} s")
+
+print("Saved", out_name, "- now score each reply with the sheet in the Tool stack chapter.")`],
   ["Approval policy", "The single most important guardrail. Put it in every agent’s rules.", false,
 `ACTION                          AGENT     PERSON
 Search fares / hotels           yes       -

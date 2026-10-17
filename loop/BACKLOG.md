@@ -4,7 +4,6 @@ Priorities: **P1** = wrong, broken or high value for the owner now · **P2** = c
 The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new findings here with a priority and one line on why.
 
 ## P1
-- **Persian model evaluation guide:** a concrete, step-by-step test of 2–3 open models on 50 anonymised customer messages (what to measure, a scoring sheet, example Ollama commands that are verified against current docs). Why: choosing the wrong model breaks every role.
 - **Re-check the Iran situation** (flights at IKA, internet access, currency) and update the timeline with dated, sourced entries; mark conflicting reports. Why: the facts change monthly.
 
 ## P2
