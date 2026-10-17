@@ -89,3 +89,10 @@ Changed: Audit found all requests covered but eight findings missing. Added: rev
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P2 — Persian (RTL) version.
+
+## Iteration 11 · 2026-10-17
+Task: Persian (RTL) version, part 1 (P2): a Persian quick-guide chapter.
+Changed: New chapter "راهنمای سریع فارسی" right after Start here (lang="fa", dir="rtl"): golden approval rule, table of all 13 AI roles with Persian titles, main work and what needs the owner's approval, the first 30 days, and questions to ask the web-service provider, the accountant and the association. RTL styles (Vazirmatn, right-aligned tables, mirrored callout border, phone-width table). README and tests updated (22 chapters; new RTL test checks direction, language, alignment and 13 rows). Checked on a phone in dark mode.
+Tests: All checks passed (new: Persian chapter is RTL)
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P2 — glossary chapter (or Persian part 2).

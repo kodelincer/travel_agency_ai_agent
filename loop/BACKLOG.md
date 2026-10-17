@@ -9,7 +9,7 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 ## P2
 - **Platform partner terms:** confirm current supplier/host terms and commissions for Alibaba group tours, Snapptrip and Jabama (official partner pages or the owner asking directly); check whether any official affiliate programme exists. (Follow-up from iteration 3.)
 - **Newer online-sales directive?** Look for a post-1400 version of the joint tourism–CAO directive on the association or CAO sites; update the Iran chapter if found. (Follow-up from iteration 1.)
-- **Persian (RTL) version** of the most-used chapters: The whole job, AI office of 10, Watch one working day, Templates. Add a language switch that sets `dir="rtl"` and uses Vazirmatn. Why: the owner and her staff work in Persian.
+- **Persian (RTL) version, part 2:** translate "The whole job" and the "Watch one working day" worksheet labels into Persian (reuse the `.rtl-section` styles and the RTL test). Part 1 (Persian quick guide) done in iteration 11.
 - **Exit-permission facts:** find the official procedure for exit permission (men of military-service age, guardian consent for minors) and add it to The whole job. (Exit-tax amounts done in iteration 6.)
 - **Export the one-day log** as a CSV file the owner can keep (needs the `downloads` capability when published as an Artifact; keep the copy button as fallback).
 - **Glossary chapter:** PNR, charter, TTL, MCP, LLM, skill, gateway, همکار, بند الف, سماح, and others, each with one plain sentence.

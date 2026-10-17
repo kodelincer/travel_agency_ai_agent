@@ -195,6 +195,14 @@ pre{margin:0;background:var(--code-bg);color:var(--code-fg);padding:14px;overflo
 pre.rtl{direction:rtl;text-align:right;font-family:var(--f-fa);font-size:14px;white-space:pre-wrap}
 .sources{display:grid;gap:18px}
 .sources ul{gap:4px;font-size:15px}
+.rtl-section{font-family:var(--f-fa)}
+.rtl-section h2,.rtl-section h3,.rtl-section h4{font-family:var(--f-fa);letter-spacing:0}
+.rtl-section ul,.rtl-section ol{padding-left:0;padding-right:22px}
+.rtl-section table.grid th,.rtl-section table.grid td{text-align:right}
+.rtl-section table.grid th{font-family:var(--f-fa);letter-spacing:0;text-transform:none;font-size:13px}
+.rtl-section .callout{border-left:0;border-right:4px solid var(--amber);border-radius:8px 0 0 8px}
+.rtl-section .callout.ok{border-right-color:var(--ok)}
+@media (max-width:640px){.rtl-section table.grid{min-width:0}.rtl-section table.grid th,.rtl-section table.grid td{padding:9px 8px;font-size:14px}}
 footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 </style>
 
@@ -238,6 +246,52 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <div class="stat alert"><b>&lt;1M</b><span>foreign arrivals to Iran in spring 1405, down from 6.2M in all of 1404</span></div>
   </div>
   <p class="src">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources are in the last chapter.</p>
+</section>
+
+<!-- =========================================================== PERSIAN QUICK GUIDE -->
+<section id="farsi" data-title="راهنمای سریع فارسی" data-group="Understand" lang="fa" dir="rtl" class="rtl-section" hidden>
+  <div class="eyebrow">Chapter · فارسی</div>
+  <h2>راهنمای سریع: دفتر هوش مصنوعی آژانس شما</h2>
+  <p class="lead">این بخش خلاصه‌ی کاربردی دوره به زبان فارسی است، برای مدیر و همکاران آژانس. هدف: دفتری که بیشتر کارهای تکراری را دستیارهای هوش مصنوعی انجام می‌دهند و انسان‌ها تصمیم می‌گیرند، تأیید می‌کنند و با مشتری‌های مهم صحبت می‌کنند.</p>
+
+  <div class="callout ok"><h4>قانون طلایی</h4><p>دستیار هوش مصنوعی جستجو می‌کند، پیش‌نویس می‌نویسد، یادآوری می‌کند و هشدار می‌دهد. <b>رزرو، صدور بلیت، استرداد و هر پرداختی فقط با تأیید شما انجام می‌شود.</b> شماره کارت بانکی هرگز در گفتگو با هوش مصنوعی نوشته نمی‌شود؛ فقط لینک پرداخت.</p></div>
+
+  <div class="prose"><h3>سیزده دستیار دفتر</h3><p class="muted">ده نقش اصلی برای کار روزانه و سه نقش تخصصی.</p></div>
+  <div class="tablewrap"><table class="grid rtl-table">
+    <thead><tr><th>نقش</th><th>کار اصلی</th><th>تأیید شما لازم است برای</th></tr></thead>
+    <tbody>
+      <tr><td><b>منشی و پذیرش</b></td><td>جمع کردن پیام‌های بله، تلگرام، اینستاگرام، پیامک و سایت در یک فهرست؛ پرسیدن اطلاعات ناقص</td><td>پاسخ اول به مشتری جدید (در ماه اول)</td></tr>
+      <tr><td><b>کارشناس فروش</b></td><td>پیش‌فاکتور با دو یا سه گزینه، برنامه‌ی روزبه‌روز، پیگیری بعد از ۴۸ ساعت</td><td>ارسال پیش‌فاکتور</td></tr>
+      <tr><td><b>کارشناس بلیت</b></td><td>جستجو و مقایسه در سپهر، پرتو، چارتر۷۲۴ و پنل ایرلاین‌ها؛ ورود یک‌باره‌ی اطلاعات مسافر</td><td>هر رزرو و هر صدور</td></tr>
+      <tr><td><b>کارشناس هتل و تور</b></td><td>هتل‌های قراردادی اول، واچر، ترانسفر، گشت، فهرست اتاق‌ها</td><td>رزرو و قرارداد گروه</td></tr>
+      <tr><td><b>کارشناس مدارک و ویزا</b></td><td>اعتبار گذرنامه، یادآوری عوارض خروج، چک‌لیست ویزا، بیمه، اطلاعات سماح</td><td>هر توصیه‌ای بیش از چک‌لیست</td></tr>
+      <tr><td><b>کارشناس عملیات (کشیک)</b></td><td>یادآوری ۴۸ ساعت قبل از پرواز، تشخیص تأخیر و تغییر پرواز، خط اضطراری شبانه</td><td>جابه‌جایی پرواز و پیام به گروه‌های بزرگ</td></tr>
+      <tr><td><b>حسابدار</b></td><td>تطبیق پرداخت‌ها، هشدار کم شدن اعتبار حساب چارتر، چک‌های سررسید، داده‌ی صورتحساب مودیان</td><td>هر پرداخت، استرداد و شارژ حساب</td></tr>
+      <tr><td><b>پشتیبانی و استرداد</b></td><td>پیگیری همه‌ی استردادها در دو طرف، ثبت شکایت و پیش‌نویس پاسخ آرام</td><td>مبلغ استرداد و پاسخ شکایت</td></tr>
+      <tr><td><b>بازاریابی</b></td><td>پست‌های اینستاگرام و کانال بله از تورهای واقعی، پیام تولد و پیشنهاد فصل بعد، نشان و بلد</td><td>هر پست عمومی و پیام انبوه</td></tr>
+      <tr><td><b>مدیر دفتر</b></td><td>گزارش صبح و عصر، فهرست کارها، یادآوری تمدید مجوز و اینماد، پشتیبان‌گیری</td><td>—</td></tr>
+      <tr><td><b>طراح سفر (هماهنگ‌کننده)</b></td><td>تقسیم سفر به بخش‌ها: ترانسفر، پرواز، شاتل، هتل، تفریح، بیمه، مدارک؛ و بررسی اینکه همه با هم جور باشند</td><td>برنامه‌ی نهایی و هر رزرو</td></tr>
+      <tr><td><b>پایشگر نرخ بلیت</b></td><td>بررسی ساعتی قیمت مسیرهای اصلی از منابع مجاز، تاریخچه‌ی قیمت، هشدار کاهش قیمت و کمبود صندلی</td><td>— (هرگز خرید نمی‌کند)</td></tr>
+      <tr><td><b>کنترلر مالی (پیش‌حسابرسی)</b></td><td>بررسی اینکه هر فروش فاکتور، پرداخت و هزینه‌ی تأمین‌کننده دارد؛ آماده کردن پرونده برای حسابرس</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="prose">
+    <h3>سی روز اول</h3>
+    <ol>
+      <li><b>هفته‌ی اول:</b> یک روز کاری کامل را ثبت کنید (بخش «Watch one working day»): هر کار، کدام سامانه، چند دقیقه، و آیا آزاردهنده بود.</li>
+      <li><b>هفته‌ی دوم:</b> دستورالعمل دفتر را بنویسید (کارمزد، لحن، قوانین استرداد، محدوده‌ی مجوز) و ۵۰ پیام واقعی مشتری را بدون نام و شماره جمع کنید.</li>
+      <li><b>هفته‌ی سوم:</b> روی یک سرور داخل ایران، Ollama و Hermes را نصب کنید و دو مدل را با همان ۵۰ پیام آزمایش کنید (بخش Tool stack).</li>
+      <li><b>هفته‌ی چهارم:</b> یک ربات خصوصی بله فقط برای خودتان راه بیندازید و سه مهارت را آموزش دهید: پیش‌فاکتور، پیگیری، گزارش صبح.</li>
+    </ol>
+    <h3>از اول بپرسید</h3>
+    <ul>
+      <li>از ارائه‌دهنده‌ی وب‌سرویس (سپهر، پرتو، چارتر۷۲۴): <b>کلید فقط‌خواندنی</b> جدا برای جستجو و گزارش، حساب آزمایشی، و اینکه در قطعی اینترنت ۱۴۰۵ کار کرد یا نه.</li>
+      <li>از حسابدار یا مشاور مالیاتی: در سامانه‌ی مودیان، فروش بلیت به‌عنوان نماینده را <b>کل مبلغ</b> ثبت کنیم یا <b>فقط کارمزد</b>؟</li>
+      <li>از انجمن صنفی: آخرین نسخه‌ی دستورالعمل فروش اینترنتی خدمات سفر.</li>
+    </ul>
+    <p class="muted">بقیه‌ی فصل‌ها هنوز انگلیسی هستند؛ ترجمه‌ی آن‌ها در برنامه‌ی بهبود است.</p>
+  </div>
 </section>
 
 <!-- =========================================================== 2 WORLD -->

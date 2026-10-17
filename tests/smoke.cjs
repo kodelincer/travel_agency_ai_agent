@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 21;
+const MIN_CHAPTERS = 22;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -104,6 +104,11 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#rolePhase [data-f="all"]');
         const roleCards = await page.locator("#roleGrid .card").count();
         check(teamRows >= 16 && roleCards === 13, `team table (${teamRows} jobs) and AI roles (${roleCards})`);
+
+        // Persian quick guide renders right-to-left
+        await page.evaluate(() => { location.hash = "farsi"; });
+        const fa = await page.evaluate(() => { const s = document.getElementById("farsi"); const cs = getComputedStyle(s); const td = s.querySelector("td"); return { dir: cs.direction, lang: s.lang, align: td ? getComputedStyle(td).textAlign : "", rows: s.querySelectorAll("tbody tr").length }; });
+        check(fa.dir === "rtl" && fa.lang === "fa" && fa.align === "right" && fa.rows === 13, `Persian chapter is RTL (${fa.dir}, ${fa.align}, ${fa.rows} roles)`);
 
         // progress button
         await page.click("#doneBtn");
