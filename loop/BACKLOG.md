@@ -7,7 +7,6 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - (done 2026-10-17) All 22 chapters are bilingual; `MAX_TODO` is 0. Keep every new text bilingual (CLAUDE.md).
 
 ## P2
-- **Platform partner terms:** confirm current supplier/host terms and commissions for Alibaba group tours, Snapptrip and Jabama (official partner pages or the owner asking directly); check whether any official affiliate programme exists. (Follow-up from iteration 3.)
 - **Newer online-sales directive?** Look for a post-1400 version of the joint tourism–CAO directive on the association or CAO sites; update the Iran chapter if found. (Follow-up from iteration 1.)
 - **Exit-permission facts:** find the official procedure for exit permission (men of military-service age, guardian consent for minors) and add it to The whole job. (Exit-tax amounts done in iteration 6.)
 - **Export the one-day log** as a CSV file the owner can keep (needs the `downloads` capability when published as an Artifact; keep the copy button as fallback).
@@ -16,6 +15,7 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - **Role playbooks:** for each of the 10 AI roles, a ready Hermes skill file (Markdown) in the Templates chapter.
 
 ## P3
+- Owner sends the eight platform questions (Online business chapter) to Alibaba, Snapptrip and Jabama; record the written answers in FACTS.md and update the chapter. (Needs the owner; public sources gave no numbers in iteration 32.)
 - Ask one integrator (via the owner) for a sandbox and record which of the 14 questions they answered; update the Tool stack with real answers. (Follow-up from iteration 2; needs the owner.)
 - Search box across all chapters.
 - A printable one-page "AI office of 10" summary (as a page section, since the Artifact viewer cannot open the print dialog).

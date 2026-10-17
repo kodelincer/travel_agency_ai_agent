@@ -237,3 +237,11 @@ Changed: Heading, lead (with the Persian date range 23–25 Mehr 1405 and a note
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 5 · clarity 4
 Next: P2 — glossary chapter (bilingual), then accessibility pass.
+
+## Iteration 32 · 2026-10-17
+Task: P2 — platform partner terms (Alibaba, Snapptrip, Jabama).
+Changed: Research in Persian and English found no public commission rates or affiliate programme (alibaba.ir and snapptrip.com were unreachable from here). Instead of guessing, added a bilingual "Ask in writing before you sign" checklist of eight questions (commission base, settlement days, refunds and what happened in 1405, price parity, customer data, ranking, panel/API for agents, exit terms) to the Online business chapter, and made the remaining English-only source label there bilingual. FACTS #45 added (low, absence of evidence); backlog item moved to P3 as an owner task.
+Sources: searches listed in FACTS #45
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P2 — newer online-sales directive (Persian search), or glossary chapter.
