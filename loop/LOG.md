@@ -223,3 +223,10 @@ Changed: Whole chapter bilingual: the eight guardrail cards and the six business
 Tests: All checks passed
 Scores: correctness 5 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate Self-review.
+
+## Iteration 30 · 2026-10-17
+Task: P1 — translate "Self-review" into Persian.
+Changed: Whole chapter bilingual: the corrections table and the five "still uncertain" items. Added one correction row in both languages: version 1 was English-only, now the whole app is bilingual with a ratchet test. Persian dates checked: IKA reopening 20 Apr = 31 Farvardin; Iraqi Airways return 8 Oct = 16 Mehr 1405. MAX_TODO 2 → 1.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate Sources (the last chapter); then remove the todo machinery check (MAX_TODO 0).
