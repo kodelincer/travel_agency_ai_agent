@@ -110,3 +110,10 @@ Changed: Both chapters fully bilingual: headings, leads, filter chips, callouts 
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate the AI office chapter (13 roles with duties, orchestration, fare watch, control room).
+
+## Iteration 14 · 2026-10-17
+Task: P1 — translate the AI office chapter into Persian.
+Changed: Persian data for all 13 roles (mission, duties, timing, needs, approvals, measure) via ROLES_FA; role cards, phase pills, lifecycle steps and labels render in the active language. Static parts bilingual: lead, "like 10 people" callout, team intro, phase filters, orchestration steps, conductor callout, fare-source table, fare-watch duties, the Office group example (English and Persian versions), build guide. MAX_TODO 18 → 17.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate The AI-run office and Watch one working day.
