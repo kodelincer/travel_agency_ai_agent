@@ -245,3 +245,11 @@ Sources: searches listed in FACTS #45
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P2 — newer online-sales directive (Persian search), or glossary chapter.
+
+## Iteration 33 · 2026-10-17
+Task: P2 — look for a newer online-sales directive.
+Changed: Persian searches found no newer general directive (dated 1394–1397, sources differ) but did find CAO enforcement: three agencies suspended for a month in Mordad 1403 for Arbaeen overpricing, another in Mordad 1404 that also lost its online-sales permit, and the 1405 circulars limiting sales channels. Added this to the Iran chapter (both languages), sharpened the "before an AI agent sells online" checklist (give the agent official fare caps as a hard rule), updated the Self-review uncertainty item, and made the chapter's source labels bilingual. FACTS #46–47 added; backlog item moved to P3 for the owner to ask the association.
+Sources: FACTS #46–47
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P2 — exit-permission facts, or glossary chapter.
