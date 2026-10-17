@@ -154,7 +154,9 @@ table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:start}
 @media (max-width:860px){.sim{grid-template-columns:1fr}}
 .pane{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
-.pane h3{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pane h3{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+#dayBadge{white-space:normal}
+#dayForm input:not([type=checkbox]),#dayForm select{width:100%;min-width:0}
 .inbox{display:grid;gap:8px}
 .msg{appearance:none;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;cursor:pointer;font:inherit;display:grid;gap:2px;min-width:0}
 .msg[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
@@ -224,7 +226,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   </div>
   <div class="prose">
     <h3>How to use this academy</h3>
-    <p>Read the chapters in order the first time; each one ends with a <b>Mark as done</b> button so you can see your progress (saved in this browser only). Chapters 1–3 explain the business, 4–7 the AI, 8–10 growth and resilience, and 11–15 give you a plan, templates, rules, my self-review and every source.</p>
+    <p>Read the chapters in order the first time; each one ends with a <b>Mark as done</b> button so you can see your progress (saved in this browser only). The menu groups the chapters: <b>Understand</b> (the business), <b>Automate</b> (the AI, including your AI office of 10), <b>Grow &amp; protect</b>, and <b>Act</b> (a one-day time study, a plan, templates, rules, my self-review and every source).</p>
     <p>Two tracks run through the course. The <b>Iran-resilient track</b> works inside Iran, under sanctions and during internet cuts. The <b>Global track</b> is for agencies elsewhere, or for a partner company you legally operate abroad. When they differ, the chapter says so.</p>
   </div>
   <div class="stats">
@@ -233,12 +235,12 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <div class="stat"><b>2%</b><span>of travelers trust AI to book on its own (Skift, 2025)</span></div>
     <div class="stat alert"><b>&lt;1M</b><span>foreign arrivals to Iran in spring 1405, down from 6.2M in all of 1404</span></div>
   </div>
-  <p class="src">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources in chapter 15.</p>
+  <p class="src">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources are in the last chapter.</p>
 </section>
 
 <!-- =========================================================== 2 WORLD -->
 <section id="world" data-title="Agencies worldwide" data-group="Understand" hidden>
-  <div class="eyebrow">Chapter 2</div>
+  <div class="eyebrow">Chapter</div>
   <h2>What travel agencies do around the world</h2>
   <p class="lead">An agency sells expertise, access and peace of mind. Tickets and rooms are the vehicle. Knowing every service line helps you see where AI saves time and where new revenue hides.</p>
   <div class="tablewrap"><table class="grid">
@@ -281,7 +283,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 3 IRAN -->
 <section id="iran" data-title="Iran market 1405" data-group="Understand" hidden>
-  <div class="eyebrow">Chapter 3</div>
+  <div class="eyebrow">Chapter</div>
   <h2>The Iranian agency in 1405 (2026)</h2>
   <p class="lead">Iranian agencies work under conditions few others face: sanctions, a volatile rial, a charter-heavy flight market, mandatory government systems for pilgrimage, and, in 2026, war and months of internet cuts. Any AI plan that ignores this will fail.</p>
 
@@ -315,14 +317,27 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <p><b>2. The global internet can disappear for months.</b> In 2026 the domestic network often kept working while international traffic was cut. Any agent that depends on a foreign API stops on the day you need it most.</p>
     <p><b>3. Messaging is fragmented.</b> WhatsApp is blocked and Telegram only partly reachable without workarounds. Domestic messengers (Bale, Eitaa, Rubika) are reachable; Bale offers a Telegram-compatible bot API.</p>
     <p><b>4. Iranian AI gateways exist but are fragile.</b> Services such as AvalAI and GapGPT resell access to foreign models for rials. They may conflict with the original providers’ terms, and they depend on international connectivity. Use them for experiments, not as the backbone.</p>
-    <p><b>5. The resilient answer is local.</b> Open-weight models (for example Qwen, Gemma, DeepSeek) running on your own server inside Iran, an open-source agent like Hermes, domestic web services and domestic messengers. Chapter 7 shows the full stack.</p>
+    <p><b>5. The resilient answer is local.</b> Open-weight models (for example Qwen, Gemma, DeepSeek) running on your own server inside Iran, an open-source agent like Hermes, domestic web services and domestic messengers. The Tool stack chapter shows the full stack.</p>
   </div></div>
   <div class="callout risk"><h4>Legal note</h4><p>Sanctions and Iranian regulations change often and carry real penalties. This course does not give legal advice and does not recommend evading anyone’s sanctions or terms of service. Check with a lawyer before you sign up for any foreign service or route payments through another country.</p></div>
 </section>
 
+<!-- =========================================================== FULL JOB -->
+<section id="fulljob" data-title="The whole job" data-group="Understand" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2>The whole job, including the parts nobody mentions</h2>
+  <p class="lead">From outside, an agent seems to spend the day booking flights. In reality the office also runs on money flows, paperwork, rules and many small promises to customers. Here is the complete map by stage of a trip. Items marked <span class="pill high">Often forgotten</span> are where small offices lose the most time or money. Each task names the AI role that can take it on, explained in the AI office of 10 chapter.</p>
+  <div class="filters" id="jobFilters" role="group" aria-label="Filter tasks">
+    <button class="chip" type="button" aria-pressed="true" data-f="all">All tasks</button>
+    <button class="chip" type="button" aria-pressed="false" data-f="forgotten">Only the often-forgotten</button>
+  </div>
+  <div style="display:grid;gap:22px" id="jobStages"></div>
+  <div class="callout"><h4>Check these with the source</h4><p>Exit-tax amounts differ between published guides; check the official payment channel before quoting. Whether and how your agency must send e-invoices to the tax system (<span class="fa">سامانه مودیان</span>) depends on your registration; ask your accountant. Exit-permission rules for men of military-service age and for minors change; verify each case with the official systems.</p></div>
+</section>
+
 <!-- =========================================================== 4 AGENTS -->
 <section id="agents" data-title="AI agents 101" data-group="Automate" hidden>
-  <div class="eyebrow">Chapter 4</div>
+  <div class="eyebrow">Chapter</div>
   <h2>What an AI agent actually is</h2>
   <div class="prose">
     <p>A <b>chatbot</b> answers questions. An <b>automation</b> (n8n, Make, Zapier) follows fixed steps you draw. An <b>AI agent</b> reads a messy request, decides which steps are needed, uses tools (a charter web service, a hotel list, your CRM) and comes back with finished work for you to check.</p>
@@ -356,7 +371,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 5 MAP -->
 <section id="map" data-title="Automation map" data-group="Automate" hidden>
-  <div class="eyebrow">Chapter 5</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Everything an agent can do in your agency</h2>
   <p class="lead">24 jobs across seven desks. Green jobs only read and draft, so start there. Red jobs touch money or tickets: the agent prepares them and a person presses the button. “Shutdown-proof” means the job can run on the domestic network with a local model.</p>
   <div class="row">
@@ -371,9 +386,61 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="cards" id="caseGrid"></div>
 </section>
 
+<!-- =========================================================== OFFICE OF 10 -->
+<section id="office" data-title="AI office of 10" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2>Your AI office of 10: one manager, ten tireless assistants</h2>
+  <p class="lead">A busy agency needs a receptionist, sales people, ticketing clerks, a hotel desk, a visa clerk, an operations officer, an accountant, customer care, marketing and a manager. A one- or two-person office can cover all ten roles if AI “staff” do the reading, searching, typing, watching and reminding, and the owner works as the manager who decides and approves.</p>
+  <div class="callout ok"><h4>What “like 10 people” really means</h4><p>The AI staff produce first drafts, checks and alerts around the clock, so she handles many more requests per day without retyping or refreshing screens. She still makes the decisions, talks to important customers, and is the only one who books, issues tickets and moves money. Measure the gain with the “Watch one working day” chapter, before and after.</p></div>
+
+  <div class="prose"><h3>The team</h3><p class="muted">Phase shows when to switch each role on: phase 1 needs no access to booking systems, phase 2 needs read access to them, and phase 3 prepares real bookings for approval.</p></div>
+  <div class="filters" id="rolePhase" role="group" aria-label="Filter roles by phase">
+    <button class="chip" type="button" aria-pressed="true" data-f="all">All roles</button>
+    <button class="chip" type="button" aria-pressed="false" data-f="1">Phase 1 · start now</button>
+    <button class="chip" type="button" aria-pressed="false" data-f="2">Phase 2</button>
+    <button class="chip" type="button" aria-pressed="false" data-f="3">Phase 3</button>
+  </div>
+  <div class="cards" id="roleGrid"></div>
+
+  <div class="prose"><h3>How the team handles one trip</h3><p class="muted">Every booking passes through the same stages. Amber steps wait for the owner.</p></div>
+  <ol class="loop" id="lifecycle" style="grid-template-columns:repeat(4,minmax(0,1fr))"></ol>
+
+  <div class="layer">
+    <div><h3>Her phone is the control room</h3><p class="note">One private Bale or Telegram group called “Office”. The AI staff post there; she answers with a tap or a word.</p></div>
+    <div class="card" style="max-width:460px">
+      <div class="kicker">Example messages in the Office group</div>
+      <pre class="rtl">۸:۳۰ — مدیر دفتر
+گزارش صبح: ۷ درخواست جدید، ۳ پیش‌فاکتور منتظر جواب،
+۲ استرداد باز، اعتبار حساب چارتر: ۴۸ میلیون تومان (کمتر از حد هشدار).
+
+۱۰:۱۵ — کارشناس فروش
+پیش‌فاکتور خانواده احمدی (دبی، ۳ نفر) آماده است.
+گزینه الف: ۲۳۸ میلیون — گزینه ب: ۳۳۵ میلیون.
+ارسال شود؟  [تأیید]  [ویرایش]
+
+۱۱:۰۲ — کارشناس عملیات
+پرواز W5 114 فردا ۴۵ دقیقه تأخیر دارد. ۴ مسافر ما در این پرواز هستند.
+پیامک اطلاع‌رسانی ارسال شود؟  [تأیید]
+
+۱۸:۰۰ — حسابدار
+۲ پرداخت مشتری تأیید نشده، ۱ چک همکار سه‌شنبه سررسید است.</pre>
+    </div>
+  </div>
+
+  <div class="layer">
+    <div><h3>How to build it</h3></div>
+    <div class="prose">
+      <p><b>One agent, many roles.</b> Start with a single Hermes Agent. Each role is a set of <b>skills</b> (how-to files) plus <b>scheduled jobs</b> (morning brief, hourly price watch, evening accounts check). Split a role into its own agent later only if it gets too busy.</p>
+      <p><b>One shared memory.</b> All roles read and write the same four lists: customers, bookings, payments and tasks. A simple database or spreadsheet is enough at the start. This is what makes ten roles act like one office instead of ten strangers.</p>
+      <p><b>One approval rule.</b> Every role can draft and prepare. Only the owner approves sending important messages, holding seats, issuing, refunds and payments. The approval appears as a button in the Office group.</p>
+      <p><b>Grow by phases.</b> Phase 1 (weeks 1–4): reception, sales drafts, documents, customer care, marketing and the office manager, all working from messages and your own lists. Phase 2 (months 2–3): connect read-only access to the charter and hotel systems and the bank or gateway reports, which brings in ticketing, the hotel desk, operations and the accountant. Phase 3 (month 4 onwards): roles prepare complete bookings for one-tap approval.</p>
+    </div>
+  </div>
+</section>
+
 <!-- =========================================================== 6 SIM -->
 <section id="sim" data-title="Try an agent" data-group="Automate" hidden>
-  <div class="eyebrow">Chapter 6 · Hands-on</div>
+  <div class="eyebrow">Chapter · Hands-on</div>
   <h2>Watch an agent work a real-looking request</h2>
   <p class="lead">Pick a message and press <b>Run agent</b>. The agent gets six office tools: CRM lookup, flight search, hotel search, passport check, quote builder and approval request. Every tool call appears in the log. It cannot book anything; it can only send you an approval ticket. All customers, fares and hotels are invented demo data in tomans.</p>
   <div class="sim">
@@ -413,7 +480,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 7 STACK -->
 <section id="stack" data-title="Tool stack" data-group="Automate" hidden>
-  <div class="eyebrow">Chapter 7</div>
+  <div class="eyebrow">Chapter</div>
   <h2>The tool stack: two tracks</h2>
   <p class="lead">Same architecture, different parts. An agency inside Iran should build on the left column; the right column applies to agencies elsewhere or a legally separate company abroad.</p>
   <div class="track">
@@ -441,7 +508,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 8 REVENUE -->
 <section id="revenue" data-title="Grow revenue" data-group="Grow & protect" hidden>
-  <div class="eyebrow">Chapter 8</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Twelve levers to earn more, and how AI pulls each one</h2>
   <p class="lead">Margins on tickets are thin and price-transparent. Revenue grows from speed, attach sales, specialisation and recurring clients. Every lever below lists the metric to watch.</p>
   <div class="cards" id="leverGrid"></div>
@@ -449,7 +516,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 9 RESILIENCE -->
 <section id="resilience" data-title="Resilience" data-group="Grow & protect" hidden>
-  <div class="eyebrow">Chapter 9</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Build an agency that survives shocks, and the AI wave</h2>
   <p class="lead">2026 tested every Iranian agency. Use what happened as a checklist: for each shock, prepare before it comes and decide what your agent does when it hits.</p>
   <div class="tablewrap"><table class="grid">
@@ -465,13 +532,13 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <div class="card"><div class="kicker">2 · Own a niche</div><p>Pilgrimage groups, medical tourism, Chinese inbound, family trips to Turkey, student travel. AI agents will route customers to whoever is clearly the specialist.</p></div>
     <div class="card"><div class="kicker">3 · Be machine-readable</div><p>Publish packages with clear structured data: dates, inclusions, prices, conditions. Tomorrow’s AI assistants will book what they can read.</p></div>
     <div class="card"><div class="kicker">4 · Sell problem-solving</div><p>Disruption handling, refunds, visa trouble, group logistics. These are where people pay for a human, and where 2026 proved agencies’ value.</p></div>
-    <div class="card"><div class="kicker">5 · Turn your know-how into software</div><p>The workflows you automate for yourself can be sold to other agencies (chapter 10). That adds income that does not depend on travel volume.</p></div>
+    <div class="card"><div class="kicker">5 · Turn your know-how into software</div><p>The workflows you automate for yourself can be sold to other agencies (see Products to sell). That adds income that does not depend on travel volume.</p></div>
   </div>
 </section>
 
 <!-- =========================================================== 10 PRODUCTS -->
 <section id="products" data-title="Products to sell" data-group="Grow & protect" hidden>
-  <div class="eyebrow">Chapter 10</div>
+  <div class="eyebrow">Chapter</div>
   <h2>AI products and services you could build and sell</h2>
   <p class="lead">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
   <div class="filters" id="prodFilters" role="group" aria-label="Filter products">
@@ -484,9 +551,42 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="callout ok"><h4>How to choose</h4><p>Pick the product whose problem costs <i>you</i> the most hours today. You are customer number one, so you test it for free and get a case study. Charge other agencies a setup fee plus a monthly subscription. Advisor tools abroad sell for roughly $35–49 per seat per month (Tern) or $299–599 per year (TravelSmart); price in tomans for what Iranian agencies can afford, and review prices often because of inflation.</p></div>
 </section>
 
+<!-- =========================================================== WATCH ONE DAY -->
+<section id="day" data-title="Watch one working day" data-group="Act" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2>Watch one working day</h2>
+  <p class="lead">Sit beside her for one normal day and log every task: what it was, which system or app she used, how many minutes it took, and whether it annoyed her. The summary shows where the hours go and which AI role to build first. Entries are saved in this browser only.</p>
+  <div class="pane">
+    <h3>Add a task <span class="badge" id="dayBadge">Example day loaded</span></h3>
+    <form id="dayForm" class="row" style="align-items:end">
+      <div style="display:grid;gap:4px;flex:3 1 220px;min-width:0"><label class="lbl" for="dTask">Task</label><input id="dTask" required placeholder="e.g. Compared IST charter prices in 3 systems"></div>
+      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dSys">System / app</label><select id="dSys"></select></div>
+      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dRole">Kind of work</label><select id="dRole"></select></div>
+      <div style="display:grid;gap:4px;flex:0 1 100px;min-width:0"><label class="lbl" for="dMin">Minutes</label><input id="dMin" type="number" min="1" max="600" value="10" required></div>
+      <label class="check" style="flex:0 1 auto;grid-template-columns:22px auto;align-items:center"><input id="dAnnoy" type="checkbox"><span>Annoying</span></label>
+      <button class="btn" type="submit">Add</button>
+    </form>
+  </div>
+  <div class="stats" id="daySummary"></div>
+  <div class="track">
+    <div class="pane"><h3>Where the time goes</h3><div id="dayByRole" style="display:grid;gap:8px"></div></div>
+    <div class="pane"><h3>Systems she switches between</h3><div id="dayBySys" style="display:grid;gap:8px"></div></div>
+  </div>
+  <div class="callout ok" id="dayAdvice"></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Task</th><th>System</th><th>Kind of work</th><th class="num">Min</th><th></th></tr></thead>
+    <tbody id="dayRows"></tbody>
+  </table></div>
+  <div class="row">
+    <button class="btn ghost small" type="button" id="dayCopy">Copy summary</button>
+    <button class="btn ghost small" type="button" id="dayExample">Load example day</button>
+    <button class="btn ghost small" type="button" id="dayClear">Clear all</button>
+  </div>
+</section>
+
 <!-- =========================================================== 11 PLAN -->
 <section id="plan" data-title="90-day plan" data-group="Act" hidden>
-  <div class="eyebrow">Chapter 11</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Your 90-day plan</h2>
   <p class="lead">Built for the Iran-resilient track. Tick items as you finish them; progress is saved in this browser only.</p>
   <div style="display:grid;gap:14px" id="weeks"></div>
@@ -495,7 +595,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 12 TEMPLATES -->
 <section id="templates" data-title="Templates" data-group="Act" hidden>
-  <div class="eyebrow">Chapter 12</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Copy-ready templates</h2>
   <p class="lead">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
   <div style="display:grid;gap:14px" id="tplList"></div>
@@ -503,7 +603,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 13 GUARDRAILS -->
 <section id="guardrails" data-title="Guardrails" data-group="Act" hidden>
-  <div class="eyebrow">Chapter 13</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Guardrails before you go live</h2>
   <p class="lead">Only 2% of travelers trust AI to book on its own. Your edge is AI speed with a human they can call. These rules protect your licence, your margins and your customers.</p>
   <div class="cards">
@@ -529,7 +629,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 
 <!-- =========================================================== 14 REVIEW -->
 <section id="review" data-title="Self-review" data-group="Act" hidden>
-  <div class="eyebrow">Chapter 14</div>
+  <div class="eyebrow">Chapter</div>
   <h2>My self-review: what I got wrong, and what I corrected</h2>
   <p class="lead">You asked me to assess my own output and correct it with new research. The first version of this academy was written for an agency in an unrestricted market. Here is what changed, and what is still uncertain.</p>
   <div class="tablewrap"><table class="grid">
@@ -541,6 +641,8 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
       <tr><td>Assumed a stable internet connection</td><td>The 2026 shutdowns stopped every foreign-dependent tool</td><td>A “shutdown-proof” flag on every use case and a full resilience chapter</td></tr>
       <tr><td>Prices in euros; GDS, ADM and BSP terms</td><td>Iranian agencies price in tomans and buy much capacity as charter blocks</td><td>Demo in tomans; charter workflows and CAO rules added</td></tr>
       <tr><td>Generic global use cases</td><td>Missed pilgrimage (Samah), charter price swings, refund backlogs and currency risk</td><td>Iran-specific use cases, revenue levers and products</td></tr>
+      <tr><td>Covered mainly reservations and sales</td><td>Missed back-office work that eats a small office’s day: supplier credit top-ups, cheques, partner commissions, tax e-invoices, exit tax and exit permissions, train and bus tickets, insurance policies, after-hours emergencies</td><td>New chapter “The whole job”, with every task mapped to an AI role</td></tr>
+      <tr><td>“Agents” as one assistant</td><td>A real office has distinct jobs with different access and approval needs</td><td>New chapter “AI office of 10”: ten roles, phases, one shared memory, one approval rule, and a one-day time study to choose what to build first</td></tr>
       <tr><td>Hermes “just works” with any model</td><td>Hermes requires at least 64k context, and some built-in tools call external services</td><td>Both limits are stated in the stack chapter</td></tr>
     </tbody>
   </table></div>
@@ -550,14 +652,14 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
       <li>Technical details and contract terms of Sepehr, Parto and Charter724 APIs: only vendor pages were available.</li>
       <li>Which open model is best for Persian in late 2026: the benchmarks I found test older models. Run your own test on 50 real messages.</li>
       <li>The October 2026 flight-resumption reports conflict with the April reopening reports; the situation may change again.</li>
-      <li>Market statistics in chapters 2 and 3 come from news reports and vendor research with different methods. Use them as direction, not exact figures.</li>
+      <li>Market statistics in the worldwide and Iran chapters come from news reports and vendor research with different methods. Use them as direction, not exact figures.</li>
     </ul>
   </div>
 </section>
 
 <!-- =========================================================== 15 SOURCES -->
 <section id="sources" data-title="Sources" data-group="Act" hidden>
-  <div class="eyebrow">Chapter 15</div>
+  <div class="eyebrow">Chapter</div>
   <h2>Sources</h2>
   <p class="lead">Checked between 15 and 17 October 2026. Vendor pages and news reports change; confirm before you decide.</p>
   <div class="sources">
@@ -610,7 +712,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </div>
 </main>
 </div>
-<footer>Travel Agency AI Academy · built for an agency owner learning AI agents · demo data in chapter 6 is invented · not legal advice.</footer>
+<footer>Travel Agency AI Academy · built for an agency owner learning AI agents · demo data in “Try an agent” is invented · not legal advice.</footer>
 
 <script>
 (() => {
@@ -633,6 +735,7 @@ const fmt = n => Math.round(n).toLocaleString("en-US");
 /* ================================================= navigation */
 const sections = [...document.querySelectorAll("main > section")];
 const ids = sections.map(s => s.id);
+sections.forEach((s, i) => { const e = s.querySelector(".eyebrow"); if (e && /^Chapter/.test(e.textContent)) e.textContent = e.textContent.replace(/^Chapter/, "Chapter " + (i + 1)); });
 const doneSet = new Set(store.get("taa.done", []));
 const nav = $("#sidenav"), pick = $("#chapterPick");
 let current = ids[0];
@@ -752,7 +855,7 @@ const LEVERS = [
   ["B2B", "Sell to smaller agencies", "Wholesale your charter blocks, packages and pilgrim groups to smaller offices; the agent handles their quote requests.", "B2B revenue"],
   ["Ops", "Fewer costly mistakes", "Name errors, missed deadlines and forgotten refunds cost real money. Checklists and monitoring catch them.", "Cost of errors per month"],
   ["Capacity", "More bookings per employee", "If each staff member handles twice as many requests, you grow without hiring. Track it honestly.", "Bookings per staff member"],
-  ["Software", "Sell your tools", "Turn your internal agents into products for other agencies (chapter 10).", "Software revenue"],
+  ["Software", "Sell your tools", "Turn your internal agents into products for other agencies (see Products to sell).", "Software revenue"],
 ];
 $("#leverGrid").replaceChildren(...LEVERS.map(([k, t, how, m]) => el("article", { class: "card" },
   el("div", { class: "kicker", text: k }), el("h4", { text: t }), el("p", { text: how }), el("div", { class: "meta", text: "Watch: " + m }))));
@@ -803,13 +906,223 @@ function renderProducts() {
 wireChips($("#prodFilters"), v => { prodF = v; renderProducts(); });
 renderProducts();
 
+/* ================================================= AI office of 10: roles */
+const ROLES = [
+  { id: "reception", en: "Receptionist", fa: "منشی و پذیرش", phase: 1, mission: "No message waits, day or night.",
+    duties: ["Collects messages from Bale, Telegram, Instagram, SMS and the website into one list", "Recognises repeat customers and their preferences", "Asks the one missing detail (dates, ages, budget)", "Answers common questions from approved facts", "Passes each request to the right role"],
+    when: "24/7", needs: "Bale/Telegram bots, SMS, website form, customer list", approves: "First replies to new leads, until you trust it", kpi: "First reply time" },
+  { id: "sales", en: "Sales consultant", fa: "کارشناس فروش", phase: 1, mission: "Fast, clear quotes that win the sale.",
+    duties: ["Builds 2–3 priced options and a day-by-day itinerary", "Adds insurance, transfers and other extras as options", "Answers partner agencies (همکار) with partner rates", "Follows up unanswered quotes after 48 hours"],
+    when: "On each new lead; daily follow-up run", needs: "Price lists, search results from ticketing and hotel desk, quote templates", approves: "Sending quotes", kpi: "Quote → sale rate" },
+  { id: "ticketing", en: "Ticketing clerk", fa: "کارشناس بلیت", phase: 2, mission: "Search every system once; type passenger data once.",
+    duties: ["Searches and compares Sepehr, Parto, Charter724 and airline panels", "Watches prices and seats on your main routes every hour", "Prepares bookings with names exactly as in passports", "Handles train and bus tickets for domestic trips"],
+    when: "On request; hourly price watch", needs: "Read access to reservation web services through your integrator", approves: "Every hold and every issued ticket", kpi: "Minutes per booking" },
+  { id: "hotel", en: "Hotel & tour desk", fa: "کارشناس هتل و تور", phase: 2, mission: "The right room and programme, at your best margin.",
+    duties: ["Checks contracted hotels first, then web services", "Prepares vouchers and confirmation letters", "Builds tour programmes, rooming lists and tour-leader briefs", "Arranges transfers and CIP services"],
+    when: "On request", needs: "Contract rates, hotel web services, supplier contacts", approves: "Bookings and group contracts", kpi: "Margin per package" },
+  { id: "documents", en: "Documents & visa officer", fa: "کارشناس مدارک و ویزا", phase: 1, mission: "No traveler is stopped at the airport for paperwork.",
+    duties: ["Checks passport validity and names", "Reminds about exit tax and exit permissions where they apply", "Keeps visa checklists, appointments and file status", "Prepares Samah data for pilgrims and issues insurance policies"],
+    when: "When a booking is confirmed; reminder schedule", needs: "Document rules you maintain, secure document storage", approves: "Any visa advice beyond the checklist", kpi: "Document problems found before travel" },
+  { id: "operations", en: "Operations duty officer", fa: "کارشناس عملیات (کشیک)", phase: 2, mission: "Travelers hear about problems from you first.",
+    duties: ["Sends a reminder 48 hours before departure", "Detects delays, schedule changes and cancellations", "Runs the after-hours emergency line", "Broadcasts to groups and coordinates tour leaders"],
+    when: "24/7 with scheduled checks", needs: "Booking list, flight status sources, SMS", approves: "Rebooking and messages to large groups", kpi: "Passengers informed before they ask" },
+  { id: "accountant", en: "Accountant", fa: "حسابدار", phase: 2, mission: "Every rial in and out is known by evening.",
+    duties: ["Matches customer payments, receipts and bank deposits", "Warns when supplier and charter account balances run low", "Tracks cheques due and partner commissions", "Prepares daily reconciliation and e-invoice data for your accountant", "Flags quotes hit by exchange-rate moves"],
+    when: "Daily evening run; on each payment", needs: "Gateway and bank statements, supplier statements", approves: "Every payment, refund and top-up", kpi: "Unmatched items; money stuck" },
+  { id: "care", en: "Customer care & refunds", fa: "پشتیبانی و استرداد", phase: 1, mission: "No refund or complaint is forgotten.",
+    duties: ["Keeps a refund tracker for money owed in both directions", "Calculates penalties from fare and hotel rules", "Logs complaints and drafts calm replies", "Asks for feedback after each trip"],
+    when: "On each case; weekly refund review", needs: "Refund rules per supplier, booking list", approves: "Refund amounts and complaint replies", kpi: "Days to close a refund" },
+  { id: "marketing", en: "Marketing", fa: "بازاریابی", phase: 1, mission: "The phone rings because customers remember you.",
+    duties: ["Plans posts around Nowruz, summer, Arbaeen, Yalda and school holidays", "Writes Instagram and Bale channel posts from real packages", "Sends birthday and next-season offers to past customers", "Keeps listings right on Neshan, Balad and Google Maps; asks for reviews"],
+    when: "Weekly plan; daily posts", needs: "Package list, customer list with consent, brand guide", approves: "Every public post and bulk message", kpi: "Leads per month; repeat customers" },
+  { id: "manager", en: "Office manager", fa: "مدیر دفتر", phase: 1, mission: "Nothing falls through the cracks.",
+    duties: ["Sends the morning brief and end-of-day summary", "Keeps one task board for all roles", "Reminds about licence, e-trust badge and contract renewals", "Runs backups and weekly numbers; answers staff questions from your manuals"],
+    when: "08:30 and 18:00 daily; weekly report", needs: "Access to every role’s lists", approves: "Nothing; it reports to you", kpi: "Nothing forgotten" },
+];
+const roleById = Object.fromEntries(ROLES.map(r => [r.id, r]));
+let phaseF = "all";
+function renderRoles() {
+  $("#roleGrid").replaceChildren(...ROLES.filter(r => phaseF === "all" || String(r.phase) === phaseF).map(r => el("article", { class: "card" + (r.phase === 1 ? " star" : "") },
+    el("div", { class: "card-head" }, el("div", {}, el("div", { class: "kicker", text: r.fa }), el("h4", { text: r.en })), el("span", { class: "pill " + (r.phase === 1 ? "yes" : r.phase === 2 ? "part" : "info"), text: "Phase " + r.phase })),
+    el("p", { text: r.mission }),
+    el("ul", {}, ...r.duties.map(d => el("li", { text: d }))),
+    el("div", { class: "kv" },
+      el("div", {}, el("b", { text: "Works" }), r.when),
+      el("div", {}, el("b", { text: "Needs" }), r.needs),
+      el("div", {}, el("b", { text: "You approve" }), r.approves),
+      el("div", {}, el("b", { text: "Measure" }), r.kpi)))));
+}
+wireChips($("#rolePhase"), v => { phaseF = v; renderRoles(); });
+renderRoles();
+
+const LIFE = [
+  ["Lead arrives", "reception", false], ["Quote", "sales", false], ["Customer says yes: hold seats", "ticketing", true], ["Payment received", "accountant", true],
+  ["Issue tickets & vouchers", "hotel", true], ["Before departure", "documents", false], ["During the trip", "operations", false], ["After the trip", "care", false],
+];
+$("#lifecycle").replaceChildren(...LIFE.map(([step, role, owner]) => el("li", { class: owner ? "human" : "" },
+  el("b", { text: step }), el("span", { class: "note", text: roleById[role].en + (owner ? " prepares · you approve" : " handles it") }))));
+
+/* ================================================= the whole job */
+const JOBS = [
+  ["Before the sale", [
+    ["Collect requests from Instagram, Bale, Telegram, phone, website and walk-ins into one list", "reception", false],
+    ["Remember repeat customers’ preferences and past trips", "reception", false],
+    ["Answer partner agencies (همکار) with partner rates and commission", "sales", true],
+    ["Build quotes and itineraries", "sales", false],
+    ["Offer payment plans or instalment tours where your rules allow, and track the credit risk", "accountant", true],
+    ["Follow up quotes nobody answered", "sales", false],
+  ]],
+  ["Booking", [
+    ["Search and compare Sepehr, Parto, Charter724 and airline panels", "ticketing", false],
+    ["Train and bus tickets (Raja and private operators) for domestic trips", "ticketing", true],
+    ["Enter passenger data once and reuse it in every system", "ticketing", false],
+    ["Hotel bookings, vouchers and confirmation letters", "hotel", false],
+    ["Tours: programme, tour leader, guides, rooming lists", "hotel", false],
+    ["Transfers, CIP and airport services", "hotel", true],
+    ["Issue travel-insurance policies in the insurer’s system", "documents", true],
+  ]],
+  ["Money", [
+    ["Watch balances and credit with charter sellers and web services; top up before issuing is blocked", "accountant", true],
+    ["Check customer payments: gateway links, card-to-card receipts, bank deposits", "accountant", false],
+    ["Track cheques from companies and partner agencies, with due dates", "accountant", true],
+    ["Pay and record partner commissions", "accountant", true],
+    ["Refunds owed to customers and by suppliers, with penalties by fare rule", "care", false],
+    ["E-invoices in the tax system (سامانه مودیان) and tax filing, with your accountant", "accountant", true],
+    ["Daily cash and bank reconciliation", "accountant", false],
+    ["Reprice foreign-currency items when the exchange rate moves", "accountant", false],
+  ]],
+  ["Documents & rules", [
+    ["Passport validity, and names exactly as in the passport", "documents", false],
+    ["Exit tax (عوارض خروج): remind travelers how and where to pay", "documents", true],
+    ["Exit permission for men of military-service age; guardian consent for minors’ passports", "documents", true],
+    ["Visa checklists, appointment tracking and file status", "documents", false],
+    ["Samah registration data for Arbaeen pilgrims", "documents", false],
+    ["Renew the licence, e-trust badge and supplier contracts on time", "manager", true],
+    ["Follow Civil Aviation Organization circulars on sales and refunds", "manager", false],
+    ["Protect customer data such as passports and national IDs", "manager", true],
+  ]],
+  ["Before & during the trip", [
+    ["Reminder 48 hours before: documents, terminal, check-in time, baggage", "operations", false],
+    ["Watch delays and schedule changes; inform affected passengers", "operations", false],
+    ["After-hours emergency line for travelers abroad", "operations", true],
+    ["Group broadcasts and tour-leader coordination", "operations", false],
+  ]],
+  ["After the trip", [
+    ["Ask for feedback and reviews", "care", false],
+    ["Handle complaints and close refunds", "care", false],
+    ["Birthday, anniversary and next-season offers based on past trips", "marketing", true],
+    ["Referral rewards", "marketing", false],
+  ]],
+  ["Running the office", [
+    ["Morning brief and end-of-day summary", "manager", false],
+    ["Marketing calendar: Nowruz, summer, Arbaeen, Yalda, school holidays", "marketing", false],
+    ["Instagram and Bale channel posts and offers", "marketing", false],
+    ["Keep your listing right on Neshan, Balad and Google Maps", "marketing", true],
+    ["Keep price lists and supplier contracts current", "hotel", false],
+    ["Back up customer and booking data, with an offline copy", "manager", true],
+    ["Train new staff with your own procedures", "manager", false],
+  ]],
+];
+let jobF = "all";
+function renderJobs() {
+  $("#jobStages").replaceChildren(...JOBS.map(([stage, tasks]) => {
+    const shown = tasks.filter(t => jobF === "all" || t[2]);
+    if (!shown.length) return null;
+    return el("div", { style: "display:grid;gap:10px" }, el("h3", { text: stage }),
+      el("div", { class: "tablewrap" }, el("table", { class: "grid" },
+        el("thead", {}, el("tr", {}, el("th", { text: "Task" }), el("th", { text: "AI role" }), el("th", { text: "" }))),
+        el("tbody", {}, ...shown.map(([task, role, forgotten]) => el("tr", {},
+          el("td", { text: task }),
+          el("td", {}, el("span", { text: roleById[role].en }), el("br"), el("span", { class: "meta fa", text: roleById[role].fa })),
+          el("td", {}, forgotten ? el("span", { class: "pill high", text: "Often forgotten" }) : null)))))));
+  }).filter(Boolean));
+}
+wireChips($("#jobFilters"), v => { jobF = v; renderJobs(); });
+renderJobs();
+
+/* ================================================= watch one working day */
+const SYSTEMS = ["Sepehr", "Parto", "Charter724", "Airline panel", "Hotel panel / web service", "Bale", "Telegram", "Instagram", "WhatsApp", "Phone call", "SMS", "Excel / Word / notes", "Accounting software", "Bank / payment gateway", "Insurance system", "Samah / government system", "Other"];
+const EXAMPLE_DAY = [
+  ["Read and answered new Bale and Instagram messages", "Bale", "reception", 45, true],
+  ["Compared Istanbul charter prices in three systems", "Sepehr", "ticketing", 35, true],
+  ["Typed passenger names into the booking system", "Parto", "ticketing", 20, true],
+  ["Made a Dubai family quote in Word and sent it", "Excel / Word / notes", "sales", 40, false],
+  ["Called customers who had not answered quotes", "Phone call", "sales", 25, false],
+  ["Checked card-to-card payment receipts in the bank app", "Bank / payment gateway", "accountant", 20, true],
+  ["Topped up the charter account after an issue failed", "Charter724", "accountant", 15, true],
+  ["Chased two refunds with the airline", "Airline panel", "care", 30, true],
+  ["Told six passengers about a delay, one call each", "Phone call", "operations", 25, true],
+  ["Answered a family’s passport and exit-tax questions", "Phone call", "documents", 15, false],
+  ["Posted a Kish offer on Instagram", "Instagram", "marketing", 20, false],
+  ["Updated the sales notebook at the end of the day", "Excel / Word / notes", "manager", 20, true],
+];
+let day = store.get("taa.day", null);
+if (!day || !Array.isArray(day.rows)) day = { example: true, rows: EXAMPLE_DAY.map(r => r.slice()) };
+const saveDay = () => store.set("taa.day", day);
+$("#dSys").replaceChildren(...SYSTEMS.map(s => el("option", { value: s, text: s })));
+$("#dRole").replaceChildren(...ROLES.map(r => el("option", { value: r.id, text: r.en })));
+const bar = (label, value, max, extra) => el("div", { style: "display:grid;gap:3px" },
+  el("div", { class: "row", style: "justify-content:space-between;gap:8px" }, el("span", { text: label }), el("span", { class: "status", text: extra })),
+  el("div", { class: "progress" }, el("i", { style: `width:${max ? Math.round(value / max * 100) : 0}%;background:var(--accent)` })));
+function renderDay() {
+  const rows = day.rows;
+  $("#dayBadge").textContent = day.example ? "Example day · your first entry replaces it" : `${rows.length} tasks logged`;
+  const total = rows.reduce((a, r) => a + r[3], 0), annoy = rows.filter(r => r[4]).reduce((a, r) => a + r[3], 0);
+  const systems = new Set(rows.map(r => r[1]));
+  $("#daySummary").replaceChildren(
+    el("div", { class: "stat" }, el("b", { text: (total / 60).toFixed(1) + " h" }), el("span", { text: `logged across ${rows.length} tasks` })),
+    el("div", { class: "stat alert" }, el("b", { text: (annoy / 60).toFixed(1) + " h" }), el("span", { text: "marked annoying: build for these first" })),
+    el("div", { class: "stat" }, el("b", { text: String(systems.size) }), el("span", { text: "different systems and apps used" })));
+  const byRole = {}, byRoleAnnoy = {}, bySys = {};
+  rows.forEach(r => { byRole[r[2]] = (byRole[r[2]] || 0) + r[3]; if (r[4]) byRoleAnnoy[r[2]] = (byRoleAnnoy[r[2]] || 0) + r[3]; bySys[r[1]] = (bySys[r[1]] || 0) + r[3]; });
+  const roleList = Object.entries(byRole).sort((a, b) => b[1] - a[1]), maxR = roleList.length ? roleList[0][1] : 0;
+  $("#dayByRole").replaceChildren(...(roleList.length ? roleList.map(([id, m]) => bar(`${roleById[id].en} · phase ${roleById[id].phase}`, m, maxR, `${m} min`)) : [el("p", { class: "note", text: "Add tasks to see the split." })]));
+  const sysList = Object.entries(bySys).sort((a, b) => b[1] - a[1]), maxS = sysList.length ? sysList[0][1] : 0;
+  $("#dayBySys").replaceChildren(...(sysList.length ? sysList.map(([s, m]) => bar(s, m, maxS, `${m} min`)) : [el("p", { class: "note", text: "Add tasks to see the systems." })]));
+  const pickFrom = Object.keys(byRoleAnnoy).length ? byRoleAnnoy : byRole;
+  const top = Object.entries(pickFrom).sort((a, b) => b[1] - a[1])[0];
+  const adv = $("#dayAdvice");
+  if (top) {
+    const r = roleById[top[0]];
+    adv.replaceChildren(el("h4", { text: `Build the ${r.en} first` }),
+      el("p", { text: `${top[1]} minutes of ${pickFrom === byRoleAnnoy ? "annoying " : ""}work went to tasks this role covers. ${r.phase === 1 ? "It is a phase 1 role, so it needs no access to booking systems and can start this week." : "It needs read access to booking or bank systems (phase " + r.phase + "), so start by asking your integrator or bank for that access."} Its first duty: ${r.duties[0]}.` }));
+  } else adv.replaceChildren(el("h4", { text: "Log a few tasks" }), el("p", { text: "The advice appears once there is at least one task." }));
+  $("#dayRows").replaceChildren(...rows.map((r, i) => {
+    const del = el("button", { class: "btn ghost small", type: "button", text: "Remove", "aria-label": "Remove " + r[0] });
+    del.addEventListener("click", () => { day.rows.splice(i, 1); saveDay(); renderDay(); });
+    return el("tr", {}, el("td", { text: r[0] + (r[4] ? "  ⚑" : ""), dir: "auto" }), el("td", { text: r[1] }), el("td", { text: roleById[r[2]].en }), el("td", { class: "num", text: String(r[3]) }), el("td", {}, del));
+  }));
+}
+$("#dayForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const task = $("#dTask").value.trim(), min = Math.max(1, Math.min(600, Number($("#dMin").value) || 0));
+  if (!task) return;
+  if (day.example) day = { example: false, rows: [] };
+  day.rows.push([task, $("#dSys").value, $("#dRole").value, min, $("#dAnnoy").checked]);
+  saveDay(); renderDay();
+  $("#dTask").value = ""; $("#dAnnoy").checked = false; $("#dTask").focus();
+});
+$("#dayExample").addEventListener("click", () => { day = { example: true, rows: EXAMPLE_DAY.map(r => r.slice()) }; saveDay(); renderDay(); });
+$("#dayClear").addEventListener("click", () => { day = { example: false, rows: [] }; saveDay(); renderDay(); });
+$("#dayCopy").addEventListener("click", async () => {
+  const btn = $("#dayCopy");
+  const total = day.rows.reduce((a, r) => a + r[3], 0);
+  const lines = [`Working day log: ${day.rows.length} tasks, ${(total / 60).toFixed(1)} hours`, ...day.rows.map(r => `- ${r[0]} | ${r[1]} | ${roleById[r[2]].en} | ${r[3]} min${r[4] ? " | annoying" : ""}`)];
+  const text = lines.join("\n");
+  try { await navigator.clipboard.writeText(text); btn.textContent = "Copied"; }
+  catch { btn.textContent = "Copy failed: select the table instead"; }
+  setTimeout(() => { btn.textContent = "Copy summary"; }, 2500);
+});
+renderDay();
+
 /* ================================================= chapter 11: plan */
 const PLAN = [
   ["Days 1–14 · Learn on your own desk", [
+    ["Log one full working day with the “Watch one working day” tool", "Shows where the hours go and which AI role to build first."],
     ["List your 15 most repeated tasks and how long each takes", "This list decides what to automate and how you will measure savings."],
-    ["Write the office playbook: fees, markups, tone, refund rules, licence limits", "It becomes the agent’s standing instructions (chapter 12)."],
+    ["Write the office playbook: fees, markups, tone, refund rules, licence limits", "It becomes the agent’s standing instructions (see Templates)."],
     ["Collect 50 real customer messages (remove names and IDs)", "Your test set for choosing a model and checking the agent."],
-    ["Run the simulator in chapter 6 with your own message styles", "Notice where it asks for missing data and where it guesses."],
+    ["Run the “Try an agent” simulator with your own message styles", "Notice where it asks for missing data and where it guesses."],
   ]],
   ["Days 15–30 · Your first private agent, inside Iran", [
     ["Rent a GPU server in an Iranian data centre, or buy one for the office", "Check the GPU rental subsidy for private companies."],
@@ -830,7 +1143,7 @@ const PLAN = [
     ["Turn on the approval queue: agent prepares, staff hold, issue and charge", "The golden rule: AI never moves money alone."],
     ["Add SMS as the fallback channel for urgent updates", "Works when everything else is down."],
     ["Review KPIs: reply time, quotes per day, conversion, attach rate", "Keep what pays; switch off what doesn’t."],
-    ["Pick one product from chapter 10 to offer to two friendly agencies", "Your first software revenue."],
+    ["Pick one product from “Products to sell” to offer to two friendly agencies", "Your first software revenue."],
   ]],
 ];
 const planDone = new Set(store.get("taa.plan", []));
