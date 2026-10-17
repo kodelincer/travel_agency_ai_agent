@@ -989,28 +989,29 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== WATCH ONE DAY -->
-<section id="day" data-title="Watch one working day" data-group="Act" data-title-fa="ثبت یک روز کاری" data-fa="todo" hidden>
+<section id="day" data-title="Watch one working day" data-group="Act" data-title-fa="ثبت یک روز کاری" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Watch one working day</h2>
-  <p class="lead">Sit beside her for one normal day and log every task: what it was, which system or app she used, how many minutes it took, and whether it annoyed her. The summary shows where the hours go and which AI role to build first. Entries are saved in this browser only.</p>
+  <h2><span class="l-en">Watch one working day</span><span class="l-fa">یک روز کاری را ثبت کنید</span></h2>
+  <p class="lead l-en">Sit beside her for one normal day and log every task: what it was, which system or app she used, how many minutes it took, and whether it annoyed her. The summary shows where the hours go and which AI role to build first. Entries are saved in this browser only.</p>
+  <p class="lead l-fa">یک روز عادی کنار او بنشینید و هر کار را ثبت کنید: چه کاری بود، با کدام سامانه یا برنامه، چند دقیقه طول کشید، و آیا آزاردهنده بود. خلاصه نشان می‌دهد ساعت‌ها کجا می‌رود و اول کدام نقش هوش مصنوعی را بسازید. ثبت‌ها فقط در همین مرورگر ذخیره می‌شود.</p>
   <div class="pane">
-    <h3>Add a task <span class="badge" id="dayBadge">Example day loaded</span></h3>
+    <h3><span class="l-en">Add a task</span><span class="l-fa">افزودن کار</span> <span class="badge" id="dayBadge"></span></h3>
     <form id="dayForm" class="row" style="align-items:end">
-      <div style="display:grid;gap:4px;flex:3 1 220px;min-width:0"><label class="lbl" for="dTask">Task</label><input id="dTask" required placeholder="e.g. Compared IST charter prices in 3 systems"></div>
-      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dSys">System / app</label><select id="dSys"></select></div>
-      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dRole">Kind of work</label><select id="dRole"></select></div>
-      <div style="display:grid;gap:4px;flex:0 1 100px;min-width:0"><label class="lbl" for="dMin">Minutes</label><input id="dMin" type="number" min="1" max="600" value="10" required></div>
-      <label class="check" style="flex:0 1 auto;grid-template-columns:22px auto;align-items:center"><input id="dAnnoy" type="checkbox"><span>Annoying</span></label>
-      <button class="btn" type="submit">Add</button>
+      <div style="display:grid;gap:4px;flex:3 1 220px;min-width:0"><label class="lbl" for="dTask"><span class="l-en">Task</span><span class="l-fa">کار</span></label><input id="dTask" required dir="auto"></div>
+      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dSys"><span class="l-en">System / app</span><span class="l-fa">سامانه / برنامه</span></label><select id="dSys"></select></div>
+      <div style="display:grid;gap:4px;flex:1 1 150px;min-width:0"><label class="lbl" for="dRole"><span class="l-en">Kind of work</span><span class="l-fa">نوع کار</span></label><select id="dRole"></select></div>
+      <div style="display:grid;gap:4px;flex:0 1 100px;min-width:0"><label class="lbl" for="dMin"><span class="l-en">Minutes</span><span class="l-fa">دقیقه</span></label><input id="dMin" type="number" min="1" max="600" value="10" required></div>
+      <label class="check" style="flex:0 1 auto;grid-template-columns:22px auto;align-items:center"><input id="dAnnoy" type="checkbox"><span><span class="l-en">Annoying</span><span class="l-fa">آزاردهنده</span></span></label>
+      <button class="btn" type="submit"><span class="l-en">Add</span><span class="l-fa">افزودن</span></button>
     </form>
   </div>
   <div class="stats" id="daySummary"></div>
   <div class="track">
-    <div class="pane"><h3>Where the time goes</h3><div id="dayByRole" style="display:grid;gap:8px"></div></div>
-    <div class="pane"><h3>Systems she switches between</h3><div id="dayBySys" style="display:grid;gap:8px"></div></div>
+    <div class="pane"><h3><span class="l-en">Where the time goes</span><span class="l-fa">وقت کجا می‌رود</span></h3><div id="dayByRole" style="display:grid;gap:8px"></div></div>
+    <div class="pane"><h3><span class="l-en">Systems she switches between</span><span class="l-fa">سامانه‌هایی که بینشان جابه‌جا می‌شود</span></h3><div id="dayBySys" style="display:grid;gap:8px"></div></div>
   </div>
   <div class="callout ok" id="dayAdvice"></div>
-  <div class="card">
+  <div class="card l-en">
     <div class="kicker">Before you build anything</div>
     <h4>Five questions to answer about her office</h4>
     <p>Agents juggle a laptop and a phone all day, moving between airline systems, reservation panels and messengers. Answer these from your day of watching:</p>
@@ -1023,14 +1024,27 @@ Send an SMS notice?  [Approve]
     </ol>
     <p class="meta">The answers decide which AI role to build first and which systems it must connect to (see The AI-run office).</p>
   </div>
+  <div class="card l-fa">
+    <div class="kicker">پیش از ساختن هر چیز</div>
+    <h4>پنج سؤال درباره‌ی دفتر او</h4>
+    <p>کارمندان آژانس تمام روز بین لپ‌تاپ و گوشی، سامانه‌های ایرلاین، پنل‌های رزرو و پیام‌رسان‌ها جابه‌جا می‌شوند. از روزی که کنارش بودید به این‌ها پاسخ دهید:</p>
+    <ol>
+      <li>کدام سامانه‌های رزرو و پنل‌های ایرلاین را بیشتر باز می‌کند (سپهر، پرتو، چارتر۷۲۴، پنل ایرلاین‌ها، پنل هتل‌ها)؟</li>
+      <li>درخواست مشتری‌ها بیشتر از کجا می‌آید: بله، تلگرام، اینستاگرام، تماس تلفنی یا مراجعه‌ی حضوری؟</li>
+      <li>بیشتر چه می‌فروشد: پرواز داخلی، تور خارجی، سفر زیارتی، هتل یا ترکیبی از این‌ها؟</li>
+      <li>تنها کار می‌کند یا با همکار؟ حسابداری را چه کسی انجام می‌دهد؟</li>
+      <li>آخر روز بیشتر از چه گله می‌کند؟</li>
+    </ol>
+    <p class="meta">پاسخ‌ها تعیین می‌کنند اول کدام نقش هوش مصنوعی را بسازید و به کدام سامانه‌ها وصل شود (فصل «دفتری که هوش مصنوعی اداره می‌کند»).</p>
+  </div>
   <div class="tablewrap"><table class="grid">
-    <thead><tr><th>Task</th><th>System</th><th>Kind of work</th><th class="num">Min</th><th></th></tr></thead>
+    <thead><tr><th><span class="l-en">Task</span><span class="l-fa">کار</span></th><th><span class="l-en">System</span><span class="l-fa">سامانه</span></th><th><span class="l-en">Kind of work</span><span class="l-fa">نوع کار</span></th><th class="num"><span class="l-en">Min</span><span class="l-fa">دقیقه</span></th><th></th></tr></thead>
     <tbody id="dayRows"></tbody>
   </table></div>
   <div class="row">
-    <button class="btn ghost small" type="button" id="dayCopy">Copy summary</button>
-    <button class="btn ghost small" type="button" id="dayExample">Load example day</button>
-    <button class="btn ghost small" type="button" id="dayClear">Clear all</button>
+    <button class="btn ghost small" type="button" id="dayCopy"><span class="l-en">Copy summary</span><span class="l-fa">کپی خلاصه</span></button>
+    <button class="btn ghost small" type="button" id="dayExample"><span class="l-en">Load example day</span><span class="l-fa">بارگذاری روز نمونه</span></button>
+    <button class="btn ghost small" type="button" id="dayClear"><span class="l-en">Clear all</span><span class="l-fa">پاک کردن همه</span></button>
   </div>
 </section>
 
@@ -1186,6 +1200,7 @@ const store = {
 };
 const fmt = n => Math.round(n).toLocaleString("en-US");
 let navReady = false;
+const langHooks = [];
 const T = (en, fa) => { const f = document.createDocumentFragment(); f.append(el("span", { class: "l-en", text: en }), el("span", { class: "l-fa", text: fa == null ? en : fa })); return f; };
 const faNum = n => Number(n).toLocaleString("fa-IR");
 let lang = store.get("taa.lang", "en") === "fa" ? "fa" : "en";
@@ -1194,6 +1209,7 @@ function applyLang() {
   r.dataset.lang = lang; r.lang = lang; r.dir = lang === "fa" ? "rtl" : "ltr";
   store.set("taa.lang", lang);
   if (navReady) buildNav();
+  langHooks.forEach(f => f());
 }
 applyLang();
 $("#langBtn").addEventListener("click", () => { lang = lang === "fa" ? "en" : "fa"; applyLang(); });
@@ -1568,56 +1584,72 @@ wireChips($("#jobFilters"), v => { jobF = v; renderJobs(); });
 renderJobs();
 
 /* ================================================= watch one working day */
-const SYSTEMS = ["Sepehr", "Parto", "Charter724", "Airline panel", "Hotel panel / web service", "Bale", "Telegram", "Instagram", "WhatsApp", "Phone call", "SMS", "Excel / Word / notes", "Accounting software", "Bank / payment gateway", "Insurance system", "Samah / government system", "Other"];
+const SYSTEMS = [["Sepehr", "سپهر"], ["Parto", "پرتو"], ["Charter724", "چارتر۷۲۴"], ["Airline panel", "پنل ایرلاین"], ["Hotel panel / web service", "پنل یا وب‌سرویس هتل"], ["Bale", "بله"], ["Telegram", "تلگرام"], ["Instagram", "اینستاگرام"], ["WhatsApp", "واتس‌اپ"], ["Phone call", "تماس تلفنی"], ["SMS", "پیامک"], ["Excel / Word / notes", "اکسل / ورد / دفترچه"], ["Accounting software", "نرم‌افزار حسابداری"], ["Bank / payment gateway", "بانک / درگاه پرداخت"], ["Insurance system", "سامانه‌ی بیمه"], ["Samah / government system", "سماح / سامانه‌ی دولتی"], ["Other", "سایر"]];
+const SYS_FA = Object.fromEntries(SYSTEMS);
+const sysName = s => T(s, SYS_FA[s] || s);
+// [task en, system key, role id, minutes, annoying, task fa]
 const EXAMPLE_DAY = [
-  ["Read and answered new Bale and Instagram messages", "Bale", "reception", 45, true],
-  ["Compared Istanbul charter prices in three systems", "Sepehr", "ticketing", 35, true],
-  ["Typed passenger names into the booking system", "Parto", "ticketing", 20, true],
-  ["Made a Dubai family quote in Word and sent it", "Excel / Word / notes", "sales", 40, false],
-  ["Called customers who had not answered quotes", "Phone call", "sales", 25, false],
-  ["Checked card-to-card payment receipts in the bank app", "Bank / payment gateway", "accountant", 20, true],
-  ["Topped up the charter account after an issue failed", "Charter724", "accountant", 15, true],
-  ["Chased two refunds with the airline", "Airline panel", "care", 30, true],
-  ["Told six passengers about a delay, one call each", "Phone call", "operations", 25, true],
-  ["Answered a family’s passport and exit-tax questions", "Phone call", "documents", 15, false],
-  ["Posted a Kish offer on Instagram", "Instagram", "marketing", 20, false],
-  ["Updated the sales notebook at the end of the day", "Excel / Word / notes", "manager", 20, true],
+  ["Read and answered new Bale and Instagram messages", "Bale", "reception", 45, true, "خواندن و پاسخ دادن به پیام‌های جدید بله و اینستاگرام"],
+  ["Compared Istanbul charter prices in three systems", "Sepehr", "ticketing", 35, true, "مقایسه‌ی قیمت چارتر استانبول در سه سامانه"],
+  ["Typed passenger names into the booking system", "Parto", "ticketing", 20, true, "تایپ نام مسافران در سامانه‌ی رزرو"],
+  ["Made a Dubai family quote in Word and sent it", "Excel / Word / notes", "sales", 40, false, "تهیه‌ی پیش‌فاکتور خانوادگی دبی در ورد و ارسال آن"],
+  ["Called customers who had not answered quotes", "Phone call", "sales", 25, false, "تماس با مشتریانی که به پیش‌فاکتور جواب نداده بودند"],
+  ["Checked card-to-card payment receipts in the bank app", "Bank / payment gateway", "accountant", 20, true, "بررسی رسیدهای کارت‌به‌کارت در برنامه‌ی بانک"],
+  ["Topped up the charter account after an issue failed", "Charter724", "accountant", 15, true, "شارژ حساب چارتر بعد از ناموفق شدن صدور"],
+  ["Chased two refunds with the airline", "Airline panel", "care", 30, true, "پیگیری دو استرداد با ایرلاین"],
+  ["Told six passengers about a delay, one call each", "Phone call", "operations", 25, true, "خبر دادن تأخیر به شش مسافر، هر کدام با یک تماس"],
+  ["Answered a family’s passport and exit-tax questions", "Phone call", "documents", 15, false, "پاسخ به سؤال‌های یک خانواده درباره‌ی گذرنامه و عوارض خروج"],
+  ["Posted a Kish offer on Instagram", "Instagram", "marketing", 20, false, "گذاشتن پیشنهاد کیش در اینستاگرام"],
+  ["Updated the sales notebook at the end of the day", "Excel / Word / notes", "manager", 20, true, "به‌روز کردن دفتر فروش در پایان روز"],
 ];
 let day = store.get("taa.day", null);
 if (!day || !Array.isArray(day.rows)) day = { example: true, rows: EXAMPLE_DAY.map(r => r.slice()) };
 const saveDay = () => store.set("taa.day", day);
-$("#dSys").replaceChildren(...SYSTEMS.map(s => el("option", { value: s, text: s })));
-$("#dRole").replaceChildren(...ROLES.map(r => el("option", { value: r.id, text: r.en })));
+function fillDayControls() {
+  const fa = lang === "fa", sysVal = $("#dSys").value, roleVal = $("#dRole").value;
+  $("#dSys").replaceChildren(...SYSTEMS.map(([en, f]) => el("option", { value: en, text: fa ? f : en })));
+  $("#dRole").replaceChildren(...ROLES.map(r => el("option", { value: r.id, text: fa ? r.fa : r.en })));
+  if (sysVal) $("#dSys").value = sysVal;
+  if (roleVal) $("#dRole").value = roleVal;
+  $("#dTask").placeholder = fa ? "مثلاً: مقایسه‌ی قیمت چارتر استانبول در ۳ سامانه" : "e.g. Compared IST charter prices in 3 systems";
+}
+fillDayControls();
+langHooks.push(fillDayControls);
 const bar = (label, value, max, extra) => el("div", { style: "display:grid;gap:3px" },
-  el("div", { class: "row", style: "justify-content:space-between;gap:8px" }, el("span", { text: label }), el("span", { class: "status", text: extra })),
+  el("div", { class: "row", style: "justify-content:space-between;gap:8px" }, el("span", {}, label), el("span", { class: "status" }, extra)),
   el("div", { class: "progress" }, el("i", { style: `width:${max ? Math.round(value / max * 100) : 0}%;background:var(--accent)` })));
+const minLabel = m => T(`${m} min`, `${faNum(m)} دقیقه`);
+const hours = m => T((m / 60).toFixed(1) + " h", faNum(Number((m / 60).toFixed(1))) + " ساعت");
+const taskText = r => r[5] ? T(r[0], r[5]) : document.createTextNode(r[0]);
 function renderDay() {
   const rows = day.rows;
-  $("#dayBadge").textContent = day.example ? "Example day · your first entry replaces it" : `${rows.length} tasks logged`;
+  $("#dayBadge").replaceChildren(day.example ? T("Example day · your first entry replaces it", "روز نمونه · اولین ثبت شما جایگزین آن می‌شود") : T(`${rows.length} tasks logged`, `${faNum(rows.length)} کار ثبت شد`));
   const total = rows.reduce((a, r) => a + r[3], 0), annoy = rows.filter(r => r[4]).reduce((a, r) => a + r[3], 0);
   const systems = new Set(rows.map(r => r[1]));
   $("#daySummary").replaceChildren(
-    el("div", { class: "stat" }, el("b", { text: (total / 60).toFixed(1) + " h" }), el("span", { text: `logged across ${rows.length} tasks` })),
-    el("div", { class: "stat alert" }, el("b", { text: (annoy / 60).toFixed(1) + " h" }), el("span", { text: "marked annoying: build for these first" })),
-    el("div", { class: "stat" }, el("b", { text: String(systems.size) }), el("span", { text: "different systems and apps used" })));
+    el("div", { class: "stat" }, el("b", {}, hours(total)), el("span", {}, T(`logged across ${rows.length} tasks`, `در ${faNum(rows.length)} کار ثبت‌شده`))),
+    el("div", { class: "stat alert" }, el("b", {}, hours(annoy)), el("span", {}, T("marked annoying: build for these first", "آزاردهنده: اول برای این‌ها بسازید"))),
+    el("div", { class: "stat" }, el("b", {}, T(String(systems.size), faNum(systems.size))), el("span", {}, T("different systems and apps used", "سامانه و برنامه‌ی مختلف"))));
   const byRole = {}, byRoleAnnoy = {}, bySys = {};
   rows.forEach(r => { byRole[r[2]] = (byRole[r[2]] || 0) + r[3]; if (r[4]) byRoleAnnoy[r[2]] = (byRoleAnnoy[r[2]] || 0) + r[3]; bySys[r[1]] = (bySys[r[1]] || 0) + r[3]; });
   const roleList = Object.entries(byRole).sort((a, b) => b[1] - a[1]), maxR = roleList.length ? roleList[0][1] : 0;
-  $("#dayByRole").replaceChildren(...(roleList.length ? roleList.map(([id, m]) => bar(`${roleById[id].en} · phase ${roleById[id].phase}`, m, maxR, `${m} min`)) : [el("p", { class: "note", text: "Add tasks to see the split." })]));
+  $("#dayByRole").replaceChildren(...(roleList.length ? roleList.map(([id, m]) => bar(T(`${roleById[id].en} · phase ${roleById[id].phase}`, `${roleById[id].fa} · مرحله‌ی ${faNum(roleById[id].phase)}`), m, maxR, minLabel(m))) : [el("p", { class: "note" }, T("Add tasks to see the split.", "برای دیدن تقسیم وقت، کار اضافه کنید."))]));
   const sysList = Object.entries(bySys).sort((a, b) => b[1] - a[1]), maxS = sysList.length ? sysList[0][1] : 0;
-  $("#dayBySys").replaceChildren(...(sysList.length ? sysList.map(([s, m]) => bar(s, m, maxS, `${m} min`)) : [el("p", { class: "note", text: "Add tasks to see the systems." })]));
+  $("#dayBySys").replaceChildren(...(sysList.length ? sysList.map(([s, m]) => bar(sysName(s), m, maxS, minLabel(m))) : [el("p", { class: "note" }, T("Add tasks to see the systems.", "برای دیدن سامانه‌ها، کار اضافه کنید."))]));
   const pickFrom = Object.keys(byRoleAnnoy).length ? byRoleAnnoy : byRole;
   const top = Object.entries(pickFrom).sort((a, b) => b[1] - a[1])[0];
   const adv = $("#dayAdvice");
   if (top) {
-    const r = roleById[top[0]];
-    adv.replaceChildren(el("h4", { text: `Build the ${r.en} first` }),
-      el("p", { text: `${top[1]} minutes of ${pickFrom === byRoleAnnoy ? "annoying " : ""}work went to tasks this role covers. ${r.phase === 1 ? "It is a phase 1 role, so it needs no access to booking systems and can start this week." : "It needs read access to booking or bank systems (phase " + r.phase + "), so start by asking your integrator or bank for that access."} Its first duty: ${r.duties[0]}.` }));
-  } else adv.replaceChildren(el("h4", { text: "Log a few tasks" }), el("p", { text: "The advice appears once there is at least one task." }));
+    const r = roleById[top[0]], f = ROLES_FA[r.id], ann = pickFrom === byRoleAnnoy;
+    adv.replaceChildren(el("h4", {}, T(`Build the ${r.en} first`, `اول «${r.fa}» را بسازید`)),
+      el("p", {}, T(
+        `${top[1]} minutes of ${ann ? "annoying " : ""}work went to tasks this role covers. ${r.phase === 1 ? "It is a phase 1 role, so it needs no access to booking systems and can start this week." : "It needs read access to booking or bank systems (phase " + r.phase + "), so start by asking your integrator or bank for that access."} Its first duty: ${r.duties[0]}.`,
+        `${faNum(top[1])} دقیقه کار ${ann ? "آزاردهنده " : ""}به کارهایی رسید که این نقش پوشش می‌دهد. ${r.phase === 1 ? "این نقش مرحله‌ی ۱ است؛ به سامانه‌های رزرو دسترسی نمی‌خواهد و می‌تواند همین هفته شروع کند." : "به دسترسی فقط‌خواندنی به سامانه‌های رزرو یا بانک نیاز دارد (مرحله‌ی " + faNum(r.phase) + ")؛ پس با درخواست این دسترسی از ارائه‌دهنده یا بانک شروع کنید."} اولین وظیفه‌اش: ${f.duties[0]}.`)));
+  } else adv.replaceChildren(el("h4", {}, T("Log a few tasks", "چند کار ثبت کنید")), el("p", {}, T("The advice appears once there is at least one task.", "پیشنهاد بعد از ثبت اولین کار نمایش داده می‌شود.")));
   $("#dayRows").replaceChildren(...rows.map((r, i) => {
-    const del = el("button", { class: "btn ghost small", type: "button", text: "Remove", "aria-label": "Remove " + r[0] });
+    const del = el("button", { class: "btn ghost small", type: "button", "aria-label": "Remove / حذف " + r[0] }, T("Remove", "حذف"));
     del.addEventListener("click", () => { day.rows.splice(i, 1); saveDay(); renderDay(); });
-    return el("tr", {}, el("td", { text: r[0] + (r[4] ? "  ⚑" : ""), dir: "auto" }), el("td", { text: r[1] }), el("td", { text: roleById[r[2]].en }), el("td", { class: "num", text: String(r[3]) }), el("td", {}, del));
+    return el("tr", {}, el("td", { dir: "auto" }, taskText(r), r[4] ? "  ⚑" : ""), el("td", {}, sysName(r[1])), el("td", {}, T(roleById[r[2]].en, roleById[r[2]].fa)), el("td", { class: "num" }, T(String(r[3]), faNum(r[3]))), el("td", {}, del));
   }));
 }
 $("#dayForm").addEventListener("submit", e => {
@@ -1632,13 +1664,16 @@ $("#dayForm").addEventListener("submit", e => {
 $("#dayExample").addEventListener("click", () => { day = { example: true, rows: EXAMPLE_DAY.map(r => r.slice()) }; saveDay(); renderDay(); });
 $("#dayClear").addEventListener("click", () => { day = { example: false, rows: [] }; saveDay(); renderDay(); });
 $("#dayCopy").addEventListener("click", async () => {
-  const btn = $("#dayCopy");
+  const btn = $("#dayCopy"), fa = lang === "fa";
   const total = day.rows.reduce((a, r) => a + r[3], 0);
-  const lines = [`Working day log: ${day.rows.length} tasks, ${(total / 60).toFixed(1)} hours`, ...day.rows.map(r => `- ${r[0]} | ${r[1]} | ${roleById[r[2]].en} | ${r[3]} min${r[4] ? " | annoying" : ""}`)];
+  const lines = fa
+    ? [`ثبت روز کاری: ${day.rows.length} کار، ${(total / 60).toFixed(1)} ساعت`, ...day.rows.map(r => `- ${r[5] || r[0]} | ${SYS_FA[r[1]] || r[1]} | ${roleById[r[2]].fa} | ${r[3]} دقیقه${r[4] ? " | آزاردهنده" : ""}`)]
+    : [`Working day log: ${day.rows.length} tasks, ${(total / 60).toFixed(1)} hours`, ...day.rows.map(r => `- ${r[0]} | ${r[1]} | ${roleById[r[2]].en} | ${r[3]} min${r[4] ? " | annoying" : ""}`)];
   const text = lines.join("\n");
-  try { await navigator.clipboard.writeText(text); btn.textContent = "Copied"; }
-  catch { btn.textContent = "Copy failed: select the table instead"; }
-  setTimeout(() => { btn.textContent = "Copy summary"; }, 2500);
+  const label = btn.cloneNode(true);
+  try { await navigator.clipboard.writeText(text); btn.replaceChildren(T("Copied", "کپی شد")); }
+  catch { btn.replaceChildren(T("Copy failed: select the table instead", "کپی نشد؛ جدول را انتخاب کنید")); }
+  setTimeout(() => { btn.replaceChildren(...label.childNodes); }, 2500);
 });
 renderDay();
 

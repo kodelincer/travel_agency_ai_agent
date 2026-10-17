@@ -124,3 +124,11 @@ Changed: Whole chapter bilingual: five layers, four connection methods, the per-
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Watch one working day (worksheet labels and data).
+
+## Iteration 16 · 2026-10-17
+Task: P1 — translate "Watch one working day" (interactive worksheet).
+Changed: Chapter fully bilingual: lead, form labels, buttons, five questions, table headers; summary stats, time bars, advice, badge and copied summary in the active language; 17 systems and 12 example tasks with Persian names. New `langHooks` list re-fills drop-down options and the placeholder on every language switch (options cannot hold two languages). User-typed tasks stay as typed. New test: drop-downs and placeholder switch to Persian. MAX_TODO 16 → 15.
+Bug caught by tests: my block replacement ended at the first "renderDay();" (inside a click handler), leaving old code behind and breaking the whole script. Fixed; lesson: always cut code blocks at a unique end marker.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Online business ideas.
