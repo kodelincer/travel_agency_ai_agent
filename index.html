@@ -1185,10 +1185,11 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 12 TEMPLATES -->
-<section id="templates" data-title="Templates" data-group="Act" data-title-fa="قالب‌های آماده" data-fa="todo" hidden>
+<section id="templates" data-title="Templates" data-group="Act" data-title-fa="قالب‌های آماده" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Copy-ready templates</h2>
-  <p class="lead">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
+  <h2><span class="l-en">Copy-ready templates</span><span class="l-fa">قالب‌های آماده برای کپی</span></h2>
+  <p class="lead l-en">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
+  <p class="lead l-fa">نام‌ها، کارمزدها و قوانین را با دفتر خودتان تطبیق دهید. همین متن‌ها یک هوش مصنوعی عمومی را به دستیار رزرواسیون <i>شما</i> تبدیل می‌کنند. کد و کلیدهای JSON به انگلیسی می‌مانند، چون برنامه‌ها آن‌ها را همین‌طور می‌خوانند.</p>
   <div style="display:grid;gap:14px" id="tplList"></div>
 </section>
 
@@ -1963,8 +1964,9 @@ PLAN.forEach(([[title, titleFa], items], pi) => {
 $("#resetPlan").addEventListener("click", () => { weeks.querySelectorAll("input").forEach(i => { if (i.checked) { i.checked = false; i.dispatchEvent(new Event("change")); } }); });
 
 /* ================================================= chapter 12: templates */
+// [title en, title fa, hint en, hint fa, rtl, body]; body is one text, or { en, fa } when the reader's language changes the template
 const TPL = [
-  ["Office playbook (Persian)", "Paste into the agent’s instructions or Hermes memory. Change names and numbers.", true,
+  ["Office playbook (Persian)", "دستورالعمل دفتر (فارسی)", "Paste into the agent’s instructions or Hermes memory. Change names and numbers.", "در دستورالعمل عامل یا حافظه‌ی Hermes بچسبانید. نام‌ها و عددها را عوض کنید.", true,
 `# دستورالعمل دستیار رزرواسیون «آژانس پرواز»
 محل: تهران — فرودگاه امام (IKA) و مهرآباد (THR). ساعت کاری: شنبه تا پنجشنبه ۹ تا ۱۹ (دستیار ۲۴ ساعته پاسخ می‌دهد).
 زبان پاسخ: همان زبان مشتری (فارسی، انگلیسی، عربی).
@@ -1985,8 +1987,8 @@ const TPL = [
 
 ## ارجاع به کارمند
 - شکایت، مشکل پزشکی، مسافر سرگردان، گروه بالای ۹ نفر، مشتری ویژه.`],
-  ["Hermes skill: build a quote", "Hermes stores skills as Markdown files. Write your own, or correct the ones it writes.", false,
-`---
+  ["Hermes skill: build a quote", "مهارت Hermes: ساخت پیش‌فاکتور", "Hermes stores skills as Markdown files. Write your own, or correct the ones it writes.", "Hermes مهارت‌ها را به‌صورت فایل Markdown نگه می‌دارد. خودتان بنویسید، یا آنچه را خودش می‌نویسد اصلاح کنید. سربرگ name و description انگلیسی می‌ماند.", false,
+{ en: `---
 name: build-travel-quote
 description: Turn a customer request into two priced options and a reply.
 ---
@@ -2001,9 +2003,24 @@ description: Turn a customer request into two priced options and a reply.
 7. Draft the reply in the customer's language, max 120 words.
 8. Log the lead in the CRM with a follow-up date in 2 days.
 # Output
-REPLY TO CUSTOMER / INTERNAL NOTE`],
-  ["Message triage prompt", "For a scheduled job that reads new Bale, Telegram, SMS and email messages every 15 minutes.", false,
-`For each new message, return one JSON object per line:
+REPLY TO CUSTOMER / INTERNAL NOTE`, fa: `---
+name: build-travel-quote
+description: Turn a customer request into two priced options and a reply.
+---
+# مراحل
+۱. مقصد، تاریخ‌ها (تاریخ شمسی را به میلادی تبدیل کن)، تعداد بزرگسال،
+   کودکان با سن، بودجه به تومان و سلیقه‌ها را استخراج کن.
+۲. اگر چیز ضروری کم است، فقط یک سؤال کوتاه بپرس و صبر کن.
+۳. مشتری را در CRM پیدا کن؛ سلیقه‌های ذخیره‌شده را به کار ببر.
+۴. پرواز (وب‌سرویس چارتر) و هتل (اول قراردادی‌ها) را جستجو کن.
+۵. گزینه‌ی الف (در حد بودجه) و گزینه‌ی ب (بالاتر) را بساز.
+۶. اعتبار گذرنامه را با تاریخ برگشت بسنج.
+۷. پاسخ را به زبان مشتری بنویس، حداکثر ۱۲۰ کلمه.
+۸. مشتری را در CRM ثبت کن و پیگیری را برای ۲ روز بعد بگذار.
+# خروجی
+REPLY TO CUSTOMER / INTERNAL NOTE` }],
+  ["Message triage prompt", "دستور دسته‌بندی پیام‌ها", "For a scheduled job that reads new Bale, Telegram, SMS and email messages every 15 minutes.", "برای یک کار زمان‌بندی‌شده که هر ۱۵ دقیقه پیام‌های تازه‌ی بله، تلگرام، پیامک و ایمیل را می‌خواند. کلیدهای JSON را تغییر ندهید.", false,
+{ en: `For each new message, return one JSON object per line:
 {"from": "...", "channel": "bale|telegram|sms|email|web",
  "language": "fa|en|ar|zh|ru",
  "intent": "new_trip|change|refund|complaint|payment|pilgrimage|supplier|other",
@@ -2013,8 +2030,18 @@ REPLY TO CUSTOMER / INTERNAL NOTE`],
  "missing": ["..."],
  "draft_reply": "short and polite, in the customer's language"}
 Rules: urgency "now" for travel within 72 hours, any cancellation
-or disruption. Complaints and refunds always go to a person.`],
-  ["Disruption message (Persian)", "Prewrite this before the next crisis. The agent fills in the brackets.", true,
+or disruption. Complaints and refunds always go to a person.`, fa: `برای هر پیام تازه، در هر خط یک شیء JSON برگردان:
+{"from": "...", "channel": "bale|telegram|sms|email|web",
+ "language": "fa|en|ar|zh|ru",
+ "intent": "new_trip|change|refund|complaint|payment|pilgrimage|supplier|other",
+ "urgency": "now|today|this_week",
+ "trip": {"destination": "", "depart": "YYYY-MM-DD", "return": "YYYY-MM-DD",
+          "adults": 0, "children": 0, "budget_toman": null},
+ "missing": ["..."],
+ "draft_reply": "کوتاه و مؤدب، به زبان مشتری"}
+قوانین: urgency برای سفر در ۷۲ ساعت آینده و هر لغو یا اختلال
+برابر "now" است. شکایت و استرداد همیشه به یک انسان سپرده می‌شود.` }],
+  ["Disruption message (Persian)", "پیام اختلال پرواز (فارسی)", "Prewrite this before the next crisis. The agent fills in the brackets.", "پیش از بحران بعدی آماده‌اش کنید. عامل جاهای داخل کروشه را پر می‌کند.", true,
 `مسافر گرامی [نام]،
 پرواز [شماره پرواز] [مبدأ]–[مقصد] در تاریخ [تاریخ] [لغو شد / تغییر کرد].
 گزینه‌های شما:
@@ -2022,7 +2049,7 @@ or disruption. Complaints and refunds always go to a person.`],
 ۲) استرداد طبق قوانین [ایرلاین/سامانه] — پیگیری با ما
 لطفاً شماره گزینه را پاسخ دهید. همکار ما [نام کارمند] تا [ساعت] با شما تماس می‌گیرد.
 آژانس پرواز — [شماره تماس]`],
-  ["Model test script (Python)", "Save as evaluate.py next to messages.txt and triage_prompt.txt. Run: python3 evaluate.py messages.txt gemma3:27b — then repeat for each model.", false,
+  ["Model test script (Python)", "اسکریپت آزمون مدل (پایتون)", "Save as evaluate.py next to messages.txt and triage_prompt.txt. Run: python3 evaluate.py messages.txt gemma3:27b — then repeat for each model.", "با نام evaluate.py کنار messages.txt و triage_prompt.txt ذخیره کنید. اجرا: python3 evaluate.py messages.txt gemma3:27b — بعد برای هر مدل تکرار کنید.", false,
 `import json, sys, time, urllib.request
 
 prompt = open("triage_prompt.txt", encoding="utf-8").read()
@@ -2052,8 +2079,8 @@ with open(out_name, "w", encoding="utf-8") as out:
         print(f"{i}/{len(messages)} done in {row['seconds']} s")
 
 print("Saved", out_name, "- now score each reply with the sheet in the Tool stack chapter.")`],
-  ["Approval policy", "The single most important guardrail. Put it in every agent’s rules.", false,
-`ACTION                          AGENT     PERSON
+  ["Approval policy", "سیاست تأیید", "The single most important guardrail. Put it in every agent’s rules.", "مهم‌ترین قاعده‌ی ایمنی. آن را در قوانین هر عامل بگذارید.", false,
+{ en: `ACTION                          AGENT     PERSON
 Search fares / hotels           yes       -
 Create quote / itinerary        yes       reviews
 Send quote to customer          draft     sends (later: auto for repeat clients)
@@ -2061,17 +2088,30 @@ Hold seats / booking            request   approves
 Issue ticket / voucher          no        yes
 Payment link / refund           prepare   approves amount
 Change or cancel booking        request   approves
-Delete customer data            no        yes`],
+Delete customer data            no        yes`, fa: `کار                              عامل            انسان
+جستجوی نرخ پرواز / هتل           بله             -
+ساخت پیش‌فاکتور / برنامه‌ی سفر    بله             بررسی می‌کند
+ارسال پیش‌فاکتور به مشتری         پیش‌نویس        می‌فرستد (بعدها: خودکار برای مشتری‌های تکراری)
+نگه داشتن صندلی / رزرو            درخواست         تأیید می‌کند
+صدور بلیت / واچر                  خیر             بله
+لینک پرداخت / استرداد             آماده می‌کند     مبلغ را تأیید می‌کند
+تغییر یا لغو رزرو                 درخواست         تأیید می‌کند
+حذف اطلاعات مشتری                 خیر             بله` }],
 ];
-$("#tplList").replaceChildren(...TPL.map(([title, hint, rtl, body]) => {
-  const btn = el("button", { class: "btn ghost small", type: "button", text: "Copy" });
-  const pre = el("pre", { class: rtl ? "rtl" : "" }, body);
+$("#tplList").replaceChildren(...TPL.map(([title, titleFa, hint, hintFa, rtl, body]) => {
+  const pair = typeof body !== "string";
+  const label = (en, fa) => btn.replaceChildren(T(en, fa));
+  const btn = el("button", { class: "btn ghost small", type: "button" }, T("Copy", "کپی"));
+  const pres = pair
+    ? [el("pre", { class: "l-en" }, body.en), el("pre", { class: "l-fa rtl" }, body.fa)]
+    : [el("pre", { class: rtl ? "rtl" : "" }, body)];
   btn.addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(body); btn.textContent = "Copied"; }
-    catch { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press Ctrl+C"; }
-    setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+    const fa = pair && lang === "fa", text = pair ? body[fa ? "fa" : "en"] : body, pre = pres[fa ? 1 : 0];
+    try { await navigator.clipboard.writeText(text); label("Copied", "کپی شد"); }
+    catch { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); label("Selected, press Ctrl+C", "انتخاب شد، Ctrl+C را بزنید"); }
+    setTimeout(() => label("Copy", "کپی"), 2000);
   });
-  return el("div", { class: "tpl" }, el("div", { class: "tpl-head" }, el("div", {}, el("h4", { text: title }), el("div", { class: "note", text: hint })), btn), pre);
+  return el("div", { class: "tpl" }, el("div", { class: "tpl-head" }, el("div", {}, el("h4", {}, T(title, titleFa)), el("div", { class: "note" }, T(hint, hintFa))), btn), ...pres);
 }));
 
 /* ================================================= chapter 6: simulator */

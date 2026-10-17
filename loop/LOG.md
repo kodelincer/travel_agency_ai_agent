@@ -209,3 +209,10 @@ Changed: Chapter text and the reset button bilingual; PLAN now carries Persian p
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Templates.
+
+## Iteration 28 · 2026-10-17
+Task: P1 — translate "Templates" into Persian.
+Changed: Chapter text, all six template titles, hints and the Copy button bilingual. The Hermes skill, the triage prompt and the approval policy now have full Persian versions (JSON keys, the skill's name/description header and output markers stay English because programs read them); the Copy button copies the version in the reader's language. The Python script stays one code block. Tests: the Persian-ratio measure now leaves out pre/code blocks (code is Latin by design); new check that Persian mode shows 6 templates, 5 of them in Persian. MAX_TODO 4 → 3.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Guardrails.

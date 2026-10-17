@@ -16,7 +16,7 @@ if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright)
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
 const MIN_CHAPTERS = 22;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
-const MAX_TODO = 4;
+const MAX_TODO = 3;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -130,7 +130,11 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
     await page.route(/fonts\.(googleapis|gstatic)/, r => r.abort());
     await page.goto(FILE);
     const persianRatio = id => page.evaluate(i => {
-      const t = document.getElementById(i).innerText.replace(/\s+/g, "");
+      // code blocks (scripts, JSON, commands) stay in Latin script by design, so leave them out of the measure
+      const sec = document.getElementById(i), hidden = [...sec.querySelectorAll("pre, code")];
+      hidden.forEach(e => { e.dataset.prevDisplay = e.style.display; e.style.display = "none"; });
+      const t = sec.innerText.replace(/\s+/g, "");
+      hidden.forEach(e => { e.style.display = e.dataset.prevDisplay; delete e.dataset.prevDisplay; });
       const fa = (t.match(/[\u0600-\u06FF]/g) || []).length, la = (t.match(/[A-Za-z]/g) || []).length;
       return { ratio: fa / Math.max(1, fa + la), len: t.length };
     }, id);
@@ -150,6 +154,9 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
       emptyFa: [...document.querySelectorAll("#caseGrid .l-fa, #deskFilters .l-fa")].filter(e => !/[؀-ۿ]/.test(e.textContent)).length,
     }));
     check(mp.cards === 24 && mp.emptyFa === 0, `automation map: 24 cards with Persian titles, every card and desk filter has Persian (${mp.cards} cards, ${mp.emptyFa} without Persian)`);
+    await page.evaluate(() => { location.hash = "templates"; });
+    const tp = await page.evaluate(() => [...document.querySelectorAll("#tplList pre")].filter(p => p.offsetParent !== null).map(p => /[؀-ۿ]/.test(p.textContent)));
+    check(tp.length === 6 && tp.filter(Boolean).length === 5, `templates: 6 visible, 5 in Persian in Persian mode (${tp.filter(Boolean).length}/${tp.length})`);
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.evaluate(() => { location.hash = "sim"; });
     await page.click("#replayBtn");
