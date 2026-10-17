@@ -195,3 +195,10 @@ Changed: Chapter text, table headings and the five "resilient against the AI wav
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate Products to sell.
+
+## Iteration 26 · 2026-10-17
+Task: P1 — translate "Products to sell" into Persian.
+Changed: Chapter text, filters and the "How to choose" callout bilingual (Tern/TravelSmart prices kept as in English). The 10 product cards render with T() from a parallel PRODUCTS_FA array (name, buyer, problem, first version, revenue model, moat); field labels and effort/Iran/abroad pills bilingual. MAX_TODO 6 → 5.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate 90-day plan.

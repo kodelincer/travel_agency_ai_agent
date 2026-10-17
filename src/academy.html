@@ -1016,18 +1016,20 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 10 PRODUCTS -->
-<section id="products" data-title="Products to sell" data-group="Grow & protect" data-title-fa="محصولات قابل فروش" data-fa="todo" hidden>
+<section id="products" data-title="Products to sell" data-group="Grow & protect" data-title-fa="محصولات قابل فروش" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>AI products and services you could build and sell</h2>
-  <p class="lead">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
+  <h2><span class="l-en">AI products and services you could build and sell</span><span class="l-fa">محصولات و خدمات هوش مصنوعی که می‌توانید بسازید و بفروشید</span></h2>
+  <p class="lead l-en">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
+  <p class="lead l-fa">هزاران آژانس ایرانی همان مشکلات شما را دارند و کمتر کسی نرم‌افزاری برایشان دارد. از چیزی شروع کنید که برای دفتر خودتان می‌سازید، ثابت کنید کار می‌کند، بعد بفروشید. حجم کار برای یک تیم کوچک: S = چند هفته، M = ۲ تا ۴ ماه، L = بیش از ۶ ماه.</p>
   <div class="filters" id="prodFilters" role="group" aria-label="Filter products">
-    <button class="chip" aria-pressed="true" data-f="all">All</button>
-    <button class="chip" aria-pressed="false" data-f="S">Quick to build</button>
-    <button class="chip" aria-pressed="false" data-f="iran">Strong in Iran</button>
-    <button class="chip" aria-pressed="false" data-f="global">Can sell abroad</button>
+    <button class="chip" aria-pressed="true" data-f="all"><span class="l-en">All</span><span class="l-fa">همه</span></button>
+    <button class="chip" aria-pressed="false" data-f="S"><span class="l-en">Quick to build</span><span class="l-fa">ساخت سریع</span></button>
+    <button class="chip" aria-pressed="false" data-f="iran"><span class="l-en">Strong in Iran</span><span class="l-fa">قوی در ایران</span></button>
+    <button class="chip" aria-pressed="false" data-f="global"><span class="l-en">Can sell abroad</span><span class="l-fa">قابل فروش در خارج</span></button>
   </div>
   <div class="cards" id="prodGrid"></div>
-  <div class="callout ok"><h4>How to choose</h4><p>Pick the product whose problem costs <i>you</i> the most hours today. You are customer number one, so you test it for free and get a case study. Charge other agencies a setup fee plus a monthly subscription. Advisor tools abroad sell for roughly $35–49 per seat per month (Tern) or $299–599 per year (TravelSmart); price in tomans for what Iranian agencies can afford, and review prices often because of inflation.</p></div>
+  <div class="callout ok l-en"><h4>How to choose</h4><p>Pick the product whose problem costs <i>you</i> the most hours today. You are customer number one, so you test it for free and get a case study. Charge other agencies a setup fee plus a monthly subscription. Advisor tools abroad sell for roughly $35–49 per seat per month (Tern) or $299–599 per year (TravelSmart); price in tomans for what Iranian agencies can afford, and review prices often because of inflation.</p></div>
+  <div class="callout ok l-fa"><h4>چطور انتخاب کنیم</h4><p>محصولی را انتخاب کنید که مشکلش امروز بیشترین ساعت را از <i>خودتان</i> می‌گیرد. مشتری شماره‌ی یک خودتان هستید؛ پس رایگان آزمایشش می‌کنید و یک نمونه‌ی موفق به دست می‌آورید. از آژانس‌های دیگر هزینه‌ی راه‌اندازی به‌علاوه‌ی اشتراک ماهانه بگیرید. ابزارهای مشاوران سفر در خارج حدود ۳۵ تا ۴۹ دلار برای هر کاربر در ماه (Tern) یا ۲۹۹ تا ۵۹۹ دلار در سال (TravelSmart) فروخته می‌شوند؛ قیمت تومانی را بر اساس توان آژانس‌های ایرانی بگذارید و به‌خاطر تورم مرتب بازنگری کنید.</p></div>
 </section>
 
 <!-- =========================================================== ONLINE BUSINESS -->
@@ -1542,23 +1544,37 @@ const PRODUCTS = [
   ["Visa document assistant", "S", true, true, "Visa service offices and agencies", "Wrong or missing documents cause refusals and wasted fees.", "Checklist per country and traveler type from rules you maintain; reminders and file tracking.", "Per-file fee", "Up-to-date rule library you maintain"],
   ["AI training for agencies", "S", true, true, "Agency owners and staff", "Owners know AI matters but not where to start.", "Workshops plus this academy, adapted with your own case studies.", "Per-seat course fee + consulting", "Your credibility as a working agency"],
 ];
+// Persian for PRODUCTS, same order: [name, buyer, problem, mvp, revenue model, moat]
+const PRODUCTS_FA = [
+  ["دستیار رزرو فارسی برای آژانس‌ها", "آژانس‌های کوچک و متوسط ایرانی", "پیام‌ها در بله، تلگرام و اینستاگرام روی هم تلنبار می‌شوند؛ پاسخ دیر یعنی فروش از دست رفته.", "ربات بله و تلگرام با مدل محلی که پیام‌ها را دسته‌بندی می‌کند، اطلاعات ناقص را می‌پرسد و برای همکاران پیش‌فاکتور می‌نویسد.", "هزینه‌ی راه‌اندازی + اشتراک ماهانه برای هر آژانس", "کیفیت فارسی، میزبانی داخلی، کار در زمان قطعی"],
+  ["پایش و هشدار قیمت چارتر", "آژانس‌ها و عمده‌فروشان چارتر", "قیمت و ظرفیت چارتر ساعت به ساعت عوض می‌شود.", "بررسی ساعتی مسیرهای منتخب از طریق وب‌سرویس‌ها؛ هشدار در بله با پیشنهاد خرید یا فروش.", "اشتراک ماهانه برای هر بسته‌ی مسیر", "سرعت و داده‌ی تاریخچه‌ی قیمت"],
+  ["سازنده‌ی پیش‌فاکتور و برنامه‌ی سفر", "آژانس‌ها، تورگردانان، مشاوران سفر مستقل", "ساختن یک پیش‌فاکتور مرتب در Word ۳۰ تا ۶۰ دقیقه وقت می‌گیرد.", "نتیجه‌ی جستجو یا گفتگو را بچسبانید؛ یک PDF فارسی/انگلیسی با نشان آژانس و پیام با گزینه‌ها تحویل بگیرید.", "اشتراک برای هر کاربر", "قالب‌های مخصوص محصولات ایرانی (زیارتی، کیش، مشهد)"],
+  ["میز اختلال و استرداد", "آژانس‌ها و تورگردانان", "در بحران هیچ‌کس نمی‌داند کدام مسافر درگیر است یا طلبکار.", "رزروها را وارد می‌کند، منابع وضعیت پرواز را زیر نظر دارد، مسافران درگیر را فهرست می‌کند و استرداد را در هر دو طرف پیگیری می‌کند.", "اشتراک + کارمزد هر پرونده در بحران", "ساخته‌شده از تجربه‌ی ۱۴۰۵"],
+  ["مدیریت گروه‌های زیارتی", "برگزارکنندگان سفر زیارتی (اربعین، عمره، مشهد)", "صدها زائر، مدرک، اتاق و اتوبوس در فایل‌های اکسل.", "فهرست گروه، بررسی مدارک، چیدمان اتاق، پیام‌رسانی با بله و پیامک، وضعیت هر زائر.", "کارمزد هر زائر در هر فصل", "قوانین تخصصی و روال فصلی"],
+  ["راهنمای گردشگر خارجی", "تورگردانان ورودی و هتل‌ها", "گردشگران خارجی به چینی، عربی و روسی می‌پرسند؛ همکاران کمی این زبان‌ها را بلدند.", "گفتگوی چندزبانه که پاسخ می‌دهد، مشتری را ارزیابی می‌کند و به فروش تحویل می‌دهد.", "اشتراک ماهانه + کارمزد هر مشتری بالقوه", "شناخت محلی تورهای ایران"],
+  ["تطبیق‌دهنده‌ی حسابداری آژانس", "آژانس‌های متوسط", "صورت‌حساب تأمین‌کنندگان هیچ‌وقت با فروش جور نیست؛ پول نشت می‌کند.", "صورت‌حساب‌ها و خروجی فروش را بارگذاری کنید؛ اختلاف‌ها و فهرست کارها را بگیرید.", "اشتراک ماهانه", "آشنایی با قالب‌های سامانه‌های ایرانی"],
+  ["مدیریت سفر سازمانی کوچک (mini-TMC)", "شرکت‌هایی که مرتب سفر کاری دارند", "تأیید تلفنی، بدون گزارش، سیاست سفر رعایت نمی‌شود.", "درخواست ← تأیید ← رزرو ← گزارش ماهانه، با عاملی که سیاست سفر را اجرا می‌کند.", "کارمزد ماهانه‌ی مدیریت برای هر شرکت", "تیم خدمات شما پشت نرم‌افزار"],
+  ["دستیار مدارک ویزا", "دفاتر خدمات ویزا و آژانس‌ها", "مدرک اشتباه یا ناقص باعث ریجکت و هدر رفتن هزینه می‌شود.", "چک‌لیست برای هر کشور و نوع مسافر از قوانینی که شما نگه می‌دارید؛ یادآوری و پیگیری پرونده.", "کارمزد هر پرونده", "کتابخانه‌ی به‌روز قوانین که خودتان نگه می‌دارید"],
+  ["آموزش هوش مصنوعی برای آژانس‌ها", "مدیران و همکاران آژانس‌ها", "مدیران می‌دانند هوش مصنوعی مهم است ولی نمی‌دانند از کجا شروع کنند.", "کارگاه به‌همراه همین آکادمی، با نمونه‌های واقعی خودتان.", "شهریه‌ی هر نفر + مشاوره", "اعتبار شما به‌عنوان یک آژانس فعال"],
+];
 let prodF = "all";
 function renderProducts() {
   const g = $("#prodGrid"); g.replaceChildren();
-  for (const [name, effort, iran, global, buyer, problem, mvp, money, moat] of PRODUCTS) {
-    if (prodF === "S" && effort !== "S") continue;
-    if (prodF === "iran" && !iran) continue;
-    if (prodF === "global" && !global) continue;
+  PRODUCTS.forEach(([name, effort, iran, global, buyer, problem, mvp, money, moat], i) => {
+    if (prodF === "S" && effort !== "S") return;
+    if (prodF === "iran" && !iran) return;
+    if (prodF === "global" && !global) return;
+    const [nameF, buyerF, problemF, mvpF, moneyF, moatF] = PRODUCTS_FA[i];
     g.append(el("article", { class: "card" },
-      el("div", { class: "card-head" }, el("h4", { text: name }), el("span", { class: "pill info", text: "Effort " + effort })),
+      el("div", { class: "card-head" }, el("h4", {}, T(name, nameF)), el("span", { class: "pill info" }, T("Effort " + effort, "حجم کار " + effort))),
       el("div", { class: "kv" },
-        el("div", {}, el("b", { text: "Buyer" }), buyer),
-        el("div", {}, el("b", { text: "Problem" }), problem),
-        el("div", {}, el("b", { text: "First version" }), mvp),
-        el("div", {}, el("b", { text: "How it earns" }), money),
-        el("div", {}, el("b", { text: "Why you can win" }), moat)),
-      el("div", { class: "row" }, iran ? el("span", { class: "pill yes", text: "Iran" }) : null, global ? el("span", { class: "pill info", text: "Abroad" }) : null)));
-  }
+        el("div", {}, el("b", {}, T("Buyer", "خریدار")), T(buyer, buyerF)),
+        el("div", {}, el("b", {}, T("Problem", "مشکل")), T(problem, problemF)),
+        el("div", {}, el("b", {}, T("First version", "نسخه‌ی اول")), T(mvp, mvpF)),
+        el("div", {}, el("b", {}, T("How it earns", "مدل درآمد")), T(money, moneyF)),
+        el("div", {}, el("b", {}, T("Why you can win", "چرا شما برنده می‌شوید")), T(moat, moatF))),
+      el("div", { class: "row" }, iran ? el("span", { class: "pill yes" }, T("Iran", "ایران")) : null, global ? el("span", { class: "pill info" }, T("Abroad", "خارج")) : null)));
+  });
 }
 wireChips($("#prodFilters"), v => { prodF = v; renderProducts(); });
 renderProducts();
