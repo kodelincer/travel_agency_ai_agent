@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Travel Agency AI Academy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&family=Vazirmatn:wght@400;600;700&display=swap">
+<style>
+/* Layout: chapter sidebar (desktop) / chapter picker (phone) beside one reading column; hero is an airport departure board. */
+:root{
+  --bg:#F2F5F9; --surface:#FFFFFF; --surface-2:#E9EEF5; --ink:#0F1E33; --muted:#53627A; --line:#D5DDE8;
+  --accent:#1D5BD3; --accent-ink:#FFFFFF; --amber:#B97800;
+  --board:#0D1828; --board-fg:#F4C24F; --board-dim:#8FA3BF; --board-line:#1E2D44; --board-hi:#F7F2E4; --board-now:#5BE39C; --board-cell:#162338;
+  --ok:#17804F; --ok-bg:#E3F4EB; --warn:#9A5B00; --warn-bg:#FBF0DC; --risk:#B33A26; --risk-bg:#FBE6E1;
+  --code-bg:#0F1E33; --code-fg:#DCE6F4;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Vazirmatn", "Segoe UI", system-ui, sans-serif;
+  --f-fa:"Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A121F; --surface:#111C2D; --surface-2:#16233A; --ink:#E6EDF7; --muted:#9AAAC0; --line:#24344D;
+  --accent:#6E9FFF; --accent-ink:#0A121F; --amber:#F2B740;
+  --board:#060C16; --board-fg:#F4C24F; --board-dim:#7D90AB; --board-line:#18253A; --board-hi:#F7F2E4; --board-now:#5BE39C; --board-cell:#101C2E;
+  --ok:#52C98E; --ok-bg:#12301F; --warn:#EBB04A; --warn-bg:#33270F; --risk:#F2846D; --risk-bg:#3A1A14;
+  --code-bg:#070D18; --code-fg:#DCE6F4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A121F; --surface:#111C2D; --surface-2:#16233A; --ink:#E6EDF7; --muted:#9AAAC0; --line:#24344D;
+  --accent:#6E9FFF; --accent-ink:#0A121F; --amber:#F2B740;
+  --board:#060C16; --board-fg:#F4C24F; --board-dim:#7D90AB; --board-line:#18253A; --board-hi:#F7F2E4; --board-now:#5BE39C; --board-cell:#101C2E;
+  --ok:#52C98E; --ok-bg:#12301F; --warn:#EBB04A; --warn-bg:#33270F; --risk:#F2846D; --risk-bg:#3A1A14;
+  --code-bg:#070D18; --code-fg:#DCE6F4; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,4.6vw,46px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(25px,3.2vw,34px);font-weight:800;letter-spacing:-.015em}
+h3{font-size:20px;font-weight:700}
+h4{font-size:16px;font-weight:700}
+p{margin:0}
+ul,ol{margin:0;padding-left:20px;display:grid;gap:6px}
+a{color:var(--accent)}
+code,.mono{font-family:var(--f-mono);font-size:.86em}
+.fa{font-family:var(--f-fa)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.muted{color:var(--muted)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);font-weight:600}
+.prose{max-width:68ch;display:grid;gap:12px}
+.lead{font-size:19px;color:var(--muted);max-width:64ch}
+.src{font-size:13px;color:var(--muted)}
+.src a{color:var(--muted)}
+
+/* shell */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:14px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{font-family:var(--f-display);font-weight:800;font-size:18px;white-space:nowrap}
+.brand span{color:var(--accent)}
+.toptools{margin-left:auto;display:flex;gap:10px;align-items:center;min-width:0}
+.overall{font:600 12px var(--f-mono);color:var(--muted);white-space:nowrap}
+.picker{display:none;min-width:0;flex:1}
+.picker select{width:100%}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:0;max-width:1320px;margin:0 auto}
+nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);align-self:start;max-height:calc(100vh - 57px);overflow:auto;padding:22px 14px 40px max(16px,env(safe-area-inset-left,0px));border-right:1px solid var(--line)}
+.navgroup{display:grid;gap:2px;margin-bottom:18px}
+.navgroup > span{font:600 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 10px}
+.navlink{appearance:none;border:0;background:none;text-align:left;color:var(--ink);font:600 15px var(--f-body);padding:7px 10px;border-radius:8px;cursor:pointer;display:grid;grid-template-columns:26px minmax(0,1fr) 16px;gap:6px;align-items:center}
+.navlink:hover{background:var(--surface-2)}
+.navlink[aria-current="page"]{background:var(--ink);color:var(--bg)}
+.navlink .n{font:600 12px var(--f-mono);color:inherit;opacity:.65}
+.navlink .tick{font-size:13px;color:var(--ok)}
+.navlink[aria-current="page"] .tick{color:inherit}
+main{min-width:0;padding-block:30px 70px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main > section{max-width:1000px;margin:0 auto;display:grid;gap:28px}
+@media (min-width:961px){main{padding-left:40px;padding-right:max(24px,env(safe-area-inset-right,0px))}}
+@media (max-width:960px){.layout{grid-template-columns:1fr}nav.side{display:none}.picker{display:block}.overall{display:none}}
+.chapter-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+
+/* controls */
+.btn{appearance:none;border:1px solid transparent;background:var(--accent);color:var(--accent-ink);font:700 15px var(--f-body);padding:10px 16px;border-radius:8px;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.small{padding:6px 10px;font-size:13px}
+.btn.done{background:var(--ok);color:var(--accent-ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+select,textarea,input{font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+textarea{width:100%;min-height:130px;resize:vertical}
+.chip{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px var(--f-body);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font:600 11px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
+.pill.low,.pill.yes{background:var(--ok-bg);color:var(--ok)}
+.pill.med,.pill.part{background:var(--warn-bg);color:var(--warn)}
+.pill.high,.pill.no{background:var(--risk-bg);color:var(--risk)}
+.pill.info{background:var(--surface-2);color:var(--muted)}
+
+/* board */
+.board{background:var(--board);color:var(--board-fg);border-radius:14px;padding:18px 18px 10px;font-family:var(--f-mono);overflow-x:auto}
+.board-head{display:flex;justify-content:space-between;gap:12px;color:var(--board-dim);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--board-line)}
+.board table{width:100%;border-collapse:collapse;min-width:560px}
+.board td{padding:9px 6px;border-bottom:1px solid var(--board-line);font-size:14px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.board td.dest{color:var(--board-hi);width:100%}
+.board td.gate{color:var(--board-dim)}
+.flap{display:inline-block;background:var(--board-cell);border-radius:3px;padding:1px 5px}
+.st-now{color:var(--board-now)}.st-soon{color:var(--board-fg)}.st-later{color:var(--board-dim)}
+@media (prefers-reduced-motion:no-preference){.board tbody tr{animation:flip .5s both}.board tbody tr:nth-child(2){animation-delay:.06s}.board tbody tr:nth-child(3){animation-delay:.12s}.board tbody tr:nth-child(4){animation-delay:.18s}.board tbody tr:nth-child(5){animation-delay:.24s}.board tbody tr:nth-child(6){animation-delay:.3s}
+@keyframes flip{from{transform:rotateX(70deg);opacity:.35}to{transform:none;opacity:1}}}
+
+/* generic blocks */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.card.star{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.card-head{display:flex;justify-content:space-between;gap:10px;align-items:start}
+.kicker{font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.meta{font-size:13.5px;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:14px}
+.split > div{background:var(--surface-2);border-radius:8px;padding:10px;min-width:0}
+.split b,.kv b{display:block;font:600 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.kv{display:grid;gap:8px;font-size:14.5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table.grid{width:100%;border-collapse:collapse;min-width:640px}
+table.grid th,table.grid td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+table.grid th{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
+table.grid tr:last-child td{border-bottom:0}
+table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.stat{border-top:3px solid var(--accent);background:var(--surface);padding:12px 14px;border-radius:0 0 8px 8px;display:grid;gap:4px;align-content:start}
+.stat b{font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+.stat.alert{border-top-color:var(--risk)}
+.callout{border-left:4px solid var(--amber);background:var(--warn-bg);padding:14px 16px;border-radius:0 8px 8px 0;display:grid;gap:6px;max-width:80ch}
+.callout.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+.callout.risk{border-left-color:var(--risk);background:var(--risk-bg)}
+.callout h4{color:var(--ink)}
+.loop{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:0;margin:0;counter-reset:s}
+.loop li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:6px;align-content:start}
+.loop li::before{counter-increment:s;content:counter(s);font:700 12px var(--f-mono);color:var(--accent)}
+.loop li.human{border-color:var(--amber);background:var(--warn-bg)}
+@media (max-width:820px){.loop{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.loop{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
+.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.tl{display:grid;gap:3px;padding:0 0 16px 18px;position:relative}
+.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--risk)}
+.tl.ok::before{border-color:var(--ok)}
+.tl .when{font:600 12px var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.track{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.track{grid-template-columns:1fr}}
+.track > div{display:grid;gap:10px;align-content:start}
+.layer{display:grid;grid-template-columns:180px minmax(0,1fr);gap:16px;padding-top:16px;border-top:1px solid var(--line)}
+@media (max-width:720px){.layer{grid-template-columns:1fr}}
+
+/* simulator */
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;align-items:start}
+@media (max-width:860px){.sim{grid-template-columns:1fr}}
+.pane{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
+.pane h3{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.inbox{display:grid;gap:8px}
+.msg{appearance:none;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;cursor:pointer;font:inherit;display:grid;gap:2px;min-width:0}
+.msg[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.msg small{font:600 11px var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.msg span{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+label.lbl{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.log{display:grid;gap:8px;max-height:380px;overflow:auto;font-family:var(--f-mono);font-size:12.5px}
+.log .ev{border-left:3px solid var(--line);padding:6px 10px;background:var(--bg);border-radius:0 6px 6px 0;overflow-wrap:anywhere}
+.log .ev.tool{border-color:var(--accent)}
+.log .ev.need{border-color:var(--amber)}
+.log .ev.err{border-color:var(--risk);color:var(--risk)}
+.log .res{color:var(--muted);display:block;margin-top:2px}
+.draft{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:15px;min-height:80px;overflow-wrap:anywhere;unicode-bidi:plaintext}
+.queue{display:grid;gap:8px}
+.ticket{border:1px dashed var(--amber);border-radius:8px;padding:12px;display:grid;gap:8px;background:var(--warn-bg)}
+.ticket.done{border-style:solid;border-color:var(--ok);background:var(--ok-bg)}
+.ticket.rej{border-style:solid;border-color:var(--risk);background:var(--risk-bg)}
+.note{font-size:14px;color:var(--muted)}
+.status{font:600 12px var(--f-mono);color:var(--muted)}
+.badge{font:600 11px var(--f-mono);letter-spacing:.06em;background:var(--surface-2);color:var(--muted);border-radius:6px;padding:3px 7px;text-transform:uppercase;white-space:nowrap}
+
+/* plan + templates */
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px}
+.phase-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.progress{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:15.5px}
+.check input{width:18px;height:18px;margin-top:4px;accent-color:var(--ok);padding:0}
+.check label{cursor:pointer}
+.check .why{display:block;font-size:13.5px;color:var(--muted)}
+.tpl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-width:0}
+.tpl-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+pre{margin:0;background:var(--code-bg);color:var(--code-fg);padding:14px;overflow-x:auto;font:12.5px/1.65 var(--f-mono);white-space:pre}
+pre.rtl{direction:rtl;text-align:right;font-family:var(--f-fa);font-size:14px;white-space:pre-wrap}
+.sources{display:grid;gap:18px}
+.sources ul{gap:4px;font-size:15px}
+footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+</style>
+
+<header class="top">
+  <div class="topbar">
+    <div class="brand">Agency<span>AI</span> Academy</div>
+    <div class="picker"><label for="chapterPick" class="lbl" hidden>Chapter</label><select id="chapterPick" aria-label="Choose a chapter"></select></div>
+    <div class="toptools"><span class="overall" id="overall">0 of 15 chapters done</span></div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="side" id="sidenav" aria-label="Chapters"></nav>
+<main id="main">
+
+<!-- =========================================================== 1 START -->
+<section id="start" data-title="Start here" data-group="Understand">
+  <div class="eyebrow">Travel Agency AI Academy · October 2026 edition</div>
+  <h1>Run a stronger travel agency with AI agents</h1>
+  <p class="lead">This course is written from the desk of an experienced agency owner, for owners and managers. It covers what agencies do around the world and in Iran, which parts of the job AI agents can take over, how to earn more, how to survive shocks like the ones of 2026, and which AI products you could build and sell.</p>
+  <div class="board" aria-label="Your automation departure board">
+    <div class="board-head"><span>Departures · Your office</span><span>Manual → Agent-assisted</span></div>
+    <table><tbody>
+      <tr><td><span class="flap">W1</span></td><td class="dest">Inbox, Bale &amp; Telegram triage</td><td class="gate">Gate A</td><td class="st-now">Boarding</td></tr>
+      <tr><td><span class="flap">W3</span></td><td class="dest">Quotes &amp; itineraries in Persian</td><td class="gate">Gate A</td><td class="st-now">Boarding</td></tr>
+      <tr><td><span class="flap">W5</span></td><td class="dest">CRM notes &amp; follow-ups</td><td class="gate">Gate B</td><td class="st-soon">On time</td></tr>
+      <tr><td><span class="flap">W7</span></td><td class="dest">Charter price watch (Sepehr / Parto)</td><td class="gate">Gate C</td><td class="st-soon">On time</td></tr>
+      <tr><td><span class="flap">W10</span></td><td class="dest">Disruption &amp; refund desk</td><td class="gate">Gate C</td><td class="st-later">Later</td></tr>
+      <tr><td><span class="flap">W12</span></td><td class="dest">Booking with human approval</td><td class="gate">Gate D</td><td class="st-later">Later</td></tr>
+    </tbody></table>
+  </div>
+  <div class="prose">
+    <h3>How to use this academy</h3>
+    <p>Read the chapters in order the first time; each one ends with a <b>Mark as done</b> button so you can see your progress (saved in this browser only). Chapters 1–3 explain the business, 4–7 the AI, 8–10 growth and resilience, and 11–15 give you a plan, templates, rules, my self-review and every source.</p>
+    <p>Two tracks run through the course. The <b>Iran-resilient track</b> works inside Iran, under sanctions and during internet cuts. The <b>Global track</b> is for agencies elsewhere, or for a partner company you legally operate abroad. When they differ, the chapter says so.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>30%</b><span>of travel bookings could be made by AI agents by 2030 (IDC forecast)</span></div>
+    <div class="stat"><b>62%</b><span>of 4,000 travelers expect to use an advisor for most trips (Internova Index)</span></div>
+    <div class="stat"><b>2%</b><span>of travelers trust AI to book on its own (Skift, 2025)</span></div>
+    <div class="stat alert"><b>&lt;1M</b><span>foreign arrivals to Iran in spring 1405, down from 6.2M in all of 1404</span></div>
+  </div>
+  <p class="src">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources in chapter 15.</p>
+</section>
+
+<!-- =========================================================== 2 WORLD -->
+<section id="world" data-title="Agencies worldwide" data-group="Understand" hidden>
+  <div class="eyebrow">Chapter 2</div>
+  <h2>What travel agencies do around the world</h2>
+  <p class="lead">An agency sells expertise, access and peace of mind. Tickets and rooms are the vehicle. Knowing every service line helps you see where AI saves time and where new revenue hides.</p>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Service line</th><th>What the customer buys</th><th>How agencies earn</th><th>AI leverage</th></tr></thead>
+    <tbody>
+      <tr><td><b>Air ticketing</b></td><td>Right fare, rules, changes</td><td>Service fee; airline commission is now small or zero in many markets</td><td><span class="pill med">Medium</span> search, compare, monitor changes</td></tr>
+      <tr><td><b>Hotels</b></td><td>Right area and room, good price</td><td>Commission or markup on net rates</td><td><span class="pill low">High</span> shortlist, match preferences</td></tr>
+      <tr><td><b>Packages &amp; tours</b></td><td>A complete trip with one price</td><td>Margin on the bundle</td><td><span class="pill low">High</span> itinerary drafts, quotes</td></tr>
+      <tr><td><b>Corporate travel (TMC)</b></td><td>Policy, approvals, duty of care, reports</td><td>Per-trip fees, monthly management fees</td><td><span class="pill low">High</span> approvals, reporting, tracking</td></tr>
+      <tr><td><b>Groups &amp; MICE</b></td><td>Events, conferences, incentives</td><td>Project fees and margins</td><td><span class="pill med">Medium</span> rooming lists, logistics</td></tr>
+      <tr><td><b>Visa &amp; documents</b></td><td>Correct paperwork on time</td><td>Fixed service fees</td><td><span class="pill med">Medium</span> checklists, form preparation</td></tr>
+      <tr><td><b>Travel insurance</b></td><td>Protection</td><td>High commission (abroad often 20–40%, sources vary)</td><td><span class="pill low">High</span> offer at the right moment</td></tr>
+      <tr><td><b>Pilgrimage</b></td><td>Hajj, Umrah, Arbaeen, Mashhad</td><td>Package margin, group fees</td><td><span class="pill med">Medium</span> group management, reminders</td></tr>
+      <tr><td><b>Inbound / DMC</b></td><td>Foreign tourists visiting your country</td><td>Land-package margin, guide fees</td><td><span class="pill low">High</span> multilingual sales and support</td></tr>
+      <tr><td><b>Medical &amp; education travel</b></td><td>Clinic or university plus travel</td><td>Coordination fees</td><td><span class="pill med">Medium</span> case tracking, translation</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="prose">
+    <h3>Where the industry is heading</h3>
+    <p>Online travel agencies (OTAs) such as Booking.com, Expedia and Trip.com own most simple online bookings. Market-size estimates disagree widely because analysts define “OTA revenue” differently, so be careful with any single number. Meanwhile, human advisors are growing again in complex, high-value and high-touch travel.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="kicker">Agentic AI</div><h4>Agents start to book</h4><p>IDC forecasts 30% of travel bookings executed by AI agents by 2030. Phocuswright found a quarter to a third of travelers interested in booking through AI tools. Booking.com and Expedia were first to plug into ChatGPT’s Apps SDK.</p></div>
+    <div class="card"><div class="kicker">Advisors</div><h4>Humans still matter</h4><p>90% of USTOA tour operators plan to sell through advisors in 2026. Fora, an AI-powered platform for advisors, became a unicorn in July 2026 after a $60M round: investors are betting on <i>AI-equipped humans</i>.</p></div>
+    <div class="card"><div class="kicker">Big players</div><h4>Everyone is experimenting</h4><p>Skift and McKinsey report 90% of major travel companies have launched generative-AI projects and over half test agentic features. Few have seen it in their profits yet, so there is still time to catch up.</p></div>
+  </div>
+  <div class="prose"><h3>McKinsey’s four possible futures, and where your agency fits</h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Scenario</th><th>What happens</th><th>Risk for a small agency</th><th>Your move</th></tr></thead>
+    <tbody>
+      <tr><td><b>Copilot commerce</b></td><td>AI helps, but people still book on OTA and airline sites</td><td>Low</td><td>Use AI internally to be faster than competitors</td></tr>
+      <tr><td><b>Experience curation</b></td><td>Intermediaries plan the whole trip with AI</td><td>Opportunity</td><td>Be the curator: specialised trips, local knowledge, after-sales care</td></tr>
+      <tr><td><b>Direct-booking renaissance</b></td><td>Suppliers’ own agents sell directly</td><td>High for simple ticket sales</td><td>Move away from “ticket only” towards services and complex trips</td></tr>
+      <tr><td><b>Agent takeover</b></td><td>Customer agents negotiate with supplier agents</td><td>Very high</td><td>Make your products machine-readable and own a niche agents must come to</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><h4>The owner’s lesson</h4><p>Simple ticket sales are the job most exposed to AI. Expertise, problem-solving, trust and niche access are the least exposed. Use AI to make the first cheap, and invest your people in the second.</p></div>
+</section>
+
+<!-- =========================================================== 3 IRAN -->
+<section id="iran" data-title="Iran market 1405" data-group="Understand" hidden>
+  <div class="eyebrow">Chapter 3</div>
+  <h2>The Iranian agency in 1405 (2026)</h2>
+  <p class="lead">Iranian agencies work under conditions few others face: sanctions, a volatile rial, a charter-heavy flight market, mandatory government systems for pilgrimage, and, in 2026, war and months of internet cuts. Any AI plan that ignores this will fail.</p>
+
+  <div class="layer"><div><h3>How the market works</h3></div><div class="prose">
+    <p><b>Licences.</b> Agencies (دفاتر خدمات مسافرتی) hold licences by activity: <span class="fa">بند الف</span> for air tickets and airline services, <span class="fa">بند ب</span> for selling and running tours (plus categories such as pilgrimage). Online sales also need a licence and the e-trust badge (<span class="fa">نماد اعتماد</span>). The Civil Aviation Organization issues circulars on ticket sales; in 1405 it required airlines, agencies and online platforms to be transparent in Arbaeen ticket sales.</p>
+    <p><b>Flight supply.</b> Much domestic and regional capacity is sold as charter blocks. Agencies buy through domestic reservation systems and web services such as <b>Sepehr</b>, <b>Parto</b>, <b>Charter724</b>, Moqim, Raviss and Gohar, often through integrators like CityNet, BasisFly or Faranegar. These are your “GDS” in practice, and they work on the domestic network.</p>
+    <p><b>Online competition.</b> Alibaba.ir, Snapptrip and Flightio sell flights, trains, buses, hotels and tours directly to consumers. Competing on price for simple tickets is a losing game; competing on service and specialisation is not.</p>
+    <p><b>Pilgrimage.</b> Arbaeen travel requires registration in the state <b>Samah</b> system (samah.haj.ir). In 1405, registration opened on 9 Tir, Arbaeen fell on 13 Mordad, passports needed 6 months’ validity, the central bank allocated 200,000 Iraqi dinars per pilgrim, and insurance came from Bimeh Iran. Hajj and Umrah run through the Hajj and Pilgrimage Organization.</p>
+    <p><b>Outbound destinations.</b> Turkey, the UAE, Azerbaijan, Armenia and Georgia have been among the most popular, with Iraq dominant for pilgrimage. Many routes are regional and short-haul.</p>
+    <p><b>Inbound shift.</b> Visitors increasingly come from China, Russia, the Gulf and Iraq. Inbound tour operators who speak those markets’ languages have an edge, and AI translation makes that cheaper.</p>
+  </div></div>
+
+  <div class="layer"><div><h3>The 2026 shock</h3><p class="note">Dates are from news reports; some reports conflict.</p></div><div class="timeline">
+    <div class="tl"><span class="when">8 Jan 2026 · 18 Dey 1404</span><b>Nationwide internet shutdown</b><span class="note">During protests, all communications were cut. Global access stayed heavily restricted for most of the year. A Tehran agency told Al Jazeera it could only sell domestic flights and hotels; international bookings were cancelled.</span></div>
+    <div class="tl"><span class="when">28 Feb 2026 · 9 Esfand 1404</span><b>War begins</b><span class="note">US and Israeli strikes; Iranian airspace closed; international carriers suspended service.</span></div>
+    <div class="tl ok"><span class="when">8 Apr 2026</span><b>Ceasefire agreed</b><span class="note">A two-week ceasefire, later extended. Its status since has been contested.</span></div>
+    <div class="tl ok"><span class="when">20 Apr 2026 · 31 Farvardin 1405</span><b>Phased reopening of IKA and Mehrabad</b><span class="note">After about 58 days of suspension, with limited hours. Some foreign airlines stayed away for months.</span></div>
+    <div class="tl"><span class="when">Aug–Sep 2026</span><b>Currency and inflation peak</b><span class="note">The rial passed 2 million per US dollar; annual inflation reached 84% in August (CRS).</span></div>
+    <div class="tl ok"><span class="when">Oct 2026</span><b>Partial recovery</b><span class="note">Reports describe international flights resuming at IKA in October, including Iraqi Airways from Najaf. Foreign arrivals recovered in summer; outbound travel still lags.</span></div>
+  </div></div>
+
+  <div class="stats">
+    <div class="stat alert"><b>28.5k bn T</b><span>damage to tourism, 9 Esfand to 25 Farvardin (reported)</span></div>
+    <div class="stat alert"><b>−60%</b><span>foreign-tour sales in Khorasan Razavi (reported)</span></div>
+    <div class="stat alert"><b>−18%</b><span>outbound trips in the first five months of 1405</span></div>
+    <div class="stat"><b>+19.9%</b><span>foreign arrivals in Tir 1405 vs last year: recovery started</span></div>
+  </div>
+
+  <div class="layer"><div><h3>What this means for AI</h3></div><div class="prose">
+    <p><b>1. Sanctions block most Western AI and travel APIs.</b> US-linked services (cloud hosts, many SaaS tools) refuse users in Iran under OFAC rules. Anthropic’s supported-regions policy (effective 12 May 2026) also covers companies headquartered in unsupported regions, and Iran is not supported. Paying for foreign subscriptions is also hard.</p>
+    <p><b>2. The global internet can disappear for months.</b> In 2026 the domestic network often kept working while international traffic was cut. Any agent that depends on a foreign API stops on the day you need it most.</p>
+    <p><b>3. Messaging is fragmented.</b> WhatsApp is blocked and Telegram only partly reachable without workarounds. Domestic messengers (Bale, Eitaa, Rubika) are reachable; Bale offers a Telegram-compatible bot API.</p>
+    <p><b>4. Iranian AI gateways exist but are fragile.</b> Services such as AvalAI and GapGPT resell access to foreign models for rials. They may conflict with the original providers’ terms, and they depend on international connectivity. Use them for experiments, not as the backbone.</p>
+    <p><b>5. The resilient answer is local.</b> Open-weight models (for example Qwen, Gemma, DeepSeek) running on your own server inside Iran, an open-source agent like Hermes, domestic web services and domestic messengers. Chapter 7 shows the full stack.</p>
+  </div></div>
+  <div class="callout risk"><h4>Legal note</h4><p>Sanctions and Iranian regulations change often and carry real penalties. This course does not give legal advice and does not recommend evading anyone’s sanctions or terms of service. Check with a lawyer before you sign up for any foreign service or route payments through another country.</p></div>
+</section>
+
+<!-- =========================================================== 4 AGENTS -->
+<section id="agents" data-title="AI agents 101" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter 4</div>
+  <h2>What an AI agent actually is</h2>
+  <div class="prose">
+    <p>A <b>chatbot</b> answers questions. An <b>automation</b> (n8n, Make, Zapier) follows fixed steps you draw. An <b>AI agent</b> reads a messy request, decides which steps are needed, uses tools (a charter web service, a hotel list, your CRM) and comes back with finished work for you to check.</p>
+    <p>Think of it as a junior reservations clerk who never sleeps, types fast, speaks five languages, and must ask a senior before issuing a ticket or touching money.</p>
+  </div>
+  <ol class="loop">
+    <li><b>Read</b><span class="note">“سه نفر، دبی، ۳۰ آذر تا ۴ دی، حدود ۳۵۰ میلیون”</span></li>
+    <li><b>Plan</b><span class="note">Needs: IKA–DXB fares, family hotel, passport check.</span></li>
+    <li><b>Use tools</b><span class="note">Charter web service, hotel list, CRM, document rule.</span></li>
+    <li><b>Draft</b><span class="note">Two priced options and a reply in Persian.</span></li>
+    <li class="human"><b>You approve</b><span class="note">Only a person holds, tickets or takes payment.</span></li>
+  </ol>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Building block</th><th>What it is</th><th>In your office</th></tr></thead>
+    <tbody>
+      <tr><td><b>Model (LLM)</b></td><td>The “brain” that reads and writes</td><td>A cloud model, or an open model on your own server</td></tr>
+      <tr><td><b>Instructions</b></td><td>Standing rules the agent always follows</td><td>Your office playbook: fees, tone, what it may never do</td></tr>
+      <tr><td><b>Tools</b></td><td>Functions the agent may call</td><td>Search charters, read CRM, create quote, send to approval</td></tr>
+      <tr><td><b>Memory</b></td><td>What it remembers between conversations</td><td>Customer preferences, office facts, past issues</td></tr>
+      <tr><td><b>Skills</b></td><td>Saved how-to procedures</td><td>“Build a quote”, “handle a cancellation”, “Arbaeen group checklist”</td></tr>
+      <tr><td><b>Channels</b></td><td>Where people talk to it</td><td>Bale, Telegram, SMS, website chat, email</td></tr>
+      <tr><td><b>Guardrails</b></td><td>Limits and approvals</td><td>Human approval for money; logs of every action</td></tr>
+      <tr><td><b>MCP</b></td><td>A standard plug for connecting tools to agents</td><td>One connector for your CRM works with many agents</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <h3>Hermes Agent in one paragraph</h3>
+    <p>Hermes Agent (Nous Research, open source) runs on your own server. It keeps bounded memory notes (<code>MEMORY.md</code>, <code>USER.md</code>), searches past conversations, writes reusable <b>skills</b> after complex tasks, runs scheduled jobs, and talks through a messaging gateway (Telegram, Slack, email and others). It works with cloud models <i>or</i> a local model through any OpenAI-compatible endpoint, such as Ollama. That last point is what makes it usable in Iran.</p>
+  </div>
+</section>
+
+<!-- =========================================================== 5 MAP -->
+<section id="map" data-title="Automation map" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter 5</div>
+  <h2>Everything an agent can do in your agency</h2>
+  <p class="lead">24 jobs across seven desks. Green jobs only read and draft, so start there. Red jobs touch money or tickets: the agent prepares them and a person presses the button. “Shutdown-proof” means the job can run on the domestic network with a local model.</p>
+  <div class="row">
+    <div class="filters" id="riskFilters" role="group" aria-label="Filter by risk">
+      <button class="chip" aria-pressed="true" data-f="all">All</button>
+      <button class="chip" aria-pressed="false" data-f="low">Low risk</button>
+      <button class="chip" aria-pressed="false" data-f="med">Medium</button>
+      <button class="chip" aria-pressed="false" data-f="high">Human approves</button>
+    </div>
+    <div class="filters" id="deskFilters" role="group" aria-label="Filter by desk"></div>
+  </div>
+  <div class="cards" id="caseGrid"></div>
+</section>
+
+<!-- =========================================================== 6 SIM -->
+<section id="sim" data-title="Try an agent" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter 6 · Hands-on</div>
+  <h2>Watch an agent work a real-looking request</h2>
+  <p class="lead">Pick a message and press <b>Run agent</b>. The agent gets six office tools: CRM lookup, flight search, hotel search, passport check, quote builder and approval request. Every tool call appears in the log. It cannot book anything; it can only send you an approval ticket. All customers, fares and hotels are invented demo data in tomans.</p>
+  <div class="sim">
+    <div class="pane">
+      <h3>Inbox <span class="badge">Demo data</span></h3>
+      <div class="inbox" id="inbox"></div>
+      <label class="lbl" for="msgText">Message (edit it or write your own)</label>
+      <textarea id="msgText" dir="auto"></textarea>
+      <div class="row">
+        <label class="lbl" for="tier">Speed</label>
+        <select id="tier" style="flex:1;min-width:0">
+          <option value="quick">Fast (good for the demo)</option>
+          <option value="default">Thorough (slower, better reasoning)</option>
+        </select>
+      </div>
+      <div class="row">
+        <button class="btn" id="runBtn" type="button">Run agent</button>
+        <button class="btn ghost" id="stopBtn" type="button" hidden>Stop</button>
+        <button class="btn ghost" id="replayBtn" type="button">Replay a recorded run</button>
+      </div>
+      <p class="status" id="simStatus">Live runs work when this page is opened on claude.ai and use your Claude account. Anywhere else, use the recorded run.</p>
+      <details><summary class="note" style="cursor:pointer">What the agent knows about the office</summary>
+        <p class="note" style="margin-top:8px">Agency “Parvaz Travel”, Tehran (IKA/THR). Prices in tomans. Service fee 8% on packages. Passports must be valid 6 months after return. Never promise a price that did not come from a tool. Destinations in the demo: Dubai, Istanbul, Najaf, Mashhad, Kish.</p>
+      </details>
+    </div>
+    <div class="pane">
+      <h3>Agent log <span class="status" id="callCount">0 tool calls</span></h3>
+      <div class="log" id="log" aria-live="polite"><div class="ev">Tool calls will appear here, one line per step.</div></div>
+      <h3>Draft reply</h3>
+      <div class="draft" id="draft" dir="auto">The agent’s reply will be written here for you to edit and send.</div>
+      <h3>Approval queue <span class="status">you decide</span></h3>
+      <div class="queue" id="queue"><p class="note">Nothing waiting. When the agent wants to hold a booking, it lands here.</p></div>
+    </div>
+  </div>
+  <div class="callout ok"><h4>What to notice</h4><p>1. Prices come from tools, never from the model’s memory. 2. It checks passports without being asked, because the office rule says so. 3. It stops at the money: holding seats becomes a ticket in your queue. Build these three habits into every real agent.</p></div>
+</section>
+
+<!-- =========================================================== 7 STACK -->
+<section id="stack" data-title="Tool stack" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter 7</div>
+  <h2>The tool stack: two tracks</h2>
+  <p class="lead">Same architecture, different parts. An agency inside Iran should build on the left column; the right column applies to agencies elsewhere or a legally separate company abroad.</p>
+  <div class="track">
+    <div>
+      <h3>Iran-resilient track</h3>
+      <div class="card star"><div class="kicker">Brain</div><h4>Hermes Agent + local model</h4><p>Run Hermes on a server in an Iranian data centre or in your office. Serve an open-weight model with Ollama (OpenAI-compatible endpoint <code>http://localhost:11434/v1</code>; Ollama also offers <code>ollama launch hermes</code>). Hermes needs a model with at least 64k context. Candidates for Persian: Qwen (mid-size dense), Gemma 3 27B, DeepSeek. Test on your own Persian messages first.</p><p class="meta">Hardware: a 24 GB GPU can run a quantised ~27–32B model for a small office. The science vice-presidency has subsidised up to 200M tomans (half) of GPU rental for private companies; check current terms. Disable Hermes tools that call external services (web search, cloud browser) if you need full offline operation.</p></div>
+      <div class="card"><div class="kicker">Flights</div><h4>Sepehr, Parto, Charter724…</h4><p>Domestic reservation web services, usually through an integrator (CityNet, BasisFly, Faranegar). Wrap their API as agent tools: search, price, hold, issue, refund. Hold and issue go behind human approval.</p></div>
+      <div class="card"><div class="kicker">Hotels &amp; tours</div><h4>Your contracts first</h4><p>Domestic hotel web services from the same integrators, plus your own contracted rates in a spreadsheet or database the agent reads. For foreign hotels, work only with suppliers that can legally serve you.</p></div>
+      <div class="card"><div class="kicker">CRM</div><h4>Iranian CRM or your own</h4><p>Local CRMs such as Didar (which announced an AI sales assistant, “Aida”) or a simple self-hosted database. Only about 7–8% of Iranian companies use a CRM, so having one is already an edge. Check each vendor’s security practices.</p></div>
+      <div class="card"><div class="kicker">Channels</div><h4>Bale, SMS, website, Telegram</h4><p>Bale’s bot API is Telegram-compatible (<code>tapi.bale.ai</code>), so one bot codebase can serve both. Add SMS through a domestic SMS provider as the fallback that always works. Keep Instagram and Telegram for marketing.</p></div>
+      <div class="card"><div class="kicker">Payments</div><h4>Shaparak gateways &amp; payment links</h4><p>Use licensed domestic payment gateways and send payment links. The agent never sees card data.</p></div>
+    </div>
+    <div>
+      <h3>Global track</h3>
+      <div class="card"><div class="kicker">Brain</div><h4>Hermes or Claude + MCP</h4><p>Hermes with a cloud model, or Claude (desktop, Cowork, Claude Code) connected to tools through MCP servers. n8n or Make as glue for fixed workflows.</p></div>
+      <div class="card"><div class="kicker">Flights</div><h4>Duffel, Amadeus, GDS</h4><p>Duffel offers real booking and handles accreditation. Amadeus Self-Service is good for search; booking needs enterprise access. Sabre and Travelport offer MCP access to contracted agencies.</p></div>
+      <div class="card"><div class="kicker">Hotels</div><h4>LiteAPI, bedbanks</h4><p>LiteAPI is built for agents and has an MCP server. Hotelbeds and Expedia TAAP are partner-gated.</p></div>
+      <div class="card"><div class="kicker">CRM &amp; office</div><h4>HubSpot, Zoho, Pipedrive</h4><p>Any CRM with an API. Google Workspace or Microsoft 365 for email and documents.</p></div>
+      <div class="card"><div class="kicker">Channels</div><h4>WhatsApp Business API</h4><p>Where most travelers are, outside Iran. Use the official API through a provider and keep a human-takeover button.</p></div>
+      <div class="card"><div class="kicker">Advisor software</div><h4>Ready-made tools</h4><p>Itinerary and CRM platforms for advisors (for example Tern, reported at about $35–49 per seat per month) show what customers pay for, and what you could build locally.</p></div>
+    </div>
+  </div>
+  <div class="callout"><h4>About Iranian AI gateways</h4><p>AvalAI exposes an OpenAI-compatible endpoint, and GapGPT says it offers GPT, Claude and Gemini models for rials. They are convenient for quick tests. Do not make them your backbone: they depend on international links that were cut for most of 2026, and reselling may break the original providers’ terms.</p></div>
+</section>
+
+<!-- =========================================================== 8 REVENUE -->
+<section id="revenue" data-title="Grow revenue" data-group="Grow & protect" hidden>
+  <div class="eyebrow">Chapter 8</div>
+  <h2>Twelve levers to earn more, and how AI pulls each one</h2>
+  <p class="lead">Margins on tickets are thin and price-transparent. Revenue grows from speed, attach sales, specialisation and recurring clients. Every lever below lists the metric to watch.</p>
+  <div class="cards" id="leverGrid"></div>
+</section>
+
+<!-- =========================================================== 9 RESILIENCE -->
+<section id="resilience" data-title="Resilience" data-group="Grow & protect" hidden>
+  <div class="eyebrow">Chapter 9</div>
+  <h2>Build an agency that survives shocks, and the AI wave</h2>
+  <p class="lead">2026 tested every Iranian agency. Use what happened as a checklist: for each shock, prepare before it comes and decide what your agent does when it hits.</p>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Shock</th><th>What happened in 2026</th><th>Prepare now</th><th>What the agent does</th></tr></thead>
+    <tbody id="shockRows"></tbody>
+  </table></div>
+  <div class="prose">
+    <h3>Resilient against the AI wave itself</h3>
+    <p>The biggest long-term threat is not war but irrelevance: customers asking an AI assistant instead of you. Five moves protect you.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="kicker">1 · Own the relationship</div><p>Every customer in your CRM, with consent to contact them on at least two channels. A list you own is worth more than followers on a platform you don’t.</p></div>
+    <div class="card"><div class="kicker">2 · Own a niche</div><p>Pilgrimage groups, medical tourism, Chinese inbound, family trips to Turkey, student travel. AI agents will route customers to whoever is clearly the specialist.</p></div>
+    <div class="card"><div class="kicker">3 · Be machine-readable</div><p>Publish packages with clear structured data: dates, inclusions, prices, conditions. Tomorrow’s AI assistants will book what they can read.</p></div>
+    <div class="card"><div class="kicker">4 · Sell problem-solving</div><p>Disruption handling, refunds, visa trouble, group logistics. These are where people pay for a human, and where 2026 proved agencies’ value.</p></div>
+    <div class="card"><div class="kicker">5 · Turn your know-how into software</div><p>The workflows you automate for yourself can be sold to other agencies (chapter 10). That adds income that does not depend on travel volume.</p></div>
+  </div>
+</section>
+
+<!-- =========================================================== 10 PRODUCTS -->
+<section id="products" data-title="Products to sell" data-group="Grow & protect" hidden>
+  <div class="eyebrow">Chapter 10</div>
+  <h2>AI products and services you could build and sell</h2>
+  <p class="lead">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
+  <div class="filters" id="prodFilters" role="group" aria-label="Filter products">
+    <button class="chip" aria-pressed="true" data-f="all">All</button>
+    <button class="chip" aria-pressed="false" data-f="S">Quick to build</button>
+    <button class="chip" aria-pressed="false" data-f="iran">Strong in Iran</button>
+    <button class="chip" aria-pressed="false" data-f="global">Can sell abroad</button>
+  </div>
+  <div class="cards" id="prodGrid"></div>
+  <div class="callout ok"><h4>How to choose</h4><p>Pick the product whose problem costs <i>you</i> the most hours today. You are customer number one, so you test it for free and get a case study. Charge other agencies a setup fee plus a monthly subscription. Advisor tools abroad sell for roughly $35–49 per seat per month (Tern) or $299–599 per year (TravelSmart); price in tomans for what Iranian agencies can afford, and review prices often because of inflation.</p></div>
+</section>
+
+<!-- =========================================================== 11 PLAN -->
+<section id="plan" data-title="90-day plan" data-group="Act" hidden>
+  <div class="eyebrow">Chapter 11</div>
+  <h2>Your 90-day plan</h2>
+  <p class="lead">Built for the Iran-resilient track. Tick items as you finish them; progress is saved in this browser only.</p>
+  <div style="display:grid;gap:14px" id="weeks"></div>
+  <div class="row"><button class="btn ghost small" id="resetPlan" type="button">Clear my ticks</button></div>
+</section>
+
+<!-- =========================================================== 12 TEMPLATES -->
+<section id="templates" data-title="Templates" data-group="Act" hidden>
+  <div class="eyebrow">Chapter 12</div>
+  <h2>Copy-ready templates</h2>
+  <p class="lead">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
+  <div style="display:grid;gap:14px" id="tplList"></div>
+</section>
+
+<!-- =========================================================== 13 GUARDRAILS -->
+<section id="guardrails" data-title="Guardrails" data-group="Act" hidden>
+  <div class="eyebrow">Chapter 13</div>
+  <h2>Guardrails before you go live</h2>
+  <p class="lead">Only 2% of travelers trust AI to book on its own. Your edge is AI speed with a human they can call. These rules protect your licence, your margins and your customers.</p>
+  <div class="cards">
+    <div class="card"><div class="kicker" style="color:var(--risk)">Money</div><h4>No ticketing or charges without a person</h4><p>The agent searches, prices and prepares. Holding, issuing, refunds and payments go through approval, with a name in the log.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Cards</div><h4>Never type card numbers into an AI</h4><p>Use payment links from a licensed gateway. The agent only sees “paid / not paid”.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Privacy</div><h4>Passports and national IDs are sensitive</h4><p>Store scans in your document system, not in chat history. Give the agent only what it needs: name as in passport, nationality, expiry. A local model keeps this data inside your server.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Prices</div><h4>Every price comes from a tool</h4><p>Models invent numbers. Require a tool result for each fare and rate, show its time, and always say prices are confirmed at issue. With charter prices moving hourly, this matters even more.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Rules</div><h4>Follow CAO and licence rules</h4><p>Sell only within your licence categories, respect Civil Aviation Organization circulars on transparency and refunds, and keep your e-trust badge valid.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Visas</div><h4>Never guess visa rules</h4><p>Visa and entry rules change quickly. The agent prepares checklists from rules you maintain and always tells staff to verify with official sources.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Handover</div><h4>Always offer a human</h4><p>Complaints, medical issues, stranded travelers, large groups and VIPs: the agent drafts, then hands over immediately.</p></div>
+    <div class="card"><div class="kicker" style="color:var(--risk)">Audit</div><h4>Log everything</h4><p>Which tool, which input, which result, who approved. You will need it for disputes, refunds and inspections.</p></div>
+  </div>
+  <div class="prose"><h3>Measure it like a business</h3></div>
+  <div class="stats">
+    <div class="stat"><b>&lt; 5 min</b><span>First reply time, any hour</span></div>
+    <div class="stat"><b>×2</b><span>Quotes per staff member per day (target)</span></div>
+    <div class="stat"><b>Quote → sale</b><span>Conversion rate, before vs after</span></div>
+    <div class="stat"><b>Attach rate</b><span>Insurance, transfers, visas per booking</span></div>
+    <div class="stat"><b>Cost / booking</b><span>Server + model cost vs staff time saved</span></div>
+    <div class="stat"><b>Correction rate</b><span>Drafts staff had to fix, and why</span></div>
+  </div>
+</section>
+
+<!-- =========================================================== 14 REVIEW -->
+<section id="review" data-title="Self-review" data-group="Act" hidden>
+  <div class="eyebrow">Chapter 14</div>
+  <h2>My self-review: what I got wrong, and what I corrected</h2>
+  <p class="lead">You asked me to assess my own output and correct it with new research. The first version of this academy was written for an agency in an unrestricted market. Here is what changed, and what is still uncertain.</p>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Version 1 said</th><th>Problem found</th><th>Corrected to</th></tr></thead>
+    <tbody>
+      <tr><td>Start with Duffel and LiteAPI for flights and hotels</td><td>US-linked travel APIs and cloud services typically refuse users in sanctioned countries</td><td>Domestic web services (Sepehr, Parto, Charter724) in the Iran track; Duffel and LiteAPI moved to the global track</td></tr>
+      <tr><td>Use WhatsApp Business API as the main customer channel</td><td>WhatsApp is blocked in Iran; Telegram is only partly reachable</td><td>Bale bot (Telegram-compatible API) plus SMS fallback; WhatsApp for the global track</td></tr>
+      <tr><td>Use Claude with MCP, or Hermes with a cloud model</td><td>Anthropic does not support Iran, and international links were cut for most of 2026</td><td>Hermes with a local open-weight model on a server inside Iran as the backbone</td></tr>
+      <tr><td>Assumed a stable internet connection</td><td>The 2026 shutdowns stopped every foreign-dependent tool</td><td>A “shutdown-proof” flag on every use case and a full resilience chapter</td></tr>
+      <tr><td>Prices in euros; GDS, ADM and BSP terms</td><td>Iranian agencies price in tomans and buy much capacity as charter blocks</td><td>Demo in tomans; charter workflows and CAO rules added</td></tr>
+      <tr><td>Generic global use cases</td><td>Missed pilgrimage (Samah), charter price swings, refund backlogs and currency risk</td><td>Iran-specific use cases, revenue levers and products</td></tr>
+      <tr><td>Hermes “just works” with any model</td><td>Hermes requires at least 64k context, and some built-in tools call external services</td><td>Both limits are stated in the stack chapter</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><h4>Still uncertain: verify before you act</h4>
+    <ul>
+      <li>Exact current licence rules for online sales: I found no official 1405 text, only older guides. Ask your association (انجمن صنفی دفاتر خدمات مسافرتی) or the ministry.</li>
+      <li>Technical details and contract terms of Sepehr, Parto and Charter724 APIs: only vendor pages were available.</li>
+      <li>Which open model is best for Persian in late 2026: the benchmarks I found test older models. Run your own test on 50 real messages.</li>
+      <li>The October 2026 flight-resumption reports conflict with the April reopening reports; the situation may change again.</li>
+      <li>Market statistics in chapters 2 and 3 come from news reports and vendor research with different methods. Use them as direction, not exact figures.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =========================================================== 15 SOURCES -->
+<section id="sources" data-title="Sources" data-group="Act" hidden>
+  <div class="eyebrow">Chapter 15</div>
+  <h2>Sources</h2>
+  <p class="lead">Checked between 15 and 17 October 2026. Vendor pages and news reports change; confirm before you decide.</p>
+  <div class="sources">
+    <div><h4>Global industry &amp; AI</h4><ul>
+      <li><a href="https://www.idc.com/resource-center/blog/agentic-ai-will-redefine-travel-and-hospitality-in-2026/" target="_blank" rel="noopener">IDC: Agentic AI will redefine travel and hospitality in 2026</a></li>
+      <li><a href="https://www.phocuswright.com/Travel-Research/Research-Updates/2026/Travel-Forward-Data-Insights-and-Trends-for-2026" target="_blank" rel="noopener">Phocuswright: Travel Forward 2026</a></li>
+      <li><a href="https://www.mckinsey.com/featured-insights/mckinsey-live/webinars/agentic-ai-and-the-future-of-travel-what-executives-need-to-know" target="_blank" rel="noopener">McKinsey: Agentic AI and the future of travel</a></li>
+      <li><a href="https://thehotelblueprint.com/hotel-market-intel/distribution/ota-market-snapshot-2026/" target="_blank" rel="noopener">OTA market snapshot 2026</a></li>
+      <li><a href="https://techcrunch.com/2026/07/16/ai-powered-travel-agency-fora-hits-unicorn-status-raises-60m/" target="_blank" rel="noopener">TechCrunch: Fora hits unicorn status</a></li>
+      <li><a href="https://recommend.com/featured/ustoas-2026-outlook-confidence-trends-and-travel-advisors-at-the-center/" target="_blank" rel="noopener">USTOA 2026 outlook</a></li>
+      <li><a href="https://www.journaldespalaces.com/pressrelease-76871-internova-index-finds-leisure-travel-demand-set-to-surge-into-2026.html" target="_blank" rel="noopener">Internova Index 2026</a></li>
+      <li><a href="https://www.travelweekly.com/Travel-News/Travel-Agent-Issues/What-agentic-AI-can-do-for-you" target="_blank" rel="noopener">Travel Weekly: Can agentic AI solve advisors’ headaches?</a></li>
+      <li><a href="https://www.altexsoft.com/infographics/travel-agent-commissions-fees-incentives/" target="_blank" rel="noopener">AltexSoft: agent commissions, fees and incentives</a></li>
+      <li><a href="https://dmcquote.com/guides/travel-agent-commission-rates-2026" target="_blank" rel="noopener">Travel agent commission rates 2026</a></li>
+      <li><a href="https://www.levelfare.com/guides/travel-apis-mcp-servers-for-ai-agents/" target="_blank" rel="noopener">Levelfare: travel APIs and MCP servers for agents (includes the Skift 2% figure)</a></li>
+      <li><a href="https://www.altexsoft.com/blog/mcp-servers-travel/" target="_blank" rel="noopener">AltexSoft: MCP servers in travel</a></li>
+      <li><a href="https://sagnikbhattacharya.com/blog/best-ai-tools-travel-agents" target="_blank" rel="noopener">Best AI tools for travel agents (Tern pricing)</a></li>
+      <li><a href="https://www.capterra.com/p/10037972/TravelSmart/" target="_blank" rel="noopener">Capterra: TravelSmart pricing</a></li>
+    </ul></div>
+    <div><h4>Iran: market, war, internet</h4><ul>
+      <li><a href="https://en.wikipedia.org/wiki/2026_Iran_war" target="_blank" rel="noopener">Wikipedia: 2026 Iran war</a> · <a href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire" target="_blank" rel="noopener">ceasefire</a> · <a href="https://en.wikipedia.org/wiki/Economic_impact_of_the_2026_Iran_war" target="_blank" rel="noopener">economic impact</a></li>
+      <li><a href="https://www.congress.gov/crs-product/R48887" target="_blank" rel="noopener">Congressional Research Service: U.S. conflict with Iran</a></li>
+      <li><a href="https://www.aljazeera.com/news/2026/5/1/commercial-flights-from-tehrans-main-airport-resume-amid-cautious-normalcy" target="_blank" rel="noopener">Al Jazeera: flights from Tehran resume</a> · <a href="https://www.tehrantimes.com/news/525819/Tehran-airports-resume-flights-at-after-weeks-long-suspension" target="_blank" rel="noopener">Tehran Times</a> · <a href="https://shafaq.com/en/Middle-East/Iran-to-resume-international-flights-after-war-shutdown" target="_blank" rel="noopener">Shafaq News</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/2026_Internet_blackout_in_Iran" target="_blank" rel="noopener">Wikipedia: 2026 internet blackout in Iran</a> · <a href="https://www.npr.org/2026/05/28/g-s1-124610/iranians-back-online" target="_blank" rel="noopener">NPR</a> · <a href="https://www.aljazeera.com/news/2026/2/2/irans-economy-falters-as-internet-shutdown-hits-people-businesses-hard" target="_blank" rel="noopener">Al Jazeera (travel agency example)</a> · <a href="https://www.chathamhouse.org/2026/01/irans-internet-shutdown-signals-new-stage-digital-isolation" target="_blank" rel="noopener">Chatham House</a></li>
+      <li><a href="https://www.didarnews.ir/fa/news/206641" target="_blank" rel="noopener">Didar News: war damage to Iranian tourism (Persian)</a> · <a href="https://fararu.com/fa/news/996249" target="_blank" rel="noopener">Fararu: agency closures (Persian)</a> · <a href="https://jamejamonline.ir/fa/news/1569765" target="_blank" rel="noopener">Jame Jam: recovery (Persian)</a></li>
+      <li><a href="https://www.nomadlawyer.org/iran-tourism-crisis-h1-2026-airspace-security-analysis" target="_blank" rel="noopener">Iran tourism H1 2026 analysis</a> · <a href="https://www.micetraveladvisor.com/news/article/iran-tourism-pivots-east-as-china-russia-and-gulf-visitors-drive-a-major-inbound-reset/" target="_blank" rel="noopener">Iran tourism pivots east</a></li>
+      <li><a href="https://www.hotelmanagement-network.com/data-insights/outbound-destinations-iran/" target="_blank" rel="noopener">Top outbound destinations from Iran (2023 data)</a></li>
+      <li><a href="https://www.mehrnews.com/news/6875301" target="_blank" rel="noopener">Mehr News: Arbaeen 1405 registration and currency (Persian)</a> · <a href="https://fararu.com/fa/news/989190" target="_blank" rel="noopener">Fararu: Arbaeen ticket-sales rules (Persian)</a></li>
+      <li><a href="https://www.atgolestan.com/blogs/%D8%A7%D9%86%D9%88%D8%A7%D8%B9-%D9%85%D8%AC%D9%88%D8%B2-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C" target="_blank" rel="noopener">Agency licence types الف، ب، پ (Persian)</a> · <a href="https://www.safarme.ir/blog/news/legalization-of-online-sales-of-travel-services/" target="_blank" rel="noopener">Online sales of travel services (Persian)</a></li>
+      <li><a href="https://citynet.ir/service/sepehr/" target="_blank" rel="noopener">CityNet: Sepehr</a> · <a href="https://citynet.ir/service/parto/" target="_blank" rel="noopener">Parto</a> · <a href="https://citynet.ir/service/charter-724/" target="_blank" rel="noopener">Charter724</a> · <a href="https://www.faranegar.com/Products/OnlineBookingTicket" target="_blank" rel="noopener">Faranegar</a></li>
+      <li><a href="https://www.crunchbase.com/organization/alibaba-ir" target="_blank" rel="noopener">Alibaba.ir</a> · <a href="https://www.crunchbase.com/organization/pintapin" target="_blank" rel="noopener">Snapptrip</a> · <a href="https://www.crunchbase.com/organization/flightio" target="_blank" rel="noopener">Flightio</a></li>
+      <li><a href="https://www.zoomit.ir/tech-iran/450340-iran-crm-market-gap-didar-strategy-aida-ai/" target="_blank" rel="noopener">Zoomit: Iranian CRM market and Didar’s AI assistant (Persian)</a></li>
+    </ul></div>
+    <div><h4>AI access, models and tools</h4><ul>
+      <li><a href="https://www.anthropic.com/supported-countries" target="_blank" rel="noopener">Anthropic supported countries</a> · <a href="https://www.anthropic.com/legal/supported-regions" target="_blank" rel="noopener">Supported regions policy</a></li>
+      <li><a href="https://ofac.treasury.gov/faqs/topic/1551" target="_blank" rel="noopener">OFAC Iran sanctions FAQ</a></li>
+      <li><a href="https://github.com/nousresearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent (GitHub)</a> · <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" target="_blank" rel="noopener">Run Hermes locally with Ollama</a> · <a href="https://docs.ollama.com/integrations/hermes" target="_blank" rel="noopener">Ollama: Hermes integration</a></li>
+      <li><a href="https://arxiv.org/pdf/2510.22616" target="_blank" rel="noopener">PerCoR: Persian commonsense benchmark</a> · <a href="https://aclanthology.org/2025.findings-naacl.147.pdf" target="_blank" rel="noopener">Advancing Persian LLM evaluation</a> · <a href="https://github.com/heyparsadev/persian-llm-eval" target="_blank" rel="noopener">persian-llm-eval</a></li>
+      <li><a href="https://docs.avalai.ir/en/models/gpt-5.5" target="_blank" rel="noopener">AvalAI docs</a> · <a href="https://gapgpt.app/blog/api-gapgpt/1221/" target="_blank" rel="noopener">GapGPT (vendor blog)</a></li>
+      <li><a href="https://github.com/masein/accounting-assistant-web/pull/173" target="_blank" rel="noopener">Bale’s Telegram-compatible bot API (developer example)</a> · <a href="https://en.wikipedia.org/wiki/Bale_Messenger" target="_blank" rel="noopener">Bale Messenger</a> · <a href="https://www.opentech.fund/security-safety-audits/iranian-messaging-apps-security-audit/" target="_blank" rel="noopener">OTF: Iranian messaging apps security audit</a></li>
+      <li><a href="https://donya-e-eqtesad.com/fa/tiny/news-4145179" target="_blank" rel="noopener">Donya-e-Eqtesad: GPU rental subsidy (Persian)</a></li>
+    </ul></div>
+  </div>
+</section>
+
+<div class="chapter-foot" id="chapterFoot" style="max-width:1000px;margin:28px auto 0">
+  <button class="btn ghost" id="prevBtn" type="button">← Previous</button>
+  <button class="btn" id="doneBtn" type="button">Mark as done</button>
+  <button class="btn ghost" id="nextBtn" type="button">Next →</button>
+</div>
+</main>
+</div>
+<footer>Travel Agency AI Academy · built for an agency owner learning AI agents · demo data in chapter 6 is invented · not legal advice.</footer>
+
+<script>
+(() => {
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null) n.append(k);
+  return n;
+};
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+};
+const fmt = n => Math.round(n).toLocaleString("en-US");
+
+/* ================================================= navigation */
+const sections = [...document.querySelectorAll("main > section")];
+const ids = sections.map(s => s.id);
+const doneSet = new Set(store.get("taa.done", []));
+const nav = $("#sidenav"), pick = $("#chapterPick");
+let current = ids[0];
+
+function buildNav() {
+  nav.replaceChildren(); pick.replaceChildren();
+  let group = null, box = null, og = null;
+  sections.forEach((s, i) => {
+    if (s.dataset.group !== group) {
+      group = s.dataset.group;
+      box = el("div", { class: "navgroup" }, el("span", { text: group })); nav.append(box);
+      og = el("optgroup", { label: group }); pick.append(og);
+    }
+    const b = el("button", { class: "navlink", type: "button", "data-id": s.id },
+      el("span", { class: "n", text: String(i + 1).padStart(2, "0") }), el("span", { text: s.dataset.title }),
+      el("span", { class: "tick", text: doneSet.has(s.id) ? "✓" : "" }));
+    if (s.id === current) b.setAttribute("aria-current", "page");
+    b.addEventListener("click", () => go(s.id, true));
+    box.append(b);
+    const o = el("option", { value: s.id, text: `${i + 1}. ${s.dataset.title}${doneSet.has(s.id) ? " ✓" : ""}` });
+    if (s.id === current) o.selected = true;
+    og.append(o);
+  });
+  $("#overall").textContent = `${doneSet.size} of ${ids.length} chapters done`;
+}
+pick.addEventListener("change", () => go(pick.value, true));
+
+function go(id, scroll) {
+  if (!ids.includes(id)) id = ids[0];
+  current = id;
+  sections.forEach(s => { s.hidden = s.id !== id; });
+  const i = ids.indexOf(id);
+  $("#prevBtn").disabled = i === 0;
+  $("#nextBtn").disabled = i === ids.length - 1;
+  const d = doneSet.has(id);
+  $("#doneBtn").textContent = d ? "Done ✓" : "Mark as done";
+  $("#doneBtn").classList.toggle("done", d);
+  store.set("taa.cur", id);
+  try { history.replaceState(null, "", "#" + id); } catch {}
+  buildNav();
+  if (scroll) window.scrollTo({ top: 0 });
+}
+$("#prevBtn").addEventListener("click", () => go(ids[ids.indexOf(current) - 1], true));
+$("#nextBtn").addEventListener("click", () => go(ids[ids.indexOf(current) + 1], true));
+$("#doneBtn").addEventListener("click", () => {
+  doneSet.has(current) ? doneSet.delete(current) : doneSet.add(current);
+  store.set("taa.done", [...doneSet]); go(current, false);
+});
+
+/* ================================================= chapter 5: automation map */
+// [risk, desk, title, what, agent does, you do, shutdown-proof: yes|part|no]
+const CASES = [
+  ["low", "Front office", "Message triage", "Reads Bale, Telegram, SMS, website and email messages; detects language and intent (new trip, change, refund, complaint); extracts dates, passengers and budget; files it in the CRM.", "Sorts, extracts, drafts a first reply", "Reads the summary, takes hot leads", "yes"],
+  ["low", "Front office", "Instant FAQ answers", "Answers baggage, documents, opening hours, payment methods and refund-status questions from your own knowledge base, day and night.", "Answers from approved facts only", "Keeps the knowledge base current", "yes"],
+  ["low", "Front office", "Missing-info chaser", "Asks the one question that blocks a quote (children’s ages, flexible dates, budget) instead of a long form.", "Asks and fills the CRM", "Nothing", "yes"],
+  ["low", "Sales", "Quote & itinerary drafts", "Turns search results into a branded Persian or English quote with 2–3 options, a day-by-day plan, inclusions and conditions.", "Builds document and message", "Checks margin, sends", "yes"],
+  ["low", "Sales", "Follow-up nudges", "Watches quotes with no answer and drafts a friendly reminder after 48 hours, or a fresh option when the charter price changes.", "Tracks and drafts", "Approves send rules once", "yes"],
+  ["low", "Sales", "Attach-sale prompts", "Suggests travel insurance, transfers, SIM cards, visas or tours at the right moment in each conversation.", "Suggests in the draft", "Decides what to offer", "yes"],
+  ["med", "Reservations", "Charter & flight search", "Searches Sepehr, Parto or Charter724 through your integrator; compares price, times, baggage and airline reliability.", "Searches and ranks", "Chooses the option to offer", "yes"],
+  ["med", "Reservations", "Charter price watch", "Checks routes you sell (for example THR–IST, IKA–DXB, THR–MHD) every hour and alerts you to drops, sell-outs and new blocks.", "Monitors and alerts", "Decides when to buy or sell", "yes"],
+  ["med", "Reservations", "Hotel sourcing", "Checks your contracted hotels first, then web services; filters by area, stars, family rooms, distance to the shrine or beach.", "Shortlists with reasons", "Chooses, negotiates groups", "yes"],
+  ["high", "Reservations", "Booking & issuing", "Prepares the exact booking: names as in passport, national ID or passport number, fare conditions, seat and meal requests.", "Prepares everything", "Holds, issues, takes payment", "yes"],
+  ["med", "Operations", "Visa & document checklists", "Builds a checklist and deadlines per traveler from rules you maintain; reminds customers about missing papers.", "Prepares and reminds", "Verifies official rules", "yes"],
+  ["high", "Operations", "Disruption desk", "Detects schedule changes, cancellations and airspace notices; lists affected passengers; drafts messages and rebooking options.", "Detects and proposes", "Rebooks, calls customers", "part"],
+  ["high", "Operations", "Refund tracker", "Tracks every refund owed to customers and owed by suppliers, with status, deadlines and next action.", "Tracks and reminds", "Approves every payment", "yes"],
+  ["med", "Pilgrimage & groups", "Group rooming & manifests", "Collects names from spreadsheets or chats, builds rooming lists and manifests, spots missing passport data.", "Collects and validates", "Sends to suppliers", "yes"],
+  ["med", "Pilgrimage & groups", "Pilgrim registration helper", "Prepares the data each pilgrim needs for Samah registration and tracks codes, insurance and currency steps per person.", "Checklists and tracking", "Registers in the official system", "yes"],
+  ["low", "Pilgrimage & groups", "Group broadcast", "Sends departure times, meeting points and changes to a whole group by Bale and SMS, and answers individual questions.", "Sends and answers", "Approves messages", "yes"],
+  ["med", "Finance", "Supplier reconciliation", "Matches supplier invoices and web-service statements against your sales and flags differences.", "Matches and flags", "Resolves, posts entries", "yes"],
+  ["high", "Finance", "Payment links & reminders", "Creates payment requests through your gateway and reminds customers before deadlines.", "Prepares and reminds", "Approves amounts", "yes"],
+  ["med", "Finance", "Currency-risk alerts", "Flags quotes in foreign currency that are about to expire, and packages whose cost moved with the exchange rate.", "Monitors and alerts", "Reprices", "part"],
+  ["low", "Marketing", "Content & offers", "Writes Instagram posts, Bale channel updates and SMS offers from your real packages and seasons (Nowruz, Arbaeen, summer).", "Writes and schedules drafts", "Edits and approves", "yes"],
+  ["low", "Marketing", "Inbound tourist concierge", "Answers foreign tourists in Chinese, Arabic, Russian or English about tours, visas and payments before they arrive.", "Answers and qualifies", "Closes the sale", "part"],
+  ["low", "Management", "Daily owner brief", "Every morning: new leads, quotes waiting, refunds pending, price changes, staff workload.", "Summarises", "Decides priorities", "yes"],
+  ["low", "Management", "Staff training coach", "Answers new staff questions about procedures, fare rules and systems from your own manuals.", "Explains", "Keeps manuals current", "yes"],
+  ["med", "Management", "Review & complaint analysis", "Reads reviews and complaints, groups the causes and suggests fixes.", "Analyses", "Fixes the process", "yes"],
+];
+const proofLabel = { yes: "Shutdown-proof", part: "Partly", no: "Needs global internet" };
+const riskLabel = { low: "Low risk", med: "Medium", high: "Human approves" };
+let riskF = "all", deskF = "all";
+const desks = [...new Set(CASES.map(c => c[1]))];
+const deskBox = $("#deskFilters");
+deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "true", "data-f": "all", text: "All desks" }));
+desks.forEach(d => deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "false", "data-f": d, text: d })));
+function renderCases() {
+  const g = $("#caseGrid"); g.replaceChildren();
+  for (const [risk, desk, title, what, ai, you, proof] of CASES) {
+    if ((riskF !== "all" && riskF !== risk) || (deskF !== "all" && deskF !== desk)) continue;
+    g.append(el("article", { class: "card" },
+      el("div", { class: "card-head" }, el("div", {}, el("div", { class: "kicker", text: desk }), el("h4", { text: title })), el("span", { class: "pill " + risk, text: riskLabel[risk] })),
+      el("p", { text: what }),
+      el("div", { class: "split" }, el("div", {}, el("b", { text: "Agent does" }), ai), el("div", {}, el("b", { text: "You do" }), you)),
+      el("div", {}, el("span", { class: "pill " + proof, text: proofLabel[proof] }))));
+  }
+}
+function wireChips(box, set) {
+  box.addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    for (const b of box.children) b.setAttribute("aria-pressed", String(b === c));
+    set(c.dataset.f);
+  });
+}
+wireChips($("#riskFilters"), v => { riskF = v; renderCases(); });
+wireChips(deskBox, v => { deskF = v; renderCases(); });
+renderCases();
+
+/* ================================================= chapter 8: revenue levers */
+const LEVERS = [
+  ["Speed", "Reply in minutes, not hours", "The first agency to send a clear quote usually wins. An agent drafts quotes 24/7 so staff only check and send.", "First-reply time; quote → sale rate"],
+  ["Pricing", "Transparent service fees", "Charge a clear fee for planning, changes and urgent requests instead of hiding it in fares. Customers accept fees for visible expertise.", "Fee revenue per booking"],
+  ["Attach", "Insurance on every trip", "Travel insurance pays high commissions in many markets (often quoted 20–40%). The agent offers it at the right moment in every quote.", "Insurance attach rate"],
+  ["Attach", "Transfers, SIMs, tours, visas", "Small add-ons that each earn a fee. The agent includes them as optional lines in every package.", "Add-ons per booking"],
+  ["Niche", "Own a specialisation", "Pilgrimage groups, family trips to Turkey, medical tourism, student travel, Chinese or Iraqi inbound. Specialists earn more and are found more easily by AI assistants.", "Share of revenue from niche"],
+  ["Recurring", "Corporate accounts", "Companies pay monthly management fees for policy, approvals, invoices and reports. Agents automate the reporting.", "Monthly recurring revenue"],
+  ["Recurring", "Repeat and referral", "Birthday and anniversary messages, Nowruz and summer reminders based on last year’s trip, referral rewards.", "Repeat-customer share"],
+  ["Inbound", "Pivot part of the business inbound", "When outbound collapses, inbound from China, Russia, the Gulf and Iraq can keep staff busy. Multilingual AI makes it affordable.", "Inbound share of revenue"],
+  ["B2B", "Sell to smaller agencies", "Wholesale your charter blocks, packages and pilgrim groups to smaller offices; the agent handles their quote requests.", "B2B revenue"],
+  ["Ops", "Fewer costly mistakes", "Name errors, missed deadlines and forgotten refunds cost real money. Checklists and monitoring catch them.", "Cost of errors per month"],
+  ["Capacity", "More bookings per employee", "If each staff member handles twice as many requests, you grow without hiring. Track it honestly.", "Bookings per staff member"],
+  ["Software", "Sell your tools", "Turn your internal agents into products for other agencies (chapter 10).", "Software revenue"],
+];
+$("#leverGrid").replaceChildren(...LEVERS.map(([k, t, how, m]) => el("article", { class: "card" },
+  el("div", { class: "kicker", text: k }), el("h4", { text: t }), el("p", { text: how }), el("div", { class: "meta", text: "Watch: " + m }))));
+
+/* ================================================= chapter 9: shocks */
+const SHOCKS = [
+  ["Internet shutdown", "Global internet cut from January and most of the year; domestic network partly kept working.", "Local model and agent on a server inside Iran; domestic web services; Bale and SMS channels; offline copies of customer data.", "Keeps answering on Bale and SMS; sells domestic and regional products that still work."],
+  ["Airspace closure / war", "About 58 days without flights from IKA; foreign airlines away for months.", "A list of every future booking with customer contacts; prewritten disruption messages; refund rules per supplier.", "Finds affected passengers, sends updates, opens a refund case for each."],
+  ["Currency shock", "Rial past 2 million per dollar; 84% inflation.", "Short quote validity for foreign-currency items; daily repricing; no long unhedged commitments.", "Flags expiring quotes and packages whose cost moved."],
+  ["Refund backlog", "Money stuck with airlines and foreign suppliers; customers waiting.", "Track every amount owed both ways; set aside a reserve; agree written refund terms.", "Keeps every refund visible with next action and date; drafts honest updates."],
+  ["Platform concentration", "The association said crisis ticket sales were handed to a few online platforms.", "Your own customer list and channels; specialised products platforms do not sell well.", "Runs your own channels so customers reach you directly."],
+  ["Supplier cut-off", "Foreign systems refused service or went unreachable.", "At least two suppliers per product; avoid single foreign dependencies.", "Switches searches to the backup supplier automatically."],
+];
+$("#shockRows").replaceChildren(...SHOCKS.map(r => el("tr", {}, el("td", {}, el("b", { text: r[0] })), el("td", { text: r[1] }), el("td", { text: r[2] }), el("td", { text: r[3] }))));
+
+/* ================================================= chapter 10: products */
+// [name, effort, iran, global, buyer, problem, mvp, revenue model, moat]
+const PRODUCTS = [
+  ["Persian booking assistant for agencies", "M", true, false, "Small and mid-size Iranian agencies", "Messages pile up on Bale, Telegram and Instagram; slow replies lose sales.", "Bale + Telegram bot with a local model that triages, asks missing details and drafts quotes for staff.", "Setup fee + monthly subscription per agency", "Persian quality, local hosting, works in shutdowns"],
+  ["Charter price watch & alerts", "S", true, false, "Agencies and charter wholesalers", "Charter prices and seats change by the hour.", "Hourly checks on chosen routes through web services; alerts on Bale with buy/sell suggestions.", "Monthly subscription per route bundle", "Speed and historical price data"],
+  ["Quote & itinerary generator", "S", true, true, "Agencies, tour operators, freelance advisors", "Making a nice quote in Word takes 30–60 minutes.", "Paste search results or chat; get a branded Persian/English PDF and message with options.", "Per-seat subscription", "Templates for Iranian products (pilgrimage, Kish, Mashhad)"],
+  ["Disruption & refund desk", "M", true, true, "Agencies and tour operators", "During crises, nobody knows which passenger is affected or owed money.", "Imports bookings, watches status sources, lists affected passengers, tracks refunds both ways.", "Subscription + per-case fee in crises", "Built from the 2026 experience"],
+  ["Pilgrimage group manager", "M", true, false, "Pilgrimage operators (Arbaeen, Umrah, Mashhad)", "Hundreds of pilgrims, documents, rooms and buses in spreadsheets.", "Group roster, document checks, rooming, broadcast by Bale/SMS, status per pilgrim.", "Per-pilgrim fee per season", "Domain rules and seasonal workflow"],
+  ["Inbound tourist concierge", "M", true, true, "Inbound tour operators and hotels", "Foreign tourists ask in Chinese, Arabic, Russian; few staff speak them.", "Multilingual chat that answers, qualifies and hands over to sales.", "Monthly subscription + per-lead fee", "Local knowledge of Iran tours"],
+  ["Agency back-office reconciler", "M", true, true, "Mid-size agencies", "Supplier statements never match sales; money leaks.", "Upload statements and sales exports; get differences and a to-do list.", "Monthly subscription", "Formats of Iranian systems"],
+  ["Corporate travel mini-TMC", "L", true, true, "Companies with regular travel", "Approvals by phone, no reports, policy ignored.", "Request → approval → booking → monthly report, with an agent that applies the policy.", "Monthly management fee per company", "Your service team behind the software"],
+  ["Visa document assistant", "S", true, true, "Visa service offices and agencies", "Wrong or missing documents cause refusals and wasted fees.", "Checklist per country and traveler type from rules you maintain; reminders and file tracking.", "Per-file fee", "Up-to-date rule library you maintain"],
+  ["AI training for agencies", "S", true, true, "Agency owners and staff", "Owners know AI matters but not where to start.", "Workshops plus this academy, adapted with your own case studies.", "Per-seat course fee + consulting", "Your credibility as a working agency"],
+];
+let prodF = "all";
+function renderProducts() {
+  const g = $("#prodGrid"); g.replaceChildren();
+  for (const [name, effort, iran, global, buyer, problem, mvp, money, moat] of PRODUCTS) {
+    if (prodF === "S" && effort !== "S") continue;
+    if (prodF === "iran" && !iran) continue;
+    if (prodF === "global" && !global) continue;
+    g.append(el("article", { class: "card" },
+      el("div", { class: "card-head" }, el("h4", { text: name }), el("span", { class: "pill info", text: "Effort " + effort })),
+      el("div", { class: "kv" },
+        el("div", {}, el("b", { text: "Buyer" }), buyer),
+        el("div", {}, el("b", { text: "Problem" }), problem),
+        el("div", {}, el("b", { text: "First version" }), mvp),
+        el("div", {}, el("b", { text: "How it earns" }), money),
+        el("div", {}, el("b", { text: "Why you can win" }), moat)),
+      el("div", { class: "row" }, iran ? el("span", { class: "pill yes", text: "Iran" }) : null, global ? el("span", { class: "pill info", text: "Abroad" }) : null)));
+  }
+}
+wireChips($("#prodFilters"), v => { prodF = v; renderProducts(); });
+renderProducts();
+
+/* ================================================= chapter 11: plan */
+const PLAN = [
+  ["Days 1–14 · Learn on your own desk", [
+    ["List your 15 most repeated tasks and how long each takes", "This list decides what to automate and how you will measure savings."],
+    ["Write the office playbook: fees, markups, tone, refund rules, licence limits", "It becomes the agent’s standing instructions (chapter 12)."],
+    ["Collect 50 real customer messages (remove names and IDs)", "Your test set for choosing a model and checking the agent."],
+    ["Run the simulator in chapter 6 with your own message styles", "Notice where it asks for missing data and where it guesses."],
+  ]],
+  ["Days 15–30 · Your first private agent, inside Iran", [
+    ["Rent a GPU server in an Iranian data centre, or buy one for the office", "Check the GPU rental subsidy for private companies."],
+    ["Install Ollama, pull 2–3 open models, and score them on your 50 messages", "Pick the one with the best Persian and correct extraction."],
+    ["Install Hermes Agent and point it to the local model (64k+ context)", "Disable tools that need the global internet if you want full offline operation."],
+    ["Connect a private Bale or Telegram bot for staff only", "Zero customer risk while you learn."],
+    ["Teach 3 skills: build a quote, follow up, daily owner brief", "Hermes saves skills as files you can read and correct."],
+  ]],
+  ["Days 31–60 · Connect your systems", [
+    ["Ask your integrator for API access to Sepehr, Parto or Charter724 (test account)", "Start with search only; no holds or issues yet."],
+    ["Load contracted hotel rates and packages into a sheet the agent reads first", "Protects your margin."],
+    ["Set up a CRM (Iranian or self-hosted) and let the agent log every lead", "Your customer list becomes an asset you own."],
+    ["Schedule hourly charter price checks on your top 5 routes", "Your first measurable win."],
+    ["Write disruption and refund templates; build the refund tracker", "Ready before the next crisis, not during it."],
+  ]],
+  ["Days 61–90 · Customers, carefully", [
+    ["Open the Bale bot to customers with a ‘talk to a person’ button", "Fast answers, human takeover anytime."],
+    ["Turn on the approval queue: agent prepares, staff hold, issue and charge", "The golden rule: AI never moves money alone."],
+    ["Add SMS as the fallback channel for urgent updates", "Works when everything else is down."],
+    ["Review KPIs: reply time, quotes per day, conversion, attach rate", "Keep what pays; switch off what doesn’t."],
+    ["Pick one product from chapter 10 to offer to two friendly agencies", "Your first software revenue."],
+  ]],
+];
+const planDone = new Set(store.get("taa.plan", []));
+const weeks = $("#weeks");
+PLAN.forEach(([title, items], pi) => {
+  const bar = el("i"), count = el("span", { class: "status" });
+  const box = el("div", { class: "phase" }, el("div", { class: "phase-head" }, el("h3", { text: title }), count), el("div", { class: "progress" }, bar));
+  const update = () => { const n = items.filter((_, i) => planDone.has(`${pi}.${i}`)).length; bar.style.width = (n / items.length * 100) + "%"; count.textContent = `${n} / ${items.length}`; };
+  items.forEach(([what, why], i) => {
+    const id = `p${pi}_${i}`;
+    const cb = el("input", { type: "checkbox", id });
+    cb.checked = planDone.has(`${pi}.${i}`);
+    cb.addEventListener("change", () => { cb.checked ? planDone.add(`${pi}.${i}`) : planDone.delete(`${pi}.${i}`); store.set("taa.plan", [...planDone]); update(); });
+    box.append(el("div", { class: "check" }, cb, el("label", { for: id }, what, el("span", { class: "why", text: why }))));
+  });
+  update(); weeks.append(box);
+});
+$("#resetPlan").addEventListener("click", () => { weeks.querySelectorAll("input").forEach(i => { if (i.checked) { i.checked = false; i.dispatchEvent(new Event("change")); } }); });
+
+/* ================================================= chapter 12: templates */
+const TPL = [
+  ["Office playbook (Persian)", "Paste into the agent’s instructions or Hermes memory. Change names and numbers.", true,
+`# دستورالعمل دستیار رزرواسیون «آژانس پرواز»
+محل: تهران — فرودگاه امام (IKA) و مهرآباد (THR). ساعت کاری: شنبه تا پنجشنبه ۹ تا ۱۹ (دستیار ۲۴ ساعته پاسخ می‌دهد).
+زبان پاسخ: همان زبان مشتری (فارسی، انگلیسی، عربی).
+
+## قیمت
+- کارمزد خدمات: ۸٪ روی تورها؛ مبلغ ثابت برای هر بلیت.
+- هیچ قیمتی را بدون نتیجه‌ی سامانه (سپهر/پرتو/چارتر۷۲۴) اعلام نکن.
+- همیشه بگو: «قیمت تا لحظه‌ی صدور بلیت قطعی نیست.»
+
+## همیشه بررسی کن
+- اعتبار گذرنامه: حداقل ۶ ماه پس از تاریخ برگشت.
+- نام دقیقاً مطابق گذرنامه یا کارت ملی.
+- قوانین ویزا را حدس نزن؛ به همکار بگو از منبع رسمی بررسی کند.
+
+## هرگز
+- بدون تأیید کارمند رزرو، صدور، استرداد یا دریافت وجه انجام نده.
+- شماره کارت بانکی نخواه و ذخیره نکن (فقط لینک پرداخت).
+
+## ارجاع به کارمند
+- شکایت، مشکل پزشکی، مسافر سرگردان، گروه بالای ۹ نفر، مشتری ویژه.`],
+  ["Hermes skill: build a quote", "Hermes stores skills as Markdown files. Write your own, or correct the ones it writes.", false,
+`---
+name: build-travel-quote
+description: Turn a customer request into two priced options and a reply.
+---
+# Steps
+1. Extract destination, dates (convert Persian dates), adults,
+   children with ages, budget in tomans, preferences.
+2. If something essential is missing, ask ONE short question and stop.
+3. Look up the customer in the CRM; reuse saved preferences.
+4. Search flights (charter web service) and hotels (contracts first).
+5. Build Option A (fits budget) and Option B (upgrade).
+6. Check passport validity against the return date.
+7. Draft the reply in the customer's language, max 120 words.
+8. Log the lead in the CRM with a follow-up date in 2 days.
+# Output
+REPLY TO CUSTOMER / INTERNAL NOTE`],
+  ["Message triage prompt", "For a scheduled job that reads new Bale, Telegram, SMS and email messages every 15 minutes.", false,
+`For each new message, return one JSON object per line:
+{"from": "...", "channel": "bale|telegram|sms|email|web",
+ "language": "fa|en|ar|zh|ru",
+ "intent": "new_trip|change|refund|complaint|payment|pilgrimage|supplier|other",
+ "urgency": "now|today|this_week",
+ "trip": {"destination": "", "depart": "YYYY-MM-DD", "return": "YYYY-MM-DD",
+          "adults": 0, "children": 0, "budget_toman": null},
+ "missing": ["..."],
+ "draft_reply": "short and polite, in the customer's language"}
+Rules: urgency "now" for travel within 72 hours, any cancellation
+or disruption. Complaints and refunds always go to a person.`],
+  ["Disruption message (Persian)", "Prewrite this before the next crisis. The agent fills in the brackets.", true,
+`مسافر گرامی [نام]،
+پرواز [شماره پرواز] [مبدأ]–[مقصد] در تاریخ [تاریخ] [لغو شد / تغییر کرد].
+گزینه‌های شما:
+۱) جابه‌جایی به پرواز [گزینه] بدون هزینه اضافه
+۲) استرداد طبق قوانین [ایرلاین/سامانه] — پیگیری با ما
+لطفاً شماره گزینه را پاسخ دهید. همکار ما [نام کارمند] تا [ساعت] با شما تماس می‌گیرد.
+آژانس پرواز — [شماره تماس]`],
+  ["Approval policy", "The single most important guardrail. Put it in every agent’s rules.", false,
+`ACTION                          AGENT     PERSON
+Search fares / hotels           yes       -
+Create quote / itinerary        yes       reviews
+Send quote to customer          draft     sends (later: auto for repeat clients)
+Hold seats / booking            request   approves
+Issue ticket / voucher          no        yes
+Payment link / refund           prepare   approves amount
+Change or cancel booking        request   approves
+Delete customer data            no        yes`],
+];
+$("#tplList").replaceChildren(...TPL.map(([title, hint, rtl, body]) => {
+  const btn = el("button", { class: "btn ghost small", type: "button", text: "Copy" });
+  const pre = el("pre", { class: rtl ? "rtl" : "" }, body);
+  btn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(body); btn.textContent = "Copied"; }
+    catch { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Selected, press Ctrl+C"; }
+    setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+  });
+  return el("div", { class: "tpl" }, el("div", { class: "tpl-head" }, el("div", {}, el("h4", { text: title }), el("div", { class: "note", text: hint })), btn), pre);
+}));
+
+/* ================================================= chapter 6: simulator */
+const CUSTOMERS = [
+  { id: "C-1042", name: "Sara Ahmadi", alt: "سارا احمدی", phone: "0912 555 0142", tier: "Gold", passports: [{ traveler: "Sara Ahmadi", expiry: "2027-09-14" }, { traveler: "Ali Ahmadi", expiry: "2027-03-30" }, { traveler: "Nika Ahmadi (child, 7)", expiry: "2029-08-02" }], prefs: "Window seats, halal food, 4★+ hotel with kids pool", history: "Istanbul, Tir 1404, 3 pax, 248,000,000 T" },
+  { id: "C-1077", name: "Reza Karimi", alt: "رضا کریمی", phone: "0935 555 0177", tier: "Corporate · Pars Steel Co.", passports: [{ traveler: "Reza Karimi", expiry: "2030-01-20" }], prefs: "Aisle seat, flexible fares, hotel with desk and fast Wi-Fi", history: "8 trips in 1405, mostly IKA–IST" },
+  { id: "C-1103", name: "Mina Farahani", alt: "مینا فراهانی", phone: "0901 555 0103", tier: "New", passports: [{ traveler: "Mina Farahani", expiry: "2028-05-09" }], prefs: "Unknown", history: "No previous trips" },
+];
+// per-adult round-trip prices in tomans (invented)
+const ROUTES = {
+  DXB: [["FZ", "flydubai", "FZ 1926", "09:10", "11:40", 0, 46000000], ["IR", "Iran Air", "IR 657", "13:30", "16:05", 0, 41000000], ["W5", "Mahan Air", "W5 63", "07:00", "09:25", 0, 52000000]],
+  IST: [["W5", "Mahan Air", "W5 114", "11:00", "14:05", 0, 58000000], ["IR", "Iran Air", "IR 723", "08:00", "11:10", 0, 54000000], ["QB", "Qeshm Air", "QB 2240", "15:20", "18:30", 0, 49000000]],
+  NJF: [["IR", "Iran Air", "IR 237", "06:30", "08:00", 0, 31000000], ["W5", "Mahan Air", "W5 211", "10:15", "11:45", 0, 34000000], ["IA", "Iraqi Airways", "IA 116", "14:00", "15:30", 0, 29000000]],
+  MHD: [["IR", "Iran Air", "IR 405", "07:30", "09:00", 0, 6400000], ["W5", "Mahan Air", "W5 1043", "12:00", "13:30", 0, 7100000], ["QB", "Qeshm Air", "QB 1213", "18:45", "20:15", 0, 5900000]],
+  KIH: [["Y9", "Kish Air", "Y9 7125", "08:15", "10:00", 0, 9800000], ["ZV", "Zagros Airlines", "ZV 4021", "16:30", "18:15", 0, 8900000]],
+};
+const HOTELS = {
+  DXB: [["H-DXB-1", "Jumeirah Beach Family Resort", 5, "JBR beach", 46000000, "Kids club, 2 pools, halal"], ["H-DXB-2", "Marina Sands Hotel", 4, "Dubai Marina", 27000000, "Family rooms, pool, metro 5 min"], ["H-DXB-3", "Deira City Stay", 3, "Deira", 12000000, "Budget, central"]],
+  IST: [["H-IST-1", "Bosphorus Palace", 5, "Beşiktaş", 40000000, "Sea view, spa"], ["H-IST-2", "Taksim Business Suites", 4, "Taksim", 19000000, "Desk, fast Wi-Fi, flexible cancellation"], ["H-IST-3", "Sultanahmet Garden", 4, "Old City", 22000000, "Walk to sights"]],
+  NJF: [["H-NJF-1", "Qasr Al-Dur", 4, "Near the shrine (300 m)", 9000000, "Breakfast, Persian-speaking staff"], ["H-NJF-2", "Al-Kufa Hotel", 3, "1.5 km from shrine", 5000000, "Budget, shuttle"]],
+  MHD: [["H-MHD-1", "Haram View Hotel", 5, "Next to the shrine", 14000000, "Breakfast and dinner"], ["H-MHD-2", "Pardis Hotel", 4, "Imam Reza St., 600 m", 7500000, "Family rooms"], ["H-MHD-3", "Golshan Apartment Hotel", 3, "1 km", 4200000, "Kitchen"]],
+  KIH: [["H-KIH-1", "Toranj Marine Resort", 5, "Beachfront", 21000000, "Pool, beach"], ["H-KIH-2", "Shayan Hotel", 4, "Near malls", 11000000, "Breakfast"]],
+};
+const CITY = { dubai: "DXB", dxb: "DXB", "دبی": "DXB", istanbul: "IST", ist: "IST", "استانبول": "IST", najaf: "NJF", njf: "NJF", "نجف": "NJF", karbala: "NJF", "کربلا": "NJF", mashhad: "MHD", mhd: "MHD", "مشهد": "MHD", kish: "KIH", kih: "KIH", "کیش": "KIH" };
+const SERVICE_FEE = 0.08;
+const flights = new Map(), hotels = new Map(), quotes = new Map();
+const nights = (a, b) => Math.max(1, Math.round((Date.parse(b) - Date.parse(a)) / 864e5) || 1);
+const code = s => CITY[String(s || "").trim().toLowerCase()] || String(s || "").trim().toUpperCase();
+let qn = 0;
+
+const TOOLS = [
+  { name: "lookup_customer", description: "Find a customer in the agency CRM by name (English or Persian) or phone. Returns profile, tier, preferences, travelers with passport expiry, and history. Returns found:false if unknown.",
+    inputSchema: { type: "object", properties: { query: { type: "string", description: "Name or phone number" } }, required: ["query"] },
+    run({ query }) {
+      const q = String(query || "").toLowerCase().trim(), digits = q.replace(/\D/g, "");
+      const c = CUSTOMERS.find(c => {
+        const n = c.name.toLowerCase(), [first, last] = n.split(" ");
+        if (q && (n.includes(q) || q.includes(c.alt) || c.alt.includes(q) || (q.includes(first) && q.includes(last)))) return true;
+        return digits.length >= 6 && c.phone.replace(/\D/g, "").endsWith(digits.slice(-6));
+      });
+      return c ? { found: true, ...c } : { found: false, note: "Not in CRM. Treat as a new lead." };
+    }, sum: r => r.found ? `${r.name} · ${r.tier} · ${r.passports.length} traveler(s)` : "not found (new lead)" },
+  { name: "search_flights", description: "Search round-trip fares through the agency's charter/flight web service. Origin is Tehran. Returns flight_id, airline, times and total price in tomans for all passengers (children priced at 75%).",
+    inputSchema: { type: "object", properties: { destination: { type: "string", description: "City name or IATA code" }, depart_date: { type: "string", description: "YYYY-MM-DD (Gregorian)" }, return_date: { type: "string", description: "YYYY-MM-DD (Gregorian)" }, adults: { type: "integer" }, children: { type: "integer" } }, required: ["destination", "depart_date", "return_date", "adults"] },
+    run(a) {
+      const d = code(a.destination), ad = Math.max(1, Number(a.adults) || 1), ch = Math.max(0, Number(a.children) || 0);
+      const list = ROUTES[d];
+      if (!list) throw new Error(`No demo inventory for ${d}. Demo destinations: Dubai, Istanbul, Najaf, Mashhad, Kish.`);
+      return { route: `${d === "MHD" || d === "KIH" ? "THR" : "IKA"}-${d}`, depart: a.depart_date, return: a.return_date, options: list.map(([c, air, no, dep, arr, stops, per]) => {
+        const id = `F-${d}-${c}`, total = Math.round(per * ad + per * 0.75 * ch);
+        const o = { flight_id: id, airline: air, flight: no, depart: dep, arrive: arr, stops, total_toman: total };
+        flights.set(id, o); return o; }) };
+    }, sum: r => `${r.options.length} options, from ${fmt(Math.min(...r.options.map(o => o.total_toman)))} T` },
+  { name: "search_hotels", description: "Search hotel availability. Returns hotel_id, name, stars, area, nightly rate per room in tomans, total for the stay, and notes. One family room fits 2 adults + 2 children.",
+    inputSchema: { type: "object", properties: { city: { type: "string" }, check_in: { type: "string" }, check_out: { type: "string" }, rooms: { type: "integer" }, min_stars: { type: "integer" } }, required: ["city", "check_in", "check_out"] },
+    run(a) {
+      const d = code(a.city), list = HOTELS[d];
+      if (!list) throw new Error(`No demo hotels for ${d}.`);
+      const n = nights(a.check_in, a.check_out), rooms = Math.max(1, Number(a.rooms) || 1), min = Number(a.min_stars) || 0;
+      return { city: d, nights: n, hotels: list.filter(h => h[2] >= min).map(([id, name, stars, area, rate, notes]) => {
+        const o = { hotel_id: id, name, stars, area, rate_per_night_toman: rate, total_toman: rate * n * rooms, notes };
+        hotels.set(id, { ...o, per_room: rate * n }); return o; }) };
+    }, sum: r => `${r.hotels.length} hotels for ${r.nights} nights` },
+  { name: "check_documents", description: "Apply the agency's passport rule: each passport must be valid at least 6 months after the return date. Returns ok/problem per traveler. Visa rules are NOT included.",
+    inputSchema: { type: "object", properties: { customer_id: { type: "string" }, return_date: { type: "string" } }, required: ["customer_id", "return_date"] },
+    run(a) {
+      const c = CUSTOMERS.find(c => c.id === String(a.customer_id));
+      if (!c) throw new Error("Unknown customer_id; look the customer up first.");
+      const limit = new Date(a.return_date); limit.setMonth(limit.getMonth() + 6);
+      return { rule: "valid 6 months after return", travelers: c.passports.map(p => ({ traveler: p.traveler, expiry: p.expiry, status: new Date(p.expiry) >= limit ? "ok" : "PROBLEM: renew before travel" })) };
+    }, sum: r => { const bad = r.travelers.filter(t => t.status !== "ok"); return bad.length ? `⚠ ${bad.map(t => t.traveler).join(", ")} needs renewal` : "all passports ok"; } },
+  { name: "create_quote", description: "Create a priced quote from one flight_id and optionally one hotel_id (with number of rooms). Adds the 8% service fee. Returns quote_id and breakdown in tomans. Prices are only valid from this tool.",
+    inputSchema: { type: "object", properties: { customer_id: { type: "string" }, flight_id: { type: "string" }, hotel_id: { type: "string" }, rooms: { type: "integer" }, label: { type: "string", description: "e.g. Option A - best value" } }, required: ["flight_id"] },
+    run(a) {
+      const f = flights.get(String(a.flight_id)); if (!f) throw new Error("Unknown flight_id; search flights first.");
+      const h = a.hotel_id ? hotels.get(String(a.hotel_id)) : null; if (a.hotel_id && !h) throw new Error("Unknown hotel_id; search hotels first.");
+      const rooms = Math.max(1, Number(a.rooms) || 1);
+      const hotelTotal = h ? h.per_room * rooms : 0;
+      const net = f.total_toman + hotelTotal, fee = Math.round(net * SERVICE_FEE);
+      const id = "Q-" + (2601 + (++qn));
+      const q = { quote_id: id, label: a.label || "Option", customer_id: a.customer_id || null, flight: `${f.airline} ${f.flight}`, hotel: h ? `${h.name} (${h.stars}★)` : "none", flights_toman: f.total_toman, hotel_toman: hotelTotal, service_fee_toman: fee, total_toman: net + fee, valid: "24 hours; fares not guaranteed until issued" };
+      quotes.set(id, q); return q;
+    }, sum: r => `${r.quote_id} · ${r.label} · ${fmt(r.total_toman)} T` },
+  { name: "request_approval", description: "Send a hold request to the human approval queue. The agent can NEVER hold, issue or charge by itself; use this only when the customer clearly asks to reserve.",
+    inputSchema: { type: "object", properties: { quote_id: { type: "string" }, reason: { type: "string" } }, required: ["quote_id", "reason"] },
+    run(a) {
+      const q = quotes.get(String(a.quote_id)); if (!q) throw new Error("Unknown quote_id.");
+      addTicket(q, String(a.reason || "")); return { queued: true, quote_id: q.quote_id, message: "Waiting for a staff member to approve." };
+    }, sum: r => `queued ${r.quote_id} for staff approval` },
+];
+
+const SAMPLES = [
+  { from: "Bale · Sara Ahmadi", text: "سلام، سارا احمدی هستم. برای تعطیلات ۳۰ آذر تا ۴ دی دبی می‌خوایم؛ من و همسرم علی و دخترم نیکا که ۷ سالشه. بودجه‌مون حدود ۳۵۰ میلیون تومن همه‌چی. هتل استخردار باشه لطفاً 🙏" },
+  { from: "Email · Reza Karimi", text: "Hello team, I need Istanbul for a supplier meeting, out 3 Nov, back 6 Nov 2026. Flexible fare please, hotel near Taksim. If everything is fine, please reserve. Reza Karimi, Pars Steel" },
+  { from: "SMS · 0901 555 0103", text: "سلام، برای زیارت مشهد ۱۵ تا ۱۸ آبان دو نفر چقدر میشه؟ هتل نزدیک حرم می‌خوایم. مینا فراهانی" },
+];
+let selected = 0;
+const inbox = $("#inbox"), msgText = $("#msgText");
+function renderInbox() {
+  inbox.replaceChildren(...SAMPLES.map((s, i) => {
+    const b = el("button", { class: "msg", "aria-pressed": String(i === selected), type: "button" }, el("small", { text: s.from }), el("span", { text: s.text, dir: "auto" }));
+    b.addEventListener("click", () => { selected = i; msgText.value = s.text; renderInbox(); });
+    return b;
+  }));
+}
+msgText.value = SAMPLES[0].text; renderInbox();
+
+const logBox = $("#log"), draft = $("#draft"), queue = $("#queue"), status = $("#simStatus"), callCount = $("#callCount");
+let calls = 0;
+function logEv(kind, title, detail) {
+  if (logBox.dataset.fresh !== "1") { logBox.replaceChildren(); logBox.dataset.fresh = "1"; }
+  const ev = el("div", { class: "ev " + kind }, el("b", { text: title }));
+  if (detail) ev.append(el("span", { class: "res", text: detail }));
+  logBox.append(ev); logBox.scrollTop = logBox.scrollHeight;
+}
+function resetRun() {
+  logBox.dataset.fresh = "0"; calls = 0; callCount.textContent = "0 tool calls";
+  flights.clear(); hotels.clear(); quotes.clear(); draft.textContent = "";
+}
+const short = o => { const s = JSON.stringify(o); return s.length > 150 ? s.slice(0, 147) + "…" : s; };
+function addTicket(q, reason) {
+  if (queue.querySelector(".note")) queue.replaceChildren();
+  const t = el("div", { class: "ticket" },
+    el("div", { class: "row", style: "justify-content:space-between" }, el("b", { text: `${q.quote_id} · ${q.label}` }), el("span", { class: "pill med", text: "Needs approval" })),
+    el("div", { class: "note", text: `${q.flight} · ${q.hotel} · total ${fmt(q.total_toman)} T (incl. ${fmt(q.service_fee_toman)} T fee)` }),
+    el("div", { class: "note", text: "Agent’s reason: " + reason }));
+  const ok = el("button", { class: "btn small", type: "button", text: "Approve hold" });
+  const no = el("button", { class: "btn ghost small", type: "button", text: "Reject" });
+  const act = el("div", { class: "row" }, ok, no);
+  ok.addEventListener("click", () => {
+    const pnr = Array.from({ length: 6 }, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
+    t.className = "ticket done"; act.replaceWith(el("div", { class: "note", text: `Approved by you. Demo booking ${pnr} on hold for 24 h. Next: send payment link, then issue.` }));
+  });
+  no.addEventListener("click", () => { t.className = "ticket rej"; act.replaceWith(el("div", { class: "note", text: "Rejected. The agent will be told to offer alternatives." })); });
+  t.append(act); queue.append(t);
+}
+
+const RULES = `You are the reservations assistant of "Parvaz Travel", a licensed travel agency in Tehran. Currency: tomans (T). Today is mid-October 2026 (Mehr 1405).
+Persian calendar 1405 → Gregorian: 1 Mehr = 23 Sep 2026, 1 Aban = 23 Oct, 1 Azar = 22 Nov, 1 Dey = 22 Dec 2026. So 15 Aban = 6 Nov, 30 Azar = 21 Dec, 4 Dey = 25 Dec.
+Work like an experienced travel consultant:
+1. Look up the customer in the CRM first (lookup_customer). If unknown, treat as a new lead.
+2. Use search_flights and search_hotels for every price. Never invent or estimate a price.
+3. If the customer is in the CRM, run check_documents with the return date (international trips only).
+4. Build 2 quote options with create_quote (best value and premium) that respect budget and preferences. One family room = 2 adults + up to 2 children.
+5. Only if the customer explicitly asks to reserve, call request_approval for the best quote. You cannot book, issue or take payment.
+Then write your final answer in two parts:
+REPLY TO CUSTOMER: warm and short, in the customer's language, with the options (airline, hotel, total in tomans, what's included), any document problem, and a clear next step. Say prices are final only when the ticket is issued.
+INTERNAL NOTE: 2-4 bullet points for staff (risks, margin, follow-up date).
+Keep the whole answer under 250 words.`;
+
+let ctl = null, samplePromise = null;
+const getSample = () => samplePromise || (samplePromise = (window.claude && window.claude.use ? window.claude.use("sample") : Promise.resolve(null)).catch(() => null));
+getSample().then(s => { status.textContent = s ? "Ready. The first live run asks you to allow this page to use your Claude account." : "Live runs aren’t available here. Use “Replay a recorded run” to see how it works."; });
+const errCopy = c => ({
+  not_granted: "You didn’t allow this page to use Claude, so live runs are off. Try the recorded run.",
+  sampling_disabled: "Claude isn’t available for this account. Try the recorded run.",
+  rate_limited: "Too many runs for now. Wait a minute, then try again.",
+  session_expired: "Your Claude session expired. Sign in again, then retry.",
+  tools_unavailable: "This app version can’t run agent tools. Try the recorded run.",
+  refused: "Claude declined this message. Change the wording and try again.",
+  empty_completion: "The agent returned nothing. Simplify the message and try again.",
+})[c] || "Something went wrong on the way. Press Run agent to try again.";
+
+const setBusy = b => { $("#runBtn").disabled = b; $("#replayBtn").disabled = b; };
+$("#runBtn").addEventListener("click", async () => {
+  const sample = await getSample();
+  if (!sample) { status.textContent = "Live runs aren’t available here. Showing the recorded run."; return replay(); }
+  const text = msgText.value.trim();
+  if (!text) { status.textContent = "Write or pick a customer message first."; msgText.focus(); return; }
+  resetRun(); ctl = new AbortController(); setBusy(true); $("#stopBtn").hidden = false;
+  status.textContent = "Agent is thinking…";
+  logEv("", "Message received", text.slice(0, 120) + (text.length > 120 ? "…" : ""));
+  const tools = TOOLS.map(t => ({ name: t.name, description: t.description, inputSchema: t.inputSchema,
+    execute: async input => {
+      calls++; callCount.textContent = `${calls} tool call${calls > 1 ? "s" : ""}`;
+      status.textContent = `Using ${t.name}…`;
+      try { const r = t.run(input || {}); logEv(t.name === "request_approval" ? "need" : "tool", "→ " + t.name + " " + short(input), "← " + t.sum(r)); return r; }
+      catch (e) { logEv("err", "→ " + t.name + " " + short(input), "← error: " + e.message); throw e; }
+    } }));
+  try {
+    const { truncated } = await sample(`${RULES}\n\nCUSTOMER MESSAGE:\n${text}`, {
+      tools, modelTier: $("#tier").value, signal: ctl.signal,
+      onText: ({ text: t }) => { draft.textContent = t; status.textContent = "Writing the reply…"; },
+    });
+    status.textContent = truncated ? "Done, but the reply was cut short." : `Done. ${calls} tool calls. Review the draft before sending.`;
+  } catch (e) {
+    if (e && e.code === "refused") draft.textContent = ""; else if (e && e.text) draft.textContent = e.text;
+    status.textContent = e && e.code === "cancelled" ? "Stopped." : errCopy(e && e.code);
+  } finally { setBusy(false); $("#stopBtn").hidden = true; ctl = null; }
+});
+$("#stopBtn").addEventListener("click", () => ctl && ctl.abort());
+
+const wait = ms => new Promise(r => setTimeout(r, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : ms));
+let replaying = false;
+async function replay() {
+  if (replaying) return; replaying = true;
+  selected = 0; msgText.value = SAMPLES[0].text; renderInbox();
+  resetRun(); setBusy(true);
+  status.textContent = "Replaying a recorded run (no Claude call)…";
+  logEv("", "Message received", SAMPLES[0].text.slice(0, 90) + "…");
+  const steps = [
+    ["lookup_customer", { query: "سارا احمدی" }],
+    ["search_flights", { destination: "Dubai", depart_date: "2026-12-21", return_date: "2026-12-25", adults: 2, children: 1 }],
+    ["search_hotels", { city: "Dubai", check_in: "2026-12-21", check_out: "2026-12-25", rooms: 1, min_stars: 4 }],
+    ["check_documents", { customer_id: "C-1042", return_date: "2026-12-25" }],
+    ["create_quote", { customer_id: "C-1042", flight_id: "F-DXB-IR", hotel_id: "H-DXB-2", rooms: 1, label: "Option A – best value" }],
+    ["create_quote", { customer_id: "C-1042", flight_id: "F-DXB-FZ", hotel_id: "H-DXB-1", rooms: 1, label: "Option B – premium" }],
+  ];
+  for (const [name, input] of steps) {
+    await wait(700);
+    const t = TOOLS.find(x => x.name === name), r = t.run(input);
+    calls++; callCount.textContent = `${calls} tool calls`;
+    logEv("tool", "→ " + name + " " + short(input), "← " + t.sum(r));
+  }
+  const qa = quotes.get("Q-" + (2601 + qn - 1)), qb = quotes.get("Q-" + (2601 + qn));
+  await wait(600);
+  draft.textContent =
+`REPLY TO CUSTOMER:
+سلام سارا خانم، خوشحالیم که سفر دبی شما، آقا علی و نیکا جان را برنامه‌ریزی می‌کنیم 😊
+گزینه الف (اقتصادی): ایران‌ایر + هتل ۴ ستاره مارینا سندز (اتاق خانوادگی، استخر، نزدیک مترو)، ۳۰ آذر تا ۴ دی: مجموعاً ${fmt(qa.total_toman)} تومان.
+گزینه ب (ویژه): فلای‌دبی + ریزورت ۵ ستاره جمیرا با باشگاه کودک: ${fmt(qb.total_toman)} تومان (نزدیک سقف بودجه).
+نکته مهم: گذرنامه آقا علی تا ۱۰ فروردین ۱۴۰۶ اعتبار دارد و باید تا ۶ ماه بعد از برگشت معتبر باشد؛ لطفاً قبل از رزرو تمدیدش کنید.
+قیمت‌ها تا لحظه صدور بلیت قطعی نیست. بعد از تمدید گذرنامه، کدام گزینه را رزرو کنیم؟
+
+INTERNAL NOTE:
+• Gold client; last trip Istanbul Tir 1404. Both options fit the 350M T budget; B leaves little margin for changes.
+• Ali’s passport expires 30 Mar 2027, less than 6 months after return: booking blocked until renewed.
+• Confirm the extra bed for the child at Marina Sands. Follow up in 2 days.`;
+  status.textContent = "Recorded run finished. Open this page on claude.ai to run it live.";
+  setBusy(false); replaying = false;
+}
+$("#replayBtn").addEventListener("click", replay);
+
+/* ================================================= start */
+window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h && h !== current) go(h, true); });
+go((location.hash || "").slice(1) || store.get("taa.cur", ids[0]), false);
+})();
+</script>
+
+</body>
+</html>
