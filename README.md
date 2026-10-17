@@ -29,7 +29,8 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 19 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
 | 20 | Guardrails | Rules before going live, KPIs |
 | 21 | Self-review | What earlier versions got wrong and how it was corrected |
-| 22 | Sources | Every source used, checked October 2026 |
+| 22 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
+| 23 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 

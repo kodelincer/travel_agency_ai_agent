@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 22;
+const MIN_CHAPTERS = 23;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -89,6 +89,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         const [dl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#dayCsv")]);
         const csv = dl ? require("fs").readFileSync(await dl.path(), "utf8") : "";
         check(csv.charCodeAt(0) === 0xFEFF && /^\uFEFFTask,System,Kind of work,Minutes,Annoying\r\n/.test(csv) && /Smoke test task,[^\r]*,15,no\r\n/.test(csv), `worksheet downloads a CSV (${dl ? dl.suggestedFilename() : "no download"})`);
+
+        // glossary: search works in English and Persian, and says when nothing matches
+        await page.evaluate(() => { location.hash = "glossary"; });
+        const gl = {};
+        for (const q of ["", "charter", "سماح", "zzqx"]) { await page.fill("#glossQ", q); gl[q || "all"] = await page.locator("#glossRows tr").count(); }
+        const none = await page.isVisible("#glossNone");
+        await page.fill("#glossQ", "");
+        check(gl.all >= 30 && gl.charter >= 1 && gl["سماح"] === 1 && gl.zzqx === 0 && none, `glossary search (${gl.all} terms; charter ${gl.charter}, سماح ${gl["سماح"]}, none ${gl.zzqx})`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });

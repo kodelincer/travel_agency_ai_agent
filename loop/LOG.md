@@ -268,3 +268,10 @@ Changed: "Download as CSV (Excel)" button on the worksheet, bilingual. The CSV u
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P2 — glossary chapter (bilingual).
+
+## Iteration 36 · 2026-10-17
+Task: P2 — glossary chapter.
+Changed: New bilingual chapter "Glossary · واژه‌نامه" (before Sources): 37 terms in three groups (travel trade, Iran official, AI), each with the term in both languages and one plain sentence in each; search box that matches English or Persian (ignores ZWNJ and Arabic ي/ك variants), group filters, and a bilingual "no match" message. Every definition restates facts already in FACTS.md (licences, Samah, Sakha, exit tax, Hermes 64k context). README table and MIN_CHAPTERS (22 → 23) updated. New test: search finds "charter" and "سماح" and reports no match for nonsense.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 5
+Next: P2 — accessibility pass.

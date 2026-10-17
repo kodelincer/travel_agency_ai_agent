@@ -1284,6 +1284,26 @@ Send an SMS notice?  [Approve]
   </div>
 </section>
 
+<!-- =========================================================== GLOSSARY -->
+<section id="glossary" data-title="Glossary" data-group="Act" data-title-fa="واژه‌نامه" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2><span class="l-en">Glossary: the words in this academy, in plain language</span><span class="l-fa">واژه‌نامه: واژه‌های این آکادمی به زبان ساده</span></h2>
+  <p class="lead l-en">Travel trade terms, Iranian official names and AI words, each in one plain sentence. Type in the box to filter; English and Persian both work.</p>
+  <p class="lead l-fa">اصطلاحات صنعت سفر، نام‌های رسمی ایرانی و واژه‌های هوش مصنوعی، هر کدام در یک جمله‌ی ساده. برای فیلتر در کادر بنویسید؛ فارسی و انگلیسی هر دو کار می‌کند.</p>
+  <div class="row"><label class="lbl" for="glossQ"><span class="l-en">Find a term</span><span class="l-fa">جستجوی واژه</span></label><input id="glossQ" type="search" dir="auto" style="flex:1;min-width:0"></div>
+  <div class="filters" id="glossFilters" role="group" aria-label="Filter terms">
+    <button class="chip" type="button" aria-pressed="true" data-f="all"><span class="l-en">All</span><span class="l-fa">همه</span></button>
+    <button class="chip" type="button" aria-pressed="false" data-f="trade"><span class="l-en">Travel trade</span><span class="l-fa">صنعت سفر</span></button>
+    <button class="chip" type="button" aria-pressed="false" data-f="iran"><span class="l-en">Iran official</span><span class="l-fa">رسمی ایران</span></button>
+    <button class="chip" type="button" aria-pressed="false" data-f="ai"><span class="l-en">AI</span><span class="l-fa">هوش مصنوعی</span></button>
+  </div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Term</span><span class="l-fa">واژه</span></th><th><span class="l-en">Meaning</span><span class="l-fa">معنی</span></th></tr></thead>
+    <tbody id="glossRows"></tbody>
+  </table></div>
+  <p class="status" id="glossNone" hidden><span class="l-en">No term matches. Try a shorter word.</span><span class="l-fa">واژه‌ای پیدا نشد. کلمه‌ی کوتاه‌تری امتحان کنید.</span></p>
+</section>
+
 <!-- =========================================================== 15 SOURCES -->
 <section id="sources" data-title="Sources" data-group="Act" data-title-fa="منابع" hidden>
   <div class="eyebrow">Chapter</div>
@@ -2182,6 +2202,63 @@ $("#tplList").replaceChildren(...TPL.map(([title, titleFa, hint, hintFa, rtl, bo
   });
   return el("div", { class: "tpl" }, el("div", { class: "tpl-head" }, el("div", {}, el("h4", {}, T(title, titleFa)), el("div", { class: "note" }, T(hint, hintFa))), btn), ...pres);
 }));
+
+/* ================================================= glossary */
+// [group, term en, term fa, meaning en, meaning fa]
+const GLOSSARY = [
+  ["trade", "PNR", "پی‌ان‌آر (کد رزرو)", "Passenger Name Record: the booking record in an airline or reservation system, shown as a short code such as K7Q2ZP.", "پرونده‌ی رزرو مسافر در سامانه‌ی ایرلاین یا رزرو که با یک کد کوتاه مثل K7Q2ZP نشان داده می‌شود."],
+  ["trade", "Charter flight", "پرواز چارتر", "Seats bought in bulk from an airline by a charter company and resold; prices move by the hour and refund rules are stricter.", "صندلی‌هایی که یک چارترکننده عمده از ایرلاین می‌خرد و دوباره می‌فروشد؛ قیمت ساعت به ساعت تغییر می‌کند و قوانین استرداد سخت‌تر است."],
+  ["trade", "System flight", "پرواز سیستمی", "A seat sold from the airline’s own inventory at its published fare classes and rules.", "صندلی‌ای که مستقیم از ظرفیت خود ایرلاین با کلاس‌های نرخ و قوانین اعلام‌شده‌ی آن فروخته می‌شود."],
+  ["trade", "TTL (ticketing time limit)", "مهلت صدور", "The deadline to issue a held booking; after it, the seats are released.", "آخرین مهلت صدور یک رزرو نگه‌داشته‌شده؛ بعد از آن صندلی‌ها آزاد می‌شوند."],
+  ["trade", "Fare rules", "قوانین نرخ", "The conditions attached to a fare: baggage, changes, refund penalties and validity.", "شرایط هر نرخ: بار مجاز، تغییر، جریمه‌ی استرداد و اعتبار."],
+  ["trade", "GDS", "جی‌دی‌اس", "Global distribution systems such as Amadeus, Sabre and Travelport that sell airline seats worldwide; most Iranian agencies use domestic systems instead.", "سامانه‌های توزیع جهانی مثل Amadeus، Sabre و Travelport که صندلی ایرلاین‌ها را در دنیا می‌فروشند؛ بیشتر آژانس‌های ایرانی به‌جای آن از سامانه‌های داخلی استفاده می‌کنند."],
+  ["trade", "Web service (API)", "وب‌سرویس", "A programmatic door into a system, so software (or an AI agent) can search and book without a person clicking.", "دری برنامه‌نویسی به یک سامانه تا نرم‌افزار (یا عامل هوش مصنوعی) بدون کلیک انسان جستجو و رزرو کند."],
+  ["trade", "Integrator", "ارائه‌دهنده‌ی وب‌سرویس", "A company such as Sepehr, Parto or Charter724 that connects agencies to airline and charter inventory.", "شرکتی مثل سپهر، پرتو یا چارتر۷۲۴ که آژانس‌ها را به ظرفیت ایرلاین‌ها و چارترها وصل می‌کند."],
+  ["trade", "Partner agency (B2B)", "همکار", "Another agency you buy from or sell to at trade prices.", "آژانس دیگری که با نرخ همکاری از او می‌خرید یا به او می‌فروشید."],
+  ["trade", "Net rate and markup", "نرخ نت و سود", "The net rate is what the supplier charges you; the markup is what you add before selling.", "نرخ نت مبلغی است که تأمین‌کننده از شما می‌گیرد؛ سود چیزی است که پیش از فروش رویش می‌گذارید."],
+  ["trade", "Voucher", "واچر", "The confirmation document a hotel or service provider accepts instead of payment at the door.", "سند تأییدی که هتل یا ارائه‌دهنده‌ی خدمت به‌جای پرداخت در محل قبول می‌کند."],
+  ["trade", "Rooming list and manifest", "فهرست اتاق و مانیفست", "The list of who sleeps in which room, and the official passenger list of a group.", "فهرست اینکه چه کسی در کدام اتاق است، و فهرست رسمی مسافران یک گروه."],
+  ["trade", "Attach rate", "نرخ فروش جانبی", "The share of bookings that also buy insurance, transfers or other extras.", "سهم رزروهایی که بیمه، ترانسفر یا خدمات جانبی دیگر هم می‌خرند."],
+  ["trade", "OTA", "آژانس آنلاین", "Online travel agency, such as Alibaba, Snapptrip or Booking.com.", "آژانس مسافرتی آنلاین، مثل علی‌بابا، اسنپ‌تریپ یا Booking.com."],
+  ["trade", "DMC (inbound)", "گردشگری ورودی", "A company that runs the ground services for foreign visitors in its own country.", "شرکتی که خدمات زمینی گردشگران خارجی را در کشور خودش انجام می‌دهد."],
+  ["trade", "MICE", "سفرهای همایشی و تشویقی", "Meetings, incentives, conferences and exhibitions: group business travel.", "جلسه‌ها، سفرهای تشویقی، همایش‌ها و نمایشگاه‌ها: سفر کاری گروهی."],
+  ["iran", "Licence type A / B", "بند الف / بند ب", "Agency licences by activity: type A for air tickets, type B for selling and running tours.", "مجوز دفاتر بر اساس نوع فعالیت: بند الف برای بلیت هواپیما، بند ب برای فروش و برگزاری تور."],
+  ["iran", "Technical manager", "مدیر فنی", "The qualified person every licensed agency must have; responsible for its professional work.", "فرد واجد شرایطی که هر دفتر دارای مجوز باید داشته باشد و مسئول کار حرفه‌ای آن است."],
+  ["iran", "CAO", "سازمان هواپیمایی کشوری", "Iran’s Civil Aviation Organization: licenses air-ticket sellers and issues sales circulars.", "سازمانی که به فروشندگان بلیت هواپیما مجوز می‌دهد و بخشنامه‌های فروش را صادر می‌کند."],
+  ["iran", "Samah", "سماح", "The official system where pilgrims to Iraq (for example for Arbaeen) must register.", "سامانه‌ی رسمی که زائران عراق (مثلاً برای اربعین) باید در آن ثبت‌نام کنند."],
+  ["iran", "E-trust badge", "اینماد", "The badge from the E-Commerce Development Center that shows an online shop is registered.", "نشان مرکز توسعه‌ی تجارت الکترونیکی که نشان می‌دهد یک فروشگاه اینترنتی ثبت شده است."],
+  ["iran", "Taxpayers’ system", "سامانه مودیان", "The tax administration’s system for electronic invoices.", "سامانه‌ی سازمان امور مالیاتی برای صورتحساب الکترونیکی."],
+  ["iran", "Exit tax", "عوارض خروج", "The fee Iranian travelers pay before each foreign trip; the amount rises with the number of trips in the year.", "مبلغی که مسافر ایرانی پیش از هر سفر خارجی می‌پردازد و با تعداد سفرهای سال بیشتر می‌شود."],
+  ["iran", "Sakha", "سخا", "The police services system where men of military-service age request an exit permit.", "سامانه‌ی خدمات انتظامی که آقایان مشمول نظام وظیفه در آن مجوز خروج درخواست می‌کنند."],
+  ["iran", "Bale", "بله", "An Iranian messenger with a Telegram-style bot API that works on the domestic network.", "پیام‌رسان ایرانی با API ربات شبیه تلگرام که روی شبکه‌ی داخلی کار می‌کند."],
+  ["iran", "Payment gateway", "درگاه پرداخت", "A licensed service that takes card payments through a link, so card numbers never pass through your chat or AI.", "سرویس دارای مجوز که پرداخت کارتی را با لینک انجام می‌دهد تا شماره‌ی کارت هرگز از گفتگو یا هوش مصنوعی شما عبور نکند."],
+  ["ai", "LLM", "مدل زبانی بزرگ", "Large language model: the “brain” that reads and writes text, such as Claude, Gemma or Qwen.", "«مغزی» که متن را می‌خواند و می‌نویسد، مثل Claude، Gemma یا Qwen."],
+  ["ai", "AI agent", "عامل هوش مصنوعی", "A model that can use tools (search, CRM, quotes) to finish a task, then hands the result to a person.", "مدلی که با ابزارها (جستجو، CRM، پیش‌فاکتور) کاری را تمام می‌کند و نتیجه را به انسان می‌دهد."],
+  ["ai", "Instructions (prompt)", "دستورالعمل (پرامپت)", "The written rules and request you give the model; your office playbook is a long one.", "قوانین و درخواست نوشته‌شده‌ای که به مدل می‌دهید؛ دستورالعمل دفتر شما یک نمونه‌ی بلند آن است."],
+  ["ai", "Tool", "ابزار", "A function the agent may call, such as “search flights”; it can only do what its tools allow.", "کاری که عامل اجازه دارد صدا بزند، مثل «جستجوی پرواز»؛ فقط همان کاری را می‌کند که ابزارهایش اجازه می‌دهند."],
+  ["ai", "Skill", "مهارت", "A saved how-to file the agent follows for a repeated job, such as building a quote.", "فایل روش کار ذخیره‌شده که عامل برای یک کار تکراری، مثل ساخت پیش‌فاکتور، دنبال می‌کند."],
+  ["ai", "Memory", "حافظه", "What the agent keeps between conversations: customer preferences and office facts.", "آنچه عامل بین گفتگوها نگه می‌دارد: سلیقه‌ی مشتری‌ها و اطلاعات دفتر."],
+  ["ai", "Context window", "پنجره‌ی متن", "How much text the model can read at once; Hermes needs at least 64k tokens.", "مقدار متنی که مدل یک‌جا می‌تواند بخواند؛ Hermes دست‌کم ۶۴ هزار توکن لازم دارد."],
+  ["ai", "Local model", "مدل محلی", "An open model running on your own server (for example with Ollama), so it keeps working when international internet is cut.", "مدل متن‌بازی که روی سرور خودتان اجرا می‌شود (مثلاً با Ollama) و با قطع اینترنت بین‌الملل هم کار می‌کند."],
+  ["ai", "MCP", "پروتکل MCP", "Model Context Protocol: a standard plug for connecting tools and data to AI agents.", "یک «پریز» استاندارد برای وصل کردن ابزارها و داده‌ها به عامل‌های هوش مصنوعی."],
+  ["ai", "Hallucination", "توهم مدل", "When a model states something false with confidence, such as an invented price; tools and checks prevent it.", "وقتی مدل چیزی نادرست را با اطمینان می‌گوید، مثل قیمتی ساختگی؛ ابزارها و بررسی جلویش را می‌گیرند."],
+  ["ai", "Human approval", "تأیید انسانی", "The rule that money, ticketing and booking actions wait for a person to approve them.", "قانونی که هر کار مربوط به پول، صدور و رزرو منتظر تأیید یک انسان می‌ماند."],
+];
+let glossF = "all";
+const glossNorm = t => String(t).toLowerCase().replace(/[‌ً-ٟ]/g, "").replace(/ي/g, "ی").replace(/ك/g, "ک");
+function renderGloss() {
+  const q = glossNorm($("#glossQ").value.trim());
+  const hits = GLOSSARY.filter(g => (glossF === "all" || g[0] === glossF) && (!q || glossNorm(g.slice(1).join(" ")).includes(q)));
+  $("#glossRows").replaceChildren(...hits.map(([, en, fa, mEn, mFa]) => el("tr", {},
+    el("td", {}, el("b", {}, T(en, fa)), el("div", { class: "meta" }, T(fa, en))),
+    el("td", {}, T(mEn, mFa)))));
+  $("#glossNone").hidden = hits.length > 0;
+}
+const glossPh = () => { $("#glossQ").placeholder = lang === "fa" ? "مثلاً: چارتر، سماح، MCP" : "e.g. charter, Samah, MCP"; };
+langHooks.push(glossPh); glossPh();
+$("#glossQ").addEventListener("input", renderGloss);
+wireChips($("#glossFilters"), v => { glossF = v; renderGloss(); });
+renderGloss();
 
 /* ================================================= chapter 6: simulator */
 const CUSTOMERS = [
