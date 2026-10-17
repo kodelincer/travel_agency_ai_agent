@@ -977,17 +977,18 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 8 REVENUE -->
-<section id="revenue" data-title="Grow revenue" data-group="Grow & protect" data-title-fa="افزایش درآمد" data-fa="todo" hidden>
+<section id="revenue" data-title="Grow revenue" data-group="Grow & protect" data-title-fa="افزایش درآمد" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Twelve levers to earn more, and how AI pulls each one</h2>
-  <p class="lead">Margins on tickets are thin and price-transparent. Revenue grows from speed, attach sales, specialisation and recurring clients. Every lever below lists the metric to watch.</p>
+  <h2><span class="l-en">Twelve levers to earn more, and how AI pulls each one</span><span class="l-fa">دوازده اهرم برای درآمد بیشتر، و نقش هوش مصنوعی در هر کدام</span></h2>
+  <p class="lead l-en">Margins on tickets are thin and price-transparent. Revenue grows from speed, attach sales, specialisation and recurring clients. Every lever below lists the metric to watch.</p>
+  <p class="lead l-fa">سود بلیت کم است و قیمت‌ها برای همه شفاف. درآمد از سرعت، فروش خدمات جانبی، تخصص و مشتری‌های همیشگی رشد می‌کند. برای هر اهرم، شاخصی که باید زیر نظر داشته باشید آمده است.</p>
   <div class="cards" id="leverGrid"></div>
   <div class="stats">
-    <div class="stat"><b>$150B</b><span>airline ancillary revenue in 2024 (bags, seats, extras): add-ons are where margin lives</span></div>
-    <div class="stat"><b>78%</b><span>of clients book with whoever replies first, says one industry survey (vendor-reported, treat as direction)</span></div>
-    <div class="stat"><b>20–40%</b><span>commission often quoted for travel insurance abroad (sources vary)</span></div>
+    <div class="stat"><b>$150B</b><span class="l-en">airline ancillary revenue in 2024 (bags, seats, extras): add-ons are where margin lives</span><span class="l-fa">درآمد جانبی ایرلاین‌ها در ۲۰۲۴ (بار، صندلی، خدمات اضافه): سود واقعی در خدمات جانبی است</span></div>
+    <div class="stat"><b>78%</b><span class="l-en">of clients book with whoever replies first, says one industry survey (vendor-reported, treat as direction)</span><span class="l-fa">از مشتری‌ها، طبق یک نظرسنجی صنعتی، از کسی می‌خرند که اول جواب بدهد (گزارش یک فروشنده‌ی نرم‌افزار؛ فقط نشان‌دهنده‌ی جهت است)</span></div>
+    <div class="stat"><b>20–40%</b><span class="l-en">commission often quoted for travel insurance abroad (sources vary)</span><span class="l-fa">کمیسیونی که در خارج برای بیمه‌ی مسافرتی معمولاً ذکر می‌شود (منابع متفاوت‌اند)</span></div>
   </div>
-  <p class="src">Sources: <a href="https://thebossmagazine.com/post/5-leading-travel-apis-ancillary-revenue/" target="_blank" rel="noopener">BOSS: ancillary revenue</a> · <a href="https://www.fcmtravel.com/en-se/guides/managing-airline-ancillary-fees-2026-insights-report" target="_blank" rel="noopener">FCM: ancillary fees 2026</a> · <a href="https://phptravels.com/blog/travel-business-startup-ideas-10-profitable-paths-for-2026" target="_blank" rel="noopener">PHPTRAVELS: 2026 travel business ideas (survey figure)</a> · <a href="https://dmcquote.com/guides/travel-agent-commission-rates-2026" target="_blank" rel="noopener">Commission rates 2026</a></p>
+  <p class="src"><span class="l-en">Sources:</span><span class="l-fa">منابع:</span> <a href="https://thebossmagazine.com/post/5-leading-travel-apis-ancillary-revenue/" target="_blank" rel="noopener">BOSS: ancillary revenue</a> · <a href="https://www.fcmtravel.com/en-se/guides/managing-airline-ancillary-fees-2026-insights-report" target="_blank" rel="noopener">FCM: ancillary fees 2026</a> · <a href="https://phptravels.com/blog/travel-business-startup-ideas-10-profitable-paths-for-2026" target="_blank" rel="noopener">PHPTRAVELS: 2026 travel business ideas (survey figure)</a> · <a href="https://dmcquote.com/guides/travel-agent-commission-rates-2026" target="_blank" rel="noopener">Commission rates 2026</a></p>
 </section>
 
 <!-- =========================================================== 9 RESILIENCE -->
@@ -1477,22 +1478,35 @@ wireChips(deskBox, v => { deskF = v; renderCases(); });
 renderCases();
 
 /* ================================================= chapter 8: revenue levers */
+// [kicker, title, how, metric] in English, then Persian
 const LEVERS = [
-  ["Speed", "Reply in minutes, not hours", "The first agency to send a clear quote usually wins. An agent drafts quotes 24/7 so staff only check and send.", "First-reply time; quote → sale rate"],
-  ["Pricing", "Transparent service fees", "Charge a clear fee for planning, changes and urgent requests instead of hiding it in fares. Customers accept fees for visible expertise.", "Fee revenue per booking"],
-  ["Attach", "Insurance on every trip", "Travel insurance pays high commissions in many markets (often quoted 20–40%). The agent offers it at the right moment in every quote.", "Insurance attach rate"],
-  ["Attach", "Transfers, SIMs, tours, visas", "Small add-ons that each earn a fee. The agent includes them as optional lines in every package.", "Add-ons per booking"],
-  ["Niche", "Own a specialisation", "Pilgrimage groups, family trips to Turkey, medical tourism, student travel, Chinese or Iraqi inbound. Specialists earn more and are found more easily by AI assistants.", "Share of revenue from niche"],
-  ["Recurring", "Corporate accounts", "Companies pay monthly management fees for policy, approvals, invoices and reports. Agents automate the reporting.", "Monthly recurring revenue"],
-  ["Recurring", "Repeat and referral", "Birthday and anniversary messages, Nowruz and summer reminders based on last year’s trip, referral rewards.", "Repeat-customer share"],
-  ["Inbound", "Pivot part of the business inbound", "When outbound collapses, inbound from China, Russia, the Gulf and Iraq can keep staff busy. Multilingual AI makes it affordable.", "Inbound share of revenue"],
-  ["B2B", "Sell to smaller agencies", "Wholesale your charter blocks, packages and pilgrim groups to smaller offices; the agent handles their quote requests.", "B2B revenue"],
-  ["Ops", "Fewer costly mistakes", "Name errors, missed deadlines and forgotten refunds cost real money. Checklists and monitoring catch them.", "Cost of errors per month"],
-  ["Capacity", "More bookings per employee", "If each staff member handles twice as many requests, you grow without hiring. Track it honestly.", "Bookings per staff member"],
-  ["Software", "Sell your tools", "Turn your internal agents into products for other agencies (see Products to sell).", "Software revenue"],
+  ["Speed", "Reply in minutes, not hours", "The first agency to send a clear quote usually wins. An agent drafts quotes 24/7 so staff only check and send.", "First-reply time; quote → sale rate",
+   "سرعت", "پاسخ در چند دقیقه، نه چند ساعت", "معمولاً آژانسی برنده است که اول یک پیش‌فاکتور روشن بفرستد. عامل شبانه‌روز پیش‌فاکتور می‌نویسد و همکاران فقط بررسی می‌کنند و می‌فرستند.", "زمان اولین پاسخ؛ نسبت پیش‌فاکتور به فروش"],
+  ["Pricing", "Transparent service fees", "Charge a clear fee for planning, changes and urgent requests instead of hiding it in fares. Customers accept fees for visible expertise.", "Fee revenue per booking",
+   "قیمت‌گذاری", "کارمزد خدمات شفاف", "به‌جای پنهان کردن کارمزد در نرخ، برای برنامه‌ریزی، تغییرات و درخواست‌های فوری کارمزد روشن بگیرید. مشتری برای تخصصی که می‌بیند کارمزد را می‌پذیرد.", "درآمد کارمزد در هر رزرو"],
+  ["Attach", "Insurance on every trip", "Travel insurance pays high commissions in many markets (often quoted 20–40%). The agent offers it at the right moment in every quote.", "Insurance attach rate",
+   "فروش جانبی", "بیمه برای هر سفر", "بیمه‌ی مسافرتی در بسیاری از بازارها کمیسیون بالایی دارد (معمولاً ۲۰ تا ۴۰ درصد ذکر می‌شود). عامل در هر پیش‌فاکتور در لحظه‌ی مناسب آن را پیشنهاد می‌دهد.", "درصد سفرهایی که بیمه دارند"],
+  ["Attach", "Transfers, SIMs, tours, visas", "Small add-ons that each earn a fee. The agent includes them as optional lines in every package.", "Add-ons per booking",
+   "فروش جانبی", "ترانسفر، سیم‌کارت، گشت، ویزا", "خدمات کوچکی که هر کدام کارمزد دارند. عامل آن‌ها را به‌صورت ردیف اختیاری در هر پکیج می‌آورد.", "تعداد خدمات جانبی در هر رزرو"],
+  ["Niche", "Own a specialisation", "Pilgrimage groups, family trips to Turkey, medical tourism, student travel, Chinese or Iraqi inbound. Specialists earn more and are found more easily by AI assistants.", "Share of revenue from niche",
+   "تخصص", "در یک حوزه متخصص شوید", "گروه‌های زیارتی، سفر خانوادگی ترکیه، گردشگری سلامت، سفر دانشجویی، گردشگر ورودی چینی یا عراقی. متخصص‌ها بیشتر درآمد دارند و دستیارهای هوش مصنوعی راحت‌تر پیدایشان می‌کنند.", "سهم درآمد از حوزه‌ی تخصصی"],
+  ["Recurring", "Corporate accounts", "Companies pay monthly management fees for policy, approvals, invoices and reports. Agents automate the reporting.", "Monthly recurring revenue",
+   "درآمد تکرارشونده", "حساب‌های سازمانی", "شرکت‌ها برای سیاست سفر، تأییدها، فاکتورها و گزارش‌ها کارمزد ماهانه می‌پردازند. عامل‌ها گزارش‌ها را خودکار می‌کنند.", "درآمد ماهانه‌ی تکرارشونده"],
+  ["Recurring", "Repeat and referral", "Birthday and anniversary messages, Nowruz and summer reminders based on last year’s trip, referral rewards.", "Repeat-customer share",
+   "درآمد تکرارشونده", "خرید دوباره و معرفی", "پیام تولد و سالگرد، یادآوری نوروز و تابستان بر اساس سفر پارسال، پاداش معرفی مشتری.", "سهم مشتری‌های تکراری"],
+  ["Inbound", "Pivot part of the business inbound", "When outbound collapses, inbound from China, Russia, the Gulf and Iraq can keep staff busy. Multilingual AI makes it affordable.", "Inbound share of revenue",
+   "گردشگری ورودی", "بخشی از کار را به گردشگری ورودی ببرید", "وقتی سفر خارجی می‌خوابد، گردشگر ورودی از چین، روسیه، کشورهای خلیج فارس و عراق می‌تواند همکاران را مشغول نگه دارد. هوش مصنوعی چندزبانه هزینه‌اش را پایین می‌آورد.", "سهم گردشگری ورودی از درآمد"],
+  ["B2B", "Sell to smaller agencies", "Wholesale your charter blocks, packages and pilgrim groups to smaller offices; the agent handles their quote requests.", "B2B revenue",
+   "همکار به همکار", "فروش به آژانس‌های کوچک‌تر", "بلوک‌های چارتر، پکیج‌ها و گروه‌های زیارتی‌تان را عمده به دفاتر کوچک‌تر بفروشید؛ عامل به درخواست‌های قیمت آن‌ها رسیدگی می‌کند.", "درآمد همکاری (B2B)"],
+  ["Ops", "Fewer costly mistakes", "Name errors, missed deadlines and forgotten refunds cost real money. Checklists and monitoring catch them.", "Cost of errors per month",
+   "عملیات", "خطاهای پرهزینه‌ی کمتر", "اشتباه در نام، جا ماندن از مهلت و استردادهای فراموش‌شده پول واقعی هدر می‌دهند. چک‌لیست و پایش آن‌ها را می‌گیرد.", "هزینه‌ی خطاها در ماه"],
+  ["Capacity", "More bookings per employee", "If each staff member handles twice as many requests, you grow without hiring. Track it honestly.", "Bookings per staff member",
+   "ظرفیت", "رزرو بیشتر برای هر نفر", "اگر هر همکار دو برابر درخواست رسیدگی کند، بدون استخدام رشد می‌کنید. صادقانه اندازه بگیرید.", "تعداد رزرو برای هر همکار"],
+  ["Software", "Sell your tools", "Turn your internal agents into products for other agencies (see Products to sell).", "Software revenue",
+   "نرم‌افزار", "ابزارهایتان را بفروشید", "عامل‌های داخلی‌تان را به محصول برای آژانس‌های دیگر تبدیل کنید (فصل «محصولات قابل فروش»).", "درآمد نرم‌افزار"],
 ];
-$("#leverGrid").replaceChildren(...LEVERS.map(([k, t, how, m]) => el("article", { class: "card" },
-  el("div", { class: "kicker", text: k }), el("h4", { text: t }), el("p", { text: how }), el("div", { class: "meta", text: "Watch: " + m }))));
+$("#leverGrid").replaceChildren(...LEVERS.map(([k, t, how, m, kF, tF, howF, mF]) => el("article", { class: "card" },
+  el("div", { class: "kicker" }, T(k, kF)), el("h4", {}, T(t, tF)), el("p", {}, T(how, howF)), el("div", { class: "meta" }, T("Watch: " + m, "شاخص: " + mF)))));
 
 /* ================================================= chapter 9: shocks */
 const SHOCKS = [

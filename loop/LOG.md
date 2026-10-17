@@ -181,3 +181,10 @@ Changed: Chapter text, labels, buttons, placeholders, office facts and "What to 
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 5 · clarity 4
 Next: P1 — translate Grow revenue.
+
+## Iteration 24 · 2026-10-17
+Task: P1 — translate "Grow revenue" into Persian.
+Changed: Chapter text, the three stats (with their caveats kept: "vendor-reported", "sources vary") and the sources label bilingual; the 12 lever cards now carry Persian kicker, title, explanation and metric in the LEVERS array and render with T(). MAX_TODO 8 → 7.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate Resilience.
