@@ -216,3 +216,10 @@ Changed: Chapter text, all six template titles, hints and the Copy button biling
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Guardrails.
+
+## Iteration 29 · 2026-10-17
+Task: P1 — translate "Guardrails" into Persian.
+Changed: Whole chapter bilingual: the eight guardrail cards and the six business measures. Review against FACTS.md found the lead stated the low-confidence fact #3 (Skift 2% figure, secondhand citation) as certain; it is now attributed and softened in both languages, as PROMPT.md requires for low-confidence facts. MAX_TODO 3 → 2.
+Tests: All checks passed
+Scores: correctness 5 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate Self-review.
