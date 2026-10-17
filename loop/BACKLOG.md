@@ -8,6 +8,7 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - **Re-check the Iran situation** (flights at IKA, internet access, currency) and update the timeline with dated, sourced entries; mark conflicting reports. Why: the facts change monthly.
 
 ## P2
+- **Platform partner terms:** confirm current supplier/host terms and commissions for Alibaba group tours, Snapptrip and Jabama (official partner pages or the owner asking directly); check whether any official affiliate programme exists. (Follow-up from iteration 3.)
 - **Newer online-sales directive?** Look for a post-1400 version of the joint tourism–CAO directive on the association or CAO sites; update the Iran chapter if found. (Follow-up from iteration 1.)
 - **Persian (RTL) version** of the most-used chapters: The whole job, AI office of 10, Watch one working day, Templates. Add a language switch that sets `dir="rtl"` and uses Vazirmatn. Why: the owner and her staff work in Persian.
 - **Exit-tax and exit-permission facts:** find the official 1405 source for exit tax amounts and the official procedure for exit permission (military service, minors); replace "guides disagree" with the official answer if found.

@@ -18,12 +18,13 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 10 | Grow revenue | 12 levers and the metric for each |
 | 11 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
 | 12 | Products to sell | 10 AI products and services you could build for other agencies |
-| 13 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 14 | 90-day plan | Checklist with saved progress |
-| 15 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 16 | Guardrails | Rules before going live, KPIs |
-| 17 | Self-review | What earlier versions got wrong and how it was corrected |
-| 18 | Sources | Every source used, checked October 2026 |
+| 13 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
+| 14 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 15 | 90-day plan | Checklist with saved progress |
+| 16 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 17 | Guardrails | Rules before going live, KPIs |
+| 18 | Self-review | What earlier versions got wrong and how it was corrected |
+| 19 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 

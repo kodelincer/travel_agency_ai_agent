@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 18;
+const MIN_CHAPTERS = 19;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -83,6 +83,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#dayForm button[type="submit"]');
         const rows = await page.locator("#dayRows tr").count();
         check(rows >= 1, `worksheet accepts a task (${rows} rows)`);
+
+        // online business ideas: 12 cards, filters narrow the list
+        await page.evaluate(() => { location.hash = "online"; });
+        const allIdeas = await page.locator("#ideaGrid .card").count();
+        await page.click('#ideaFilters [data-f="Partner"]');
+        const partnerIdeas = await page.locator("#ideaGrid .card").count();
+        await page.click('#ideaFilters [data-f="all"]');
+        check(allIdeas === 12 && partnerIdeas > 0 && partnerIdeas < allIdeas, `idea filters work (${allIdeas} all, ${partnerIdeas} partner)`);
 
         // progress button
         await page.click("#doneBtn");

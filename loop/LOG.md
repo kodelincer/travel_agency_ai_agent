@@ -25,3 +25,11 @@ Sources: https://citynet.ir/service/sepehr/ · https://citynet.ir/service/charte
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — Persian model evaluation guide (fact #17, #18).
+
+## Iteration 3 · 2026-10-17 (requested by the owner)
+Task: New chapter on earning online with or beside Alibaba.ir-type platforms, world trends, and a new revenue department.
+Changed: Added chapter "Online business ideas": how Iranian platforms earn, what is confirmed about working with Alibaba (group tours; no confirmed affiliate programme), four 2026 world trends, 12 filterable online business ideas with first steps, cost, time to revenue and shutdown-proof flag, and a 3-month plan to open an "Online Desk". Sources chapter, README and tests (idea filters, 19 chapters) updated. Removed two platform names I could not verify.
+Sources: https://www.nature.com/articles/s41599-026-06782-3 · https://www.alibaba.ir/mag/alibabastories/alibaba-group-tour/ · https://digiato.com/iran-technology-news/alibabas-airline-and-bus-company-is-on-the-way · https://www.phocuswright.com/Travel-Research/Research-Updates/2026/tours-and-activities-are-outgrowing-travel-overall · https://skift.com/2026/08/10/inside-getyourguides-sixteen-year-road-to-profit/
+Tests: All checks passed (new: idea filters)
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — Persian model evaluation guide.
