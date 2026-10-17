@@ -82,3 +82,10 @@ Sources: sepehrcc.com · p30web.org · hsaco.net · enterprisedna.co (Xero, Odoo
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P2 — Persian (RTL) version of the most-used chapters.
+
+## Iteration 10 · 2026-10-17 (requested by the owner: "is everything in the app?")
+Task: Audit every owner request and every research finding against the app; add what was missing.
+Changed: Audit found all requests covered but eight findings missing. Added: revenue numbers ($150B ancillaries, 78% first-reply survey, insurance commission) under Grow revenue; three trend cards ($1T online, young-traveler trends, AI-native startup funding) and platform host notes in Online business ideas; Travelport/Sabre/Expedia MCP specifics and messenger interoperability + security caveat in Tool stack; "Five questions to answer about her office" in Watch one working day; a self-review row. Still open by design (backlog): Persian RTL version, official exit-permission procedure, platform partner terms.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P2 — Persian (RTL) version.
