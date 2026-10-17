@@ -85,6 +85,10 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#dayForm button[type="submit"]');
         const rows = await page.locator("#dayRows tr").count();
         check(rows >= 1, `worksheet accepts a task (${rows} rows)`);
+        // worksheet: CSV export holds a header and the new task, with a byte-order mark for Excel
+        const [dl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#dayCsv")]);
+        const csv = dl ? require("fs").readFileSync(await dl.path(), "utf8") : "";
+        check(csv.charCodeAt(0) === 0xFEFF && /^\uFEFFTask,System,Kind of work,Minutes,Annoying\r\n/.test(csv) && /Smoke test task,[^\r]*,15,no\r\n/.test(csv), `worksheet downloads a CSV (${dl ? dl.suggestedFilename() : "no download"})`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });

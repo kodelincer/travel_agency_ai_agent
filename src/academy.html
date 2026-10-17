@@ -1196,8 +1196,10 @@ Send an SMS notice?  [Approve]
     <thead><tr><th><span class="l-en">Task</span><span class="l-fa">کار</span></th><th><span class="l-en">System</span><span class="l-fa">سامانه</span></th><th><span class="l-en">Kind of work</span><span class="l-fa">نوع کار</span></th><th class="num"><span class="l-en">Min</span><span class="l-fa">دقیقه</span></th><th></th></tr></thead>
     <tbody id="dayRows"></tbody>
   </table></div>
+  <p class="status" id="dayCsvStatus" aria-live="polite"></p>
   <div class="row">
     <button class="btn ghost small" type="button" id="dayCopy"><span class="l-en">Copy summary</span><span class="l-fa">کپی خلاصه</span></button>
+    <button class="btn ghost small" type="button" id="dayCsv"><span class="l-en">Download as CSV (Excel)</span><span class="l-fa">دریافت فایل CSV (اکسل)</span></button>
     <button class="btn ghost small" type="button" id="dayExample"><span class="l-en">Load example day</span><span class="l-fa">بارگذاری روز نمونه</span></button>
     <button class="btn ghost small" type="button" id="dayClear"><span class="l-en">Clear all</span><span class="l-fa">پاک کردن همه</span></button>
   </div>
@@ -1898,6 +1900,40 @@ $("#dayCopy").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText(text); btn.replaceChildren(T("Copied", "کپی شد")); }
   catch { btn.replaceChildren(T("Copy failed: select the table instead", "کپی نشد؛ جدول را انتخاب کنید")); }
   setTimeout(() => { btn.replaceChildren(...label.childNodes); }, 2500);
+});
+// CSV export: in claude.ai the downloads capability asks the viewer to confirm; elsewhere (GitHub Pages, a local file) a normal browser download
+const csvCell = v => /[",\n\r]/.test(String(v)) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
+function dayCsv() {
+  const fa = lang === "fa";
+  const head = fa ? ["کار", "سامانه", "نوع کار", "دقیقه", "آزاردهنده"] : ["Task", "System", "Kind of work", "Minutes", "Annoying"];
+  const rows = day.rows.map(r => fa
+    ? [r[5] || r[0], SYS_FA[r[1]] || r[1], roleById[r[2]].fa, r[3], r[4] ? "بله" : "خیر"]
+    : [r[0], r[1], roleById[r[2]].en, r[3], r[4] ? "yes" : "no"]);
+  // the byte-order mark lets Excel open Persian text correctly
+  return "\uFEFF" + [head, ...rows].map(r => r.map(csvCell).join(",")).join("\r\n") + "\r\n";
+}
+const csvSay = (en, fa) => $("#dayCsvStatus").replaceChildren(T(en, fa));
+let downloadsP = null;
+if (window.claude && window.claude.use) downloadsP = window.claude.use("downloads").catch(() => null);
+if (downloadsP) downloadsP.then(d => { if (!d) $("#dayCsv").hidden = true; });
+$("#dayCsv").addEventListener("click", async () => {
+  if (!day.rows.length) return csvSay("Log at least one task first.", "اول دست‌کم یک کار ثبت کنید.");
+  const filename = "working-day-" + new Date().toISOString().slice(0, 10) + ".csv", data = dayCsv();
+  const downloads = downloadsP ? await downloadsP : null;
+  if (downloads) {
+    try { await downloads.save({ filename, data }); csvSay("Saved. Open the file in Excel or Google Sheets.", "ذخیره شد. فایل را در اکسل یا Google Sheets باز کنید."); }
+    catch (e) {
+      const c = e && e.code;
+      if (c === "declined") csvSay("Download cancelled.", "دریافت لغو شد.");
+      else if (c === "rate_limited") csvSay("A save window is already open. Try again in a moment.", "یک پنجره‌ی ذخیره باز است. کمی بعد دوباره امتحان کنید.");
+      else { $("#dayCsv").hidden = true; csvSay("Downloads are not available here. Use “Copy summary” instead.", "دریافت فایل اینجا در دسترس نیست. از «کپی خلاصه» استفاده کنید."); }
+    }
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([data], { type: "text/csv;charset=utf-8" }));
+  const a = el("a", { href: url, download: filename }); document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  csvSay("Downloaded. Open the file in Excel or Google Sheets.", "دریافت شد. فایل را در اکسل یا Google Sheets باز کنید.");
 });
 renderDay();
 

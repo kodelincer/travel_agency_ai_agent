@@ -261,3 +261,10 @@ Sources: FACTS #48–49
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P2 — glossary chapter (bilingual).
+
+## Iteration 35 · 2026-10-17
+Task: P2 — export the one-day log as a CSV file.
+Changed: "Download as CSV (Excel)" button on the worksheet, bilingual. The CSV uses the reader's language for headers and values, escapes commas/quotes/newlines, and starts with a byte-order mark so Excel shows Persian correctly. On claude.ai it uses the `downloads` capability (viewer confirms; declined, busy and unavailable each get a bilingual message, and the button hides when downloads are unavailable); on GitHub Pages or a local file it is a normal browser download. Artifact now declares `sample` and `downloads`. New test: the download contains the header, the BOM and the new task.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P2 — glossary chapter (bilingual).
