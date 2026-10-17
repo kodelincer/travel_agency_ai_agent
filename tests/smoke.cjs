@@ -16,7 +16,7 @@ if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright)
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
 const MIN_CHAPTERS = 22;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
-const MAX_TODO = 7;
+const MAX_TODO = 6;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 

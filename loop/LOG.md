@@ -188,3 +188,10 @@ Changed: Chapter text, the three stats (with their caveats kept: "vendor-reporte
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate Resilience.
+
+## Iteration 25 · 2026-10-17
+Task: P1 — translate "Resilience" into Persian.
+Changed: Chapter text, table headings and the five "resilient against the AI wave" cards bilingual; the six shock rows carry Persian in the SHOCKS array and render with T(). Proofreading caught a wrong Persian month: "late February" 2026 is early Esfand 1404, not late Bahman (war began 28 Feb = 9 Esfand); now "از اوایل اسفند ۱۴۰۴ تا ۵ خرداد ۱۴۰۵" (26 May = 5 Khordad). Facts unchanged (#9–#11 still due 2026-11-15). MAX_TODO 7 → 6.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate Products to sell.
