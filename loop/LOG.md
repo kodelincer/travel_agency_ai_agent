@@ -146,3 +146,10 @@ Changed: Whole chapter bilingual: both tracks (12 cards), messenger interoperabi
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Iran market 1405.
+
+## Iteration 19 · 2026-10-17
+Task: P1 — translate "Iran market 1405" into Persian.
+Changed: Whole chapter bilingual: licences (بند الف / بند ب), online-sales rules and the "before an AI agent sells for you online" checklist, market structure, the 2026 timeline with Persian dates, key numbers, "what this means for AI" and the legal note. MAX_TODO 13 → 12.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Agencies worldwide.
