@@ -539,36 +539,41 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 4 AGENTS -->
-<section id="agents" data-title="AI agents 101" data-group="Automate" data-title-fa="آشنایی با عامل‌های هوش مصنوعی" data-fa="todo" hidden>
+<section id="agents" data-title="AI agents 101" data-group="Automate" data-title-fa="آشنایی با عامل‌های هوش مصنوعی" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>What an AI agent actually is</h2>
-  <div class="prose">
+  <h2><span class="l-en">What an AI agent actually is</span><span class="l-fa">عامل هوش مصنوعی واقعاً چیست</span></h2>
+  <div class="prose l-en">
     <p>A <b>chatbot</b> answers questions. An <b>automation</b> (n8n, Make, Zapier) follows fixed steps you draw. An <b>AI agent</b> reads a messy request, decides which steps are needed, uses tools (a charter web service, a hotel list, your CRM) and comes back with finished work for you to check.</p>
     <p>Think of it as a junior reservations clerk who never sleeps, types fast, speaks five languages, and must ask a senior before issuing a ticket or touching money.</p>
   </div>
+  <div class="prose l-fa">
+    <p><b>چت‌بات</b> به سؤال جواب می‌دهد. <b>اتوماسیون</b> (مثل n8n، Make یا Zapier) قدم‌های ثابتی را که شما طراحی کرده‌اید اجرا می‌کند. <b>عامل هوش مصنوعی</b> (AI agent) یک درخواست نامرتب را می‌خواند، خودش تشخیص می‌دهد چه قدم‌هایی لازم است، از ابزارها استفاده می‌کند (وب‌سرویس چارتر، فهرست هتل‌ها، CRM شما) و کار آماده را برای بررسی شما برمی‌گرداند.</p>
+    <p>آن را مثل یک کارمند تازه‌کار رزرواسیون تصور کنید که هرگز نمی‌خوابد، سریع تایپ می‌کند، پنج زبان بلد است، و پیش از صدور بلیت یا هر کاری با پول باید از یک نفر باتجربه اجازه بگیرد.</p>
+  </div>
   <ol class="loop">
-    <li><b>Read</b><span class="note">“سه نفر، دبی، ۳۰ آذر تا ۴ دی، حدود ۳۵۰ میلیون”</span></li>
-    <li><b>Plan</b><span class="note">Needs: IKA–DXB fares, family hotel, passport check.</span></li>
-    <li><b>Use tools</b><span class="note">Charter web service, hotel list, CRM, document rule.</span></li>
-    <li><b>Draft</b><span class="note">Two priced options and a reply in Persian.</span></li>
-    <li class="human"><b>You approve</b><span class="note">Only a person holds, tickets or takes payment.</span></li>
+    <li><b><span class="l-en">Read</span><span class="l-fa">خواندن</span></b><span class="note">“سه نفر، دبی، ۳۰ آذر تا ۴ دی، حدود ۳۵۰ میلیون”</span></li>
+    <li><b><span class="l-en">Plan</span><span class="l-fa">برنامه‌ریزی</span></b><span class="note"><span class="l-en">Needs: IKA–DXB fares, family hotel, passport check.</span><span class="l-fa">لازم است: نرخ تهران (امام) به دبی، هتل خانوادگی، بررسی گذرنامه.</span></span></li>
+    <li><b><span class="l-en">Use tools</span><span class="l-fa">استفاده از ابزار</span></b><span class="note"><span class="l-en">Charter web service, hotel list, CRM, document rule.</span><span class="l-fa">وب‌سرویس چارتر، فهرست هتل، CRM، قانون مدارک.</span></span></li>
+    <li><b><span class="l-en">Draft</span><span class="l-fa">پیش‌نویس</span></b><span class="note"><span class="l-en">Two priced options and a reply in Persian.</span><span class="l-fa">دو گزینه با قیمت و یک پاسخ فارسی.</span></span></li>
+    <li class="human"><b><span class="l-en">You approve</span><span class="l-fa">تأیید شما</span></b><span class="note"><span class="l-en">Only a person holds, tickets or takes payment.</span><span class="l-fa">فقط انسان رزرو می‌گیرد، بلیت صادر می‌کند یا پول دریافت می‌کند.</span></span></li>
   </ol>
   <div class="tablewrap"><table class="grid">
-    <thead><tr><th>Building block</th><th>What it is</th><th>In your office</th></tr></thead>
+    <thead><tr><th><span class="l-en">Building block</span><span class="l-fa">جزء سازنده</span></th><th><span class="l-en">What it is</span><span class="l-fa">چیست</span></th><th><span class="l-en">In your office</span><span class="l-fa">در دفتر شما</span></th></tr></thead>
     <tbody>
-      <tr><td><b>Model (LLM)</b></td><td>The “brain” that reads and writes</td><td>A cloud model, or an open model on your own server</td></tr>
-      <tr><td><b>Instructions</b></td><td>Standing rules the agent always follows</td><td>Your office playbook: fees, tone, what it may never do</td></tr>
-      <tr><td><b>Tools</b></td><td>Functions the agent may call</td><td>Search charters, read CRM, create quote, send to approval</td></tr>
-      <tr><td><b>Memory</b></td><td>What it remembers between conversations</td><td>Customer preferences, office facts, past issues</td></tr>
-      <tr><td><b>Skills</b></td><td>Saved how-to procedures</td><td>“Build a quote”, “handle a cancellation”, “Arbaeen group checklist”</td></tr>
-      <tr><td><b>Channels</b></td><td>Where people talk to it</td><td>Bale, Telegram, SMS, website chat, email</td></tr>
-      <tr><td><b>Guardrails</b></td><td>Limits and approvals</td><td>Human approval for money; logs of every action</td></tr>
-      <tr><td><b>MCP</b></td><td>A standard plug for connecting tools to agents</td><td>One connector for your CRM works with many agents</td></tr>
+      <tr><td><b><span class="l-en">Model (LLM)</span><span class="l-fa">مدل زبانی (LLM)</span></b></td><td><span class="l-en">The “brain” that reads and writes</span><span class="l-fa">«مغزی» که می‌خواند و می‌نویسد</span></td><td><span class="l-en">A cloud model, or an open model on your own server</span><span class="l-fa">یک مدل ابری، یا یک مدل متن‌باز روی سرور خودتان</span></td></tr>
+      <tr><td><b><span class="l-en">Instructions</span><span class="l-fa">دستورالعمل</span></b></td><td><span class="l-en">Standing rules the agent always follows</span><span class="l-fa">قوانین ثابتی که عامل همیشه رعایت می‌کند</span></td><td><span class="l-en">Your office playbook: fees, tone, what it may never do</span><span class="l-fa">دستورالعمل دفتر: کارمزدها، لحن، کارهایی که هرگز نباید بکند</span></td></tr>
+      <tr><td><b><span class="l-en">Tools</span><span class="l-fa">ابزارها</span></b></td><td><span class="l-en">Functions the agent may call</span><span class="l-fa">کارهایی که عامل اجازه دارد صدا بزند</span></td><td><span class="l-en">Search charters, read CRM, create quote, send to approval</span><span class="l-fa">جستجوی چارتر، خواندن CRM، ساخت پیش‌فاکتور، ارسال برای تأیید</span></td></tr>
+      <tr><td><b><span class="l-en">Memory</span><span class="l-fa">حافظه</span></b></td><td><span class="l-en">What it remembers between conversations</span><span class="l-fa">آنچه بین گفتگوها به خاطر می‌سپارد</span></td><td><span class="l-en">Customer preferences, office facts, past issues</span><span class="l-fa">سلیقه‌ی مشتری‌ها، اطلاعات دفتر، مشکلات قبلی</span></td></tr>
+      <tr><td><b><span class="l-en">Skills</span><span class="l-fa">مهارت‌ها</span></b></td><td><span class="l-en">Saved how-to procedures</span><span class="l-fa">روش‌های ذخیره‌شده‌ی انجام کار</span></td><td><span class="l-en">“Build a quote”, “handle a cancellation”, “Arbaeen group checklist”</span><span class="l-fa">«ساخت پیش‌فاکتور»، «رسیدگی به کنسلی»، «چک‌لیست گروه اربعین»</span></td></tr>
+      <tr><td><b><span class="l-en">Channels</span><span class="l-fa">کانال‌ها</span></b></td><td><span class="l-en">Where people talk to it</span><span class="l-fa">جایی که مردم با آن حرف می‌زنند</span></td><td><span class="l-en">Bale, Telegram, SMS, website chat, email</span><span class="l-fa">بله، تلگرام، پیامک، چت سایت، ایمیل</span></td></tr>
+      <tr><td><b><span class="l-en">Guardrails</span><span class="l-fa">قواعد ایمنی</span></b></td><td><span class="l-en">Limits and approvals</span><span class="l-fa">محدودیت‌ها و تأییدها</span></td><td><span class="l-en">Human approval for money; logs of every action</span><span class="l-fa">تأیید انسانی برای پول؛ ثبت همه‌ی کارها</span></td></tr>
+      <tr><td><b>MCP</b></td><td><span class="l-en">A standard plug for connecting tools to agents</span><span class="l-fa">یک «پریز» استاندارد برای وصل کردن ابزارها به عامل‌ها</span></td><td><span class="l-en">One connector for your CRM works with many agents</span><span class="l-fa">یک رابط برای CRM شما با عامل‌های مختلف کار می‌کند</span></td></tr>
     </tbody>
   </table></div>
   <div class="prose">
-    <h3>Hermes Agent in one paragraph</h3>
-    <p>Hermes Agent (Nous Research, open source) runs on your own server. It keeps bounded memory notes (<code>MEMORY.md</code>, <code>USER.md</code>), searches past conversations, writes reusable <b>skills</b> after complex tasks, runs scheduled jobs, and talks through a messaging gateway (Telegram, Slack, email and others). It works with cloud models <i>or</i> a local model through any OpenAI-compatible endpoint, such as Ollama. That last point is what makes it usable in Iran.</p>
+    <h3><span class="l-en">Hermes Agent in one paragraph</span><span class="l-fa">Hermes Agent در یک پاراگراف</span></h3>
+    <p class="l-en">Hermes Agent (Nous Research, open source) runs on your own server. It keeps bounded memory notes (<code>MEMORY.md</code>, <code>USER.md</code>), searches past conversations, writes reusable <b>skills</b> after complex tasks, runs scheduled jobs, and talks through a messaging gateway (Telegram, Slack, email and others). It works with cloud models <i>or</i> a local model through any OpenAI-compatible endpoint, such as Ollama. That last point is what makes it usable in Iran.</p>
+    <p class="l-fa">Hermes Agent (ساخت Nous Research، متن‌باز) روی سرور خودتان اجرا می‌شود. یادداشت‌های حافظه‌ی محدودی نگه می‌دارد (<code>MEMORY.md</code> و <code>USER.md</code>)، در گفتگوهای گذشته جستجو می‌کند، بعد از کارهای پیچیده <b>مهارت</b>‌های قابل استفاده‌ی دوباره می‌نویسد، کارهای زمان‌بندی‌شده اجرا می‌کند و از راه یک درگاه پیام‌رسان (تلگرام، Slack، ایمیل و غیره) حرف می‌زند. هم با مدل‌های ابری کار می‌کند <i>و هم</i> با یک مدل محلی از طریق هر نقطه‌ی اتصال سازگار با OpenAI، مثل Ollama. همین نکته‌ی آخر است که آن را در ایران قابل استفاده می‌کند.</p>
   </div>
 </section>
 

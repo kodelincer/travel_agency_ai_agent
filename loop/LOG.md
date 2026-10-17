@@ -160,3 +160,10 @@ Changed: Whole chapter bilingual: the 10-row service-line table (with Persian pi
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate AI agents 101.
+
+## Iteration 21 · 2026-10-17
+Task: P1 — translate "AI agents 101" into Persian.
+Changed: Whole chapter bilingual: chatbot vs automation vs agent, the junior-clerk analogy, the five-step agent loop, the eight building blocks table and the Hermes Agent paragraph. Product names, file names and MCP stay in Latin script in both languages. MAX_TODO 11 → 10.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate Automation map.
