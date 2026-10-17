@@ -117,3 +117,10 @@ Changed: Persian data for all 13 roles (mission, duties, timing, needs, approval
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate The AI-run office and Watch one working day.
+
+## Iteration 15 · 2026-10-17
+Task: P1 — translate "The AI-run office" into Persian.
+Changed: Whole chapter bilingual: five layers, four connection methods, the per-system connection table (10 systems), autonomy levels, office-server spec, source notes. MAX_TODO 17 → 16.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Watch one working day (worksheet labels and data).
