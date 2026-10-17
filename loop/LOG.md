@@ -66,3 +66,11 @@ Sources: hesabno.com · wallbill.net · yassystem.com · heyvalaw.com (all Persi
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P2 — Persian (RTL) version of the most-used chapters.
+
+## Iteration 8 · 2026-10-17 (requested by the owner)
+Task: Map every job in an agency (incl. accountant and auditor) to AI agents; add an orchestrating trip designer and a multi-source fare watch agent.
+Changed: New chapter "Who works in an agency" (16 jobs with English and Persian titles, legally required technical managers, auditor, tour leader, AI partner per job). AI office chapter: three specialist roles (Trip designer/conductor, Fare watch agent, Controller/pre-audit), a 6-step orchestration flow with a "check the joins" step, and a fare-source table (web services recommended; airline panels/GDS/foreign airlines only via licensed access; no scraping of public sites). Fixed step grids that ignored phone layout (inline styles overrode the media query). README and tests updated (20 chapters, team table, 13 roles).
+Sources: arasbaran.org · alaedin.travel · organimi.com · Amazon Bedrock / Mastra multi-agent docs · Proskauer and Vercara on fare scraping
+Tests: All checks passed (new: team table and roles)
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: Owner request — AI-run office architecture: connecting agents to reservation software, web search and accounting software.

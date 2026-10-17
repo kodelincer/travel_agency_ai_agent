@@ -145,8 +145,10 @@ table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .loop li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:6px;align-content:start}
 .loop li::before{counter-increment:s;content:counter(s);font:700 12px var(--f-mono);color:var(--accent)}
 .loop li.human{border-color:var(--amber);background:var(--warn-bg)}
-@media (max-width:820px){.loop{grid-template-columns:1fr 1fr}}
-@media (max-width:480px){.loop{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
+.loop.cols4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.loop.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:820px){.loop,.loop.cols3,.loop.cols4{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.loop,.loop.cols3,.loop.cols4{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
 .timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
 .tl{display:grid;gap:3px;padding:0 0 16px 18px;position:relative}
 .tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--risk)}
@@ -363,6 +365,25 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="callout"><h4>Check these with the source</h4><p><b>Exit tax 1405</b> (<span class="fa">عوارض خروج</span>): most 1405 guides give, for ordinary travelers, 900,000 tomans for the first foreign trip of the Iranian year, 1,500,000 for the second, and 2,200,000 for the third and later trips. Hajj and Umrah pilgrims pay less, and pilgrims to Iraq pay a flat amount. These figures come from the 1405 budget bill, and some sites still show 1404 tables, so the Documents officer should tell travelers to check the amount when they pay through the official channels. A receipt is valid until the end of the Iranian year (end of Esfand). Sources: <a href="https://snapp.ir/blog/departure-tax/" target="_blank" rel="noopener">Snapp</a> · <a href="https://www.pateh.com/blog/departure-tax-increase/" target="_blank" rel="noopener">Pateh</a> · <a href="https://www.azki.com/blog/departure-tax/" target="_blank" rel="noopener">Azki</a> (Persian).</p><p> Exit-permission rules for men of military-service age and for minors change; verify each case with the official systems.</p></div>
 </section>
 
+<!-- =========================================================== TEAM -->
+<section id="team" data-title="Who works in an agency" data-group="Understand" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2>Who works in a travel agency, and the AI partner for each job</h2>
+  <p class="lead">A full agency has more jobs than people usually see. Some are required by law in Iran, some by the size of the business. A small office combines several jobs in one person; the AI agents take the routine part of each job so that one person can cover many. The right column names the AI agent from the AI office chapter that supports each job.</p>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Job (English)</th><th>Persian title</th><th>What the person does</th><th>AI partner</th></tr></thead>
+    <tbody id="teamRows"></tbody>
+  </table></div>
+  <div class="callout"><h4>Jobs only a person can hold</h4>
+    <ul>
+      <li><b>Technical managers.</b> In Iran an air-ticket licence needs a Technical Manager for air (<span class="fa">مدیر فنی بند الف</span>): counters, airline contracts, charter planning and the daily sales report. A tour licence needs a Technical Manager for tours (<span class="fa">مدیر فنی بند ب</span>): designing and running tours. The licence is tied to these people; AI can prepare their reports, never replace them.</li>
+      <li><b>Auditor</b> (<span class="fa">حسابرس</span>). An auditor checks the books independently, usually once a year, and many companies must have one by law or for tax. An AI “controller” can pre-check every transaction so the audit is fast and clean, but the audit itself is signed by a qualified person. Ask your accountant what your company type requires.</li>
+      <li><b>Tour leader</b> (<span class="fa">تورلیدر</span>). Travels with the group and handles people on the ground. AI briefs and supports the leader by phone.</li>
+    </ul>
+    <p class="src">Sources: <a href="https://arasbaran.org/news.cfm?id=2314" target="_blank" rel="noopener">Arasbaran: technical manager duties</a> · <a href="https://arasbaran.org/news.cfm?id=2685" target="_blank" rel="noopener">Technical manager for tours</a> · <a href="https://www.alaedin.travel/blog/10708/%DA%86%D8%A7%D8%B1%D8%AA-%D8%B3%D8%A7%D8%B2%D9%85%D8%A7%D9%86%DB%8C-%D8%A2%DA%98%D8%A7%D9%86%D8%B3-%D9%87%D8%A7%DB%8C-%D9%85%D8%B3%D8%A7%D9%81%D8%B1%D8%AA%DB%8C" target="_blank" rel="noopener">Alaedin Travel: agency org chart</a> (Persian) · <a href="https://www.organimi.com/?p=13077" target="_blank" rel="noopener">Organimi: travel agency org chart</a></p>
+  </div>
+</section>
+
 <!-- =========================================================== 4 AGENTS -->
 <section id="agents" data-title="AI agents 101" data-group="Automate" hidden>
   <div class="eyebrow">Chapter</div>
@@ -417,11 +438,11 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 <!-- =========================================================== OFFICE OF 10 -->
 <section id="office" data-title="AI office of 10" data-group="Automate" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Your AI office of 10: one manager, ten tireless assistants</h2>
+  <h2>Your AI office: one manager, ten core assistants and three specialists</h2>
   <p class="lead">A busy agency needs a receptionist, sales people, ticketing clerks, a hotel desk, a visa clerk, an operations officer, an accountant, customer care, marketing and a manager. A one- or two-person office can cover all ten roles if AI “staff” do the reading, searching, typing, watching and reminding, and the owner works as the manager who decides and approves.</p>
   <div class="callout ok"><h4>What “like 10 people” really means</h4><p>The AI staff produce first drafts, checks and alerts around the clock, so she handles many more requests per day without retyping or refreshing screens. She still makes the decisions, talks to important customers, and is the only one who books, issues tickets and moves money. Measure the gain with the “Watch one working day” chapter, before and after.</p></div>
 
-  <div class="prose"><h3>The team</h3><p class="muted">Phase shows when to switch each role on: phase 1 needs no access to booking systems, phase 2 needs read access to them, and phase 3 prepares real bookings for approval.</p></div>
+  <div class="prose"><h3>The team</h3><p class="muted">The first ten roles cover the daily work; the last three are specialists: the Trip designer who conducts the others, the Fare watch agent and the Controller who prepares the audit. Phase shows when to switch each role on: phase 1 needs no access to booking systems, phase 2 needs read access to them, and phase 3 prepares real bookings for approval.</p></div>
   <div class="filters" id="rolePhase" role="group" aria-label="Filter roles by phase">
     <button class="chip" type="button" aria-pressed="true" data-f="all">All roles</button>
     <button class="chip" type="button" aria-pressed="false" data-f="1">Phase 1 · start now</button>
@@ -431,7 +452,45 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="cards" id="roleGrid"></div>
 
   <div class="prose"><h3>How the team handles one trip</h3><p class="muted">Every booking passes through the same stages. Amber steps wait for the owner.</p></div>
-  <ol class="loop" id="lifecycle" style="grid-template-columns:repeat(4,minmax(0,1fr))"></ol>
+  <ol class="loop cols4" id="lifecycle"></ol>
+
+  <div class="prose"><h3>The conductor: how the Trip designer orchestrates a whole trip</h3><p class="muted">Worldwide, multi-agent travel planners use the same pattern: one supervisor agent splits the trip into parts, sends each part to a specialist agent, then checks that the parts fit together. Here is that pattern for a family going from Tehran to Istanbul.</p></div>
+  <ol class="loop cols3" id="orchestra">
+    <li><b>Understand the brief</b><span class="note">Who travels, dates, budget, style (family, business, pilgrimage), must-haves. Asks one question if something is missing.</span></li>
+    <li><b>Split into legs</b><span class="note">Home → airport transfer, flight, airport → hotel shuttle, hotel nights, daily activities, insurance, visa or documents, return.</span></li>
+    <li><b>Ask the specialists in parallel</b><span class="note">Ticketing clerk + Fare watch: flights. Hotel &amp; tour desk: hotels, transfers, tours, tickets for attractions. Documents officer: passports, visa, insurance.</span></li>
+    <li><b>Check that it fits</b><span class="note">Flight lands 14:10 → shuttle booked for 14:40 or later; hotel check-in time; no activity on arrival day after a night flight; total within budget; documents valid.</span></li>
+    <li><b>Build the day-by-day plan</b><span class="note">Two options with prices, a map of the days, what is included, cancellation terms. Sent to the Sales consultant to present.</span></li>
+    <li class="human"><b>You approve, then book in order</b><span class="note">Hold flights first (they change fastest), then hotel, then transfers and activities. Every hold and payment is your decision.</span></li>
+  </ol>
+  <div class="callout ok"><h4>Why one conductor matters</h4><p>Most trip problems sit <i>between</i> bookings: a shuttle that leaves before the plane lands, a hotel that starts the day after arrival, a tour on the day of a late flight. Specialists are good at their part; the conductor’s whole job is checking the joins.</p><p class="src">Pattern sources: <a href="https://www.educative.io/courses/introduction-to-generative-ai-and-amazon-bedrock/multi-agent-orchestration" target="_blank" rel="noopener">Amazon Bedrock multi-agent orchestration</a> · <a href="https://mastra.ai/blog/travel-ai" target="_blank" rel="noopener">Mastra: multi-agent travel planning</a> · <a href="https://aihub.hkuspace.hku.hk/2026/02/10/agent-to-agent-collaboration-using-amazon-nova-2-lite-and-amazon-nova-act-for-multi-agent-systems/" target="_blank" rel="noopener">Agent-to-agent travel example</a></p></div>
+
+  <div class="layer">
+    <div><h3>The Fare watch agent</h3><p class="note">Checks prices across many sources, every hour, and tells you when to act.</p></div>
+    <div style="display:grid;gap:12px;min-width:0">
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th>Source</th><th>How the agent reads it</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><b>Domestic web services</b><br><span class="meta">Sepehr, Parto, Charter724</span></td><td>Their API, under your integrator contract, with a read-only key</td><td><span class="pill yes">Recommended</span></td></tr>
+          <tr><td><b>Airline agency panels</b><br><span class="meta">Iranian carriers’ B2B portals</span></td><td>Only through an API or export the airline offers to agencies</td><td><span class="pill part">Ask each airline</span></td></tr>
+          <tr><td><b>GDS</b><br><span class="meta">Amadeus and others</span></td><td>Through a licensed provider’s API; some Iranian integrators say they connect to Amadeus</td><td><span class="pill part">Check access and sanctions</span></td></tr>
+          <tr><td><b>Foreign airline sites</b><br><span class="meta">e.g. Turkish Airlines</span></td><td>Only through an official agency or partner programme you are allowed to join</td><td><span class="pill part">Check terms and sanctions</span></td></tr>
+          <tr><td><b>Public booking websites</b><br><span class="meta">Alibaba.ir, Google Flights, airline sites</span></td><td>Not automatically. Automated scraping usually breaks site terms; Air Canada sued a site over it. Use them for occasional manual spot checks.</td><td><span class="pill no">Don’t scrape</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="card">
+        <h4>What the Fare watch agent does every hour</h4>
+        <ul>
+          <li>Searches your top routes and dates (for example IKA–IST, IKA–DXB, THR–MHD, IKA–NJF) in every allowed source.</li>
+          <li>Keeps a price history per route, airline and date, so it can say “cheapest in 14 days” or “up 22% since yesterday”.</li>
+          <li>Alerts the Office group when a price drops below your target, seats run low, or a new charter block appears.</li>
+          <li>Re-checks every price in an open quote before the customer pays, and warns the Sales consultant if it changed.</li>
+          <li>Never buys or holds. It recommends; you decide.</li>
+        </ul>
+        <p class="src">Scraping risk: <a href="https://proskauer.com/blog/another-web-scraping-dispute-focused-on-travel-data" target="_blank" rel="noopener">Proskauer: web scraping dispute over travel data</a> · <a href="https://vercara.digicert.com/resources/fare-scraping-attacks-on-airline-apis" target="_blank" rel="noopener">Vercara: airlines block fare scraping</a>. GDS connection claim: <a href="https://www.faranegar.com/Products/OnlineBookingTicket" target="_blank" rel="noopener">Faranegar</a> (vendor page).</p>
+      </div>
+    </div>
+  </div>
 
   <div class="layer">
     <div><h3>Her phone is the control room</h3><p class="note">One private Bale or Telegram group called “Office”. The AI staff post there; she answers with a tap or a word.</p></div>
@@ -1069,6 +1128,15 @@ const ROLES = [
   { id: "manager", en: "Office manager", fa: "مدیر دفتر", phase: 1, mission: "Nothing falls through the cracks.",
     duties: ["Sends the morning brief and end-of-day summary", "Keeps one task board for all roles", "Reminds about licence, e-trust badge and contract renewals", "Runs backups and weekly numbers; answers staff questions from your manuals"],
     when: "08:30 and 18:00 daily; weekly report", needs: "Access to every role’s lists", approves: "Nothing; it reports to you", kpi: "Nothing forgotten" },
+  { id: "designer", en: "Trip designer (conductor)", fa: "طراح سفر و هماهنگ‌کننده", phase: 3, mission: "Every part of the trip fits: flight, shuttle, hotel, activities.",
+    duties: ["Turns a brief into legs: transfer, flight, shuttle, hotel, activities, insurance, documents", "Asks the ticketing, hotel and documents agents in parallel", "Checks the joins: landing time vs pickup, check-in day, budget, documents", "Builds a day-by-day plan with two priced options"],
+    when: "On each trip request", needs: "All specialist agents, price lists, supplier list for transfers and activities", approves: "The final plan and every booking", kpi: "Trips with zero connection problems" },
+  { id: "farewatch", en: "Fare watch agent", fa: "پایشگر نرخ بلیت", phase: 2, mission: "You know when prices move before your competitors do.",
+    duties: ["Searches your top routes hourly in every allowed source", "Keeps a price history per route, airline and date", "Alerts on drops, low seats and new charter blocks", "Re-checks prices in open quotes before payment"],
+    when: "Hourly, plus before every payment", needs: "Read-only API keys for web services; licensed GDS or airline access where allowed", approves: "Nothing; it never buys or holds", kpi: "Quotes repriced before the customer noticed" },
+  { id: "controller", en: "Controller (pre-audit)", fa: "کنترلر مالی (پیش‌حسابرسی)", phase: 2, mission: "The yearly audit finds nothing new.",
+    duties: ["Checks every sale has an invoice, a payment and a supplier cost", "Flags unusual refunds, discounts and duplicate payments", "Matches commissions and partner balances monthly", "Prepares the file your auditor (حسابرس) needs"],
+    when: "Daily checks; monthly close", needs: "Accounting data, bank statements, supplier statements", approves: "Nothing; it reports to the owner and the accountant", kpi: "Audit findings per year" },
 ];
 const roleById = Object.fromEntries(ROLES.map(r => [r.id, r]));
 let phaseF = "all";
@@ -1092,6 +1160,29 @@ const LIFE = [
 ];
 $("#lifecycle").replaceChildren(...LIFE.map(([step, role, owner]) => el("li", { class: owner ? "human" : "" },
   el("b", { text: step }), el("span", { class: "note", text: roleById[role].en + (owner ? " prepares · you approve" : " handles it") }))));
+
+/* ================================================= who works in an agency */
+const TEAM = [
+  ["Managing director", "مدیرعامل", "Strategy, contracts, licences, hiring, final decisions", ["manager"]],
+  ["Technical manager, air", "مدیر فنی بند الف", "Required for the air-ticket licence; airline contracts, counters, charter planning, daily sales report", ["ticketing", "farewatch"]],
+  ["Technical manager, tours", "مدیر فنی بند ب", "Required for the tour licence; designs and runs tours, oversees tour sales", ["designer"]],
+  ["Ticketing agent (counter)", "کانتر فروش بلیت", "Searches, books and issues flight, train and bus tickets; changes and refunds", ["ticketing", "farewatch"]],
+  ["Hotel reservations agent", "کارشناس رزرواسیون هتل", "Books hotels, issues vouchers, handles changes", ["hotel"]],
+  ["Tour designer / product manager", "طراح تور", "Designs packages: flights, transfers, hotels, guides, activities, prices", ["designer", "hotel"]],
+  ["Tour operations coordinator", "کارشناس عملیات تور", "Transfers, guides, suppliers, rooming lists, day-to-day running of tours", ["operations", "hotel"]],
+  ["Tour leader", "تورلیدر", "Travels with the group; handles people on the ground", ["operations"]],
+  ["Travel consultant (sales)", "مشاور و کارشناس فروش", "Understands the customer, presents options, closes the sale", ["sales"]],
+  ["Visa and documents consultant", "کارشناس ویزا و مدارک", "Visa files, appointments, document checks, insurance policies", ["documents"]],
+  ["Customer service", "پشتیبانی مشتریان", "Questions, complaints, refunds, follow-ups", ["care"]],
+  ["Receptionist", "منشی و پذیرش", "Phones, messages, walk-ins, routing", ["reception"]],
+  ["Marketing", "بازاریابی", "Social media, offers, partners, reviews", ["marketing"]],
+  ["Accountant", "حسابدار", "Invoices, payments, supplier balances, tax e-invoices, monthly accounts", ["accountant"]],
+  ["Auditor", "حسابرس", "Independent check of the books, usually yearly; signs the audit report", ["controller"]],
+  ["IT and website", "فناوری اطلاعات و سایت", "Systems, website, backups, security", ["manager"]],
+];
+$("#teamRows").replaceChildren(...TEAM.map(([en, fa, does, ai]) => el("tr", {},
+  el("td", {}, el("b", { text: en })), el("td", { class: "fa", text: fa }), el("td", { text: does }),
+  el("td", { text: ai.map(id => roleById[id].en).join(" + ") }))));
 
 /* ================================================= the whole job */
 const JOBS = [

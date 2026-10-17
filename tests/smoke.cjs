@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 19;
+const MIN_CHAPTERS = 20;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -96,6 +96,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.evaluate(() => { location.hash = "templates"; });
         const script = await page.evaluate(() => { const t = [...document.querySelectorAll("#tplList .tpl")].find(e => /Model test script/.test(e.textContent)); return t ? t.querySelector("pre").textContent : ""; });
         check(script.includes('split("\\n---\\n")') && script.includes('+ "\\n")'), "model test script keeps its escapes");
+
+        // team chapter and specialist roles
+        await page.evaluate(() => { location.hash = "team"; });
+        const teamRows = await page.locator("#teamRows tr").count();
+        await page.evaluate(() => { location.hash = "office"; });
+        await page.click('#rolePhase [data-f="all"]');
+        const roleCards = await page.locator("#roleGrid .card").count();
+        check(teamRows >= 16 && roleCards === 13, `team table (${teamRows} jobs) and AI roles (${roleCards})`);
 
         // progress button
         await page.click("#doneBtn");
