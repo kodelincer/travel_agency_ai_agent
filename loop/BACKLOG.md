@@ -11,7 +11,6 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - **Newer online-sales directive?** Look for a post-1400 version of the joint tourism–CAO directive on the association or CAO sites; update the Iran chapter if found. (Follow-up from iteration 1.)
 - **Persian (RTL) version** of the most-used chapters: The whole job, AI office of 10, Watch one working day, Templates. Add a language switch that sets `dir="rtl"` and uses Vazirmatn. Why: the owner and her staff work in Persian.
 - **Exit-permission facts:** find the official procedure for exit permission (men of military-service age, guardian consent for minors) and add it to The whole job. (Exit-tax amounts done in iteration 6.)
-- **Tax e-invoicing (سامانه مودیان) for agencies:** confirm with an official or professional source how ticket and tour sales are invoiced; add a short accountant checklist.
 - **Export the one-day log** as a CSV file the owner can keep (needs the `downloads` capability when published as an Artifact; keep the copy button as fallback).
 - **Glossary chapter:** PNR, charter, TTL, MCP, LLM, skill, gateway, همکار, بند الف, سماح, and others, each with one plain sentence.
 - **Accessibility pass:** heading order, focus order in the simulator, contrast of muted text in both themes, labels for every control; add an automated check to the tests.

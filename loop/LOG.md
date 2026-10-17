@@ -58,3 +58,11 @@ Sources: https://snapp.ir/blog/departure-tax/ · https://www.pateh.com/blog/depa
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: Fact #24 (tax e-invoicing for agencies), then P2 items.
+
+## Iteration 7 · 2026-10-17
+Task: Tax e-invoicing for agencies (fact #24, due; P2) with an accountant checklist.
+Changed: The whole job chapter has a new box "Tax e-invoices: a checklist for your accountant": what agencies must do, what guides agree on (ticket pattern, ~1 week deadline, service codes), the two disputed points (invoice type; full price vs commission when selling as agent) and five checklist steps ending with the AI Accountant preparing data for human review. Removed the vague one-line note.
+Sources: hesabno.com · wallbill.net · yassystem.com · heyvalaw.com (all Persian accounting guides)
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P2 — Persian (RTL) version of the most-used chapters.
