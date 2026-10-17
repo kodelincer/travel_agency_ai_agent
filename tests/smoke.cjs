@@ -16,7 +16,7 @@ if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright)
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
 const MIN_CHAPTERS = 22;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
-const MAX_TODO = 9;
+const MAX_TODO = 8;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -150,6 +150,19 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
       emptyFa: [...document.querySelectorAll("#caseGrid .l-fa, #deskFilters .l-fa")].filter(e => !/[؀-ۿ]/.test(e.textContent)).length,
     }));
     check(mp.cards === 24 && mp.emptyFa === 0, `automation map: 24 cards with Persian titles, every card and desk filter has Persian (${mp.cards} cards, ${mp.emptyFa} without Persian)`);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.evaluate(() => { location.hash = "sim"; });
+    await page.click("#replayBtn");
+    await page.waitForFunction(() => /INTERNAL NOTE/.test(document.querySelector("#draft").textContent), null, { timeout: 20000 }).catch(() => {});
+    const sm = await page.evaluate(() => ({
+      tier: document.querySelector("#tier option").textContent,
+      status: document.querySelector("#simStatus").innerText,
+      note: document.querySelector("#draft").textContent.split("INTERNAL NOTE:")[1] || "",
+    }));
+    const isFa = t => /[؀-ۿ]/.test(t);
+    check(isFa(sm.tier) && isFa(sm.status) && isFa(sm.note), `simulator speaks Persian in Persian mode (option, status, internal note)`);
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.reload(); // clear the Persian demo draft so the English-mode ratio check below measures the interface only
     const weak = [], overflow = [];
     for (const s of info) {
       await page.evaluate(i => { location.hash = i; }, s.id);

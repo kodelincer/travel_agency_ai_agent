@@ -174,3 +174,10 @@ Changed: Chapter text and risk filters bilingual; all 24 job cards rendered with
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
 Next: P1 — translate Try an agent (simulator).
+
+## Iteration 23 · 2026-10-17
+Task: P1 — translate "Try an agent" (simulator) into Persian.
+Changed: Chapter text, labels, buttons, placeholders, office facts and "What to notice" bilingual. Script: every status and error message goes through say(en, fa); call counter, log heading, inbox senders, approval ticket (labels, buttons, approved/rejected notes) use T(); the speed drop-down re-renders through langHooks. The recorded run writes its internal note in the reader's language, and the live prompt asks for the internal note in the page language. Tool names and JSON in the log stay technical. New test: in Persian mode the drop-down, status and replay internal note are Persian (fails on the old code). MAX_TODO 9 → 8.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 5 · clarity 4
+Next: P1 — translate Grow revenue.

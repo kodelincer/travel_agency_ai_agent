@@ -807,43 +807,46 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 6 SIM -->
-<section id="sim" data-title="Try an agent" data-group="Automate" data-title-fa="یک عامل را امتحان کنید" data-fa="todo" hidden>
-  <div class="eyebrow">Chapter · Hands-on</div>
-  <h2>Watch an agent work a real-looking request</h2>
-  <p class="lead">Pick a message and press <b>Run agent</b>. The agent gets six office tools: CRM lookup, flight search, hotel search, passport check, quote builder and approval request. Every tool call appears in the log. It cannot book anything; it can only send you an approval ticket. All customers, fares and hotels are invented demo data in tomans.</p>
+<section id="sim" data-title="Try an agent" data-group="Automate" data-title-fa="یک عامل را امتحان کنید" hidden>
+  <div class="eyebrow">Chapter · <span class="l-en">Hands-on</span><span class="l-fa">کار عملی</span></div>
+  <h2><span class="l-en">Watch an agent work a real-looking request</span><span class="l-fa">ببینید یک عامل چطور روی یک درخواست واقعی‌نما کار می‌کند</span></h2>
+  <p class="lead l-en">Pick a message and press <b>Run agent</b>. The agent gets six office tools: CRM lookup, flight search, hotel search, passport check, quote builder and approval request. Every tool call appears in the log. It cannot book anything; it can only send you an approval ticket. All customers, fares and hotels are invented demo data in tomans.</p>
+  <p class="lead l-fa">یک پیام انتخاب کنید و <b>اجرای عامل</b> را بزنید. عامل شش ابزار دفتری دارد: جستجو در CRM، جستجوی پرواز، جستجوی هتل، بررسی گذرنامه، ساخت پیش‌فاکتور و درخواست تأیید. هر بار که از ابزاری استفاده کند، در گزارش دیده می‌شود. نمی‌تواند چیزی رزرو کند؛ فقط می‌تواند برای شما درخواست تأیید بفرستد. همه‌ی مشتری‌ها، نرخ‌ها و هتل‌ها داده‌ی ساختگی نمایشی و به تومان هستند.</p>
   <div class="sim">
     <div class="pane">
-      <h3>Inbox <span class="badge">Demo data</span></h3>
+      <h3><span class="l-en">Inbox</span><span class="l-fa">پیام‌های رسیده</span> <span class="badge"><span class="l-en">Demo data</span><span class="l-fa">داده‌ی نمایشی</span></span></h3>
       <div class="inbox" id="inbox"></div>
-      <label class="lbl" for="msgText">Message (edit it or write your own)</label>
+      <label class="lbl" for="msgText"><span class="l-en">Message (edit it or write your own)</span><span class="l-fa">پیام (ویرایشش کنید یا پیام خودتان را بنویسید)</span></label>
       <textarea id="msgText" dir="auto"></textarea>
       <div class="row">
-        <label class="lbl" for="tier">Speed</label>
+        <label class="lbl" for="tier"><span class="l-en">Speed</span><span class="l-fa">سرعت</span></label>
         <select id="tier" style="flex:1;min-width:0">
           <option value="quick">Fast (good for the demo)</option>
           <option value="default">Thorough (slower, better reasoning)</option>
         </select>
       </div>
       <div class="row">
-        <button class="btn" id="runBtn" type="button">Run agent</button>
-        <button class="btn ghost" id="stopBtn" type="button" hidden>Stop</button>
-        <button class="btn ghost" id="replayBtn" type="button">Replay a recorded run</button>
+        <button class="btn" id="runBtn" type="button"><span class="l-en">Run agent</span><span class="l-fa">اجرای عامل</span></button>
+        <button class="btn ghost" id="stopBtn" type="button" hidden><span class="l-en">Stop</span><span class="l-fa">توقف</span></button>
+        <button class="btn ghost" id="replayBtn" type="button"><span class="l-en">Replay a recorded run</span><span class="l-fa">پخش یک اجرای ضبط‌شده</span></button>
       </div>
-      <p class="status" id="simStatus">Live runs work when this page is opened on claude.ai and use your Claude account. Anywhere else, use the recorded run.</p>
-      <details><summary class="note" style="cursor:pointer">What the agent knows about the office</summary>
-        <p class="note" style="margin-top:8px">Agency “Parvaz Travel”, Tehran (IKA/THR). Prices in tomans. Service fee 8% on packages. Passports must be valid 6 months after return. Never promise a price that did not come from a tool. Destinations in the demo: Dubai, Istanbul, Najaf, Mashhad, Kish.</p>
+      <p class="status" id="simStatus"><span class="l-en">Live runs work when this page is opened on claude.ai and use your Claude account. Anywhere else, use the recorded run.</span><span class="l-fa">اجرای زنده فقط وقتی این صفحه در claude.ai باز باشد کار می‌کند و از حساب Claude شما استفاده می‌کند. در جاهای دیگر از اجرای ضبط‌شده استفاده کنید.</span></p>
+      <details><summary class="note" style="cursor:pointer"><span class="l-en">What the agent knows about the office</span><span class="l-fa">عامل درباره‌ی دفتر چه می‌داند</span></summary>
+        <p class="note l-en" style="margin-top:8px">Agency “Parvaz Travel”, Tehran (IKA/THR). Prices in tomans. Service fee 8% on packages. Passports must be valid 6 months after return. Never promise a price that did not come from a tool. Destinations in the demo: Dubai, Istanbul, Najaf, Mashhad, Kish.</p>
+        <p class="note l-fa" style="margin-top:8px">آژانس «پرواز» (نام ساختگی)، تهران (فرودگاه امام و مهرآباد). قیمت‌ها به تومان. کارمزد خدمات پکیج ۸ درصد. گذرنامه باید تا ۶ ماه بعد از برگشت اعتبار داشته باشد. هرگز قیمتی را که از ابزار نیامده قول نده. مقصدهای نمایشی: دبی، استانبول، نجف، مشهد، کیش.</p>
       </details>
     </div>
     <div class="pane">
-      <h3>Agent log <span class="status" id="callCount">0 tool calls</span></h3>
-      <div class="log" id="log" aria-live="polite"><div class="ev">Tool calls will appear here, one line per step.</div></div>
-      <h3>Draft reply</h3>
-      <div class="draft" id="draft" dir="auto">The agent’s reply will be written here for you to edit and send.</div>
-      <h3>Approval queue <span class="status">you decide</span></h3>
-      <div class="queue" id="queue"><p class="note">Nothing waiting. When the agent wants to hold a booking, it lands here.</p></div>
+      <h3><span class="l-en">Agent log</span><span class="l-fa">گزارش کار عامل</span> <span class="status" id="callCount"><span class="l-en">0 tool calls</span><span class="l-fa">۰ استفاده از ابزار</span></span></h3>
+      <div class="log" id="log" aria-live="polite"><div class="ev"><span class="l-en">Tool calls will appear here, one line per step.</span><span class="l-fa">استفاده از ابزارها اینجا نشان داده می‌شود، هر قدم در یک خط.</span></div></div>
+      <h3><span class="l-en">Draft reply</span><span class="l-fa">پیش‌نویس پاسخ</span></h3>
+      <div class="draft" id="draft" dir="auto"><span class="l-en">The agent’s reply will be written here for you to edit and send.</span><span class="l-fa">پاسخ عامل اینجا نوشته می‌شود تا ویرایش کنید و بفرستید.</span></div>
+      <h3><span class="l-en">Approval queue</span><span class="l-fa">صف تأیید</span> <span class="status"><span class="l-en">you decide</span><span class="l-fa">تصمیم با شما</span></span></h3>
+      <div class="queue" id="queue"><p class="note"><span class="l-en">Nothing waiting. When the agent wants to hold a booking, it lands here.</span><span class="l-fa">چیزی در انتظار نیست. وقتی عامل بخواهد رزروی نگه دارد، درخواستش اینجا می‌آید.</span></p></div>
     </div>
   </div>
-  <div class="callout ok"><h4>What to notice</h4><p>1. Prices come from tools, never from the model’s memory. 2. It checks passports without being asked, because the office rule says so. 3. It stops at the money: holding seats becomes a ticket in your queue. Build these three habits into every real agent.</p></div>
+  <div class="callout ok l-en"><h4>What to notice</h4><p>1. Prices come from tools, never from the model’s memory. 2. It checks passports without being asked, because the office rule says so. 3. It stops at the money: holding seats becomes a ticket in your queue. Build these three habits into every real agent.</p></div>
+  <div class="callout ok l-fa"><h4>به چه چیزی دقت کنید</h4><p>۱. قیمت‌ها از ابزارها می‌آیند، هرگز از حافظه‌ی مدل. ۲. بدون اینکه کسی بخواهد گذرنامه‌ها را بررسی می‌کند، چون قانون دفتر این است. ۳. پای پول که وسط می‌آید می‌ایستد: نگه داشتن صندلی به یک درخواست در صف شما تبدیل می‌شود. این سه عادت را در هر عامل واقعی بسازید.</p></div>
 </section>
 
 <!-- =========================================================== 7 STACK -->
@@ -2120,15 +2123,15 @@ const TOOLS = [
 ];
 
 const SAMPLES = [
-  { from: "Bale · Sara Ahmadi", text: "سلام، سارا احمدی هستم. برای تعطیلات ۳۰ آذر تا ۴ دی دبی می‌خوایم؛ من و همسرم علی و دخترم نیکا که ۷ سالشه. بودجه‌مون حدود ۳۵۰ میلیون تومن همه‌چی. هتل استخردار باشه لطفاً 🙏" },
-  { from: "Email · Reza Karimi", text: "Hello team, I need Istanbul for a supplier meeting, out 3 Nov, back 6 Nov 2026. Flexible fare please, hotel near Taksim. If everything is fine, please reserve. Reza Karimi, Pars Steel" },
-  { from: "SMS · 0901 555 0103", text: "سلام، برای زیارت مشهد ۱۵ تا ۱۸ آبان دو نفر چقدر میشه؟ هتل نزدیک حرم می‌خوایم. مینا فراهانی" },
+  { from: "Bale · Sara Ahmadi", fromFa: "بله · سارا احمدی", text: "سلام، سارا احمدی هستم. برای تعطیلات ۳۰ آذر تا ۴ دی دبی می‌خوایم؛ من و همسرم علی و دخترم نیکا که ۷ سالشه. بودجه‌مون حدود ۳۵۰ میلیون تومن همه‌چی. هتل استخردار باشه لطفاً 🙏" },
+  { from: "Email · Reza Karimi", fromFa: "ایمیل · رضا کریمی", text: "Hello team, I need Istanbul for a supplier meeting, out 3 Nov, back 6 Nov 2026. Flexible fare please, hotel near Taksim. If everything is fine, please reserve. Reza Karimi, Pars Steel" },
+  { from: "SMS · 0901 555 0103", fromFa: "پیامک · 0901 555 0103", text: "سلام، برای زیارت مشهد ۱۵ تا ۱۸ آبان دو نفر چقدر میشه؟ هتل نزدیک حرم می‌خوایم. مینا فراهانی" },
 ];
 let selected = 0;
 const inbox = $("#inbox"), msgText = $("#msgText");
 function renderInbox() {
   inbox.replaceChildren(...SAMPLES.map((s, i) => {
-    const b = el("button", { class: "msg", "aria-pressed": String(i === selected), type: "button" }, el("small", { text: s.from }), el("span", { text: s.text, dir: "auto" }));
+    const b = el("button", { class: "msg", "aria-pressed": String(i === selected), type: "button" }, el("small", {}, T(s.from, s.fromFa)), el("span", { text: s.text, dir: "auto" }));
     b.addEventListener("click", () => { selected = i; msgText.value = s.text; renderInbox(); });
     return b;
   }));
@@ -2137,31 +2140,36 @@ msgText.value = SAMPLES[0].text; renderInbox();
 
 const logBox = $("#log"), draft = $("#draft"), queue = $("#queue"), status = $("#simStatus"), callCount = $("#callCount");
 let calls = 0;
+const say = (en, fa) => status.replaceChildren(T(en, fa));
+const showCalls = () => callCount.replaceChildren(T(`${calls} tool call${calls === 1 ? "" : "s"}`, `${faNum(calls)} استفاده از ابزار`));
+const TIER_OPTS = [["Fast (good for the demo)", "سریع (مناسب برای نمایش)"], ["Thorough (slower, better reasoning)", "دقیق (کندتر، استدلال بهتر)"]];
+const fillTier = () => [...$("#tier").options].forEach((o, i) => { o.textContent = TIER_OPTS[i][lang === "fa" ? 1 : 0]; });
+langHooks.push(fillTier); fillTier();
 function logEv(kind, title, detail) {
   if (logBox.dataset.fresh !== "1") { logBox.replaceChildren(); logBox.dataset.fresh = "1"; }
-  const ev = el("div", { class: "ev " + kind }, el("b", { text: title }));
+  const ev = el("div", { class: "ev " + kind }, el("b", {}, typeof title === "string" ? title : T(...title)));
   if (detail) ev.append(el("span", { class: "res", text: detail }));
   logBox.append(ev); logBox.scrollTop = logBox.scrollHeight;
 }
 function resetRun() {
-  logBox.dataset.fresh = "0"; calls = 0; callCount.textContent = "0 tool calls";
+  logBox.dataset.fresh = "0"; calls = 0; showCalls();
   flights.clear(); hotels.clear(); quotes.clear(); draft.textContent = "";
 }
 const short = o => { const s = JSON.stringify(o); return s.length > 150 ? s.slice(0, 147) + "…" : s; };
 function addTicket(q, reason) {
   if (queue.querySelector(".note")) queue.replaceChildren();
   const t = el("div", { class: "ticket" },
-    el("div", { class: "row", style: "justify-content:space-between" }, el("b", { text: `${q.quote_id} · ${q.label}` }), el("span", { class: "pill med", text: "Needs approval" })),
-    el("div", { class: "note", text: `${q.flight} · ${q.hotel} · total ${fmt(q.total_toman)} T (incl. ${fmt(q.service_fee_toman)} T fee)` }),
-    el("div", { class: "note", text: "Agent’s reason: " + reason }));
-  const ok = el("button", { class: "btn small", type: "button", text: "Approve hold" });
-  const no = el("button", { class: "btn ghost small", type: "button", text: "Reject" });
+    el("div", { class: "row", style: "justify-content:space-between" }, el("b", { text: `${q.quote_id} · ${q.label}` }), el("span", { class: "pill med" }, T("Needs approval", "نیاز به تأیید"))),
+    el("div", { class: "note" }, T(`${q.flight} · ${q.hotel} · total ${fmt(q.total_toman)} T (incl. ${fmt(q.service_fee_toman)} T fee)`, `${q.flight} · ${q.hotel} · جمع ${fmt(q.total_toman)} تومان (شامل ${fmt(q.service_fee_toman)} تومان کارمزد)`)),
+    el("div", { class: "note" }, T("Agent’s reason: ", "دلیل عامل: "), reason));
+  const ok = el("button", { class: "btn small", type: "button" }, T("Approve hold", "تأیید نگه‌داشتن رزرو"));
+  const no = el("button", { class: "btn ghost small", type: "button" }, T("Reject", "رد"));
   const act = el("div", { class: "row" }, ok, no);
   ok.addEventListener("click", () => {
     const pnr = Array.from({ length: 6 }, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
-    t.className = "ticket done"; act.replaceWith(el("div", { class: "note", text: `Approved by you. Demo booking ${pnr} on hold for 24 h. Next: send payment link, then issue.` }));
+    t.className = "ticket done"; act.replaceWith(el("div", { class: "note" }, T(`Approved by you. Demo booking ${pnr} on hold for 24 h. Next: send payment link, then issue.`, `شما تأیید کردید. رزرو نمایشی ${pnr} برای ۲۴ ساعت نگه داشته شد. قدم بعد: ارسال لینک پرداخت، سپس صدور.`)));
   });
-  no.addEventListener("click", () => { t.className = "ticket rej"; act.replaceWith(el("div", { class: "note", text: "Rejected. The agent will be told to offer alternatives." })); });
+  no.addEventListener("click", () => { t.className = "ticket rej"; act.replaceWith(el("div", { class: "note" }, T("Rejected. The agent will be told to offer alternatives.", "رد شد. به عامل گفته می‌شود گزینه‌های دیگری پیشنهاد کند."))); });
   t.append(act); queue.append(t);
 }
 
@@ -2180,42 +2188,42 @@ Keep the whole answer under 250 words.`;
 
 let ctl = null, samplePromise = null;
 const getSample = () => samplePromise || (samplePromise = (window.claude && window.claude.use ? window.claude.use("sample") : Promise.resolve(null)).catch(() => null));
-getSample().then(s => { status.textContent = s ? "Ready. The first live run asks you to allow this page to use your Claude account." : "Live runs aren’t available here. Use “Replay a recorded run” to see how it works."; });
+getSample().then(s => s ? say("Ready. The first live run asks you to allow this page to use your Claude account.", "آماده است. در اولین اجرای زنده از شما اجازه خواسته می‌شود که این صفحه از حساب Claude شما استفاده کند.") : say("Live runs aren’t available here. Use “Replay a recorded run” to see how it works.", "اجرای زنده اینجا در دسترس نیست. با «پخش یک اجرای ضبط‌شده» ببینید چطور کار می‌کند."));
 const errCopy = c => ({
-  not_granted: "You didn’t allow this page to use Claude, so live runs are off. Try the recorded run.",
-  sampling_disabled: "Claude isn’t available for this account. Try the recorded run.",
-  rate_limited: "Too many runs for now. Wait a minute, then try again.",
-  session_expired: "Your Claude session expired. Sign in again, then retry.",
-  tools_unavailable: "This app version can’t run agent tools. Try the recorded run.",
-  refused: "Claude declined this message. Change the wording and try again.",
-  empty_completion: "The agent returned nothing. Simplify the message and try again.",
-})[c] || "Something went wrong on the way. Press Run agent to try again.";
+  not_granted: ["You didn’t allow this page to use Claude, so live runs are off. Try the recorded run.", "اجازه‌ی استفاده از Claude را ندادید، پس اجرای زنده خاموش است. اجرای ضبط‌شده را امتحان کنید."],
+  sampling_disabled: ["Claude isn’t available for this account. Try the recorded run.", "Claude برای این حساب در دسترس نیست. اجرای ضبط‌شده را امتحان کنید."],
+  rate_limited: ["Too many runs for now. Wait a minute, then try again.", "فعلاً اجرای زیادی انجام شده. یک دقیقه صبر کنید و دوباره امتحان کنید."],
+  session_expired: ["Your Claude session expired. Sign in again, then retry.", "نشست Claude شما منقضی شده. دوباره وارد شوید و امتحان کنید."],
+  tools_unavailable: ["This app version can’t run agent tools. Try the recorded run.", "این نسخه از برنامه نمی‌تواند ابزارهای عامل را اجرا کند. اجرای ضبط‌شده را امتحان کنید."],
+  refused: ["Claude declined this message. Change the wording and try again.", "Claude این پیام را نپذیرفت. متن را تغییر دهید و دوباره امتحان کنید."],
+  empty_completion: ["The agent returned nothing. Simplify the message and try again.", "عامل چیزی برنگرداند. پیام را ساده‌تر کنید و دوباره امتحان کنید."],
+})[c] || ["Something went wrong on the way. Press Run agent to try again.", "در مسیر مشکلی پیش آمد. دوباره «اجرای عامل» را بزنید."];
 
 const setBusy = b => { $("#runBtn").disabled = b; $("#replayBtn").disabled = b; };
 $("#runBtn").addEventListener("click", async () => {
   const sample = await getSample();
-  if (!sample) { status.textContent = "Live runs aren’t available here. Showing the recorded run."; return replay(); }
+  if (!sample) { say("Live runs aren’t available here. Showing the recorded run.", "اجرای زنده اینجا در دسترس نیست. اجرای ضبط‌شده نشان داده می‌شود."); return replay(); }
   const text = msgText.value.trim();
-  if (!text) { status.textContent = "Write or pick a customer message first."; msgText.focus(); return; }
+  if (!text) { say("Write or pick a customer message first.", "اول یک پیام مشتری بنویسید یا انتخاب کنید."); msgText.focus(); return; }
   resetRun(); ctl = new AbortController(); setBusy(true); $("#stopBtn").hidden = false;
-  status.textContent = "Agent is thinking…";
-  logEv("", "Message received", text.slice(0, 120) + (text.length > 120 ? "…" : ""));
+  say("Agent is thinking…", "عامل در حال فکر کردن است…");
+  logEv("", ["Message received", "پیام دریافت شد"], text.slice(0, 120) + (text.length > 120 ? "…" : ""));
   const tools = TOOLS.map(t => ({ name: t.name, description: t.description, inputSchema: t.inputSchema,
     execute: async input => {
-      calls++; callCount.textContent = `${calls} tool call${calls > 1 ? "s" : ""}`;
-      status.textContent = `Using ${t.name}…`;
+      calls++; showCalls();
+      say(`Using ${t.name}…`, `در حال استفاده از ${t.name}…`);
       try { const r = t.run(input || {}); logEv(t.name === "request_approval" ? "need" : "tool", "→ " + t.name + " " + short(input), "← " + t.sum(r)); return r; }
       catch (e) { logEv("err", "→ " + t.name + " " + short(input), "← error: " + e.message); throw e; }
     } }));
   try {
-    const { truncated } = await sample(`${RULES}\n\nCUSTOMER MESSAGE:\n${text}`, {
+    const { truncated } = await sample(`${RULES}\nWrite the INTERNAL NOTE in ${lang === "fa" ? "Persian" : "English"}.\n\nCUSTOMER MESSAGE:\n${text}`, {
       tools, modelTier: $("#tier").value, signal: ctl.signal,
-      onText: ({ text: t }) => { draft.textContent = t; status.textContent = "Writing the reply…"; },
+      onText: ({ text: t }) => { draft.textContent = t; say("Writing the reply…", "در حال نوشتن پاسخ…"); },
     });
-    status.textContent = truncated ? "Done, but the reply was cut short." : `Done. ${calls} tool calls. Review the draft before sending.`;
+    truncated ? say("Done, but the reply was cut short.", "تمام شد، ولی پاسخ ناقص ماند.") : say(`Done. ${calls} tool calls. Review the draft before sending.`, `تمام شد. ${faNum(calls)} استفاده از ابزار. پیش از ارسال، پیش‌نویس را بررسی کنید.`);
   } catch (e) {
     if (e && e.code === "refused") draft.textContent = ""; else if (e && e.text) draft.textContent = e.text;
-    status.textContent = e && e.code === "cancelled" ? "Stopped." : errCopy(e && e.code);
+    e && e.code === "cancelled" ? say("Stopped.", "متوقف شد.") : say(...errCopy(e && e.code));
   } finally { setBusy(false); $("#stopBtn").hidden = true; ctl = null; }
 });
 $("#stopBtn").addEventListener("click", () => ctl && ctl.abort());
@@ -2226,8 +2234,8 @@ async function replay() {
   if (replaying) return; replaying = true;
   selected = 0; msgText.value = SAMPLES[0].text; renderInbox();
   resetRun(); setBusy(true);
-  status.textContent = "Replaying a recorded run (no Claude call)…";
-  logEv("", "Message received", SAMPLES[0].text.slice(0, 90) + "…");
+  say("Replaying a recorded run (no Claude call)…", "در حال پخش یک اجرای ضبط‌شده (بدون تماس با Claude)…");
+  logEv("", ["Message received", "پیام دریافت شد"], SAMPLES[0].text.slice(0, 90) + "…");
   const steps = [
     ["lookup_customer", { query: "سارا احمدی" }],
     ["search_flights", { destination: "Dubai", depart_date: "2026-12-21", return_date: "2026-12-25", adults: 2, children: 1 }],
@@ -2239,7 +2247,7 @@ async function replay() {
   for (const [name, input] of steps) {
     await wait(700);
     const t = TOOLS.find(x => x.name === name), r = t.run(input);
-    calls++; callCount.textContent = `${calls} tool calls`;
+    calls++; showCalls();
     logEv("tool", "→ " + name + " " + short(input), "← " + t.sum(r));
   }
   const qa = quotes.get("Q-" + (2601 + qn - 1)), qb = quotes.get("Q-" + (2601 + qn));
@@ -2253,10 +2261,12 @@ async function replay() {
 قیمت‌ها تا لحظه صدور بلیت قطعی نیست. بعد از تمدید گذرنامه، کدام گزینه را رزرو کنیم؟
 
 INTERNAL NOTE:
-• Gold client; last trip Istanbul Tir 1404. Both options fit the 350M T budget; B leaves little margin for changes.
+${lang === "fa" ? `• مشتری طلایی؛ آخرین سفر استانبول، تیر ۱۴۰۴. هر دو گزینه در بودجه‌ی ۳۵۰ میلیون تومان است؛ گزینه‌ی ب جای کمی برای تغییرات می‌گذارد.
+• گذرنامه‌ی علی ۱۰ فروردین ۱۴۰۶ منقضی می‌شود، کمتر از ۶ ماه بعد از برگشت: تا تمدید نشود رزرو انجام نمی‌شود.
+• تخت اضافه‌ی کودک را در مارینا سندز تأیید کنید. ۲ روز دیگر پیگیری شود.` : `• Gold client; last trip Istanbul Tir 1404. Both options fit the 350M T budget; B leaves little margin for changes.
 • Ali’s passport expires 30 Mar 2027, less than 6 months after return: booking blocked until renewed.
-• Confirm the extra bed for the child at Marina Sands. Follow up in 2 days.`;
-  status.textContent = "Recorded run finished. Open this page on claude.ai to run it live.";
+• Confirm the extra bed for the child at Marina Sands. Follow up in 2 days.`}`;
+  say("Recorded run finished. Open this page on claude.ai to run it live.", "اجرای ضبط‌شده تمام شد. برای اجرای زنده، این صفحه را در claude.ai باز کنید.");
   setBusy(false); replaying = false;
 }
 $("#replayBtn").addEventListener("click", replay);
