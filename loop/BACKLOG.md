@@ -7,7 +7,6 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - (done 2026-10-17) All 22 chapters are bilingual; `MAX_TODO` is 0. Keep every new text bilingual (CLAUDE.md).
 
 ## P2
-- **Role playbooks:** for each of the 10 AI roles, a ready Hermes skill file (Markdown) in the Templates chapter.
 
 ## P3
 - Ask the association (انجمن صنفی) for the current online-sales directive and the status of the agency bylaw revision; update FACTS #47. (Needs the owner; web search in iteration 33 found nothing newer.)

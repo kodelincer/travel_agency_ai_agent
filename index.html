@@ -1230,6 +1230,18 @@ Send an SMS notice?  [Approve]
   <p class="lead l-en">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
   <p class="lead l-fa">نام‌ها، کارمزدها و قوانین را با دفتر خودتان تطبیق دهید. همین متن‌ها یک هوش مصنوعی عمومی را به دستیار رزرواسیون <i>شما</i> تبدیل می‌کنند. کد و کلیدهای JSON به انگلیسی می‌مانند، چون برنامه‌ها آن‌ها را همین‌طور می‌خوانند.</p>
   <div style="display:grid;gap:14px" id="tplList"></div>
+  <div class="prose"><h3><span class="l-en">Role playbooks: one Hermes skill file per AI role</span><span class="l-fa">دستورالعمل نقش‌ها: یک فایل مهارت Hermes برای هر نقش هوش مصنوعی</span></h3>
+    <p class="l-en">Pick a role to get its skill file, built from the role descriptions in “AI office of 10”. Save it as <code>SKILL.md</code> in its own folder in Hermes’ skills directory, then edit names, fees and limits for your office. The file is written in the language you are reading in; the <code>name</code> and <code>description</code> header stays English.</p>
+    <p class="l-fa">یک نقش را انتخاب کنید تا فایل مهارتش را بگیرید؛ از شرح نقش‌ها در فصل «دفتر هوش مصنوعی» ساخته می‌شود. آن را با نام <code>SKILL.md</code> در پوشه‌ای جدا در پوشه‌ی مهارت‌های Hermes ذخیره کنید و بعد نام‌ها، کارمزدها و محدودیت‌ها را با دفتر خودتان تطبیق دهید. فایل به زبانی نوشته می‌شود که با آن می‌خوانید؛ سربرگ <code>name</code> و <code>description</code> انگلیسی می‌ماند.</p>
+  </div>
+  <div class="tpl">
+    <div class="tpl-head">
+      <div class="row" style="flex:1;min-width:0"><label class="lbl" for="pbRole"><span class="l-en">Role</span><span class="l-fa">نقش</span></label><select id="pbRole" style="flex:1;min-width:0"></select></div>
+      <div class="row"><button class="btn ghost small" type="button" id="pbCopy"><span class="l-en">Copy</span><span class="l-fa">کپی</span></button><button class="btn ghost small" type="button" id="pbSave"><span class="l-en">Download .md</span><span class="l-fa">دریافت فایل .md</span></button></div>
+    </div>
+    <pre id="pbText" dir="auto"></pre>
+    <p class="status" id="pbStatus" aria-live="polite"></p>
+  </div>
 </section>
 
 <!-- =========================================================== 13 GUARDRAILS -->
@@ -2267,6 +2279,64 @@ langHooks.push(glossPh); glossPh();
 $("#glossQ").addEventListener("input", renderGloss);
 wireChips($("#glossFilters"), v => { glossF = v; renderGloss(); });
 renderGloss();
+
+/* ================================================= role playbooks (Hermes skill files) */
+function playbook(r, fa) {
+  const f = ROLES_FA[r.id], d = fa ? f : r, nothing = /^(Nothing|هیچ)/.test(d.approves);
+  const L = fa
+    ? { duties: "وظایف", when: "زمان اجرا", needs: "ابزار و دسترسی لازم", ask: "پیش از این کارها از یک انسان تأیید بگیر", never: "هرگز", kpi: "سنجش", out: "خروجی",
+        always: "هر پرداخت، صدور بلیت، استرداد، نگه داشتن رزرو یا امضای قرارداد",
+        nevers: ["قیمتی که از ابزار نیامده اعلام نکن؛ بگو قیمت تا صدور قطعی نیست", "شماره‌ی کارت بانکی نخواه و ذخیره نکن؛ فقط لینک پرداخت", "اطلاعات مشتری را بیرون از سامانه‌های دفتر نفرست", "قوانین ویزا یا مقررات را حدس نزن؛ بگو همکار از منبع رسمی بررسی کند"],
+        outs: ["پیش‌نویس آماده برای همکار، به زبان مشتری", "یادداشت داخلی: ۲ تا ۴ نکته (ریسک، قدم بعد، تاریخ پیگیری)", "هر کار را با ابزار، ورودی، نتیجه و تأییدکننده ثبت کن"] }
+    : { duties: "Duties", when: "When it runs", needs: "Tools and access it needs", ask: "Ask a person to approve before", never: "Never", kpi: "Measure", out: "Output",
+        always: "Any payment, ticket issue, refund, booking hold or contract",
+        nevers: ["Quote a price that did not come from a tool; say prices are final only when issued", "Ask for or store card numbers; use payment links only", "Send customer data outside the office systems", "Guess visa rules or regulations; ask staff to check the official source"],
+        outs: ["A ready draft for staff, in the customer's language", "INTERNAL NOTE: 2-4 points (risk, next step, follow-up date)", "Log every action: tool, input, result, who approved"] };
+  return [
+    "---",
+    `name: ${r.id}-assistant`,
+    `description: ${r.en} for a travel agency. ${r.mission}`,
+    "---",
+    `# ${fa ? r.fa : r.en}`,
+    d.mission, "",
+    `## ${L.duties}`, ...d.duties.map((x, i) => `${fa ? faNum(i + 1) : i + 1}. ${x}`), "",
+    `## ${L.when}`, d.when, "",
+    `## ${L.needs}`, d.needs, "",
+    `## ${L.ask}`, ...(nothing ? [] : [`- ${d.approves}`]), `- ${L.always}`, "",
+    `## ${L.never}`, ...L.nevers.map(x => `- ${x}`), "",
+    `## ${L.kpi}`, `- ${d.kpi}`, "",
+    `## ${L.out}`, ...L.outs.map(x => `- ${x}`),
+  ].join("\n") + "\n";
+}
+const pbSay = (en, fa) => $("#pbStatus").replaceChildren(T(en, fa));
+function renderPlaybook() {
+  const sel = $("#pbRole"), cur = sel.value || ROLES[0].id, fa = lang === "fa";
+  sel.replaceChildren(...ROLES.map(r => el("option", { value: r.id, text: fa ? r.fa : r.en })));
+  sel.value = cur;
+  const pre = $("#pbText");
+  pre.textContent = playbook(roleById[cur], fa);
+  pre.className = fa ? "rtl" : "";
+}
+langHooks.push(renderPlaybook); renderPlaybook();
+$("#pbRole").addEventListener("change", () => { renderPlaybook(); $("#pbStatus").replaceChildren(); });
+$("#pbCopy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText($("#pbText").textContent); pbSay("Copied.", "کپی شد."); }
+  catch { const r = document.createRange(); r.selectNodeContents($("#pbText")); const sl = getSelection(); sl.removeAllRanges(); sl.addRange(r); pbSay("Selected, press Ctrl+C.", "انتخاب شد، Ctrl+C را بزنید."); }
+});
+$("#pbSave").addEventListener("click", async () => {
+  const filename = `${$("#pbRole").value}-SKILL.md`, data = $("#pbText").textContent;
+  const downloads = downloadsP ? await downloadsP : null;
+  if (downloads) {
+    try { await downloads.save({ filename, data }); pbSay("Saved. Rename it to SKILL.md inside its own skill folder.", "ذخیره شد. در پوشه‌ی مهارت خودش نامش را SKILL.md بگذارید."); }
+    catch (e) { const c = e && e.code; if (c === "declined") pbSay("Download cancelled.", "دریافت لغو شد."); else if (c === "rate_limited") pbSay("A save window is already open.", "یک پنجره‌ی ذخیره باز است."); else { $("#pbSave").hidden = true; pbSay("Downloads are not available here. Use Copy instead.", "دریافت فایل اینجا در دسترس نیست. از کپی استفاده کنید."); } }
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([data], { type: "text/markdown;charset=utf-8" }));
+  const a = el("a", { href: url, download: filename }); document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  pbSay("Downloaded. Rename it to SKILL.md inside its own skill folder.", "دریافت شد. در پوشه‌ی مهارت خودش نامش را SKILL.md بگذارید.");
+});
+if (downloadsP) downloadsP.then(d => { if (!d) $("#pbSave").hidden = true; });
 
 /* ================================================= chapter 6: simulator */
 const CUSTOMERS = [

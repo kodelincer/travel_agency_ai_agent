@@ -110,6 +110,12 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.evaluate(() => { location.hash = "templates"; });
         const script = await page.evaluate(() => { const t = [...document.querySelectorAll("#tplList .tpl")].find(e => /Model test script/.test(e.textContent)); return t ? t.querySelector("pre").textContent : ""; });
         check(script.includes('split("\\n---\\n")') && script.includes('+ "\\n")'), "model test script keeps its escapes");
+        // role playbooks: one skill file per role, with the approval rule
+        const pbCount = await page.locator("#pbRole option").count();
+        await page.selectOption("#pbRole", "accountant");
+        const pb = await page.textContent("#pbText");
+        const [pbDl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#pbSave")]);
+        check(pbCount === 13 && /^---\nname: accountant-assistant\n/.test(pb) && /Every payment, refund and top-up/.test(pb) && /Any payment, ticket issue, refund/.test(pb) && pbDl && pbDl.suggestedFilename() === "accountant-SKILL.md", `role playbooks: ${pbCount} roles, skill file with approval rules, .md download`);
 
         // team chapter and specialist roles
         await page.evaluate(() => { location.hash = "team"; });
@@ -167,6 +173,8 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
     }));
     check(mp.cards === 24 && mp.emptyFa === 0, `automation map: 24 cards with Persian titles, every card and desk filter has Persian (${mp.cards} cards, ${mp.emptyFa} without Persian)`);
     await page.evaluate(() => { location.hash = "templates"; });
+    const pbFa = await page.textContent("#pbText");
+    check(/## وظایف/.test(pbFa) && /name: reception-assistant/.test(pbFa) && /هرگز/.test(pbFa), "role playbook is written in Persian in Persian mode, header stays English");
     const tp = await page.evaluate(() => [...document.querySelectorAll("#tplList pre")].filter(p => p.offsetParent !== null).map(p => /[؀-ۿ]/.test(p.textContent)));
     check(tp.length === 6 && tp.filter(Boolean).length === 5, `templates: 6 visible, 5 in Persian in Persian mode (${tp.filter(Boolean).length}/${tp.length})`);
     await page.emulateMedia({ reducedMotion: "reduce" });

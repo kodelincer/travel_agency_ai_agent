@@ -282,3 +282,10 @@ Changed: Audit (both themes × both languages, all 23 chapters) found every cont
 Tests: All checks passed
 Scores: correctness 5 · usefulness 3 · robustness 5 · clarity 4
 Next: P2 — role playbooks (Hermes skill file per AI role), the last P2 item.
+
+## Iteration 38 · 2026-10-17
+Task: P2 — role playbooks (a Hermes skill file per AI role).
+Changed: Templates chapter has a new "Role playbooks" block: pick any of the 13 roles and get a ready SKILL.md, generated from the same role data as "AI office of 10" (mission, duties, schedule, access, the role's own approval rule, KPI) plus fixed office rules for every role (human approval for any payment/issue/refund/hold/contract; no invented prices; no card numbers; no data outside office systems; no guessing visa rules; output = draft + internal note + action log). Written in the reader's language with Persian numbering; the name/description header stays English. Copy and "Download .md" (downloads capability on claude.ai, normal download elsewhere). Tests: 13 roles, accountant file has its approval rules and downloads as accountant-SKILL.md; Persian mode shows Persian headings.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: backlog has no P1/P2 left; focus rotation (iteration 39 → robustness).
