@@ -16,7 +16,7 @@ if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright)
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
 const MIN_CHAPTERS = 22;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
-const MAX_TODO = 10;
+const MAX_TODO = 9;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -144,6 +144,12 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
     await page.evaluate(() => { location.hash = "day"; });
     const ctl = await page.evaluate(() => ({ opt: document.querySelector("#dSys option").textContent, ph: document.querySelector("#dTask").placeholder, role: document.querySelector("#dRole option").textContent }));
     check(ctl.opt === "سپهر" && /[\u0600-\u06FF]/.test(ctl.ph) && /[\u0600-\u06FF]/.test(ctl.role), `worksheet drop-downs and placeholder switch to Persian (${ctl.opt})`);
+    await page.evaluate(() => { location.hash = "map"; });
+    const mp = await page.evaluate(() => ({
+      cards: document.querySelectorAll("#caseGrid .card h4 .l-fa").length,
+      emptyFa: [...document.querySelectorAll("#caseGrid .l-fa, #deskFilters .l-fa")].filter(e => !/[؀-ۿ]/.test(e.textContent)).length,
+    }));
+    check(mp.cards === 24 && mp.emptyFa === 0, `automation map: 24 cards with Persian titles, every card and desk filter has Persian (${mp.cards} cards, ${mp.emptyFa} without Persian)`);
     const weak = [], overflow = [];
     for (const s of info) {
       await page.evaluate(i => { location.hash = i; }, s.id);

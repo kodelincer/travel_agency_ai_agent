@@ -586,16 +586,17 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 5 MAP -->
-<section id="map" data-title="Automation map" data-group="Automate" data-title-fa="نقشه‌ی خودکارسازی" data-fa="todo" hidden>
+<section id="map" data-title="Automation map" data-group="Automate" data-title-fa="نقشه‌ی خودکارسازی" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Everything an agent can do in your agency</h2>
-  <p class="lead">24 jobs across seven desks. Green jobs only read and draft, so start there. Red jobs touch money or tickets: the agent prepares them and a person presses the button. “Shutdown-proof” means the job can run on the domestic network with a local model.</p>
+  <h2><span class="l-en">Everything an agent can do in your agency</span><span class="l-fa">همه‌ی کارهایی که یک عامل در آژانس شما می‌تواند انجام دهد</span></h2>
+  <p class="lead l-en">24 jobs across seven desks. Green jobs only read and draft, so start there. Red jobs touch money or tickets: the agent prepares them and a person presses the button. “Shutdown-proof” means the job can run on the domestic network with a local model.</p>
+  <p class="lead l-fa">۲۴ کار در هفت بخش. کارهای سبز فقط می‌خوانند و پیش‌نویس می‌کنند؛ پس از همین‌ها شروع کنید. کارهای قرمز با پول یا بلیت سروکار دارند: عامل آن‌ها را آماده می‌کند و یک انسان دکمه را می‌زند. «مقاوم در قطعی» یعنی این کار با یک مدل محلی روی شبکه‌ی داخلی هم اجرا می‌شود.</p>
   <div class="row">
     <div class="filters" id="riskFilters" role="group" aria-label="Filter by risk">
-      <button class="chip" aria-pressed="true" data-f="all">All</button>
-      <button class="chip" aria-pressed="false" data-f="low">Low risk</button>
-      <button class="chip" aria-pressed="false" data-f="med">Medium</button>
-      <button class="chip" aria-pressed="false" data-f="high">Human approves</button>
+      <button class="chip" aria-pressed="true" data-f="all"><span class="l-en">All</span><span class="l-fa">همه</span></button>
+      <button class="chip" aria-pressed="false" data-f="low"><span class="l-en">Low risk</span><span class="l-fa">کم‌خطر</span></button>
+      <button class="chip" aria-pressed="false" data-f="med"><span class="l-en">Medium</span><span class="l-fa">متوسط</span></button>
+      <button class="chip" aria-pressed="false" data-f="high"><span class="l-en">Human approves</span><span class="l-fa">با تأیید انسان</span></button>
     </div>
     <div class="filters" id="deskFilters" role="group" aria-label="Filter by desk"></div>
   </div>
@@ -1422,23 +1423,52 @@ const CASES = [
   ["low", "Management", "Staff training coach", "Answers new staff questions about procedures, fare rules and systems from your own manuals.", "Explains", "Keeps manuals current", "yes"],
   ["med", "Management", "Review & complaint analysis", "Reads reviews and complaints, groups the causes and suggests fixes.", "Analyses", "Fixes the process", "yes"],
 ];
-const proofLabel = { yes: "Shutdown-proof", part: "Partly", no: "Needs global internet" };
-const riskLabel = { low: "Low risk", med: "Medium", high: "Human approves" };
+// Persian for CASES, same order: [title, what, agent does, you do]
+const CASES_FA = [
+  ["دسته‌بندی پیام‌ها", "پیام‌های بله، تلگرام، پیامک، سایت و ایمیل را می‌خواند؛ زبان و نیت را تشخیص می‌دهد (سفر جدید، تغییر، استرداد، شکایت)؛ تاریخ، مسافران و بودجه را بیرون می‌کشد و در CRM ثبت می‌کند.", "مرتب می‌کند، اطلاعات را بیرون می‌کشد، پاسخ اول را می‌نویسد", "خلاصه را می‌خواند و مشتری‌های داغ را برمی‌دارد"],
+  ["پاسخ فوری به پرسش‌های رایج", "به سؤال‌های بار، مدارک، ساعت کاری، روش پرداخت و وضعیت استرداد از پایگاه دانش خودتان پاسخ می‌دهد، شب و روز.", "فقط از اطلاعات تأییدشده پاسخ می‌دهد", "پایگاه دانش را به‌روز نگه می‌دارد"],
+  ["پیگیر اطلاعات ناقص", "به‌جای یک فرم طولانی، همان یک سؤالی را می‌پرسد که پیش‌فاکتور به آن گیر کرده (سن بچه‌ها، انعطاف تاریخ، بودجه).", "می‌پرسد و CRM را پر می‌کند", "کاری لازم نیست"],
+  ["پیش‌نویس پیش‌فاکتور و برنامه‌ی سفر", "نتیجه‌ی جستجو را به یک پیش‌فاکتور فارسی یا انگلیسی با نشان آژانس تبدیل می‌کند: ۲ تا ۳ گزینه، برنامه‌ی روزبه‌روز، خدمات و شرایط.", "سند و پیام را می‌سازد", "سود را بررسی می‌کند و می‌فرستد"],
+  ["یادآوری پیگیری", "پیش‌فاکتورهای بی‌جواب را زیر نظر دارد و بعد از ۴۸ ساعت یک یادآوری دوستانه می‌نویسد، یا وقتی قیمت چارتر تغییر کرد گزینه‌ی تازه پیشنهاد می‌کند.", "پیگیری و پیش‌نویس می‌کند", "یک بار قوانین ارسال را تأیید می‌کند"],
+  ["پیشنهاد خدمات جانبی", "در لحظه‌ی مناسب هر گفتگو، بیمه‌ی مسافرتی، ترانسفر، سیم‌کارت، ویزا یا گشت پیشنهاد می‌دهد.", "در پیش‌نویس پیشنهاد می‌دهد", "تصمیم می‌گیرد چه چیزی پیشنهاد شود"],
+  ["جستجوی چارتر و پرواز", "از طریق ارائه‌دهنده‌ی وب‌سرویس در سپهر، پرتو یا چارتر۷۲۴ جستجو می‌کند؛ قیمت، ساعت، بار مجاز و خوش‌قولی ایرلاین را مقایسه می‌کند.", "جستجو و رتبه‌بندی می‌کند", "گزینه‌ی پیشنهادی را انتخاب می‌کند"],
+  ["پایش قیمت چارتر", "مسیرهایی را که می‌فروشید (مثلاً تهران–استانبول، امام–دبی، تهران–مشهد) هر ساعت بررسی می‌کند و درباره‌ی کاهش قیمت، تمام شدن ظرفیت و بلوک‌های تازه هشدار می‌دهد.", "پایش می‌کند و هشدار می‌دهد", "تصمیم می‌گیرد کی بخرد یا بفروشد"],
+  ["یافتن هتل", "اول هتل‌های قراردادی شما را بررسی می‌کند، بعد وب‌سرویس‌ها را؛ بر اساس محله، ستاره، اتاق خانوادگی و فاصله تا حرم یا ساحل فیلتر می‌کند.", "فهرست کوتاه با دلیل می‌دهد", "انتخاب می‌کند، برای گروه‌ها چانه می‌زند"],
+  ["رزرو و صدور", "رزرو دقیق را آماده می‌کند: نام مطابق گذرنامه، کد ملی یا شماره‌ی گذرنامه، شرایط نرخ، درخواست صندلی و غذا.", "همه چیز را آماده می‌کند", "رزرو می‌گیرد، صادر می‌کند، پول دریافت می‌کند"],
+  ["چک‌لیست ویزا و مدارک", "از قوانینی که شما نگه می‌دارید برای هر مسافر چک‌لیست و مهلت می‌سازد و مدارک ناقص را به مشتری یادآوری می‌کند.", "آماده می‌کند و یادآوری می‌کند", "قوانین رسمی را تأیید می‌کند"],
+  ["میز اختلال پرواز", "تغییر ساعت، لغو پرواز و اطلاعیه‌های حریم هوایی را تشخیص می‌دهد؛ مسافران درگیر را فهرست می‌کند؛ پیام‌ها و گزینه‌های جابه‌جایی را می‌نویسد.", "تشخیص می‌دهد و پیشنهاد می‌کند", "جابه‌جا می‌کند، با مشتری تماس می‌گیرد"],
+  ["پیگیر استرداد", "هر استردادی را که به مشتری بدهکارید یا تأمین‌کننده به شما بدهکار است، با وضعیت، مهلت و قدم بعدی دنبال می‌کند.", "پیگیری و یادآوری می‌کند", "هر پرداخت را تأیید می‌کند"],
+  ["فهرست اتاق و مانیفست گروه", "نام‌ها را از فایل اکسل یا گفتگوها جمع می‌کند، فهرست اتاق و مانیفست می‌سازد و اطلاعات ناقص گذرنامه را پیدا می‌کند.", "جمع می‌کند و اعتبارسنجی می‌کند", "برای تأمین‌کننده می‌فرستد"],
+  ["دستیار ثبت‌نام زائر", "اطلاعاتی را که هر زائر برای ثبت‌نام در سماح لازم دارد آماده می‌کند و کد، بیمه و مراحل ارزی هر نفر را پیگیری می‌کند.", "چک‌لیست و پیگیری", "در سامانه‌ی رسمی ثبت‌نام می‌کند"],
+  ["پیام‌رسانی به گروه", "ساعت حرکت، محل قرار و تغییرات را با بله و پیامک برای کل گروه می‌فرستد و به سؤال‌های تک‌تک افراد پاسخ می‌دهد.", "می‌فرستد و پاسخ می‌دهد", "پیام‌ها را تأیید می‌کند"],
+  ["تطبیق حساب تأمین‌کنندگان", "فاکتورهای تأمین‌کنندگان و صورت‌حساب وب‌سرویس‌ها را با فروش شما تطبیق می‌دهد و اختلاف‌ها را علامت می‌زند.", "تطبیق می‌دهد و علامت می‌زند", "اختلاف را حل می‌کند، سند می‌زند"],
+  ["لینک پرداخت و یادآوری", "از طریق درگاه شما درخواست پرداخت می‌سازد و پیش از مهلت به مشتری یادآوری می‌کند.", "آماده می‌کند و یادآوری می‌کند", "مبلغ‌ها را تأیید می‌کند"],
+  ["هشدار ریسک ارزی", "پیش‌فاکتورهای ارزی نزدیک به انقضا و پکیج‌هایی را که هزینه‌شان با نرخ ارز تغییر کرده علامت می‌زند.", "پایش می‌کند و هشدار می‌دهد", "قیمت را دوباره تعیین می‌کند"],
+  ["محتوا و پیشنهادها", "پست اینستاگرام، مطلب کانال بله و پیامک تبلیغاتی را از پکیج‌ها و فصل‌های واقعی شما (نوروز، اربعین، تابستان) می‌نویسد.", "پیش‌نویس می‌نویسد و زمان‌بندی می‌کند", "ویرایش و تأیید می‌کند"],
+  ["راهنمای گردشگر خارجی", "پیش از سفر به پرسش‌های گردشگران خارجی درباره‌ی تور، ویزا و پرداخت به چینی، عربی، روسی یا انگلیسی پاسخ می‌دهد.", "پاسخ می‌دهد و مشتری را ارزیابی می‌کند", "فروش را نهایی می‌کند"],
+  ["گزارش صبح مدیر", "هر صبح: مشتری‌های تازه، پیش‌فاکتورهای در انتظار، استردادهای باز، تغییر قیمت‌ها و حجم کار همکاران.", "خلاصه می‌کند", "اولویت‌ها را تعیین می‌کند"],
+  ["مربی آموزش همکاران", "به سؤال‌های همکاران تازه درباره‌ی روال‌ها، قوانین نرخ و سامانه‌ها از روی دستورالعمل‌های خودتان پاسخ می‌دهد.", "توضیح می‌دهد", "دستورالعمل‌ها را به‌روز نگه می‌دارد"],
+  ["تحلیل نظرها و شکایت‌ها", "نظرها و شکایت‌ها را می‌خواند، علت‌ها را دسته‌بندی می‌کند و راه‌حل پیشنهاد می‌دهد.", "تحلیل می‌کند", "روال کار را اصلاح می‌کند"],
+];
+const DESK_FA = { "Front office": "پذیرش", "Sales": "فروش", "Reservations": "رزرواسیون", "Operations": "عملیات", "Pilgrimage & groups": "زیارتی و گروه‌ها", "Finance": "مالی", "Marketing": "بازاریابی", "Management": "مدیریت" };
+const proofLabel = { yes: ["Shutdown-proof", "مقاوم در قطعی"], part: ["Partly", "تا حدی"], no: ["Needs global internet", "نیاز به اینترنت بین‌الملل"] };
+const riskLabel = { low: ["Low risk", "کم‌خطر"], med: ["Medium", "متوسط"], high: ["Human approves", "با تأیید انسان"] };
 let riskF = "all", deskF = "all";
 const desks = [...new Set(CASES.map(c => c[1]))];
 const deskBox = $("#deskFilters");
-deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "true", "data-f": "all", text: "All desks" }));
-desks.forEach(d => deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "false", "data-f": d, text: d })));
+deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "true", "data-f": "all" }, T("All desks", "همه‌ی بخش‌ها")));
+desks.forEach(d => deskBox.append(el("button", { class: "chip", type: "button", "aria-pressed": "false", "data-f": d }, T(d, DESK_FA[d]))));
 function renderCases() {
   const g = $("#caseGrid"); g.replaceChildren();
-  for (const [risk, desk, title, what, ai, you, proof] of CASES) {
-    if ((riskF !== "all" && riskF !== risk) || (deskF !== "all" && deskF !== desk)) continue;
+  CASES.forEach(([risk, desk, title, what, ai, you, proof], i) => {
+    if ((riskF !== "all" && riskF !== risk) || (deskF !== "all" && deskF !== desk)) return;
+    const [tFa, whatFa, aiFa, youFa] = CASES_FA[i];
     g.append(el("article", { class: "card" },
-      el("div", { class: "card-head" }, el("div", {}, el("div", { class: "kicker", text: desk }), el("h4", { text: title })), el("span", { class: "pill " + risk, text: riskLabel[risk] })),
-      el("p", { text: what }),
-      el("div", { class: "split" }, el("div", {}, el("b", { text: "Agent does" }), ai), el("div", {}, el("b", { text: "You do" }), you)),
-      el("div", {}, el("span", { class: "pill " + proof, text: proofLabel[proof] }))));
-  }
+      el("div", { class: "card-head" }, el("div", {}, el("div", { class: "kicker" }, T(desk, DESK_FA[desk])), el("h4", {}, T(title, tFa))), el("span", { class: "pill " + risk }, T(...riskLabel[risk]))),
+      el("p", {}, T(what, whatFa)),
+      el("div", { class: "split" }, el("div", {}, el("b", {}, T("Agent does", "کار عامل")), T(ai, aiFa)), el("div", {}, el("b", {}, T("You do", "کار شما")), T(you, youFa))),
+      el("div", {}, el("span", { class: "pill " + proof }, T(...proofLabel[proof])))));
+  });
 }
 function wireChips(box, set) {
   box.addEventListener("click", e => {

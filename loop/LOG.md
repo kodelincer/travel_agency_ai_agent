@@ -167,3 +167,10 @@ Changed: Whole chapter bilingual: chatbot vs automation vs agent, the junior-cle
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate Automation map.
+
+## Iteration 22 · 2026-10-17
+Task: P1 — translate "Automation map" into Persian.
+Changed: Chapter text and risk filters bilingual; all 24 job cards rendered with T() from a parallel CASES_FA array (title, description, agent does, you do), Persian desk names (DESK_FA) for the kicker and desk filters, bilingual risk and shutdown-proof pills. New test: in Persian mode the map shows 24 cards with Persian titles and no desk filter or card text without Persian (fails on the old code, passes now). MAX_TODO 10 → 9.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
+Next: P1 — translate Try an agent (simulator).
