@@ -1,0 +1,13 @@
+{
+  "name": "travel-agency-ai-academy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A self-contained web app teaching travel agency owners to run their office with AI agents.",
+  "scripts": {
+    "build": "python3 build.py",
+    "test": "python3 build.py && node tests/smoke.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}

@@ -31,6 +31,24 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 - **GitHub Pages:** in the repository settings, open *Pages*, choose *Deploy from a branch*, select this branch and the root folder.
 - **Live agent runs:** the simulator in “Try an agent” (chapter 8) calls Claude only when the page is opened as a claude.ai Artifact. Everywhere else, use *Replay a recorded run*.
 
+## Test it
+
+```bash
+npm test          # or: python3 build.py && node tests/smoke.cjs
+```
+
+The tests open every chapter in a real browser at desktop and phone width, in light and dark mode, with web fonts blocked (as during an internet shutdown) and with browser storage blocked. They also check links, the agent simulator, the one-day worksheet and progress tracking. Install Playwright with `npm install` if it isn't available.
+
+## Improve it with the loop
+
+`loop/PROMPT.md` is a prompt that makes one small, researched and tested improvement per run, then records it:
+
+- `loop/BACKLOG.md`: prioritised improvements (P1–P3)
+- `loop/FACTS.md`: every factual claim with source, confidence and a re-check date
+- `loop/LOG.md`: one entry per iteration with self-assessment scores
+
+Run it in Claude Code with `/loop Follow loop/PROMPT.md exactly`, or once by pasting the prompt. See the end of `loop/PROMPT.md` for scheduling options.
+
 ## Edit it
 
 The source is `src/academy.html` (a page fragment so it can also be published as a claude.ai Artifact). After editing, rebuild the full page:

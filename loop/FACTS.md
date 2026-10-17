@@ -1,0 +1,32 @@
+# Fact register
+
+Every factual claim in the app that could change or be wrong. The loop re-checks rows whose **re-check by** date has passed, and updates the app if a fact changed.
+Confidence: **high** = official source or two independent reliable sources · **medium** = one reliable source · **low** = vendor page, blog, or conflicting reports (must be shown as uncertain in the app).
+
+| # | Claim (as used in the app) | Chapter | Source | Checked | Confidence | Re-check by |
+|---|---|---|---|---|---|---|
+| 1 | IDC forecasts 30% of travel bookings executed by AI agents by 2030 | Start, Worldwide | https://www.idc.com/resource-center/blog/agentic-ai-will-redefine-travel-and-hospitality-in-2026/ | 2026-10-17 | medium | 2027-04-01 |
+| 2 | 62% of 4,000 travelers expect to use an advisor for most trips (Internova Index) | Start | https://www.journaldespalaces.com/pressrelease-76871-internova-index-finds-leisure-travel-demand-set-to-surge-into-2026.html | 2026-10-17 | medium | 2027-04-01 |
+| 3 | Only 2% of travelers trust AI to book autonomously (Skift, 2025) | Start, Guardrails | https://www.levelfare.com/guides/travel-apis-mcp-servers-for-ai-agents/ (secondary citation) | 2026-10-17 | low | 2027-01-15 |
+| 4 | Fora raised $60M at a $1B valuation (July 2026) | Worldwide | https://techcrunch.com/2026/07/16/ai-powered-travel-agency-fora-hits-unicorn-status-raises-60m/ | 2026-10-17 | high | 2027-04-01 |
+| 5 | 90% of USTOA members plan to use advisors for sales in 2026 | Worldwide | https://recommend.com/featured/ustoas-2026-outlook-confidence-trends-and-travel-advisors-at-the-center/ | 2026-10-17 | medium | 2027-01-15 |
+| 6 | McKinsey's four agentic-travel scenarios | Worldwide | https://www.mckinsey.com/featured-insights/mckinsey-live/webinars/agentic-ai-and-the-future-of-travel-what-executives-need-to-know | 2026-10-17 | medium | 2027-04-01 |
+| 7 | Foreign arrivals to Iran: ~7.4M (1403) → ~6.2M (1404) → under 1M in spring 1405; Tir 1405 +19.9% | Start, Iran | https://www.didarnews.ir/fa/news/206641 | 2026-10-17 | medium | 2026-12-01 |
+| 8 | Outbound trips from Iran −18% in the first five months of 1405; Khorasan Razavi foreign-tour sales −60% | Iran | https://www.didarnews.ir/fa/news/206641 | 2026-10-17 | medium | 2026-12-01 |
+| 9 | War began 28 Feb 2026; ceasefire 8 Apr; IKA/Mehrabad phased reopening 20 Apr after ~58 days | Iran, Resilience | https://en.wikipedia.org/wiki/2026_Iran_war · https://www.aljazeera.com/news/2026/5/1/commercial-flights-from-tehrans-main-airport-resume-amid-cautious-normalcy | 2026-10-17 | medium (reports conflict on later dates) | 2026-11-15 |
+| 10 | Nationwide internet shutdown from 8 Jan 2026; global access heavily restricted most of the year | Iran, Resilience | https://en.wikipedia.org/wiki/2026_Internet_blackout_in_Iran · https://www.npr.org/2026/05/28/g-s1-124610/iranians-back-online | 2026-10-17 | high | 2026-11-15 |
+| 11 | Rial passed 2 million per USD; 84% annual inflation in August 2026 | Iran, Resilience | https://www.congress.gov/crs-product/R48887 | 2026-10-17 | medium | 2026-11-15 |
+| 12 | Arbaeen 1405: Samah registration from 9 Tir; Arbaeen on 13 Mordad; 200,000 IQD per pilgrim; insurance by Bimeh Iran | Iran | https://www.mehrnews.com/news/6875301 | 2026-10-17 | high | 2027-06-01 (next season) |
+| 13 | Licence categories: بند الف (air tickets), بند ب (tours); online sales need a licence and e-trust badge | Iran | https://www.atgolestan.com/blogs/ (agency blog) · https://www.safarme.ir/blog/news/legalization-of-online-sales-of-travel-services/ | 2026-10-17 | low | due now (backlog P1) |
+| 14 | Sepehr, Parto, Charter724, Moqim, Raviss, Gohar are domestic reservation web services sold via integrators (CityNet, BasisFly, Faranegar) | Iran, Stack | https://citynet.ir/service/sepehr/ (vendor pages) | 2026-10-17 | low | due now (backlog P1) |
+| 15 | Anthropic does not support Iran; its regions policy (12 May 2026) covers companies headquartered in unsupported regions | Iran, Self-review | https://www.anthropic.com/legal/supported-regions | 2026-10-17 | medium (list not read in full) | 2026-12-01 |
+| 16 | WhatsApp blocked in Iran; Telegram partly reachable; Bale has a Telegram-compatible bot API (tapi.bale.ai) | Iran, Stack | https://bubblyphone.com/hub/free-call-to-iran (consumer guide) · https://github.com/masein/accounting-assistant-web/pull/173 | 2026-10-17 | low | 2026-12-01 |
+| 17 | Hermes Agent: local models via OpenAI-compatible endpoint (Ollama `http://localhost:11434/v1`, `ollama launch hermes`); needs ≥64k context; some tools call external services | Agents, Stack | https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup · https://docs.ollama.com/integrations/hermes | 2026-10-17 | medium | 2027-01-15 |
+| 18 | For Persian, Qwen mid-size, Gemma 3 27B and DeepSeek are strong open candidates (benchmarks test older versions) | Stack | https://arxiv.org/pdf/2510.22616 · https://aclanthology.org/2025.findings-naacl.147.pdf | 2026-10-17 | low | 2026-12-01 |
+| 19 | GPU-rental subsidy: up to 200M tomans (half the cost) for private companies | Stack | https://donya-e-eqtesad.com/fa/tiny/news-4145179 | 2026-10-17 | medium | 2026-12-01 |
+| 20 | Only ~7–8% of Iranian companies use a CRM (Didar survey); Didar announced AI assistant "Aida" | Stack | https://www.zoomit.ir/tech-iran/450340-iran-crm-market-gap-didar-strategy-aida-ai/ | 2026-10-17 | low (vendor survey) | 2027-01-15 |
+| 21 | Tern ≈ $35–49 per seat per month; TravelSmart $299–599 per year | Stack, Products | https://sagnikbhattacharya.com/blog/best-ai-tools-travel-agents · https://www.capterra.com/p/10037972/TravelSmart/ | 2026-10-17 | low | 2027-01-15 |
+| 22 | Travel-insurance commission abroad often 20–40% (sources vary) | Worldwide, Revenue | https://dmcquote.com/guides/travel-agent-commission-rates-2026 | 2026-10-17 | low | 2027-04-01 |
+| 23 | Exit-tax amounts for 1405 differ between published guides | The whole job | https://www.flytoday.ir/blog/departure-tax/ · https://www.alibaba.ir/mag/departure-tax/ | 2026-10-17 | low | due now (backlog P2) |
+| 24 | The tax system (سامانه مودیان) has a ticket invoice pattern; agency obligations depend on registration | The whole job | https://www.entekhab.ir/fa/news/895374/ | 2026-10-17 | low | due now (backlog P2) |
+| 25 | AvalAI offers an OpenAI-compatible endpoint; GapGPT says it resells GPT, Claude and Gemini for rials | Iran, Stack | https://docs.avalai.ir/en/models/gpt-5.5 · https://gapgpt.app/blog/api-gapgpt/1221/ | 2026-10-17 | medium / low | 2026-12-01 |
