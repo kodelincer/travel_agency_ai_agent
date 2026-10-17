@@ -1167,12 +1167,13 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 11 PLAN -->
-<section id="plan" data-title="90-day plan" data-group="Act" data-title-fa="برنامه‌ی ۹۰ روزه" data-fa="todo" hidden>
+<section id="plan" data-title="90-day plan" data-group="Act" data-title-fa="برنامه‌ی ۹۰ روزه" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>Your 90-day plan</h2>
-  <p class="lead">Built for the Iran-resilient track. Tick items as you finish them; progress is saved in this browser only.</p>
+  <h2><span class="l-en">Your 90-day plan</span><span class="l-fa">برنامه‌ی ۹۰ روزه‌ی شما</span></h2>
+  <p class="lead l-en">Built for the Iran-resilient track. Tick items as you finish them; progress is saved in this browser only.</p>
+  <p class="lead l-fa">برای مسیر مقاوم در ایران طراحی شده است. هر کار را که تمام کردید تیک بزنید؛ پیشرفت فقط در همین مرورگر ذخیره می‌شود.</p>
   <div style="display:grid;gap:14px" id="weeks"></div>
-  <div class="row"><button class="btn ghost small" id="resetPlan" type="button">Clear my ticks</button></div>
+  <div class="row"><button class="btn ghost small" id="resetPlan" type="button"><span class="l-en">Clear my ticks</span><span class="l-fa">پاک کردن تیک‌ها</span></button></div>
 </section>
 
 <!-- =========================================================== 12 TEMPLATES -->
@@ -1905,48 +1906,49 @@ wireChips($("#ideaFilters"), v => { ideaF = v; renderIdeas(); });
 renderIdeas();
 
 /* ================================================= chapter 11: plan */
+// [[title en, title fa], [[what, why, what fa, why fa], ...]]; tick keys are "phase.item", so keep the order
 const PLAN = [
-  ["Days 1–14 · Learn on your own desk", [
-    ["Log one full working day with the “Watch one working day” tool", "Shows where the hours go and which AI role to build first."],
-    ["List your 15 most repeated tasks and how long each takes", "This list decides what to automate and how you will measure savings."],
-    ["Write the office playbook: fees, markups, tone, refund rules, licence limits", "It becomes the agent’s standing instructions (see Templates)."],
-    ["Collect 50 real customer messages (remove names and IDs)", "Your test set for choosing a model and checking the agent."],
-    ["Run the “Try an agent” simulator with your own message styles", "Notice where it asks for missing data and where it guesses."],
+  [["Days 1–14 · Learn on your own desk", "روز ۱ تا ۱۴ · یادگیری پشت میز خودتان"], [
+    ["Log one full working day with the “Watch one working day” tool", "Shows where the hours go and which AI role to build first.", "یک روز کاری کامل را با ابزار «ثبت یک روز کاری» ثبت کنید", "نشان می‌دهد ساعت‌ها کجا می‌روند و اول کدام نقش هوش مصنوعی را بسازید."],
+    ["List your 15 most repeated tasks and how long each takes", "This list decides what to automate and how you will measure savings.", "۱۵ کار پرتکرارتان و زمان هر کدام را فهرست کنید", "همین فهرست تعیین می‌کند چه چیزی خودکار شود و صرفه‌جویی را چطور اندازه بگیرید."],
+    ["Write the office playbook: fees, markups, tone, refund rules, licence limits", "It becomes the agent’s standing instructions (see Templates).", "دستورالعمل دفتر را بنویسید: کارمزد، سود، لحن، قوانین استرداد، محدوده‌ی مجوز", "این متن دستورالعمل ثابت عامل می‌شود (فصل «قالب‌های آماده»)."],
+    ["Collect 50 real customer messages (remove names and IDs)", "Your test set for choosing a model and checking the agent.", "۵۰ پیام واقعی مشتری جمع کنید (نام و شماره‌ها را حذف کنید)", "مجموعه‌ی آزمون شما برای انتخاب مدل و بررسی عامل."],
+    ["Run the “Try an agent” simulator with your own message styles", "Notice where it asks for missing data and where it guesses.", "شبیه‌ساز «یک عامل را امتحان کنید» را با پیام‌هایی به سبک مشتری‌های خودتان اجرا کنید", "دقت کنید کجا اطلاعات ناقص را می‌پرسد و کجا حدس می‌زند."],
   ]],
-  ["Days 15–30 · Your first private agent, inside Iran", [
-    ["Rent a GPU server in an Iranian data centre, or buy one for the office", "Check the GPU rental subsidy for private companies."],
-    ["Install Ollama, pull 2–3 open models, and score them on your 50 messages", "Pick the one with the best Persian and correct extraction."],
-    ["Install Hermes Agent and point it to the local model (64k+ context)", "Disable tools that need the global internet if you want full offline operation."],
-    ["Connect a private Bale or Telegram bot for staff only", "Zero customer risk while you learn."],
-    ["Teach 3 skills: build a quote, follow up, daily owner brief", "Hermes saves skills as files you can read and correct."],
+  [["Days 15–30 · Your first private agent, inside Iran", "روز ۱۵ تا ۳۰ · اولین عامل خصوصی شما، داخل ایران"], [
+    ["Rent a GPU server in an Iranian data centre, or buy one for the office", "Check the GPU rental subsidy for private companies.", "یک سرور GPU در دیتاسنتر داخلی اجاره کنید، یا برای دفتر بخرید", "یارانه‌ی اجاره‌ی GPU برای شرکت‌های خصوصی را بررسی کنید."],
+    ["Install Ollama, pull 2–3 open models, and score them on your 50 messages", "Pick the one with the best Persian and correct extraction.", "Ollama را نصب کنید، ۲ یا ۳ مدل متن‌باز بگیرید و روی همان ۵۰ پیام امتیاز بدهید", "مدلی را انتخاب کنید که بهترین فارسی و استخراج درست اطلاعات را دارد."],
+    ["Install Hermes Agent and point it to the local model (64k+ context)", "Disable tools that need the global internet if you want full offline operation.", "Hermes Agent را نصب کنید و به مدل محلی وصل کنید (پنجره‌ی متن ۶۴ هزار توکن یا بیشتر)", "اگر کار کاملاً آفلاین می‌خواهید، ابزارهایی را که اینترنت بین‌الملل لازم دارند خاموش کنید."],
+    ["Connect a private Bale or Telegram bot for staff only", "Zero customer risk while you learn.", "یک ربات خصوصی بله یا تلگرام فقط برای همکاران وصل کنید", "در دوره‌ی یادگیری هیچ خطری متوجه مشتری نیست."],
+    ["Teach 3 skills: build a quote, follow up, daily owner brief", "Hermes saves skills as files you can read and correct.", "سه مهارت یاد بدهید: ساخت پیش‌فاکتور، پیگیری، گزارش روزانه‌ی مدیر", "Hermes مهارت‌ها را به‌صورت فایل ذخیره می‌کند تا بخوانید و اصلاح کنید."],
   ]],
-  ["Days 31–60 · Connect your systems", [
-    ["Ask your integrator for API access to Sepehr, Parto or Charter724 (test account)", "Start with search only; no holds or issues yet."],
-    ["Load contracted hotel rates and packages into a sheet the agent reads first", "Protects your margin."],
-    ["Set up a CRM (Iranian or self-hosted) and let the agent log every lead", "Your customer list becomes an asset you own."],
-    ["Schedule hourly charter price checks on your top 5 routes", "Your first measurable win."],
-    ["Write disruption and refund templates; build the refund tracker", "Ready before the next crisis, not during it."],
+  [["Days 31–60 · Connect your systems", "روز ۳۱ تا ۶۰ · وصل کردن سامانه‌ها"], [
+    ["Ask your integrator for API access to Sepehr, Parto or Charter724 (test account)", "Start with search only; no holds or issues yet.", "از ارائه‌دهنده‌ی وب‌سرویس، دسترسی API به سپهر، پرتو یا چارتر۷۲۴ بخواهید (حساب آزمایشی)", "فقط با جستجو شروع کنید؛ هنوز رزرو و صدور نه."],
+    ["Load contracted hotel rates and packages into a sheet the agent reads first", "Protects your margin.", "نرخ هتل‌های قراردادی و پکیج‌ها را در فایلی بگذارید که عامل اول آن را بخواند", "از سود شما محافظت می‌کند."],
+    ["Set up a CRM (Iranian or self-hosted) and let the agent log every lead", "Your customer list becomes an asset you own.", "یک CRM راه بیندازید (ایرانی یا روی سرور خودتان) و بگذارید عامل هر مشتری بالقوه را ثبت کند", "فهرست مشتری‌ها به دارایی خودتان تبدیل می‌شود."],
+    ["Schedule hourly charter price checks on your top 5 routes", "Your first measurable win.", "بررسی ساعتی قیمت چارتر را برای ۵ مسیر اصلی‌تان زمان‌بندی کنید", "اولین موفقیت قابل اندازه‌گیری شما."],
+    ["Write disruption and refund templates; build the refund tracker", "Ready before the next crisis, not during it.", "قالب پیام اختلال و استرداد را بنویسید؛ پیگیر استرداد را بسازید", "پیش از بحران بعدی آماده باشید، نه وسط آن."],
   ]],
-  ["Days 61–90 · Customers, carefully", [
-    ["Open the Bale bot to customers with a ‘talk to a person’ button", "Fast answers, human takeover anytime."],
-    ["Turn on the approval queue: agent prepares, staff hold, issue and charge", "The golden rule: AI never moves money alone."],
-    ["Add SMS as the fallback channel for urgent updates", "Works when everything else is down."],
-    ["Review KPIs: reply time, quotes per day, conversion, attach rate", "Keep what pays; switch off what doesn’t."],
-    ["Pick one product from “Products to sell” to offer to two friendly agencies", "Your first software revenue."],
+  [["Days 61–90 · Customers, carefully", "روز ۶۱ تا ۹۰ · مشتری‌ها، با احتیاط"], [
+    ["Open the Bale bot to customers with a ‘talk to a person’ button", "Fast answers, human takeover anytime.", "ربات بله را با دکمه‌ی «گفتگو با کارشناس» به روی مشتری‌ها باز کنید", "پاسخ سریع، و هر وقت لازم شد یک انسان کار را دست می‌گیرد."],
+    ["Turn on the approval queue: agent prepares, staff hold, issue and charge", "The golden rule: AI never moves money alone.", "صف تأیید را روشن کنید: عامل آماده می‌کند، همکاران رزرو می‌گیرند، صادر می‌کنند و پول دریافت می‌کنند", "قانون طلایی: هوش مصنوعی هرگز به‌تنهایی پول جابه‌جا نمی‌کند."],
+    ["Add SMS as the fallback channel for urgent updates", "Works when everything else is down.", "پیامک را به‌عنوان کانال پشتیبان برای خبرهای فوری اضافه کنید", "وقتی همه چیز قطع است، کار می‌کند."],
+    ["Review KPIs: reply time, quotes per day, conversion, attach rate", "Keep what pays; switch off what doesn’t.", "شاخص‌ها را مرور کنید: زمان پاسخ، تعداد پیش‌فاکتور در روز، نرخ تبدیل، فروش جانبی", "آنچه سود دارد نگه دارید؛ آنچه ندارد خاموش کنید."],
+    ["Pick one product from “Products to sell” to offer to two friendly agencies", "Your first software revenue.", "یک محصول از فصل «محصولات قابل فروش» انتخاب کنید و به دو آژانس دوست پیشنهاد دهید", "اولین درآمد نرم‌افزاری شما."],
   ]],
 ];
 const planDone = new Set(store.get("taa.plan", []));
 const weeks = $("#weeks");
-PLAN.forEach(([title, items], pi) => {
+PLAN.forEach(([[title, titleFa], items], pi) => {
   const bar = el("i"), count = el("span", { class: "status" });
-  const box = el("div", { class: "phase" }, el("div", { class: "phase-head" }, el("h3", { text: title }), count), el("div", { class: "progress" }, bar));
-  const update = () => { const n = items.filter((_, i) => planDone.has(`${pi}.${i}`)).length; bar.style.width = (n / items.length * 100) + "%"; count.textContent = `${n} / ${items.length}`; };
-  items.forEach(([what, why], i) => {
+  const box = el("div", { class: "phase" }, el("div", { class: "phase-head" }, el("h3", {}, T(title, titleFa)), count), el("div", { class: "progress" }, bar));
+  const update = () => { const n = items.filter((_, i) => planDone.has(`${pi}.${i}`)).length; bar.style.width = (n / items.length * 100) + "%"; count.replaceChildren(T(`${n} / ${items.length}`, `${faNum(n)} از ${faNum(items.length)}`)); };
+  items.forEach(([what, why, whatFa, whyFa], i) => {
     const id = `p${pi}_${i}`;
     const cb = el("input", { type: "checkbox", id });
     cb.checked = planDone.has(`${pi}.${i}`);
     cb.addEventListener("change", () => { cb.checked ? planDone.add(`${pi}.${i}`) : planDone.delete(`${pi}.${i}`); store.set("taa.plan", [...planDone]); update(); });
-    box.append(el("div", { class: "check" }, cb, el("label", { for: id }, what, el("span", { class: "why", text: why }))));
+    box.append(el("div", { class: "check" }, cb, el("label", { for: id }, T(what, whatFa), el("span", { class: "why" }, T(why, whyFa)))));
   });
   update(); weeks.append(box);
 });

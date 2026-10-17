@@ -202,3 +202,10 @@ Changed: Chapter text, filters and the "How to choose" callout bilingual (Tern/T
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — translate 90-day plan.
+
+## Iteration 27 · 2026-10-17
+Task: P1 — translate "90-day plan" into Persian.
+Changed: Chapter text and the reset button bilingual; PLAN now carries Persian phase titles and Persian "what/why" for all 20 items, rendered with T(); the per-phase counter reads "۲ از ۵" in Persian. Item order and the saved tick keys ("phase.item") are unchanged, so existing ticks survive. MAX_TODO 5 → 4.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Templates.
