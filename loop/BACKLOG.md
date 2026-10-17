@@ -7,7 +7,6 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - (done 2026-10-17) All 22 chapters are bilingual; `MAX_TODO` is 0. Keep every new text bilingual (CLAUDE.md).
 
 ## P2
-- **Exit-permission facts:** find the official procedure for exit permission (men of military-service age, guardian consent for minors) and add it to The whole job. (Exit-tax amounts done in iteration 6.)
 - **Export the one-day log** as a CSV file the owner can keep (needs the `downloads` capability when published as an Artifact; keep the copy button as fallback).
 - **Glossary chapter:** PNR, charter, TTL, MCP, LLM, skill, gateway, همکار, بند الف, سماح, and others, each with one plain sentence.
 - **Accessibility pass:** heading order, focus order in the simulator, contrast of muted text in both themes, labels for every control; add an automated check to the tests.

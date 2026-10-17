@@ -253,3 +253,11 @@ Sources: FACTS #46–47
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P2 — exit-permission facts, or glossary chapter.
+
+## Iteration 34 · 2026-10-17
+Task: P2 — exit-permission facts.
+Changed: "The whole job" now has a bilingual exit-permission checklist inside "Check these with the source": conscription-age men (Sakha system, bail, the Arbaeen 1405 no-bail window, absentees), unmarried under-18s (guardian consent, Passport Law art. 18), married women (husband's written consent art. 18 para 3, prosecutor in emergencies, art. 19 objection, reported bill), plus how the Documents officer agent handles it (one neutral question, record, remind before ticketing, never judge). Framed as a staff checklist, not legal advice. Source labels in that chapter made bilingual. FACTS #48–49.
+Sources: FACTS #48–49
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P2 — glossary chapter (bilingual).
