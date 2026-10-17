@@ -807,31 +807,64 @@ Send an SMS notice?  [Approve]
 </section>
 
 <!-- =========================================================== 7 STACK -->
-<section id="stack" data-title="Tool stack" data-group="Automate" data-title-fa="ابزارها و زیرساخت" data-fa="todo" hidden>
+<section id="stack" data-title="Tool stack" data-group="Automate" data-title-fa="ابزارها و زیرساخت" hidden>
   <div class="eyebrow">Chapter</div>
-  <h2>The tool stack: two tracks</h2>
-  <p class="lead">Same architecture, different parts. An agency inside Iran should build on the left column; the right column applies to agencies elsewhere or a legally separate company abroad.</p>
+  <h2><span class="l-en">The tool stack: two tracks</span><span class="l-fa">ابزارها و زیرساخت: دو مسیر</span></h2>
+  <p class="lead l-en">Same architecture, different parts. An agency inside Iran should build on the first column; the second column applies to agencies elsewhere or a legally separate company abroad.</p>
+  <p class="lead l-fa">معماری یکی است، قطعه‌ها فرق دارند. آژانسی که داخل ایران است باید روی ستون اول بسازد؛ ستون دوم برای آژانس‌های خارج از ایران یا شرکتی است که قانونی و جداگانه در خارج کار می‌کند.</p>
   <div class="track">
     <div>
-      <h3>Iran-resilient track</h3>
-      <div class="card star"><div class="kicker">Brain</div><h4>Hermes Agent + local model</h4><p>Run Hermes on a server in an Iranian data centre or in your office. Serve an open-weight model with Ollama (OpenAI-compatible endpoint <code>http://localhost:11434/v1</code>; Ollama also offers <code>ollama launch hermes</code>). Hermes needs a model with at least 64k context. Candidates for Persian: Qwen (mid-size dense), Gemma 3 27B, DeepSeek. Test on your own Persian messages first.</p><p class="meta">Hardware: a 24 GB GPU can run a quantised ~27–32B model for a small office. The science vice-presidency has subsidised up to 200M tomans (half) of GPU rental for private companies; check current terms. Disable Hermes tools that call external services (web search, cloud browser) if you need full offline operation.</p></div>
-      <div class="card"><div class="kicker">Flights</div><h4>Sepehr, Parto, Charter724…</h4><p>Domestic reservation web services, sold to agencies through integrators (for example CityNet, BasisFly, Iran-Tech, HiHoliday, Faranegar). A dedicated Sepehr connection is negotiated with Sepehr’s own team. Integrators describe REST APIs for search, booking, issuing, online refunds, financial reports and partner-agency (همکار) accounts with credit limits. Full documentation usually comes only after you buy a subscription.</p><p>Wrap the API as agent tools: search, price check, hold, issue, refund. Hold and issue stay behind human approval. Some services show a captcha before booking (Charter724 does), so a person completes that step anyway.</p></div>
-      <div class="card"><div class="kicker">Hotels &amp; tours</div><h4>Your contracts first</h4><p>Domestic hotel web services from the same integrators, plus your own contracted rates in a spreadsheet or database the agent reads. For foreign hotels, work only with suppliers that can legally serve you.</p></div>
-      <div class="card"><div class="kicker">CRM</div><h4>Iranian CRM or your own</h4><p>Local CRMs such as Didar (which announced an AI sales assistant, “Aida”) or a simple self-hosted database. Only about 7–8% of Iranian companies use a CRM, so having one is already an edge. Check each vendor’s security practices.</p></div>
-      <div class="card"><div class="kicker">Channels</div><h4>Bale, SMS, website, Telegram</h4><p>Bale’s bot API is Telegram-compatible (<code>tapi.bale.ai</code>), so one bot codebase can serve both. Add SMS through a domestic SMS provider as the fallback that always works. Keep Instagram and Telegram for marketing.</p><p class="meta">Domestic messengers (Bale, Eitaa, Soroush, Rubika, Gap, iGap) are linked by a national Message Exchange Bus, so a customer on one can reach another. A 2024 Open Technology Fund audit found security weaknesses in these apps (for example, Rubika allowed unencrypted traffic), so never send passport scans or card data through them. Sources: <a href="https://en.wikipedia.org/wiki/Message_Exchange_Bus" target="_blank" rel="noopener">Message Exchange Bus</a> · <a href="https://www.opentech.fund/security-safety-audits/iranian-messaging-apps-security-audit/" target="_blank" rel="noopener">OTF audit</a>.</p></div>
-      <div class="card"><div class="kicker">Payments</div><h4>Shaparak gateways &amp; payment links</h4><p>Use licensed domestic payment gateways and send payment links. The agent never sees card data.</p></div>
+      <h3><span class="l-en">Iran-resilient track</span><span class="l-fa">مسیر مقاوم برای ایران</span></h3>
+      <div class="card star"><div class="kicker"><span class="l-en">Brain</span><span class="l-fa">مغز</span></div><h4><span class="l-en">Hermes Agent + local model</span><span class="l-fa">Hermes Agent + مدل محلی</span></h4>
+        <p class="l-en">Run Hermes on a server in an Iranian data centre or in your office. Serve an open-weight model with Ollama (OpenAI-compatible endpoint <code>http://localhost:11434/v1</code>; Ollama also offers <code>ollama launch hermes</code>). Hermes needs a model with at least 64k context. Candidates for Persian: Qwen (mid-size dense), Gemma 3 27B, DeepSeek. Test on your own Persian messages first.</p>
+        <p class="l-fa">Hermes را روی سروری در یک دیتاسنتر ایرانی یا در دفتر خودتان اجرا کنید. یک مدل متن‌باز را با Ollama راه بیندازید (نشانی سازگار با OpenAI: <code>http://localhost:11434/v1</code>؛ Ollama دستور <code>ollama launch hermes</code> را هم دارد). Hermes به مدلی با حافظه‌ی متنی دست‌کم ۶۴ هزار توکن نیاز دارد. گزینه‌ها برای فارسی: Qwen (اندازه‌ی متوسط)، Gemma 3 27B و DeepSeek. اول با پیام‌های فارسی خودتان آزمایش کنید.</p>
+        <p class="meta l-en">Hardware: a 24 GB GPU can run a quantised ~27–32B model for a small office. The science vice-presidency has subsidised up to 200M tomans (half) of GPU rental for private companies; check current terms. Disable Hermes tools that call external services (web search, cloud browser) if you need full offline operation.</p>
+        <p class="meta l-fa">سخت‌افزار: یک کارت گرافیک ۲۴ گیگابایتی می‌تواند مدل فشرده‌ی حدود ۲۷ تا ۳۲ میلیارد پارامتری را برای یک دفتر کوچک اجرا کند. معاونت علمی تا ۲۰۰ میلیون تومان (نصف هزینه) از اجاره‌ی GPU شرکت‌های خصوصی را یارانه داده است؛ شرایط فعلی را بررسی کنید. اگر کار کاملاً آفلاین می‌خواهید، ابزارهایی از Hermes را که به سرویس بیرونی وصل می‌شوند (جستجوی وب، مرورگر ابری) خاموش کنید.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Flights</span><span class="l-fa">پرواز</span></div><h4><span class="l-en">Sepehr, Parto, Charter724…</span><span class="l-fa">سپهر، پرتو، چارتر۷۲۴…</span></h4>
+        <p class="l-en">Domestic reservation web services, sold to agencies through integrators (for example CityNet, BasisFly, Iran-Tech, HiHoliday, Faranegar). A dedicated Sepehr connection is negotiated with Sepehr’s own team. Integrators describe REST APIs for search, booking, issuing, online refunds, financial reports and partner-agency (همکار) accounts with credit limits. Full documentation usually comes only after you buy a subscription.</p>
+        <p class="l-en">Wrap the API as agent tools: search, price check, hold, issue, refund. Hold and issue stay behind human approval. Some services show a captcha before booking (Charter724 does), so a person completes that step anyway.</p>
+        <p class="l-fa">وب‌سرویس‌های رزرو داخلی که از طریق شرکت‌های ارائه‌دهنده به آژانس‌ها فروخته می‌شوند (مثلاً سیتی‌نت، بیسیس‌فلای، ایران‌تک، های‌هالیدی، فرانگر). اتصال اختصاصی سپهر با تیم خود سپهر مذاکره می‌شود. ارائه‌دهندگان از API برای جستجو، رزرو، صدور، استرداد آنلاین، گزارش مالی و حساب آژانس‌های همکار با سقف اعتبار صحبت می‌کنند. مستندات کامل معمولاً بعد از خرید اشتراک داده می‌شود.</p>
+        <p class="l-fa">API را به‌صورت ابزارهای عامل تعریف کنید: جستجو، بررسی قیمت، رزرو موقت، صدور، استرداد. رزرو موقت و صدور پشت تأیید انسان می‌مانند. برخی سرویس‌ها پیش از رزرو کپچا نشان می‌دهند (چارتر۷۲۴ چنین است)؛ پس آن مرحله را به‌هرحال یک نفر انجام می‌دهد.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Hotels &amp; tours</span><span class="l-fa">هتل و تور</span></div><h4><span class="l-en">Your contracts first</span><span class="l-fa">اول قراردادهای خودتان</span></h4>
+        <p class="l-en">Domestic hotel web services from the same integrators, plus your own contracted rates in a spreadsheet or database the agent reads. For foreign hotels, work only with suppliers that can legally serve you.</p>
+        <p class="l-fa">وب‌سرویس هتل‌های داخلی از همان ارائه‌دهندگان، به‌علاوه‌ی نرخ‌های قراردادی خودتان در صفحه‌گسترده یا پایگاه داده‌ای که عامل می‌خواند. برای هتل‌های خارجی فقط با تأمین‌کنندگانی کار کنید که قانوناً می‌توانند به شما خدمت دهند.</p></div>
+      <div class="card"><div class="kicker">CRM</div><h4><span class="l-en">Iranian CRM or your own</span><span class="l-fa">CRM ایرانی یا ساخت خودتان</span></h4>
+        <p class="l-en">Local CRMs such as Didar (which announced an AI sales assistant, “Aida”) or a simple self-hosted database. Only about 7–8% of Iranian companies use a CRM, so having one is already an edge. Check each vendor’s security practices.</p>
+        <p class="l-fa">CRMهای ایرانی مانند دیدار (که دستیار فروش هوش مصنوعی «آیدا» را معرفی کرده) یا یک پایگاه داده‌ی ساده روی سرور خودتان. فقط حدود ۷ تا ۸ درصد شرکت‌های ایرانی CRM دارند؛ پس داشتن آن خودش یک برتری است. وضعیت امنیت هر فروشنده را بررسی کنید.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Channels</span><span class="l-fa">کانال‌ها</span></div><h4><span class="l-en">Bale, SMS, website, Telegram</span><span class="l-fa">بله، پیامک، سایت، تلگرام</span></h4>
+        <p class="l-en">Bale’s bot API is Telegram-compatible (<code>tapi.bale.ai</code>), so one bot codebase can serve both. Add SMS through a domestic SMS provider as the fallback that always works. Keep Instagram and Telegram for marketing.</p>
+        <p class="l-fa">API ربات بله با تلگرام سازگار است (<code>tapi.bale.ai</code>)؛ پس یک کد ربات می‌تواند هر دو را پوشش دهد. پیامک از یک سامانه‌ی داخلی را به‌عنوان راه پشتیبان همیشه‌کارا اضافه کنید. اینستاگرام و تلگرام را برای بازاریابی نگه دارید.</p>
+        <p class="meta l-en">Domestic messengers (Bale, Eitaa, Soroush, Rubika, Gap, iGap) are linked by a national Message Exchange Bus, so a customer on one can reach another. A 2024 Open Technology Fund audit found security weaknesses in these apps (for example, Rubika allowed unencrypted traffic), so never send passport scans or card data through them.</p>
+        <p class="meta l-fa">پیام‌رسان‌های داخلی (بله، ایتا، سروش، روبیکا، گپ، آی‌گپ) با «گذرگاه تبادل پیام» ملی به هم وصل‌اند؛ پس مشتری در یکی می‌تواند به دیگری پیام دهد. ممیزی ۲۰۲۴ صندوق فناوری باز (OTF) ضعف‌های امنیتی در این برنامه‌ها پیدا کرد (مثلاً روبیکا ترافیک رمزنشده را مجاز می‌دانست)؛ پس هرگز اسکن گذرنامه یا اطلاعات کارت را از این راه نفرستید.</p>
+        <p class="src"><a href="https://en.wikipedia.org/wiki/Message_Exchange_Bus" target="_blank" rel="noopener">Message Exchange Bus</a> · <a href="https://www.opentech.fund/security-safety-audits/iranian-messaging-apps-security-audit/" target="_blank" rel="noopener">OTF audit</a></p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Payments</span><span class="l-fa">پرداخت</span></div><h4><span class="l-en">Shaparak gateways &amp; payment links</span><span class="l-fa">درگاه‌های شاپرکی و لینک پرداخت</span></h4>
+        <p class="l-en">Use licensed domestic payment gateways and send payment links. The agent never sees card data.</p>
+        <p class="l-fa">از درگاه‌های پرداخت داخلی مجاز استفاده کنید و لینک پرداخت بفرستید. عامل هرگز اطلاعات کارت را نمی‌بیند.</p></div>
     </div>
     <div>
-      <h3>Global track</h3>
-      <div class="card"><div class="kicker">Brain</div><h4>Hermes or Claude + MCP</h4><p>Hermes with a cloud model, or Claude (desktop, Cowork, Claude Code) connected to tools through MCP servers. n8n or Make as glue for fixed workflows.</p></div>
-      <div class="card"><div class="kicker">Flights</div><h4>Duffel, Amadeus, GDS</h4><p>Duffel offers real booking and handles accreditation. Amadeus Self-Service is good for search; booking needs enterprise access. Travelport delivered its TripServices over MCP to more than 400 European agencies from 1 July 2026; Sabre, PayPal and Mindtrip announced an end-to-end agentic booking pipeline; Expedia’s partner MCP server was expected in late 2026. All need contracts. Source: <a href="https://www.levelfare.com/guides/travel-apis-mcp-servers-for-ai-agents/" target="_blank" rel="noopener">Levelfare</a>.</p></div>
-      <div class="card"><div class="kicker">Hotels</div><h4>LiteAPI, bedbanks</h4><p>LiteAPI is built for agents and has an MCP server. Hotelbeds and Expedia TAAP are partner-gated.</p></div>
-      <div class="card"><div class="kicker">CRM &amp; office</div><h4>HubSpot, Zoho, Pipedrive</h4><p>Any CRM with an API. Google Workspace or Microsoft 365 for email and documents.</p></div>
-      <div class="card"><div class="kicker">Channels</div><h4>WhatsApp Business API</h4><p>Where most travelers are, outside Iran. Use the official API through a provider and keep a human-takeover button.</p></div>
-      <div class="card"><div class="kicker">Advisor software</div><h4>Ready-made tools</h4><p>Itinerary and CRM platforms for advisors (for example Tern, reported at about $35–49 per seat per month) show what customers pay for, and what you could build locally.</p></div>
+      <h3><span class="l-en">Global track</span><span class="l-fa">مسیر جهانی</span></h3>
+      <div class="card"><div class="kicker"><span class="l-en">Brain</span><span class="l-fa">مغز</span></div><h4><span class="l-en">Hermes or Claude + MCP</span><span class="l-fa">Hermes یا Claude + MCP</span></h4>
+        <p class="l-en">Hermes with a cloud model, or Claude (desktop, Cowork, Claude Code) connected to tools through MCP servers. n8n or Make as glue for fixed workflows.</p>
+        <p class="l-fa">Hermes با یک مدل ابری، یا Claude (نسخه‌ی دسکتاپ، Cowork، Claude Code) که از راه سرورهای MCP به ابزارها وصل می‌شود. n8n یا Make برای اتصال گردش‌کارهای ثابت.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Flights</span><span class="l-fa">پرواز</span></div><h4><span class="l-en">Duffel, Amadeus, GDS</span><span class="l-fa">دافل، آمادئوس، GDS</span></h4>
+        <p class="l-en">Duffel offers real booking and handles accreditation. Amadeus Self-Service is good for search; booking needs enterprise access. Travelport delivered its TripServices over MCP to more than 400 European agencies from 1 July 2026; Sabre, PayPal and Mindtrip announced an end-to-end agentic booking pipeline; Expedia’s partner MCP server was expected in late 2026. All need contracts.</p>
+        <p class="l-fa">دافل رزرو واقعی ارائه می‌دهد و مجوزهای لازم را خودش دارد. سلف‌سرویس آمادئوس برای جستجو خوب است؛ رزرو دسترسی سازمانی می‌خواهد. تراولپورت از ۱ ژوئیه‌ی ۲۰۲۶ خدمات خود را از راه MCP به بیش از ۴۰۰ آژانس اروپایی داد؛ سیبر، پی‌پال و مایندتریپ مسیر رزرو کامل با عامل هوشمند را اعلام کردند؛ سرور MCP همکاران اکسپدیا برای اواخر ۲۰۲۶ پیش‌بینی شده بود. همه به قرارداد نیاز دارند.</p>
+        <p class="src"><a href="https://www.levelfare.com/guides/travel-apis-mcp-servers-for-ai-agents/" target="_blank" rel="noopener">Levelfare</a></p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Hotels</span><span class="l-fa">هتل</span></div><h4><span class="l-en">LiteAPI, bedbanks</span><span class="l-fa">LiteAPI و بانک‌های تخت</span></h4>
+        <p class="l-en">LiteAPI is built for agents and has an MCP server. Hotelbeds and Expedia TAAP are partner-gated.</p>
+        <p class="l-fa">LiteAPI برای عامل‌های هوشمند ساخته شده و سرور MCP دارد. هتل‌بدز و Expedia TAAP فقط برای همکاران قراردادی باز است.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">CRM &amp; office</span><span class="l-fa">CRM و دفتر</span></div><h4><span class="l-en">HubSpot, Zoho, Pipedrive</span><span class="l-fa">هاب‌اسپات، زوهو، پایپ‌درایو</span></h4>
+        <p class="l-en">Any CRM with an API. Google Workspace or Microsoft 365 for email and documents.</p>
+        <p class="l-fa">هر CRM که API داشته باشد. گوگل ورک‌اسپیس یا مایکروسافت ۳۶۵ برای ایمیل و اسناد.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Channels</span><span class="l-fa">کانال‌ها</span></div><h4>WhatsApp Business API</h4>
+        <p class="l-en">Where most travelers are, outside Iran. Use the official API through a provider and keep a human-takeover button.</p>
+        <p class="l-fa">جایی که بیشتر مسافران خارج از ایران هستند. API رسمی را از طریق یک ارائه‌دهنده استفاده کنید و دکمه‌ی «انتقال به انسان» را نگه دارید.</p></div>
+      <div class="card"><div class="kicker"><span class="l-en">Advisor software</span><span class="l-fa">نرم‌افزار مشاوران سفر</span></div><h4><span class="l-en">Ready-made tools</span><span class="l-fa">ابزارهای آماده</span></h4>
+        <p class="l-en">Itinerary and CRM platforms for advisors (for example Tern, reported at about $35–49 per seat per month) show what customers pay for, and what you could build locally.</p>
+        <p class="l-fa">پلتفرم‌های برنامه‌ی سفر و CRM برای مشاوران (مثلاً Tern، با قیمت گزارش‌شده‌ی حدود ۳۵ تا ۴۹ دلار برای هر کاربر در ماه) نشان می‌دهند مشتری برای چه پول می‌دهد و شما چه چیزی را می‌توانید در داخل بسازید.</p></div>
     </div>
   </div>
-  <div class="card" id="integratorQs">
+  <div class="card l-en" id="integratorQs">
     <div class="kicker">Before you sign with an integrator</div>
     <h4>14 questions to ask about Sepehr, Parto or Charter724 access</h4>
     <ol>
@@ -850,34 +883,62 @@ Send an SMS notice?  [Approve]
       <li>Do you send notifications (webhooks) for schedule changes and cancellations?</li>
       <li>Who is responsible if a ticket is issued wrongly, and what support hours do you offer?</li>
     </ol>
-    <p class="src">Based on integrators’ own pages (no independent documentation is public): <a href="https://citynet.ir/service/sepehr/" target="_blank" rel="noopener">CityNet Sepehr</a> · <a href="https://citynet.ir/service/charter-724/" target="_blank" rel="noopener">CityNet Charter724</a> · <a href="https://citynet.ir/web-service/airline/" target="_blank" rel="noopener">CityNet flight API</a> · <a href="https://www.iran-tech.com/parto" target="_blank" rel="noopener">Iran-Tech Parto</a> · <a href="https://basisfly.com/%D9%88%D8%A8-%D8%B3%D8%B1%D9%88%DB%8C%D8%B3-%D8%B3%D9%BE%D9%87%D8%B1" target="_blank" rel="noopener">BasisFly Sepehr</a> · <a href="https://hiholiday.ir/webservice/flight/document" target="_blank" rel="noopener">HiHoliday flight API docs</a> (all Persian).</p>
   </div>
-  <div class="card" id="modelTest">
-    <div class="kicker">Choose your model in one afternoon</div>
-    <h4>Test 2–3 open models on your own Persian messages</h4>
+  <div class="card l-fa" id="integratorQsFa">
+    <div class="kicker">پیش از قرارداد با ارائه‌دهنده</div>
+    <h4>۱۴ سؤال درباره‌ی دسترسی به سپهر، پرتو یا چارتر۷۲۴</h4>
     <ol>
+      <li>کدام سامانه‌ها و ایرلاین‌ها را پوشش می‌دهید: داخلی، خارجی، چارتری و سیستمی؟</li>
+      <li>پیش از پرداخت، حساب آزمایشی می‌دهید؟</li>
+      <li>پیش از امضا مستندات را می‌توانیم ببینیم؟ API از نوع REST با JSON است؟</li>
+      <li>چه عملیاتی دارید: جستجو، بررسی دوباره‌ی قیمت، رزرو موقت، صدور، کنسلی، استرداد، گزارش، حساب همکاران؟</li>
+      <li><b>کلید فقط‌خواندنی جداگانه</b> برای جستجو و گزارش، جدا از کلید صدور بلیت، می‌دهید؟ عامل هوش مصنوعی در ابتدا فقط باید کلید فقط‌خواندنی داشته باشد.</li>
+      <li>قیمت‌ها چقدر به‌روزند و آیا قیمت نهایی پیش از صدور دوباره بررسی می‌شود؟</li>
+      <li>اعتبار (کیف پول) ما چطور شارژ می‌شود و آیا API مانده را گزارش می‌کند تا هشدار کمبود اعتبار بگیریم؟</li>
+      <li>محدودیت تعداد درخواست، کپچا یا ضدربات دارید که جلوی جستجوی خودکار را بگیرد؟</li>
+      <li>سرورهایتان کجاست؟ سرویس در قطعی‌های ۱۴۰۵ روی شبکه‌ی داخلی کار کرد؟</li>
+      <li>هزینه‌ها چیست: راه‌اندازی، ماهانه، هر بلیت؟</li>
+      <li>می‌توانیم همه‌ی رزروها و اطلاعات مسافران را خروجی بگیریم و مالک این داده کیست؟</li>
+      <li>استرداد چقدر طول می‌کشد و وضعیت آن را از API می‌توانیم پیگیری کنیم؟</li>
+      <li>برای تغییر برنامه و لغو پرواز اعلان (webhook) می‌فرستید؟</li>
+      <li>اگر بلیت اشتباه صادر شود مسئولیت با کیست و ساعات پشتیبانی شما چیست؟</li>
+    </ol>
+  </div>
+  <p class="src"><span class="l-en">Based on integrators’ own pages (no independent documentation is public):</span><span class="l-fa">بر اساس صفحه‌های خود ارائه‌دهندگان (مستندات مستقل عمومی وجود ندارد):</span> <a href="https://citynet.ir/service/sepehr/" target="_blank" rel="noopener">CityNet Sepehr</a> · <a href="https://citynet.ir/service/charter-724/" target="_blank" rel="noopener">CityNet Charter724</a> · <a href="https://citynet.ir/web-service/airline/" target="_blank" rel="noopener">CityNet flight API</a> · <a href="https://www.iran-tech.com/parto" target="_blank" rel="noopener">Iran-Tech Parto</a> · <a href="https://basisfly.com/%D9%88%D8%A8-%D8%B3%D8%B1%D9%88%DB%8C%D8%B3-%D8%B3%D9%BE%D9%87%D8%B1" target="_blank" rel="noopener">BasisFly Sepehr</a> · <a href="https://hiholiday.ir/webservice/flight/document" target="_blank" rel="noopener">HiHoliday flight API docs</a></p>
+  <div class="card" id="modelTest">
+    <div class="kicker"><span class="l-en">Choose your model in one afternoon</span><span class="l-fa">انتخاب مدل در یک بعدازظهر</span></div>
+    <h4><span class="l-en">Test 2–3 open models on your own Persian messages</span><span class="l-fa">دو یا سه مدل متن‌باز را با پیام‌های فارسی خودتان آزمایش کنید</span></h4>
+    <ol class="l-en">
       <li><b>Collect 50 real messages</b> from Bale, Telegram, SMS and email. Remove names, phone numbers and passport data. Save them in <code>messages.txt</code>, separated by a line with <code>---</code>.</li>
       <li><b>Pull the candidates.</b> Research points to Gemma 3 27B and Qwen3 around 27–32B for Persian; newer releases have not been tested on Persian yet. Example: <code>ollama pull gemma3:27b</code> and <code>ollama pull qwen3:32b</code>.</li>
       <li><b>Give the server a long memory.</b> Hermes needs at least 64k tokens of context. Start the server with <code>OLLAMA_CONTEXT_LENGTH=65536 ollama serve</code>. Setting it per request does not work on the <code>/v1</code> endpoint Hermes uses. Check the CONTEXT column in <code>ollama ps</code>.</li>
       <li><b>Run the same task on every model.</b> Use the “Message triage prompt” and the “Model test script” from the Templates chapter. The script saves each reply and how many seconds it took.</li>
       <li><b>Score every reply</b> with the sheet below, then pick the model with the best total that is also fast enough on your hardware.</li>
     </ol>
+    <ol class="l-fa">
+      <li><b>۵۰ پیام واقعی جمع کنید</b> از بله، تلگرام، پیامک و ایمیل. نام، شماره‌ی تلفن و اطلاعات گذرنامه را حذف کنید. آن‌ها را در فایل <code>messages.txt</code> ذخیره کنید و بینشان یک خط <code>---</code> بگذارید.</li>
+      <li><b>مدل‌های نامزد را دانلود کنید.</b> پژوهش‌ها Gemma 3 27B و Qwen3 حدود ۲۷ تا ۳۲ میلیارد پارامتری را برای فارسی نشان می‌دهند؛ مدل‌های جدیدتر هنوز روی فارسی آزموده نشده‌اند. مثال: <code>ollama pull gemma3:27b</code> و <code>ollama pull qwen3:32b</code>.</li>
+      <li><b>به سرور حافظه‌ی بلند بدهید.</b> Hermes دست‌کم ۶۴ هزار توکن حافظه‌ی متنی می‌خواهد. سرور را با <code>OLLAMA_CONTEXT_LENGTH=65536 ollama serve</code> اجرا کنید. تنظیم آن برای هر درخواست روی نشانی <code>/v1</code> که Hermes استفاده می‌کند اثر ندارد. ستون CONTEXT را در <code>ollama ps</code> ببینید.</li>
+      <li><b>یک کار را روی همه‌ی مدل‌ها اجرا کنید.</b> از «پرامپت دسته‌بندی پیام» و «اسکریپت آزمون مدل» در فصل قالب‌ها استفاده کنید. اسکریپت هر پاسخ و زمان آن را ذخیره می‌کند.</li>
+      <li><b>به هر پاسخ امتیاز دهید</b> با جدول زیر، و مدلی را انتخاب کنید که بیشترین امتیاز را دارد و روی سخت‌افزار شما به‌اندازه‌ی کافی سریع است.</li>
+    </ol>
     <div class="tablewrap"><table class="grid">
-      <thead><tr><th>Check per message</th><th>Points</th><th>How to judge</th></tr></thead>
+      <thead><tr><th><span class="l-en">Check per message</span><span class="l-fa">بررسی هر پیام</span></th><th><span class="l-en">Points</span><span class="l-fa">امتیاز</span></th><th><span class="l-en">How to judge</span><span class="l-fa">چطور قضاوت کنیم</span></th></tr></thead>
       <tbody>
-        <tr><td>Intent correct (new trip, change, refund…)</td><td class="num">0–2</td><td>Would your staff file it the same way?</td></tr>
-        <tr><td>Persian dates converted correctly</td><td class="num">0–2</td><td>Check against a calendar; 1 Dey 1405 = 22 Dec 2026</td></tr>
-        <tr><td>Passengers and budget extracted</td><td class="num">0–2</td><td>Adults, children with ages, budget in tomans</td></tr>
-        <tr><td>Draft reply in natural Persian</td><td class="num">0–2</td><td>Polite, short, would you send it?</td></tr>
-        <tr><td>No invented facts</td><td class="num">0 or 2</td><td>Any made-up price, flight or rule = 0</td></tr>
-        <tr><td>Valid JSON</td><td class="num">0–1</td><td>The script can read it without fixing</td></tr>
-        <tr><td>Speed</td><td class="num">0–1</td><td>1 point if under about 30 seconds on your server</td></tr>
+        <tr><td><span class="l-en">Intent correct (new trip, change, refund…)</span><span class="l-fa">نوع درخواست درست (سفر جدید، تغییر، استرداد…)</span></td><td class="num"><span class="l-en">0–2</span><span class="l-fa">۰ تا ۲</span></td><td><span class="l-en">Would your staff file it the same way?</span><span class="l-fa">همکار شما هم همین‌طور دسته‌بندی می‌کرد؟</span></td></tr>
+        <tr><td><span class="l-en">Persian dates converted correctly</span><span class="l-fa">تبدیل درست تاریخ شمسی</span></td><td class="num"><span class="l-en">0–2</span><span class="l-fa">۰ تا ۲</span></td><td><span class="l-en">Check against a calendar; 1 Dey 1405 = 22 Dec 2026</span><span class="l-fa">با تقویم چک کنید؛ ۱ دی ۱۴۰۵ = ۲۲ دسامبر ۲۰۲۶</span></td></tr>
+        <tr><td><span class="l-en">Passengers and budget extracted</span><span class="l-fa">استخراج مسافران و بودجه</span></td><td class="num"><span class="l-en">0–2</span><span class="l-fa">۰ تا ۲</span></td><td><span class="l-en">Adults, children with ages, budget in tomans</span><span class="l-fa">بزرگسال، کودک با سن، بودجه به تومان</span></td></tr>
+        <tr><td><span class="l-en">Draft reply in natural Persian</span><span class="l-fa">پیش‌نویس پاسخ به فارسی روان</span></td><td class="num"><span class="l-en">0–2</span><span class="l-fa">۰ تا ۲</span></td><td><span class="l-en">Polite, short, would you send it?</span><span class="l-fa">مؤدبانه و کوتاه؛ خودتان می‌فرستادید؟</span></td></tr>
+        <tr><td><span class="l-en">No invented facts</span><span class="l-fa">بدون اطلاعات ساختگی</span></td><td class="num"><span class="l-en">0 or 2</span><span class="l-fa">۰ یا ۲</span></td><td><span class="l-en">Any made-up price, flight or rule = 0</span><span class="l-fa">هر قیمت، پرواز یا قانون ساختگی = ۰</span></td></tr>
+        <tr><td><span class="l-en">Valid JSON</span><span class="l-fa">JSON معتبر</span></td><td class="num"><span class="l-en">0–1</span><span class="l-fa">۰ تا ۱</span></td><td><span class="l-en">The script can read it without fixing</span><span class="l-fa">اسکریپت بدون اصلاح بتواند بخواندش</span></td></tr>
+        <tr><td><span class="l-en">Speed</span><span class="l-fa">سرعت</span></td><td class="num"><span class="l-en">0–1</span><span class="l-fa">۰ تا ۱</span></td><td><span class="l-en">1 point if under about 30 seconds on your server</span><span class="l-fa">۱ امتیاز اگر روی سرور شما زیر حدود ۳۰ ثانیه باشد</span></td></tr>
       </tbody>
     </table></div>
-    <p class="meta">Maximum 12 points per message, 600 for all 50. Re-run the test whenever a new model appears; the scoring sheet stays the same.</p>
-    <p class="src">Sources: <a href="https://arxiv.org/pdf/2510.22616" target="_blank" rel="noopener">PerCoR Persian benchmark</a> · <a href="https://arxiv.org/pdf/2508.00673" target="_blank" rel="noopener">MELAC Persian cultural benchmark</a> · <a href="https://kaxo.io/insights/ollama-num-ctx-context-length/" target="_blank" rel="noopener">Ollama context length guide</a> · <a href="https://www.betterclaw.io/blog/ollama-context-window-truncates-agent-config" target="_blank" rel="noopener">num_ctx and the /v1 endpoint</a> · <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" target="_blank" rel="noopener">Hermes with Ollama</a></p>
+    <p class="meta"><span class="l-en">Maximum 12 points per message, 600 for all 50. Re-run the test whenever a new model appears; the scoring sheet stays the same.</span><span class="l-fa">حداکثر ۱۲ امتیاز برای هر پیام و ۶۰۰ برای هر ۵۰ پیام. هر وقت مدل جدیدی آمد آزمون را تکرار کنید؛ جدول امتیاز همین می‌ماند.</span></p>
+    <p class="src"><span class="l-en">Sources:</span><span class="l-fa">منابع:</span> <a href="https://arxiv.org/pdf/2510.22616" target="_blank" rel="noopener">PerCoR</a> · <a href="https://arxiv.org/pdf/2508.00673" target="_blank" rel="noopener">MELAC</a> · <a href="https://kaxo.io/insights/ollama-num-ctx-context-length/" target="_blank" rel="noopener">Ollama context length</a> · <a href="https://www.betterclaw.io/blog/ollama-context-window-truncates-agent-config" target="_blank" rel="noopener">num_ctx and /v1</a> · <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" target="_blank" rel="noopener">Hermes with Ollama</a></p>
   </div>
-  <div class="callout"><h4>About Iranian AI gateways</h4><p>AvalAI exposes an OpenAI-compatible endpoint, and GapGPT says it offers GPT, Claude and Gemini models for rials. They are convenient for quick tests. Do not make them your backbone: they depend on international links that were cut for months in 2026, and reselling may break the original providers’ terms.</p></div>
+  <div class="callout l-en"><h4>About Iranian AI gateways</h4><p>AvalAI exposes an OpenAI-compatible endpoint, and GapGPT says it offers GPT, Claude and Gemini models for rials. They are convenient for quick tests. Do not make them your backbone: they depend on international links that were cut for months in 2026, and reselling may break the original providers’ terms.</p></div>
+  <div class="callout l-fa"><h4>درباره‌ی واسط‌های ایرانی هوش مصنوعی</h4><p>آوال‌ای‌آی نشانی سازگار با OpenAI دارد و گپ‌جی‌پی‌تی می‌گوید مدل‌های GPT، Claude و Gemini را با ریال ارائه می‌کند. برای آزمایش سریع راحت‌اند. ستون اصلی کارتان نکنید: به اتصال بین‌المللی وابسته‌اند که در ۱۴۰۵ ماه‌ها قطع بود، و فروش دوباره‌ی این خدمات ممکن است خلاف شرایط ارائه‌دهندگان اصلی باشد.</p></div>
 </section>
 
 <!-- =========================================================== 8 REVENUE -->

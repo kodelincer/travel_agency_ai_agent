@@ -139,3 +139,10 @@ Changed: Whole chapter bilingual: platform table, confirmed facts about Alibaba,
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Tool stack.
+
+## Iteration 18 · 2026-10-17
+Task: P1 — translate "Tool stack" into Persian.
+Changed: Whole chapter bilingual: both tracks (12 cards), messenger interoperability and security note, the 14 integrator questions (separate Persian list), the one-afternoon model test (steps, 7-row scoring sheet, totals), and the AI-gateway warning. Commands and URLs stay in code form in both languages. MAX_TODO 14 → 13.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Iran market 1405.
