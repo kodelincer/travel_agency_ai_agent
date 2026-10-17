@@ -4,7 +4,7 @@ Priorities: **P1** = wrong, broken or high value for the owner now · **P2** = c
 The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new findings here with a priority and one line on why.
 
 ## P1
-- **Re-check the Iran situation** (flights at IKA, internet access, currency) and update the timeline with dated, sourced entries; mark conflicting reports. Why: the facts change monthly.
+- (none open: facts #9–#11 are due again on 2026-11-15)
 
 ## P2
 - **Platform partner terms:** confirm current supplier/host terms and commissions for Alibaba group tours, Snapptrip and Jabama (official partner pages or the owner asking directly); check whether any official affiliate programme exists. (Follow-up from iteration 3.)

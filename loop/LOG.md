@@ -42,3 +42,11 @@ Sources: https://arxiv.org/pdf/2510.22616 · https://arxiv.org/pdf/2508.00673 ·
 Tests: All checks passed (new: model test script keeps its escapes)
 Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
 Next: P1 — re-check the Iran situation (facts #9, #10, #11).
+
+## Iteration 5 · 2026-10-17
+Task: Re-check the Iran situation (P1; facts #9–#11) and fix the timeline.
+Changed: Iran timeline now separates the January shutdown from the 88-day war blackout (restored 26 May, filtering continues), adds the April first departures, and replaces the vague "Oct 2026 partial recovery" with the dated 8 October return of foreign flights (Iraqi Airways Najaf–Tehran under a US waiver; Iraq allows Iranian airlines except Mahan up to 40 daily Najaf flights). Currency/inflation updated to ~2.66M rials per USD (16 Oct) and 89.8% CPI (September). Fixed "most of 2026" wording in three places, the Resilience shocks table and the self-review note. Sources chapter updated.
+Sources: https://www.newarab.com/news/iraqi-airways-resumes-najaf-tehran-flights-after-suspension · https://en.tempo.co/read/2100365/iran-reopens-imam-khomeini-airport-to-international-flights · https://www.iranintl.com/en/202605251140 · https://8am.media/eng/iran-internet-restored-netblocks/ · https://www.pashizi.com/en/currency/usd · https://www.euronews.com/2026/06/30/irans-inflation-spiral-deepens-as-rial-slides-and-tensions-rise
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P2 — top item (platform partner terms / newer online-sales directive), then the Persian RTL version.
