@@ -153,3 +153,10 @@ Changed: Whole chapter bilingual: licences (بند الف / بند ب), online-s
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Agencies worldwide.
+
+## Iteration 20 · 2026-10-17
+Task: P1 — translate "Agencies worldwide" into Persian.
+Changed: Whole chapter bilingual: the 10-row service-line table (with Persian pills), industry direction, the three trend cards (IDC, USTOA/Fora, Skift–McKinsey), McKinsey's four scenarios and the owner's lesson. Proofreading removed a Persian month that would have been ambiguous for "July 2026". MAX_TODO 12 → 11.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: P1 — translate AI agents 101.
