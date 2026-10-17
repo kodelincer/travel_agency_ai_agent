@@ -50,3 +50,11 @@ Sources: https://www.newarab.com/news/iraqi-airways-resumes-najaf-tehran-flights
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P2 — top item (platform partner terms / newer online-sales directive), then the Persian RTL version.
+
+## Iteration 6 · 2026-10-17
+Task: Re-check exit tax 1405 (fact #23, due) and replace the "guides disagree" wording.
+Changed: The whole job chapter's caveat box now gives the 1405 exit-tax amounts (900k / 1.5M / 2.2M tomans by trip number; lower for Hajj/Umrah; flat for Iraq pilgrims), notes they come from the budget bill and some sites still show 1404 tables, tells the Documents officer to have travelers check at payment, and states the receipt is valid to the end of Esfand. Sources linked.
+Sources: https://snapp.ir/blog/departure-tax/ · https://www.pateh.com/blog/departure-tax-increase/ · https://www.azki.com/blog/departure-tax/
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
+Next: Fact #24 (tax e-invoicing for agencies), then P2 items.
