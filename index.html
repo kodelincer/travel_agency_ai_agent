@@ -525,6 +525,74 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   </div>
 </section>
 
+<!-- =========================================================== ARCHITECTURE -->
+<section id="arch" data-title="The AI-run office" data-group="Automate" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2>The AI-run office: how the agents connect to every system you use</h2>
+  <p class="lead">Your goal is an office where AI agents handle most of the work and people supervise. That works when the agents can reach the same systems your staff use today: reservation web services and panels, hotel portals, the accounting software, the bank, the tax system, messengers and web search. This chapter is the blueprint.</p>
+
+  <div class="prose"><h3>Five layers</h3></div>
+  <ol class="loop cols3" style="counter-reset:s">
+    <li class="human"><b>People</b><span class="note">The owner and one or two staff: approve money and bookings, talk to important customers, handle exceptions.</span></li>
+    <li><b>Channels</b><span class="note">Bale, Telegram, SMS, website chat, email. One private Office group is the control room.</span></li>
+    <li><b>Brain</b><span class="note">Hermes Agent with the Trip designer as conductor and 12 other agents, running on an office server with a local model.</span></li>
+    <li><b>Shared memory</b><span class="note">One database: customers, bookings, payments, tasks, documents, price history, logs. Every agent reads and writes here.</span></li>
+    <li><b>Connectors (the hands)</b><span class="note">How agents touch other systems: APIs first, then file exports, then browser automation, and screen control only as a last resort.</span></li>
+  </ol>
+
+  <div class="prose"><h3>Four ways to connect, from most to least reliable</h3></div>
+  <div class="cards">
+    <div class="card star"><div class="kicker">1 · Best</div><h4>Official API or web service</h4><p>The system offers a programmatic door: Sepehr, Parto and Charter724 web services, Bale and Telegram bot APIs, SMS and payment gateways, a CRM API, accounting-software web services. Fast, exact and easy to limit with read-only keys.</p></div>
+    <div class="card"><div class="kicker">2 · Simple and robust</div><h4>File exports and imports</h4><p>When there is no API, most systems can still export Excel or CSV: sales reports, bank statements, supplier statements. Staff (or a scheduled job) drop files into a shared folder; agents read them. Low-tech, and it keeps working on the domestic network.</p></div>
+    <div class="card"><div class="kicker">3 · Fallback</div><h4>Browser automation</h4><p>For web portals with no API, a browser agent (for example the open-source Browser Use) can log in to <i>your own</i> account and read pages like a person. Use it read-only at first, respect each portal’s terms, and expect captchas to stop it. Slower and breaks when pages change.</p></div>
+    <div class="card"><div class="kicker">4 · Last resort</div><h4>Screen control (computer use)</h4><p>For old desktop programs with no API or export, a computer-use agent (open-source Agent S3, UI-TARS Desktop or Cua; Claude’s computer use on the global track) can click and type on a screen. Run it in a separate virtual machine with a limited user, never let it press money buttons, and check its work. Its reliability is lower than an API’s.</p></div>
+  </div>
+  <p class="src">Sources: <a href="https://www.turingpost.com/p/computer-use-ai-agents" target="_blank" rel="noopener">Turing Post: computer-use agents 2026</a> · <a href="https://fast.io/resources/best-computer-use-ai-agents-2026/" target="_blank" rel="noopener">Fast.io: computer-use agents compared</a> · <a href="https://pinggy.io/blog/control_computer_with_ai_agents/" target="_blank" rel="noopener">Pinggy: controlling a computer with AI agents</a>. Claude itself tries connectors first, then the browser, and uses the screen only as a last resort.</p>
+
+  <div class="prose"><h3>Connect each system</h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>System</th><th>Best connection</th><th>Fallback</th><th>Agents that use it</th></tr></thead>
+    <tbody>
+      <tr><td><b>Reservation web services</b><br><span class="meta">Sepehr, Parto, Charter724</span></td><td>API through your integrator, read-only key for agents</td><td>Daily export of sales and bookings</td><td>Ticketing clerk, Fare watch, Trip designer</td></tr>
+      <tr><td><b>Airline and hotel agency panels</b></td><td>API if the airline or hotel offers one</td><td>Browser agent on your own account, read-only; or screen control in a VM for desktop-only clients</td><td>Ticketing clerk, Hotel &amp; tour desk</td></tr>
+      <tr><td><b>Accounting software (desktop)</b><br><span class="meta">e.g. Sepidar, Holoo</span></td><td>Its web service or an API module. Guides describe Sepidar’s server mode with a local web service, and third-party API modules for Sepidar and Holoo.</td><td>Excel import of draft vouchers that your accountant reviews and posts</td><td>Accountant, Controller</td></tr>
+      <tr><td><b>Online accounting</b><br><span class="meta">global track</span></td><td>MCP server: Xero has an official one; Odoo has community ones</td><td>CSV import</td><td>Accountant, Controller</td></tr>
+      <tr><td><b>Tax e-invoices</b><br><span class="meta">سامانه مودیان</span></td><td>Through your accounting software’s tax connector</td><td>Agent prepares the data; a person sends</td><td>Accountant</td></tr>
+      <tr><td><b>Bank and payment gateway</b></td><td>Gateway API for payment links and status</td><td>Daily bank statement export</td><td>Accountant, Controller</td></tr>
+      <tr><td><b>CRM</b></td><td>CRM API, or your own database</td><td>Spreadsheet</td><td>All agents</td></tr>
+      <tr><td><b>Messengers and email</b></td><td>Bale and Telegram bot APIs, SMS provider API, email (IMAP/SMTP)</td><td>SMS only, when everything else is down</td><td>Receptionist, Operations, Marketing</td></tr>
+      <tr><td><b>Web search</b></td><td>The agent’s built-in web search (needs international internet)</td><td>Your own knowledge base on the server: rules, price lists, supplier notes, past answers</td><td>Documents officer, Trip designer, Sales</td></tr>
+      <tr><td><b>Office files</b><br><span class="meta">Word, Excel, PDFs, passport scans</span></td><td>A shared folder on the office server</td><td>Cloud drive (may be unreachable during shutdowns)</td><td>All agents</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">Sources: <a href="https://sepehrcc.com/article/sepidar-api" target="_blank" rel="noopener">Sepidar web service guide</a> · <a href="https://www.p30web.org/api-sepidar-holo-dasht/" target="_blank" rel="noopener">API for Sepidar, Holoo and Dasht</a> · <a href="https://hsaco.net/Product" target="_blank" rel="noopener">Sepidar API modules</a> (Persian, vendor pages) · <a href="https://enterprisedna.co/directories/mcp/xeroapi-xero-mcp-server" target="_blank" rel="noopener">Xero MCP server</a> · <a href="https://enterprisedna.co/directories/mcp/ivnvxd-mcp-server-odoo" target="_blank" rel="noopener">Odoo MCP server</a> · <a href="https://truto.one/blog/how-to-connect-ai-agents-to-xero-and-quickbooks-mcp-server-architecture-guide" target="_blank" rel="noopener">Truto: guardrails for accounting writes</a>. Confirm with your software vendor that your version supports its API.</p>
+
+  <div class="prose"><h3>How much can AI run on its own?</h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th>Level</th><th>What the agent does</th><th>Examples in your office</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill yes">Alone</span></td><td>Acts without asking, inside fixed limits</td><td>FAQ answers, collecting missing details, reminders, price alerts, morning brief, logging to the CRM</td></tr>
+      <tr><td><span class="pill part">Drafts, you send</span></td><td>Prepares finished work; a person sends it</td><td>Quotes, itineraries, complaint replies, public posts, draft accounting vouchers</td></tr>
+      <tr><td><span class="pill high">Prepares, you approve</span></td><td>Prepares the action; it runs only after approval</td><td>Holding seats, hotel bookings, rebookings, refunds, payment links, tax e-invoices</td></tr>
+      <tr><td><span class="pill no">Never</span></td><td>Stays with people</td><td>Moving money, signing contracts, legal and licence matters, firing a supplier, the yearly audit</td></tr>
+    </tbody>
+  </table></div>
+  <p class="meta">Start every task one level lower than you think it needs, and move it up only after a month without errors.</p>
+
+  <div class="layer">
+    <div><h3>The office server</h3><p class="note">One machine runs the whole AI office and keeps working on the domestic network.</p></div>
+    <div class="prose">
+      <ul>
+        <li><b>Hardware:</b> a GPU with 24 GB or more for a 27–32B model, 64 GB RAM, fast SSD, and a UPS against power cuts.</li>
+        <li><b>Software:</b> Ollama with your tested model, Hermes Agent, a database for the shared memory, a shared folder for files, and a separate virtual machine for any browser or screen-control agent.</li>
+        <li><b>Accounts:</b> every agent gets its own user and keys with only the rights it needs. The issuing key and bank access stay with people.</li>
+        <li><b>Backups:</b> nightly copy of the database and files to an external disk, plus a weekly offline copy.</li>
+        <li><b>Internet:</b> everything essential works on the domestic network; web search and foreign suppliers are extras that may disappear.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- =========================================================== 6 SIM -->
 <section id="sim" data-title="Try an agent" data-group="Automate" hidden>
   <div class="eyebrow">Chapter · Hands-on</div>

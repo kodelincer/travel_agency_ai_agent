@@ -74,3 +74,11 @@ Sources: arasbaran.org · alaedin.travel · organimi.com · Amazon Bedrock / Mas
 Tests: All checks passed (new: team table and roles)
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: Owner request — AI-run office architecture: connecting agents to reservation software, web search and accounting software.
+
+## Iteration 9 · 2026-10-17 (requested by the owner)
+Task: Blueprint for an office mostly run by AI agents, connected to reservation software, web search and accounting software.
+Changed: New chapter "The AI-run office": five layers (people, channels, brain, shared memory, connectors), four connection methods ranked by reliability (API, file export, browser agent, screen control in a VM), a table connecting each system (reservation web services, airline/hotel panels, desktop and online accounting, tax e-invoices, bank, CRM, messengers, web search, office files) to agents with fallbacks, four autonomy levels with office examples, and an office-server spec. README and tests updated (21 chapters).
+Sources: sepehrcc.com · p30web.org · hsaco.net · enterprisedna.co (Xero, Odoo MCP) · truto.one · turingpost.com · fast.io
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P2 — Persian (RTL) version of the most-used chapters.

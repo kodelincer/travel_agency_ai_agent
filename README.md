@@ -14,24 +14,25 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 6 | AI agents 101 | Models, tools, memory, skills, channels, guardrails, Hermes Agent |
 | 7 | Automation map | 24 jobs across 7 desks, with risk level and "shutdown-proof" flag |
 | 8 | AI office of 10 | Ten core AI roles plus three specialists (Trip designer/conductor, Fare watch agent, Controller), how the conductor plans a whole trip, legal fare sources, phases, the owner's phone as control room |
-| 9 | Try an agent | Live agent simulator with mock CRM, flights, hotels, quotes and a human approval queue |
-| 10 | Tool stack | Iran-resilient track (local model, Sepehr/Parto, Bale, SMS) vs global track |
-| 11 | Grow revenue | 12 levers and the metric for each |
-| 12 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
-| 13 | Products to sell | 10 AI products and services you could build for other agencies |
-| 14 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
-| 15 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 16 | 90-day plan | Checklist with saved progress |
-| 17 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 18 | Guardrails | Rules before going live, KPIs |
-| 19 | Self-review | What earlier versions got wrong and how it was corrected |
-| 20 | Sources | Every source used, checked October 2026 |
+| 9 | The AI-run office | Five-layer blueprint, four ways to connect (API, file export, browser agent, screen control), how to connect reservation, accounting, tax, bank, messaging and web search, autonomy levels, the office server |
+| 10 | Try an agent | Live agent simulator with mock CRM, flights, hotels, quotes and a human approval queue |
+| 11 | Tool stack | Iran-resilient track (local model, Sepehr/Parto, Bale, SMS) vs global track |
+| 12 | Grow revenue | 12 levers and the metric for each |
+| 13 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
+| 14 | Products to sell | 10 AI products and services you could build for other agencies |
+| 15 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
+| 16 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 17 | 90-day plan | Checklist with saved progress |
+| 18 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 19 | Guardrails | Rules before going live, KPIs |
+| 20 | Self-review | What earlier versions got wrong and how it was corrected |
+| 21 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 
 - **Open locally:** open `index.html` in any browser. No server or install needed.
 - **GitHub Pages:** in the repository settings, open *Pages*, choose *Deploy from a branch*, select this branch and the root folder.
-- **Live agent runs:** the simulator in “Try an agent” (chapter 9) calls Claude only when the page is opened as a claude.ai Artifact. Everywhere else, use *Replay a recorded run*.
+- **Live agent runs:** the simulator in “Try an agent” (chapter 10) calls Claude only when the page is opened as a claude.ai Artifact. Everywhere else, use *Replay a recorded run*.
 
 ## Test it
 
