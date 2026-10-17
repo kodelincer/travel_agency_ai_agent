@@ -495,7 +495,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
     <div>
       <h3>Iran-resilient track</h3>
       <div class="card star"><div class="kicker">Brain</div><h4>Hermes Agent + local model</h4><p>Run Hermes on a server in an Iranian data centre or in your office. Serve an open-weight model with Ollama (OpenAI-compatible endpoint <code>http://localhost:11434/v1</code>; Ollama also offers <code>ollama launch hermes</code>). Hermes needs a model with at least 64k context. Candidates for Persian: Qwen (mid-size dense), Gemma 3 27B, DeepSeek. Test on your own Persian messages first.</p><p class="meta">Hardware: a 24 GB GPU can run a quantised ~27–32B model for a small office. The science vice-presidency has subsidised up to 200M tomans (half) of GPU rental for private companies; check current terms. Disable Hermes tools that call external services (web search, cloud browser) if you need full offline operation.</p></div>
-      <div class="card"><div class="kicker">Flights</div><h4>Sepehr, Parto, Charter724…</h4><p>Domestic reservation web services, usually through an integrator (CityNet, BasisFly, Faranegar). Wrap their API as agent tools: search, price, hold, issue, refund. Hold and issue go behind human approval.</p></div>
+      <div class="card"><div class="kicker">Flights</div><h4>Sepehr, Parto, Charter724…</h4><p>Domestic reservation web services, sold to agencies through integrators (for example CityNet, BasisFly, Iran-Tech, HiHoliday, Faranegar). A dedicated Sepehr connection is negotiated with Sepehr’s own team. Integrators describe REST APIs for search, booking, issuing, online refunds, financial reports and partner-agency (همکار) accounts with credit limits. Full documentation usually comes only after you buy a subscription.</p><p>Wrap the API as agent tools: search, price check, hold, issue, refund. Hold and issue stay behind human approval. Some services show a captcha before booking (Charter724 does), so a person completes that step anyway.</p></div>
       <div class="card"><div class="kicker">Hotels &amp; tours</div><h4>Your contracts first</h4><p>Domestic hotel web services from the same integrators, plus your own contracted rates in a spreadsheet or database the agent reads. For foreign hotels, work only with suppliers that can legally serve you.</p></div>
       <div class="card"><div class="kicker">CRM</div><h4>Iranian CRM or your own</h4><p>Local CRMs such as Didar (which announced an AI sales assistant, “Aida”) or a simple self-hosted database. Only about 7–8% of Iranian companies use a CRM, so having one is already an edge. Check each vendor’s security practices.</p></div>
       <div class="card"><div class="kicker">Channels</div><h4>Bale, SMS, website, Telegram</h4><p>Bale’s bot API is Telegram-compatible (<code>tapi.bale.ai</code>), so one bot codebase can serve both. Add SMS through a domestic SMS provider as the fallback that always works. Keep Instagram and Telegram for marketing.</p></div>
@@ -510,6 +510,27 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
       <div class="card"><div class="kicker">Channels</div><h4>WhatsApp Business API</h4><p>Where most travelers are, outside Iran. Use the official API through a provider and keep a human-takeover button.</p></div>
       <div class="card"><div class="kicker">Advisor software</div><h4>Ready-made tools</h4><p>Itinerary and CRM platforms for advisors (for example Tern, reported at about $35–49 per seat per month) show what customers pay for, and what you could build locally.</p></div>
     </div>
+  </div>
+  <div class="card" id="integratorQs">
+    <div class="kicker">Before you sign with an integrator</div>
+    <h4>14 questions to ask about Sepehr, Parto or Charter724 access</h4>
+    <ol>
+      <li>Which systems and airlines do you cover: domestic, international, charter and scheduled?</li>
+      <li>Can we get a test (sandbox) account before we pay?</li>
+      <li>Can we see the documentation before signing? Is it REST with JSON?</li>
+      <li>Which operations exist: search, price re-check, hold, issue, cancel, refund, reports, partner accounts?</li>
+      <li><b>Can we get a separate read-only key</b> for search and reports, apart from the key that issues tickets? The AI agent should only ever hold the read-only key at first.</li>
+      <li>How fresh are prices, and is the final price re-checked before issuing?</li>
+      <li>How is our credit (wallet) topped up, and can the API report the balance so we get low-balance alerts?</li>
+      <li>Are there rate limits, captchas or anti-bot checks that block automated searches?</li>
+      <li>Where are your servers? Did the service keep working on the domestic network during the 2026 shutdowns?</li>
+      <li>What are the costs: setup fee, monthly fee, per-ticket fee?</li>
+      <li>Can we export all our bookings and passenger data, and who owns that data?</li>
+      <li>How fast are refunds, and can we track their status through the API?</li>
+      <li>Do you send notifications (webhooks) for schedule changes and cancellations?</li>
+      <li>Who is responsible if a ticket is issued wrongly, and what support hours do you offer?</li>
+    </ol>
+    <p class="src">Based on integrators’ own pages (no independent documentation is public): <a href="https://citynet.ir/service/sepehr/" target="_blank" rel="noopener">CityNet Sepehr</a> · <a href="https://citynet.ir/service/charter-724/" target="_blank" rel="noopener">CityNet Charter724</a> · <a href="https://citynet.ir/web-service/airline/" target="_blank" rel="noopener">CityNet flight API</a> · <a href="https://www.iran-tech.com/parto" target="_blank" rel="noopener">Iran-Tech Parto</a> · <a href="https://basisfly.com/%D9%88%D8%A8-%D8%B3%D8%B1%D9%88%DB%8C%D8%B3-%D8%B3%D9%BE%D9%87%D8%B1" target="_blank" rel="noopener">BasisFly Sepehr</a> · <a href="https://hiholiday.ir/webservice/flight/document" target="_blank" rel="noopener">HiHoliday flight API docs</a> (all Persian).</p>
   </div>
   <div class="callout"><h4>About Iranian AI gateways</h4><p>AvalAI exposes an OpenAI-compatible endpoint, and GapGPT says it offers GPT, Claude and Gemini models for rials. They are convenient for quick tests. Do not make them your backbone: they depend on international links that were cut for most of 2026, and reselling may break the original providers’ terms.</p></div>
 </section>
@@ -657,7 +678,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="callout"><h4>Still uncertain: verify before you act</h4>
     <ul>
       <li>Licence rules for online sales: the joint tourism–CAO directive I found dates from about 1395–1397, and the 1405 Arbaeen rules confirm the main principle. A newer version may exist; ask your association (انجمن صنفی دفاتر خدمات مسافرتی).</li>
-      <li>Technical details and contract terms of Sepehr, Parto and Charter724 APIs: only vendor pages were available.</li>
+      <li>Technical details and contract terms of Sepehr, Parto and Charter724 APIs: only integrators’ own pages are public, and full documentation comes after you subscribe. Use the 14 questions in the Tool stack chapter.</li>
       <li>Which open model is best for Persian in late 2026: the benchmarks I found test older models. Run your own test on 50 real messages.</li>
       <li>The October 2026 flight-resumption reports conflict with the April reopening reports; the situation may change again.</li>
       <li>Market statistics in the worldwide and Iran chapters come from news reports and vendor research with different methods. Use them as direction, not exact figures.</li>

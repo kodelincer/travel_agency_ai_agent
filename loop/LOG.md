@@ -17,3 +17,11 @@ Sources: https://www.chtn.ir/news/139407023 · https://borna.news/fa/news/236916
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
 Next: P1 — Sepehr / Parto / Charter724 integration checklist (fact #14).
+
+## Iteration 2 · 2026-10-17
+Task: Verify how agencies connect to Sepehr, Parto and Charter724 (fact #14) and add a "how to ask your integrator" checklist.
+Changed: Tool stack flights card now names the integrators, the dedicated-Sepehr route, the typical API operations, subscription-gated docs and the Charter724 captcha step. Added "14 questions to ask about Sepehr, Parto or Charter724 access", including a separate read-only key for the AI agent, wallet-balance alerts, behaviour during shutdowns and data export. Updated the self-review note.
+Sources: https://citynet.ir/service/sepehr/ · https://citynet.ir/service/charter-724/ · https://citynet.ir/web-service/airline/ · https://www.iran-tech.com/parto · https://basisfly.com (Sepehr page) · https://hiholiday.ir/webservice/flight/document
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — Persian model evaluation guide (fact #17, #18).

@@ -4,7 +4,6 @@ Priorities: **P1** = wrong, broken or high value for the owner now · **P2** = c
 The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new findings here with a priority and one line on why.
 
 ## P1
-- **Verify Sepehr, Parto and Charter724 integration details** (who sells API access, test accounts, what operations exist, typical contract terms). Add a short "how to ask your integrator" checklist to the Tool stack chapter. Why: the ticketing clerk role depends on it.
 - **Persian model evaluation guide:** a concrete, step-by-step test of 2–3 open models on 50 anonymised customer messages (what to measure, a scoring sheet, example Ollama commands that are verified against current docs). Why: choosing the wrong model breaks every role.
 - **Re-check the Iran situation** (flights at IKA, internet access, currency) and update the timeline with dated, sourced entries; mark conflicting reports. Why: the facts change monthly.
 
@@ -19,6 +18,7 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - **Role playbooks:** for each of the 10 AI roles, a ready Hermes skill file (Markdown) in the Templates chapter.
 
 ## P3
+- Ask one integrator (via the owner) for a sandbox and record which of the 14 questions they answered; update the Tool stack with real answers. (Follow-up from iteration 2; needs the owner.)
 - Search box across all chapters.
 - A printable one-page "AI office of 10" summary (as a page section, since the Artifact viewer cannot open the print dialog).
 - Case study: a full day of an Iranian agency, before and after the AI office, with honest time estimates.
