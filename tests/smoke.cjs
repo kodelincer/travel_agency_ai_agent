@@ -162,7 +162,7 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
     check(ctl.opt === "سپهر" && /[\u0600-\u06FF]/.test(ctl.ph) && /[\u0600-\u06FF]/.test(ctl.role), `worksheet drop-downs and placeholder switch to Persian (${ctl.opt})`);
     await page.evaluate(() => { location.hash = "map"; });
     const mp = await page.evaluate(() => ({
-      cards: document.querySelectorAll("#caseGrid .card h4 .l-fa").length,
+      cards: document.querySelectorAll("#caseGrid .card h3 .l-fa").length,
       emptyFa: [...document.querySelectorAll("#caseGrid .l-fa, #deskFilters .l-fa")].filter(e => !/[؀-ۿ]/.test(e.textContent)).length,
     }));
     check(mp.cards === 24 && mp.emptyFa === 0, `automation map: 24 cards with Persian titles, every card and desk filter has Persian (${mp.cards} cards, ${mp.emptyFa} without Persian)`);
@@ -202,6 +202,41 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
     }
     check(back === "ltr" && enWeak.length === 0, "switching back shows English" + (enWeak.length ? " → " + enWeak.join(", ") : ""));
     check(errs.length === 0, "no script errors while switching language" + (errs.length ? " → " + errs.join(" | ") : ""));
+    await page.close();
+  }
+
+  // accessibility: labels, button names, heading order and text contrast (WCAG AA) in both themes and both languages
+  console.log("\naccessibility");
+  for (const scheme of ["light", "dark"]) for (const lng of ["en", "fa"]) {
+    const page = await browser.newPage({ viewport: { width: 1200, height: 900 }, colorScheme: scheme });
+    await page.route(/fonts\.(googleapis|gstatic)/, r => r.abort());
+    await page.goto(FILE);
+    await page.evaluate(l => { document.documentElement.dataset.lang === l || document.querySelector("#langBtn").click(); }, lng);
+    const ids = await page.evaluate(() => [...document.querySelectorAll("main > section")].map(s => s.id));
+    const bad = { label: new Set(), name: new Set(), heading: new Set(), contrast: new Set() };
+    for (const id of ids) {
+      await page.evaluate(i => { location.hash = i; }, id);
+      await page.waitForTimeout(30);
+      const r = await page.evaluate(() => {
+        const vis = e => e.offsetParent !== null;
+        const lum = c => { const [r, g, b] = c.match(/[\d.]+/g).map(Number).slice(0, 3).map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+        const bgOf = e => { for (let n = e; n; n = n.parentElement) { const a = getComputedStyle(n).backgroundColor.match(/[\d.]+/g); if (a && (a.length < 4 || +a[3] > 0.5)) return getComputedStyle(n).backgroundColor; } return getComputedStyle(document.body).backgroundColor; };
+        const sec = document.querySelector("main > section:not([hidden])"), out = { label: [], name: [], heading: [], contrast: [] };
+        sec.querySelectorAll("input,select,textarea").forEach(e => { if (vis(e) && !(e.getAttribute("aria-label") || (e.id && document.querySelector(`label[for="${e.id}"]`)) || e.closest("label"))) out.label.push(e.id || e.tagName); });
+        sec.querySelectorAll("button,a").forEach(e => { if (vis(e) && !(e.innerText.trim() || e.getAttribute("aria-label"))) out.name.push(e.outerHTML.slice(0, 50)); });
+        let prev = 2; sec.querySelectorAll("h2,h3,h4,h5,h6").forEach(h => { if (!vis(h)) return; const l = +h.tagName[1]; if (l > prev + 1) out.heading.push(`h${prev}→h${l}`); prev = l; });
+        sec.querySelectorAll("*").forEach(e => {
+          if (!vis(e) || e.closest("pre") || ![...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())) return;
+          const cs = getComputedStyle(e), a = lum(cs.color), b = lum(bgOf(e)), ratio = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+          const big = parseFloat(cs.fontSize) >= 24 || (parseFloat(cs.fontSize) >= 18.66 && +cs.fontWeight >= 700);
+          if (ratio < (big ? 3 : 4.5)) out.contrast.push(`${e.tagName.toLowerCase()}.${(e.className || e.parentElement.className || "").toString().split(" ")[0]} ${ratio.toFixed(2)}`);
+        });
+        return out;
+      });
+      for (const k of Object.keys(bad)) r[k].forEach(x => bad[k].add(`${id}: ${x}`));
+    }
+    const sum = Object.entries(bad).filter(([, v]) => v.size).map(([k, v]) => `${k} ${v.size} (${[...v].slice(0, 2).join("; ")})`);
+    check(sum.length === 0, `${scheme}/${lng}: labels, button names, heading order and contrast` + (sum.length ? " → " + sum.join(" | ") : ""));
     await page.close();
   }
 

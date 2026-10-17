@@ -275,3 +275,10 @@ Changed: New bilingual chapter "Glossary · واژه‌نامه" (before Sources
 Tests: All checks passed
 Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 5
 Next: P2 — accessibility pass.
+
+## Iteration 37 · 2026-10-17
+Task: P2 — accessibility pass with an automated check.
+Changed: Audit (both themes × both languages, all 23 chapters) found every control labelled and every button named, but 10 chapters skipped from h2 to h4 and two light-theme colours failed WCAG AA: the chapter eyebrow (amber 3.34:1) and green pills (4.34:1). Fixes: light --amber #B97800 → #946000 (4.9:1) and --ok #17804F → #147547 (5.0:1); all 81 h4 headings (73 static, 8 script-built) became h3 with a .h4 class that keeps the same look, so headings go h1 → h2 → h3 with no skips. Focus ring (:focus-visible) was already present. New test block "accessibility": labels, button names, heading order and text contrast (4.5:1, 3:1 for large text) in light/dark × en/fa; it fails on the previous version and passes now.
+Tests: All checks passed
+Scores: correctness 5 · usefulness 3 · robustness 5 · clarity 4
+Next: P2 — role playbooks (Hermes skill file per AI role), the last P2 item.

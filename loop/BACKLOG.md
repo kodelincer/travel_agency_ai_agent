@@ -7,7 +7,6 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - (done 2026-10-17) All 22 chapters are bilingual; `MAX_TODO` is 0. Keep every new text bilingual (CLAUDE.md).
 
 ## P2
-- **Accessibility pass:** heading order, focus order in the simulator, contrast of muted text in both themes, labels for every control; add an automated check to the tests.
 - **Role playbooks:** for each of the 10 AI roles, a ready Hermes skill file (Markdown) in the Templates chapter.
 
 ## P3
