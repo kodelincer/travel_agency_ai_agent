@@ -296,3 +296,15 @@ Changed: A probe with 11 kinds of bad localStorage values found two crashes that
 Tests: All checks passed
 Scores: correctness 5 · usefulness 4 · robustness 5 · clarity 4
 Next: stop check — backlog has no P1/P2, no fact due before 2026-11-15; iterations 37–39 do not all score 4+ (37 usefulness 3), so one more focus-rotation iteration (40 mod 6 = 4: new tests for untested behaviour).
+
+## Iteration 40 · 2026-10-17
+Task: Focus rotation (40 mod 6 = 4) — tests for untested behaviour.
+Changed: New test block "saved state and controls": previous/next buttons move one chapter and are disabled at the ends; automation-map risk and desk filters combine; product filters narrow the list; language, current chapter, 90-day plan ticks and worksheet rows (including a removed row) survive a reload; "Clear my ticks" empties the plan. All passed on first run, so no defect was found; they now guard the owner's saved work against regressions.
+Tests: All checks passed
+Scores: correctness 5 · usefulness 4 · robustness 5 · clarity 4
+Next: steady state (see below).
+
+## Steady state · 2026-10-17
+Stop conditions in PROMPT.md are met: the backlog has no P1 or P2 items; no fact in FACTS.md is due (earliest re-check 2026-11-15 for facts #9–#11: flights, internet, rial and inflation); iterations 38, 39 and 40 each scored 4 or more on every line. The loop stops here.
+State: 23 chapters, all bilingual (English/Persian, RTL), 49 sourced facts, automated checks for layout, themes, both languages, accessibility (WCAG AA contrast, labels, headings), storage blocked or corrupted, saved state, downloads and the simulator.
+Restart: run `/loop Follow loop/PROMPT.md exactly` on or after 2026-11-15 to re-check facts #9–#11, or sooner when the owner returns answers for the P3 items (platform terms, the association's directive, an integrator sandbox).

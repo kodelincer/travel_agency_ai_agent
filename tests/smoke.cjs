@@ -264,6 +264,68 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
   check(navCount >= MIN_CHAPTERS && errs2.length === 0, `works without localStorage (${navCount} nav links, ${errs2.length} errors)`);
   await ctx.close();
 
+  // saved state and controls: what the owner does on one visit must still be there on the next
+  console.log("\nsaved state and controls");
+  {
+    const ctx4 = await browser.newContext();
+    const page = await ctx4.newPage();
+    const errs = [];
+    page.on("pageerror", e => errs.push(e.message));
+    await page.route(/fonts\.(googleapis|gstatic)/, r => r.abort());
+    await page.goto(FILE);
+    const ids = await page.evaluate(() => [...document.querySelectorAll("main > section")].map(s => s.id));
+    // previous / next buttons
+    await page.evaluate(i => { location.hash = i; }, ids[0]);
+    const first = { prev: await page.isDisabled("#prevBtn") };
+    await page.click("#nextBtn");
+    const afterNext = await page.evaluate(() => document.querySelector("main > section:not([hidden])").id);
+    await page.click("#prevBtn");
+    const afterPrev = await page.evaluate(() => document.querySelector("main > section:not([hidden])").id);
+    await page.evaluate(i => { location.hash = i; }, ids[ids.length - 1]);
+    const lastNext = await page.isDisabled("#nextBtn");
+    check(first.prev && afterNext === ids[1] && afterPrev === ids[0] && lastNext, `previous/next buttons move one chapter and stop at the ends (${afterNext}, ${afterPrev})`);
+    // automation map filters
+    await page.evaluate(() => { location.hash = "map"; });
+    const mapAll = await page.locator("#caseGrid .card").count();
+    await page.click('#riskFilters [data-f="high"]');
+    const mapHigh = await page.locator("#caseGrid .card").count();
+    await page.click('#deskFilters [data-f="Finance"]');
+    const mapBoth = await page.locator("#caseGrid .card").count();
+    await page.click('#riskFilters [data-f="all"]'); await page.click('#deskFilters [data-f="all"]');
+    check(mapAll === 24 && mapHigh > 0 && mapHigh < mapAll && mapBoth >= 1 && mapBoth <= mapHigh, `automation map filters combine (${mapAll} → ${mapHigh} human-approves → ${mapBoth} in Finance)`);
+    // product filters
+    await page.evaluate(() => { location.hash = "products"; });
+    const prodAll = await page.locator("#prodGrid .card").count();
+    await page.click('#prodFilters [data-f="S"]');
+    const prodQuick = await page.locator("#prodGrid .card").count();
+    await page.click('#prodFilters [data-f="all"]');
+    check(prodAll === 10 && prodQuick > 0 && prodQuick < prodAll, `product filters work (${prodAll} all, ${prodQuick} quick to build)`);
+    // 90-day plan: ticks count and survive a reload; "clear my ticks" empties them
+    await page.evaluate(() => { location.hash = "plan"; });
+    await page.check("#p0_0"); await page.check("#p1_2");
+    const count0 = await page.textContent("#weeks .phase .status");
+    // worksheet: start from an empty day, add two tasks, remove one
+    await page.evaluate(() => { location.hash = "day"; });
+    await page.click("#dayClear");
+    for (const t of ["Keep me", "Remove me"]) { await page.fill("#dTask", t); await page.click('#dayForm button[type="submit"]'); }
+    await page.locator("#dayRows tr", { hasText: "Remove me" }).locator("button").click();
+    // language and current chapter
+    await page.click("#langBtn");
+    await page.evaluate(() => { location.hash = "plan"; });
+    await page.reload();
+    const after = await page.evaluate(() => ({
+      lang: document.documentElement.lang, chapter: document.querySelector("main > section:not([hidden])").id,
+      ticks: [...document.querySelectorAll("#weeks input:checked")].map(i => i.id).join(","),
+      rows: [...document.querySelectorAll("#dayRows tr")].map(r => r.cells[0].textContent.trim()).join("|"),
+    }));
+    check(/^1 \/ 5/.test(count0) && after.lang === "fa" && after.chapter === "plan" && after.ticks === "p0_0,p1_2" && after.rows === "Keep me", `language, chapter, plan ticks and worksheet survive a reload (${after.lang}, ${after.chapter}, ${after.ticks}, ${after.rows})`);
+    await page.click("#resetPlan");
+    await page.reload();
+    const cleared = await page.locator("#weeks input:checked").count();
+    check(cleared === 0 && errs.length === 0, `"clear my ticks" empties the plan after reload (${cleared} left, ${errs.length} errors)` + (errs.length ? " → " + errs[0] : ""));
+    await ctx4.close();
+  }
+
   // corrupted saved data (edited by hand, cut off, or written by an older version) must not break the page
   console.log("\ncorrupted storage");
   const ctx3 = await browser.newContext();
