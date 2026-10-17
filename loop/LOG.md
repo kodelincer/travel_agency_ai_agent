@@ -132,3 +132,10 @@ Bug caught by tests: my block replacement ended at the first "renderDay();" (ins
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P1 — translate Online business ideas.
+
+## Iteration 17 · 2026-10-17
+Task: P1 — translate "Online business ideas" into Persian.
+Changed: Whole chapter bilingual: platform table, confirmed facts about Alibaba, seven world-trend cards, filters, Online Desk plan and measures; 12 idea cards with Persian name, earnings, first step, time and AI help (IDEAS_FA), bilingual group, cost and status pills. Proofreading fixed a mangled "Trip.com" and an ambiguous Persian month for March 2026. MAX_TODO 15 → 14.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+Next: P1 — translate Tool stack.
