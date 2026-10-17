@@ -1400,6 +1400,8 @@ const el = (tag, attrs = {}, ...kids) => {
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  // saved data can be edited, truncated or written by an older version: keep only a list of strings
+  list(k) { const v = this.get(k, []); return Array.isArray(v) ? v.filter(x => typeof x === "string") : []; },
 };
 const fmt = n => Math.round(n).toLocaleString("en-US");
 let navReady = false;
@@ -1430,7 +1432,7 @@ sections.forEach((s, i) => {
 });
 const GROUP_FA = { "Understand": "شناخت", "Automate": "خودکارسازی", "Grow & protect": "رشد و محافظت", "Act": "اقدام" };
 const titleOf = s => lang === "fa" ? (s.dataset.titleFa || s.dataset.title) : s.dataset.title;
-const doneSet = new Set(store.get("taa.done", []));
+const doneSet = new Set(store.list("taa.done"));
 const nav = $("#sidenav"), pick = $("#chapterPick");
 let current = ids[0];
 
@@ -1868,8 +1870,13 @@ const EXAMPLE_DAY = [
   ["Posted a Kish offer on Instagram", "Instagram", "marketing", 20, false, "گذاشتن پیشنهاد کیش در اینستاگرام"],
   ["Updated the sales notebook at the end of the day", "Excel / Word / notes", "manager", 20, true, "به‌روز کردن دفتر فروش در پایان روز"],
 ];
+// a saved row is [task, system, role id, minutes, annoying, optional Persian task]; drop or repair anything else
+const cleanRow = r => Array.isArray(r) && typeof r[0] === "string" && r[0].trim() && typeof r[1] === "string" && roleById[r[2]]
+  ? [r[0], r[1], r[2], Math.max(1, Math.min(600, Math.round(Number(r[3])) || 1)), r[4] === true, ...(typeof r[5] === "string" ? [r[5]] : [])]
+  : null;
 let day = store.get("taa.day", null);
 if (!day || !Array.isArray(day.rows)) day = { example: true, rows: EXAMPLE_DAY.map(r => r.slice()) };
+else day = { example: day.example === true, rows: day.rows.map(cleanRow).filter(Boolean) };
 const saveDay = () => store.set("taa.day", day);
 function fillDayControls() {
   const fa = lang === "fa", sysVal = $("#dSys").value, roleVal = $("#dRole").value;
@@ -2055,7 +2062,7 @@ const PLAN = [
     ["Pick one product from “Products to sell” to offer to two friendly agencies", "Your first software revenue.", "یک محصول از فصل «محصولات قابل فروش» انتخاب کنید و به دو آژانس دوست پیشنهاد دهید", "اولین درآمد نرم‌افزاری شما."],
   ]],
 ];
-const planDone = new Set(store.get("taa.plan", []));
+const planDone = new Set(store.list("taa.plan"));
 const weeks = $("#weeks");
 PLAN.forEach(([[title, titleFa], items], pi) => {
   const bar = el("i"), count = el("span", { class: "status" });

@@ -264,6 +264,25 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
   check(navCount >= MIN_CHAPTERS && errs2.length === 0, `works without localStorage (${navCount} nav links, ${errs2.length} errors)`);
   await ctx.close();
 
+  // corrupted saved data (edited by hand, cut off, or written by an older version) must not break the page
+  console.log("\ncorrupted storage");
+  const ctx3 = await browser.newContext();
+  await ctx3.addInitScript(() => {
+    localStorage.setItem("taa.done", "5");
+    localStorage.setItem("taa.plan", '{"a":1}');
+    localStorage.setItem("taa.cur", '"no-such-chapter"');
+    localStorage.setItem("taa.day", '{"rows":[["Valid task","Sepehr","sales","abc",1],["ghost role","Sepehr","ghost",10,false],[1,2],null,"x"]}');
+  });
+  const p3 = await ctx3.newPage();
+  const errs3 = [];
+  p3.on("pageerror", e => errs3.push(e.message));
+  await p3.route(/fonts\.(googleapis|gstatic)/, r => r.abort());
+  await p3.goto(FILE);
+  await p3.evaluate(() => { location.hash = "day"; });
+  const c3 = { nav: await p3.locator(".navlink").count(), rows: await p3.locator("#dayRows tr").count(), cell: await p3.textContent("#dayRows tr td.num").catch(() => "") };
+  check(c3.nav >= MIN_CHAPTERS && c3.rows === 1 && /^1/.test(c3.cell) && errs3.length === 0, `survives corrupted saved data (${c3.nav} nav links, ${c3.rows} valid row kept, ${errs3.length} errors)` + (errs3.length ? " → " + errs3[0] : ""));
+  await ctx3.close();
+
   await browser.close();
   console.log(failures.length ? `\nFAILED: ${failures.length} check(s)` : "\nAll checks passed");
   process.exit(failures.length ? 1 : 0);

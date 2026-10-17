@@ -289,3 +289,10 @@ Changed: Templates chapter has a new "Role playbooks" block: pick any of the 13 
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: backlog has no P1/P2 left; focus rotation (iteration 39 → robustness).
+
+## Iteration 39 · 2026-10-17
+Task: Focus rotation (39 mod 6 = 3, robustness) — survive corrupted saved data.
+Changed: A probe with 11 kinds of bad localStorage values found two crashes that left the page with no navigation: "taa.done" holding a number or object, and worksheet rows that were null, too short or named a role that no longer exists. Fix: store.list() keeps only a list of strings for progress and plan ticks; worksheet rows are validated and repaired on load (unknown role or missing task dropped; minutes forced to 1–600; "annoying" must be true; optional Persian task kept). No user-visible text changed. New test "corrupted storage" (fails on the old code with "number 5 is not iterable", passes now).
+Tests: All checks passed
+Scores: correctness 5 · usefulness 4 · robustness 5 · clarity 4
+Next: stop check — backlog has no P1/P2, no fact due before 2026-11-15; iterations 37–39 do not all score 4+ (37 usefulness 3), so one more focus-rotation iteration (40 mod 6 = 4: new tests for untested behaviour).
