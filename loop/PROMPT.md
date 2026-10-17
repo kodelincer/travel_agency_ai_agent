@@ -44,6 +44,7 @@ Write the chosen task in one sentence before starting. If it is bigger than abou
 - Do not invent statistics, prices, laws, product features or commands. If you cannot verify something, leave it out or mark it unverified.
 
 ### 4. Implement
+- Write every new or changed text in **both English and Persian** (`l-en` / `l-fa` classes, or the `T(en, fa)` helper in the script). Read `CLAUDE.md`.
 - Edit `src/academy.html` only (plus tests or loop files). Keep the existing structure: sections are `<section id=… data-title=… data-group=…>` inside `<main>`; chapter numbers are automatic; data-driven parts live in the script as arrays.
 - Match the existing style: the CSS tokens on `:root` (light and both dark blocks), plain sentences, short paragraphs, real examples from an Iranian agency.
 - Writing rules: write for the agency owner, use active voice, avoid jargon or explain it once, give the Persian term where staff would use it, and make every recommendation actionable (who does what, with which tool, how to measure it).
@@ -86,6 +87,7 @@ If any score is below 3, improve the change or revert it. Do not commit work you
 - Never spend an iteration only on cosmetic rewording.
 
 ## Non-negotiables
+- **Bilingual:** everything a reader sees must be in English and Persian in the same change (see `CLAUDE.md`). Never add an English-only chapter, card, label or data row. While chapters marked `data-fa="todo"` remain, translating them is a P1 task.
 - Human approval for any money, ticketing or booking action stays in every agent design the app teaches.
 - Customer data examples are always invented; never put real names, phone numbers or passport data in the app or the repository.
 - No legal, tax or sanctions advice presented as certain.

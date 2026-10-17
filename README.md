@@ -1,4 +1,6 @@
-# Travel Agency AI Academy
+# Travel Agency AI Academy · آکادمی هوش مصنوعی آژانس مسافرتی
+
+**Bilingual: English and Persian.** Use the language button in the header to switch; Persian mode is right-to-left. Every change must be written in both languages (see `CLAUDE.md`).
 
 A self-contained web app that teaches a travel agency owner how to use AI agents (such as Hermes Agent) to run the office better: reservations, hotels, CRM, operations, pilgrimage groups and finance. It is written for agencies worldwide, with a dedicated **Iran-resilient track** for agencies working under sanctions and internet shutdowns.
 
@@ -7,7 +9,7 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | # | Chapter | What you learn |
 |---|---|---|
 | 1 | Start here | How the course works, the two tracks, key numbers |
-| 2 | راهنمای سریع فارسی (Persian quick guide) | Right-to-left Persian summary: the 13 AI roles, the golden approval rule, the first 30 days, questions to ask suppliers and the accountant |
+| 2 | Quick guide · راهنمای سریع | Bilingual summary: the 13 AI roles, the golden approval rule, the first 30 days, questions to ask suppliers and the accountant |
 | 3 | Agencies worldwide | Service lines, revenue models, where the industry is heading, McKinsey's four AI scenarios |
 | 4 | Iran market 1405 | Licences, charter systems, pilgrimage, the 2026 war and internet shutdown, what that means for AI |
 | 5 | The whole job | Every task in an agency by trip stage, including the often-forgotten ones, each mapped to an AI role |

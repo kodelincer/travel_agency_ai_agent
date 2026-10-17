@@ -39,7 +39,7 @@ h2{font-size:clamp(25px,3.2vw,34px);font-weight:800;letter-spacing:-.015em}
 h3{font-size:20px;font-weight:700}
 h4{font-size:16px;font-weight:700}
 p{margin:0}
-ul,ol{margin:0;padding-left:20px;display:grid;gap:6px}
+ul,ol{margin:0;padding-inline-start:20px;display:grid;gap:6px}
 a{color:var(--accent)}
 code,.mono{font-family:var(--f-mono);font-size:.86em}
 .fa{font-family:var(--f-fa)}
@@ -56,15 +56,15 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background
 .topbar{display:flex;align-items:center;gap:14px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .brand{font-family:var(--f-display);font-weight:800;font-size:18px;white-space:nowrap}
 .brand span{color:var(--accent)}
-.toptools{margin-left:auto;display:flex;gap:10px;align-items:center;min-width:0}
+.toptools{margin-inline-start:auto;display:flex;gap:10px;align-items:center;min-width:0}
 .overall{font:600 12px var(--f-mono);color:var(--muted);white-space:nowrap}
-.picker{display:none;min-width:0;flex:1}
+.picker{display:none;min-width:110px;flex:1}
 .picker select{width:100%}
 .layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:0;max-width:1320px;margin:0 auto}
-nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);align-self:start;max-height:calc(100vh - 57px);overflow:auto;padding:22px 14px 40px max(16px,env(safe-area-inset-left,0px));border-right:1px solid var(--line)}
+nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);align-self:start;max-height:calc(100vh - 57px);overflow:auto;padding:22px 14px 40px max(16px,env(safe-area-inset-left,0px));border-inline-end:1px solid var(--line)}
 .navgroup{display:grid;gap:2px;margin-bottom:18px}
 .navgroup > span{font:600 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 10px}
-.navlink{appearance:none;border:0;background:none;text-align:left;color:var(--ink);font:600 15px var(--f-body);padding:7px 10px;border-radius:8px;cursor:pointer;display:grid;grid-template-columns:26px minmax(0,1fr) 16px;gap:6px;align-items:center}
+.navlink{appearance:none;border:0;background:none;text-align:start;color:var(--ink);font:600 15px var(--f-body);padding:7px 10px;border-radius:8px;cursor:pointer;display:grid;grid-template-columns:26px minmax(0,1fr) 16px;gap:6px;align-items:center}
 .navlink:hover{background:var(--surface-2)}
 .navlink[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .navlink .n{font:600 12px var(--f-mono);color:inherit;opacity:.65}
@@ -72,7 +72,7 @@ nav.side{position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);align-sel
 .navlink[aria-current="page"] .tick{color:inherit}
 main{min-width:0;padding-block:30px 70px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 main > section{max-width:1000px;margin:0 auto;display:grid;gap:28px}
-@media (min-width:961px){main{padding-left:40px;padding-right:max(24px,env(safe-area-inset-right,0px))}}
+@media (min-width:961px){main{padding-inline-start:40px;padding-inline-end:max(24px,env(safe-area-inset-right,0px))}}
 @media (max-width:960px){.layout{grid-template-columns:1fr}nav.side{display:none}.picker{display:block}.overall{display:none}}
 .chapter-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
 
@@ -120,7 +120,7 @@ textarea{width:100%;min-height:130px;resize:vertical}
 .kv{display:grid;gap:8px;font-size:14.5px}
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
 table.grid{width:100%;border-collapse:collapse;min-width:640px}
-table.grid th,table.grid td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+table.grid th,table.grid td{text-align:start;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
 table.grid th{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
 table.grid tr:last-child td{border-bottom:0}
 table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -129,9 +129,9 @@ table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat b{font:800 24px var(--f-display);font-variant-numeric:tabular-nums}
 .stat span{font-size:14px;color:var(--muted)}
 .stat.alert{border-top-color:var(--risk)}
-.callout{border-left:4px solid var(--amber);background:var(--warn-bg);padding:14px 16px;border-radius:0 8px 8px 0;display:grid;gap:6px;max-width:80ch}
-.callout.ok{border-left-color:var(--ok);background:var(--ok-bg)}
-.callout.risk{border-left-color:var(--risk);background:var(--risk-bg)}
+.callout{border-inline-start:4px solid var(--amber);background:var(--warn-bg);padding:14px 16px;border-radius:8px;border-start-start-radius:0;border-end-start-radius:0;display:grid;gap:6px;max-width:80ch}
+.callout.ok{border-inline-start-color:var(--ok);background:var(--ok-bg)}
+.callout.risk{border-inline-start-color:var(--risk);background:var(--risk-bg)}
 .callout h4{color:var(--ink)}
 .loop{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:0;margin:0;counter-reset:s}
 .loop li{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:6px;align-content:start}
@@ -141,9 +141,9 @@ table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 .loop.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:820px){.loop,.loop.cols3,.loop.cols4{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.loop,.loop.cols3,.loop.cols4{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
-.timeline{display:grid;gap:0;border-left:2px solid var(--line);margin-left:6px}
-.tl{display:grid;gap:3px;padding:0 0 16px 18px;position:relative}
-.tl::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--risk)}
+.timeline{display:grid;gap:0;border-inline-start:2px solid var(--line);margin-inline-start:6px}
+.tl{display:grid;gap:3px;padding:0 0 16px;padding-inline-start:18px;position:relative}
+.tl::before{content:"";position:absolute;inset-inline-start:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--risk)}
 .tl.ok::before{border-color:var(--ok)}
 .tl .when{font:600 12px var(--f-mono);color:var(--muted);letter-spacing:.04em}
 .track{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -160,16 +160,16 @@ table.grid td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
 #dayBadge{white-space:normal}
 #dayForm input:not([type=checkbox]),#dayForm select{width:100%;min-width:0}
 .inbox{display:grid;gap:8px}
-.msg{appearance:none;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;cursor:pointer;font:inherit;display:grid;gap:2px;min-width:0}
+.msg{appearance:none;text-align:start;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:10px 12px;cursor:pointer;font:inherit;display:grid;gap:2px;min-width:0}
 .msg[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .msg small{font:600 11px var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
 .msg span{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 label.lbl{font:600 12px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .log{display:grid;gap:8px;max-height:380px;overflow:auto;font-family:var(--f-mono);font-size:12.5px}
-.log .ev{border-left:3px solid var(--line);padding:6px 10px;background:var(--bg);border-radius:0 6px 6px 0;overflow-wrap:anywhere}
-.log .ev.tool{border-color:var(--accent)}
-.log .ev.need{border-color:var(--amber)}
-.log .ev.err{border-color:var(--risk);color:var(--risk)}
+.log .ev{border-inline-start:3px solid var(--line);padding:6px 10px;background:var(--bg);border-radius:6px;border-start-start-radius:0;border-end-start-radius:0;overflow-wrap:anywhere}
+.log .ev.tool{border-inline-start-color:var(--accent)}
+.log .ev.need{border-inline-start-color:var(--amber)}
+.log .ev.err{border-inline-start-color:var(--risk);color:var(--risk)}
 .log .res{color:var(--muted);display:block;margin-top:2px}
 .draft{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:15px;min-height:80px;overflow-wrap:anywhere;unicode-bidi:plaintext}
 .queue{display:grid;gap:8px}
@@ -197,20 +197,28 @@ pre.rtl{direction:rtl;text-align:right;font-family:var(--f-fa);font-size:14px;wh
 .sources ul{gap:4px;font-size:15px}
 .rtl-section{font-family:var(--f-fa)}
 .rtl-section h2,.rtl-section h3,.rtl-section h4{font-family:var(--f-fa);letter-spacing:0}
-.rtl-section ul,.rtl-section ol{padding-left:0;padding-right:22px}
-.rtl-section table.grid th,.rtl-section table.grid td{text-align:right}
 .rtl-section table.grid th{font-family:var(--f-fa);letter-spacing:0;text-transform:none;font-size:13px}
-.rtl-section .callout{border-left:0;border-right:4px solid var(--amber);border-radius:8px 0 0 8px}
-.rtl-section .callout.ok{border-right-color:var(--ok)}
 @media (max-width:640px){.rtl-section table.grid{min-width:0}.rtl-section table.grid th,.rtl-section table.grid td{padding:9px 8px;font-size:14px}}
+pre{direction:ltr;text-align:left}
+code{unicode-bidi:isolate}
+:root[data-lang="fa"] .l-en{display:none!important}
+:root:not([data-lang="fa"]) .l-fa{display:none!important}
+:root[data-lang="fa"] body{font-family:var(--f-fa)}
+:root[data-lang="fa"] h1,:root[data-lang="fa"] h2,:root[data-lang="fa"] h3,:root[data-lang="fa"] h4,:root[data-lang="fa"] .brand,:root[data-lang="fa"] .stat b{font-family:var(--f-fa);letter-spacing:0}
+:root[data-lang="fa"] .eyebrow,:root[data-lang="fa"] .kicker,:root[data-lang="fa"] .lbl,:root[data-lang="fa"] table.grid th,:root[data-lang="fa"] .pill,:root[data-lang="fa"] .badge,:root[data-lang="fa"] .navgroup > span,:root[data-lang="fa"] .split b,:root[data-lang="fa"] .kv b{font-family:var(--f-fa);letter-spacing:0;text-transform:none}
+:root[data-lang="fa"] section[data-fa="todo"]{direction:ltr;font-family:var(--f-body)}
+:root[data-lang="fa"] .board,:root[data-lang="fa"] .board td,:root[data-lang="fa"] .board-head{font-family:var(--f-fa);letter-spacing:0;text-transform:none}
+:root[data-lang="fa"] section[data-fa="todo"] .todo-note{direction:rtl;font-family:var(--f-fa)}
+.langbtn{font-family:var(--f-fa)}
+:root[data-lang="fa"] .langbtn{font-family:var(--f-body)}
 footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 </style>
 
 <header class="top">
   <div class="topbar">
-    <div class="brand">Agency<span>AI</span> Academy</div>
+    <div class="brand"><span class="l-en">Agency<span>AI</span> Academy</span><span class="l-fa">آکادمی <span>هوش مصنوعی</span></span></div>
     <div class="picker"><label for="chapterPick" class="lbl" hidden>Chapter</label><select id="chapterPick" aria-label="Choose a chapter"></select></div>
-    <div class="toptools"><span class="overall" id="overall">0 of 15 chapters done</span></div>
+    <div class="toptools"><span class="overall" id="overall"></span><button class="btn ghost small langbtn" id="langBtn" type="button" aria-label="Switch language / تغییر زبان"><span class="l-en">فارسی</span><span class="l-fa">English</span></button></div>
   </div>
 </header>
 
@@ -219,38 +227,84 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 <main id="main">
 
 <!-- =========================================================== 1 START -->
-<section id="start" data-title="Start here" data-group="Understand">
-  <div class="eyebrow">Travel Agency AI Academy · October 2026 edition</div>
-  <h1>Run a stronger travel agency with AI agents</h1>
-  <p class="lead">This course is written from the desk of an experienced agency owner, for owners and managers. It covers what agencies do around the world and in Iran, which parts of the job AI agents can take over, how to earn more, how to survive shocks like the ones of 2026, and which AI products you could build and sell.</p>
+<section id="start" data-title="Start here" data-group="Understand" data-title-fa="شروع">
+  <div class="eyebrow"><span class="l-en">Travel Agency AI Academy · October 2026 edition</span><span class="l-fa">آکادمی هوش مصنوعی آژانس مسافرتی · ویرایش مهر ۱۴۰۵</span></div>
+  <h1><span class="l-en">Run a stronger travel agency with AI agents</span><span class="l-fa">آژانس مسافرتی قوی‌تر با عامل‌های هوش مصنوعی</span></h1>
+  <p class="lead l-en">This course is written from the desk of an experienced agency owner, for owners and managers. It covers what agencies do around the world and in Iran, which parts of the job AI agents can take over, how to earn more, how to survive shocks like the ones of 2026, and which AI products you could build and sell.</p>
+  <p class="lead l-fa">این دوره از پشت میز یک مدیر باتجربه‌ی آژانس و برای مدیران و صاحبان آژانس نوشته شده است: آژانس‌ها در جهان و ایران چه می‌کنند، کدام بخش‌های کار را عامل‌های هوش مصنوعی می‌توانند بر عهده بگیرند، چطور درآمد بیشتری داشته باشید، چطور از بحران‌هایی مثل اتفاقات ۱۴۰۵ عبور کنید، و چه محصولات هوش مصنوعی‌ای می‌توانید بسازید و بفروشید.</p>
   <div class="board" aria-label="Your automation departure board">
-    <div class="board-head"><span>Departures · Your office</span><span>Manual → Agent-assisted</span></div>
+    <div class="board-head"><span><span class="l-en">Departures · Your office</span><span class="l-fa">پروازهای خروجی · دفتر شما</span></span><span><span class="l-en">Manual → Agent-assisted</span><span class="l-fa">دستی ← با کمک عامل هوشمند</span></span></div>
     <table><tbody>
-      <tr><td><span class="flap">W1</span></td><td class="dest">Inbox, Bale &amp; Telegram triage</td><td class="gate">Gate A</td><td class="st-now">Boarding</td></tr>
-      <tr><td><span class="flap">W3</span></td><td class="dest">Quotes &amp; itineraries in Persian</td><td class="gate">Gate A</td><td class="st-now">Boarding</td></tr>
-      <tr><td><span class="flap">W5</span></td><td class="dest">CRM notes &amp; follow-ups</td><td class="gate">Gate B</td><td class="st-soon">On time</td></tr>
-      <tr><td><span class="flap">W7</span></td><td class="dest">Charter price watch (Sepehr / Parto)</td><td class="gate">Gate C</td><td class="st-soon">On time</td></tr>
-      <tr><td><span class="flap">W10</span></td><td class="dest">Disruption &amp; refund desk</td><td class="gate">Gate C</td><td class="st-later">Later</td></tr>
-      <tr><td><span class="flap">W12</span></td><td class="dest">Booking with human approval</td><td class="gate">Gate D</td><td class="st-later">Later</td></tr>
+      <tr><td><span class="flap"><span class="l-en">W1</span><span class="l-fa">هفته ۱</span></span></td><td class="dest"><span class="l-en">Inbox, Bale &amp; Telegram triage</span><span class="l-fa">دسته‌بندی پیام‌های بله و تلگرام</span></td><td class="gate"><span class="l-en">Gate A</span><span class="l-fa">گیت الف</span></td><td class="st-now"><span class="l-en">Boarding</span><span class="l-fa">در حال سوار شدن</span></td></tr>
+      <tr><td><span class="flap"><span class="l-en">W3</span><span class="l-fa">هفته ۳</span></span></td><td class="dest"><span class="l-en">Quotes &amp; itineraries in Persian</span><span class="l-fa">پیش‌فاکتور و برنامه‌ی سفر به فارسی</span></td><td class="gate"><span class="l-en">Gate A</span><span class="l-fa">گیت الف</span></td><td class="st-now"><span class="l-en">Boarding</span><span class="l-fa">در حال سوار شدن</span></td></tr>
+      <tr><td><span class="flap"><span class="l-en">W5</span><span class="l-fa">هفته ۵</span></span></td><td class="dest"><span class="l-en">CRM notes &amp; follow-ups</span><span class="l-fa">یادداشت‌های مشتری و پیگیری‌ها</span></td><td class="gate"><span class="l-en">Gate B</span><span class="l-fa">گیت ب</span></td><td class="st-soon"><span class="l-en">On time</span><span class="l-fa">به‌موقع</span></td></tr>
+      <tr><td><span class="flap"><span class="l-en">W7</span><span class="l-fa">هفته ۷</span></span></td><td class="dest"><span class="l-en">Charter price watch (Sepehr / Parto)</span><span class="l-fa">پایش قیمت چارتر (سپهر / پرتو)</span></td><td class="gate"><span class="l-en">Gate C</span><span class="l-fa">گیت پ</span></td><td class="st-soon"><span class="l-en">On time</span><span class="l-fa">به‌موقع</span></td></tr>
+      <tr><td><span class="flap"><span class="l-en">W10</span><span class="l-fa">هفته ۱۰</span></span></td><td class="dest"><span class="l-en">Disruption &amp; refund desk</span><span class="l-fa">میز اختلال پرواز و استرداد</span></td><td class="gate"><span class="l-en">Gate C</span><span class="l-fa">گیت پ</span></td><td class="st-later"><span class="l-en">Later</span><span class="l-fa">بعداً</span></td></tr>
+      <tr><td><span class="flap"><span class="l-en">W12</span><span class="l-fa">هفته ۱۲</span></span></td><td class="dest"><span class="l-en">Booking with human approval</span><span class="l-fa">رزرو با تأیید انسان</span></td><td class="gate"><span class="l-en">Gate D</span><span class="l-fa">گیت ت</span></td><td class="st-later"><span class="l-en">Later</span><span class="l-fa">بعداً</span></td></tr>
     </tbody></table>
   </div>
-  <div class="prose">
+  <div class="prose l-en">
     <h3>How to use this academy</h3>
-    <p>Read the chapters in order the first time; each one ends with a <b>Mark as done</b> button so you can see your progress (saved in this browser only). The menu groups the chapters: <b>Understand</b> (the business), <b>Automate</b> (the AI, including your AI office of 10), <b>Grow &amp; protect</b>, and <b>Act</b> (a one-day time study, a plan, templates, rules, my self-review and every source).</p>
+    <p>Read the chapters in order the first time; each one ends with a <b>Mark as done</b> button so you can see your progress (saved in this browser only). The menu groups the chapters: <b>Understand</b> (the business), <b>Automate</b> (the AI, including your AI office), <b>Grow &amp; protect</b>, and <b>Act</b> (a one-day time study, a plan, templates, rules, my self-review and every source). Use the language button at the top to switch between English and Persian.</p>
     <p>Two tracks run through the course. The <b>Iran-resilient track</b> works inside Iran, under sanctions and during internet cuts. The <b>Global track</b> is for agencies elsewhere, or for a partner company you legally operate abroad. When they differ, the chapter says so.</p>
   </div>
-  <div class="stats">
-    <div class="stat"><b>30%</b><span>of travel bookings could be made by AI agents by 2030 (IDC forecast)</span></div>
-    <div class="stat"><b>62%</b><span>of 4,000 travelers expect to use an advisor for most trips (Internova Index)</span></div>
-    <div class="stat"><b>2%</b><span>of travelers trust AI to book on its own (Skift, 2025)</span></div>
-    <div class="stat alert"><b>&lt;1M</b><span>foreign arrivals to Iran in spring 1405, down from 6.2M in all of 1404</span></div>
+  <div class="prose l-fa">
+    <h3>چطور از این آکادمی استفاده کنید</h3>
+    <p>بار اول فصل‌ها را به ترتیب بخوانید. آخر هر فصل دکمه‌ی <b>علامت انجام شد</b> هست تا پیشرفت خود را ببینید (فقط در همین مرورگر ذخیره می‌شود). فهرست فصل‌ها چهار گروه دارد: <b>شناخت</b> (کسب‌وکار)، <b>خودکارسازی</b> (هوش مصنوعی و دفتر هوشمند شما)، <b>رشد و محافظت</b>، و <b>اقدام</b> (ثبت یک روز کاری، برنامه، قالب‌ها، قواعد، خودارزیابی و همه‌ی منابع). با دکمه‌ی زبان در بالای صفحه بین فارسی و انگلیسی جابه‌جا شوید.</p>
+    <p>دو مسیر در کل دوره هست. <b>مسیر مقاوم برای ایران</b> داخل ایران، زیر تحریم و هنگام قطعی اینترنت کار می‌کند. <b>مسیر جهانی</b> برای آژانس‌های خارج از ایران یا شرکتی است که قانونی در خارج از کشور اداره می‌کنید. هر جا این دو فرق کنند، در همان فصل گفته شده است.</p>
   </div>
-  <p class="src">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources are in the last chapter.</p>
+  <div class="stats">
+    <div class="stat"><b><span class="l-en">30%</span><span class="l-fa">۳۰٪</span></b><span><span class="l-en">of travel bookings could be made by AI agents by 2030 (IDC forecast)</span><span class="l-fa">از رزروهای سفر تا ۲۰۳۰ ممکن است با عامل‌های هوش مصنوعی انجام شود (پیش‌بینی IDC)</span></span></div>
+    <div class="stat"><b><span class="l-en">62%</span><span class="l-fa">۶۲٪</span></b><span><span class="l-en">of 4,000 travelers expect to use an advisor for most trips (Internova Index)</span><span class="l-fa">از ۴٬۰۰۰ مسافر انتظار دارند برای بیشتر سفرها از مشاور سفر کمک بگیرند (شاخص Internova)</span></span></div>
+    <div class="stat"><b><span class="l-en">2%</span><span class="l-fa">۲٪</span></b><span><span class="l-en">of travelers trust AI to book on its own (Skift, 2025)</span><span class="l-fa">از مسافران به رزرو کاملاً خودکار هوش مصنوعی اعتماد دارند (Skift، ۲۰۲۵)</span></span></div>
+    <div class="stat alert"><b><span class="l-en">&lt;1M</span><span class="l-fa">زیر ۱ میلیون</span></b><span><span class="l-en">foreign arrivals to Iran in spring 1405, down from 6.2M in all of 1404</span><span class="l-fa">ورود گردشگر خارجی در بهار ۱۴۰۵، در برابر ۶٫۲ میلیون در کل سال ۱۴۰۴</span></span></div>
+  </div>
+  <p class="src"><span class="l-en">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources are in the last chapter.</span><span class="l-fa">پیام این اعداد: مسافران از هوش مصنوعی سرعت می‌خواهند <i>و</i> از انسان اعتماد. آژانسی که هر دو را با هم ارائه کند برنده است. منابع در فصل آخر آمده است.</span></p>
 </section>
 
 <!-- =========================================================== PERSIAN QUICK GUIDE -->
-<section id="farsi" data-title="راهنمای سریع فارسی" data-group="Understand" lang="fa" dir="rtl" class="rtl-section" hidden>
-  <div class="eyebrow">Chapter · فارسی</div>
+<section id="farsi" data-title="Quick guide" data-group="Understand" data-title-fa="راهنمای سریع" hidden>
+  <div class="eyebrow">Chapter</div>
+  <div class="l-en" style="display:grid;gap:28px">
+  <h2>Quick guide: your agency’s AI office</h2>
+  <p class="lead">A practical summary of the course for the owner and staff. The goal: an office where AI assistants do most of the repetitive work and people decide, approve and talk to important customers.</p>
+  <div class="callout ok"><h4>The golden rule</h4><p>AI assistants search, draft, remind and warn. <b>Bookings, ticket issuing, refunds and every payment happen only with your approval.</b> Card numbers are never typed into an AI chat; use payment links only.</p></div>
+  <div class="prose"><h3>Thirteen assistants in the office</h3><p class="muted">Ten core roles for daily work and three specialists.</p></div>
+  <div class="tablewrap"><table class="grid rtl-table">
+    <thead><tr><th>Role</th><th>Main work</th><th>Needs your approval for</th></tr></thead>
+    <tbody>
+      <tr><td><b>Receptionist</b></td><td>Collects Bale, Telegram, Instagram, SMS and website messages into one list; asks for missing details</td><td>First reply to a new customer (first month)</td></tr>
+      <tr><td><b>Sales consultant</b></td><td>Quotes with two or three options, day-by-day plan, follow-up after 48 hours</td><td>Sending quotes</td></tr>
+      <tr><td><b>Ticketing clerk</b></td><td>Searches and compares Sepehr, Parto, Charter724 and airline panels; enters passenger data once</td><td>Every hold and every issued ticket</td></tr>
+      <tr><td><b>Hotel &amp; tour desk</b></td><td>Contracted hotels first, vouchers, transfers, tours, rooming lists</td><td>Bookings and group contracts</td></tr>
+      <tr><td><b>Documents &amp; visa officer</b></td><td>Passport validity, exit-tax reminders, visa checklists, insurance, Samah data</td><td>Any advice beyond the checklist</td></tr>
+      <tr><td><b>Operations duty officer</b></td><td>Reminder 48 hours before departure, delay and schedule-change alerts, night emergency line</td><td>Rebooking and messages to large groups</td></tr>
+      <tr><td><b>Accountant</b></td><td>Matches payments, warns when charter credit runs low, cheques due, tax e-invoice data</td><td>Every payment, refund and top-up</td></tr>
+      <tr><td><b>Customer care &amp; refunds</b></td><td>Tracks refunds in both directions, logs complaints and drafts calm replies</td><td>Refund amounts and complaint replies</td></tr>
+      <tr><td><b>Marketing</b></td><td>Instagram and Bale channel posts from real tours, birthday and next-season offers, map listings</td><td>Every public post and bulk message</td></tr>
+      <tr><td><b>Office manager</b></td><td>Morning and evening reports, task list, licence and e-trust badge renewals, backups</td><td>—</td></tr>
+      <tr><td><b>Trip designer (conductor)</b></td><td>Splits a trip into parts (transfer, flight, shuttle, hotel, activities, insurance, documents) and checks they fit</td><td>The final plan and every booking</td></tr>
+      <tr><td><b>Fare watch agent</b></td><td>Hourly price checks on main routes from allowed sources, price history, alerts on drops and low seats</td><td>— (never buys)</td></tr>
+      <tr><td><b>Controller (pre-audit)</b></td><td>Checks every sale has an invoice, a payment and a supplier cost; prepares the auditor’s file</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="prose">
+    <h3>The first 30 days</h3>
+    <ol>
+      <li><b>Week 1:</b> log one full working day (“Watch one working day”): each task, which system, how many minutes, and whether it annoyed her.</li>
+      <li><b>Week 2:</b> write the office playbook (fees, tone, refund rules, licence limits) and collect 50 real customer messages without names or numbers.</li>
+      <li><b>Week 3:</b> install Ollama and Hermes on a server inside Iran and test two models with those 50 messages (Tool stack chapter).</li>
+      <li><b>Week 4:</b> start a private Bale bot just for yourself and teach it three skills: quote, follow-up, morning report.</li>
+    </ol>
+    <h3>Ask early</h3>
+    <ul>
+      <li>Your web-service provider (Sepehr, Parto, Charter724): a separate <b>read-only key</b> for search and reports, a test account, and whether it kept working during the 1405 internet cuts.</li>
+      <li>Your accountant or tax adviser: in the tax e-invoice system, do we record ticket sales as agent at the <b>full price</b> or <b>only the commission</b>?</li>
+      <li>Your trade association: the latest version of the online travel-sales directive.</li>
+    </ul>
+  </div>
+  </div>
+  <div class="l-fa" style="display:grid;gap:28px">
   <h2>راهنمای سریع: دفتر هوش مصنوعی آژانس شما</h2>
   <p class="lead">این بخش خلاصه‌ی کاربردی دوره به زبان فارسی است، برای مدیر و همکاران آژانس. هدف: دفتری که بیشتر کارهای تکراری را دستیارهای هوش مصنوعی انجام می‌دهند و انسان‌ها تصمیم می‌گیرند، تأیید می‌کنند و با مشتری‌های مهم صحبت می‌کنند.</p>
 
@@ -290,12 +344,13 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
       <li>از حسابدار یا مشاور مالیاتی: در سامانه‌ی مودیان، فروش بلیت به‌عنوان نماینده را <b>کل مبلغ</b> ثبت کنیم یا <b>فقط کارمزد</b>؟</li>
       <li>از انجمن صنفی: آخرین نسخه‌ی دستورالعمل فروش اینترنتی خدمات سفر.</li>
     </ul>
-    <p class="muted">بقیه‌ی فصل‌ها هنوز انگلیسی هستند؛ ترجمه‌ی آن‌ها در برنامه‌ی بهبود است.</p>
+    <p class="muted">فصل‌هایی که هنوز ترجمه نشده‌اند با یک یادداشت مشخص شده‌اند و ترجمه‌ی آن‌ها در برنامه‌ی بهبود است.</p>
+  </div>
   </div>
 </section>
 
 <!-- =========================================================== 2 WORLD -->
-<section id="world" data-title="Agencies worldwide" data-group="Understand" hidden>
+<section id="world" data-title="Agencies worldwide" data-group="Understand" data-title-fa="آژانس‌ها در جهان" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>What travel agencies do around the world</h2>
   <p class="lead">An agency sells expertise, access and peace of mind. Tickets and rooms are the vehicle. Knowing every service line helps you see where AI saves time and where new revenue hides.</p>
@@ -338,7 +393,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 3 IRAN -->
-<section id="iran" data-title="Iran market 1405" data-group="Understand" hidden>
+<section id="iran" data-title="Iran market 1405" data-group="Understand" data-title-fa="بازار ایران ۱۴۰۵" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>The Iranian agency in 1405 (2026)</h2>
   <p class="lead">Iranian agencies work under conditions few others face: sanctions, a volatile rial, a charter-heavy flight market, mandatory government systems for pilgrimage, and, in 2026, war and months of internet cuts. Any AI plan that ignores this will fail.</p>
@@ -388,7 +443,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== FULL JOB -->
-<section id="fulljob" data-title="The whole job" data-group="Understand" hidden>
+<section id="fulljob" data-title="The whole job" data-group="Understand" data-title-fa="همه‌ی کارهای آژانس" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>The whole job, including the parts nobody mentions</h2>
   <p class="lead">From outside, an agent seems to spend the day booking flights. In reality the office also runs on money flows, paperwork, rules and many small promises to customers. Here is the complete map by stage of a trip. Items marked <span class="pill high">Often forgotten</span> are where small offices lose the most time or money. Each task names the AI role that can take it on, explained in the AI office of 10 chapter.</p>
@@ -412,7 +467,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== TEAM -->
-<section id="team" data-title="Who works in an agency" data-group="Understand" hidden>
+<section id="team" data-title="Who works in an agency" data-group="Understand" data-title-fa="چه کسانی در آژانس کار می‌کنند" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Who works in a travel agency, and the AI partner for each job</h2>
   <p class="lead">A full agency has more jobs than people usually see. Some are required by law in Iran, some by the size of the business. A small office combines several jobs in one person; the AI agents take the routine part of each job so that one person can cover many. The right column names the AI agent from the AI office chapter that supports each job.</p>
@@ -431,7 +486,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 4 AGENTS -->
-<section id="agents" data-title="AI agents 101" data-group="Automate" hidden>
+<section id="agents" data-title="AI agents 101" data-group="Automate" data-title-fa="آشنایی با عامل‌های هوش مصنوعی" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>What an AI agent actually is</h2>
   <div class="prose">
@@ -465,7 +520,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 5 MAP -->
-<section id="map" data-title="Automation map" data-group="Automate" hidden>
+<section id="map" data-title="Automation map" data-group="Automate" data-title-fa="نقشه‌ی خودکارسازی" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Everything an agent can do in your agency</h2>
   <p class="lead">24 jobs across seven desks. Green jobs only read and draft, so start there. Red jobs touch money or tickets: the agent prepares them and a person presses the button. “Shutdown-proof” means the job can run on the domestic network with a local model.</p>
@@ -482,7 +537,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== OFFICE OF 10 -->
-<section id="office" data-title="AI office of 10" data-group="Automate" hidden>
+<section id="office" data-title="AI office of 10" data-group="Automate" data-title-fa="دفتر هوش مصنوعی" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Your AI office: one manager, ten core assistants and three specialists</h2>
   <p class="lead">A busy agency needs a receptionist, sales people, ticketing clerks, a hotel desk, a visa clerk, an operations officer, an accountant, customer care, marketing and a manager. A one- or two-person office can cover all ten roles if AI “staff” do the reading, searching, typing, watching and reminding, and the owner works as the manager who decides and approves.</p>
@@ -572,7 +627,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== ARCHITECTURE -->
-<section id="arch" data-title="The AI-run office" data-group="Automate" hidden>
+<section id="arch" data-title="The AI-run office" data-group="Automate" data-title-fa="دفتری که هوش مصنوعی اداره می‌کند" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>The AI-run office: how the agents connect to every system you use</h2>
   <p class="lead">Your goal is an office where AI agents handle most of the work and people supervise. That works when the agents can reach the same systems your staff use today: reservation web services and panels, hotel portals, the accounting software, the bank, the tax system, messengers and web search. This chapter is the blueprint.</p>
@@ -640,7 +695,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 6 SIM -->
-<section id="sim" data-title="Try an agent" data-group="Automate" hidden>
+<section id="sim" data-title="Try an agent" data-group="Automate" data-title-fa="یک عامل را امتحان کنید" data-fa="todo" hidden>
   <div class="eyebrow">Chapter · Hands-on</div>
   <h2>Watch an agent work a real-looking request</h2>
   <p class="lead">Pick a message and press <b>Run agent</b>. The agent gets six office tools: CRM lookup, flight search, hotel search, passport check, quote builder and approval request. Every tool call appears in the log. It cannot book anything; it can only send you an approval ticket. All customers, fares and hotels are invented demo data in tomans.</p>
@@ -680,7 +735,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 7 STACK -->
-<section id="stack" data-title="Tool stack" data-group="Automate" hidden>
+<section id="stack" data-title="Tool stack" data-group="Automate" data-title-fa="ابزارها و زیرساخت" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>The tool stack: two tracks</h2>
   <p class="lead">Same architecture, different parts. An agency inside Iran should build on the left column; the right column applies to agencies elsewhere or a legally separate company abroad.</p>
@@ -754,7 +809,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 8 REVENUE -->
-<section id="revenue" data-title="Grow revenue" data-group="Grow & protect" hidden>
+<section id="revenue" data-title="Grow revenue" data-group="Grow & protect" data-title-fa="افزایش درآمد" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Twelve levers to earn more, and how AI pulls each one</h2>
   <p class="lead">Margins on tickets are thin and price-transparent. Revenue grows from speed, attach sales, specialisation and recurring clients. Every lever below lists the metric to watch.</p>
@@ -768,7 +823,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 9 RESILIENCE -->
-<section id="resilience" data-title="Resilience" data-group="Grow & protect" hidden>
+<section id="resilience" data-title="Resilience" data-group="Grow & protect" data-title-fa="تاب‌آوری" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Build an agency that survives shocks, and the AI wave</h2>
   <p class="lead">2026 tested every Iranian agency. Use what happened as a checklist: for each shock, prepare before it comes and decide what your agent does when it hits.</p>
@@ -790,7 +845,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 10 PRODUCTS -->
-<section id="products" data-title="Products to sell" data-group="Grow & protect" hidden>
+<section id="products" data-title="Products to sell" data-group="Grow & protect" data-title-fa="محصولات قابل فروش" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>AI products and services you could build and sell</h2>
   <p class="lead">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
@@ -805,7 +860,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== ONLINE BUSINESS -->
-<section id="online" data-title="Online business ideas" data-group="Grow & protect" hidden>
+<section id="online" data-title="Online business ideas" data-group="Grow & protect" data-title-fa="ایده‌های کسب‌وکار آنلاین" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Earn online: work with Alibaba.ir and friends, or beat them in a niche</h2>
   <p class="lead">The big platforms own simple ticket sales. A small agency wins online in two ways: by <b>supplying</b> or <b>serving</b> what the platforms sell, and by owning a <b>niche</b> they handle badly. This chapter shows how the platforms earn, what the world is doing, 12 online businesses you could start, and how to open an “Online Desk” in your office.</p>
@@ -862,7 +917,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== WATCH ONE DAY -->
-<section id="day" data-title="Watch one working day" data-group="Act" hidden>
+<section id="day" data-title="Watch one working day" data-group="Act" data-title-fa="ثبت یک روز کاری" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Watch one working day</h2>
   <p class="lead">Sit beside her for one normal day and log every task: what it was, which system or app she used, how many minutes it took, and whether it annoyed her. The summary shows where the hours go and which AI role to build first. Entries are saved in this browser only.</p>
@@ -908,7 +963,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 11 PLAN -->
-<section id="plan" data-title="90-day plan" data-group="Act" hidden>
+<section id="plan" data-title="90-day plan" data-group="Act" data-title-fa="برنامه‌ی ۹۰ روزه" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Your 90-day plan</h2>
   <p class="lead">Built for the Iran-resilient track. Tick items as you finish them; progress is saved in this browser only.</p>
@@ -917,7 +972,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 12 TEMPLATES -->
-<section id="templates" data-title="Templates" data-group="Act" hidden>
+<section id="templates" data-title="Templates" data-group="Act" data-title-fa="قالب‌های آماده" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Copy-ready templates</h2>
   <p class="lead">Adapt the names, fees and rules to your office. These documents turn a general AI into <i>your</i> reservations assistant.</p>
@@ -925,7 +980,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 13 GUARDRAILS -->
-<section id="guardrails" data-title="Guardrails" data-group="Act" hidden>
+<section id="guardrails" data-title="Guardrails" data-group="Act" data-title-fa="قواعد ایمنی" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Guardrails before you go live</h2>
   <p class="lead">Only 2% of travelers trust AI to book on its own. Your edge is AI speed with a human they can call. These rules protect your licence, your margins and your customers.</p>
@@ -951,7 +1006,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 14 REVIEW -->
-<section id="review" data-title="Self-review" data-group="Act" hidden>
+<section id="review" data-title="Self-review" data-group="Act" data-title-fa="خودارزیابی" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>My self-review: what I got wrong, and what I corrected</h2>
   <p class="lead">You asked me to assess my own output and correct it with new research. The first version of this academy was written for an agency in an unrestricted market. Here is what changed, and what is still uncertain.</p>
@@ -982,7 +1037,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <!-- =========================================================== 15 SOURCES -->
-<section id="sources" data-title="Sources" data-group="Act" hidden>
+<section id="sources" data-title="Sources" data-group="Act" data-title-fa="منابع" data-fa="todo" hidden>
   <div class="eyebrow">Chapter</div>
   <h2>Sources</h2>
   <p class="lead">Checked between 15 and 17 October 2026. Vendor pages and news reports change; confirm before you decide.</p>
@@ -1033,13 +1088,13 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
 </section>
 
 <div class="chapter-foot" id="chapterFoot" style="max-width:1000px;margin:28px auto 0">
-  <button class="btn ghost" id="prevBtn" type="button">← Previous</button>
-  <button class="btn" id="doneBtn" type="button">Mark as done</button>
-  <button class="btn ghost" id="nextBtn" type="button">Next →</button>
+  <button class="btn ghost" id="prevBtn" type="button"><span class="l-en">← Previous</span><span class="l-fa">→ فصل قبل</span></button>
+  <button class="btn" id="doneBtn" type="button"></button>
+  <button class="btn ghost" id="nextBtn" type="button"><span class="l-en">Next →</span><span class="l-fa">فصل بعد ←</span></button>
 </div>
 </main>
 </div>
-<footer>Travel Agency AI Academy · built for an agency owner learning AI agents · demo data in “Try an agent” is invented · not legal advice.</footer>
+<footer><span class="l-en">Travel Agency AI Academy · built for an agency owner learning AI agents · demo data in “Try an agent” is invented · not legal advice.</span><span class="l-fa">آکادمی هوش مصنوعی آژانس مسافرتی · برای مدیر آژانسی که کار با عامل‌های هوش مصنوعی را یاد می‌گیرد · داده‌های بخش «یک عامل را امتحان کنید» ساختگی است · این محتوا مشاوره‌ی حقوقی نیست.</span></footer>
 
 <script>
 (() => {
@@ -1058,11 +1113,32 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
 const fmt = n => Math.round(n).toLocaleString("en-US");
+let navReady = false;
+const T = (en, fa) => { const f = document.createDocumentFragment(); f.append(el("span", { class: "l-en", text: en }), el("span", { class: "l-fa", text: fa == null ? en : fa })); return f; };
+const faNum = n => Number(n).toLocaleString("fa-IR");
+let lang = store.get("taa.lang", "en") === "fa" ? "fa" : "en";
+function applyLang() {
+  const r = document.documentElement;
+  r.dataset.lang = lang; r.lang = lang; r.dir = lang === "fa" ? "rtl" : "ltr";
+  store.set("taa.lang", lang);
+  if (navReady) buildNav();
+}
+applyLang();
+$("#langBtn").addEventListener("click", () => { lang = lang === "fa" ? "en" : "fa"; applyLang(); });
 
 /* ================================================= navigation */
 const sections = [...document.querySelectorAll("main > section")];
 const ids = sections.map(s => s.id);
-sections.forEach((s, i) => { const e = s.querySelector(".eyebrow"); if (e && /^Chapter/.test(e.textContent)) e.textContent = e.textContent.replace(/^Chapter/, "Chapter " + (i + 1)); });
+sections.forEach((s, i) => {
+  const e = s.querySelector(".eyebrow");
+  if (e && /^Chapter/.test(e.textContent)) {
+    const rest = e.textContent.replace(/^Chapter/, "");
+    e.replaceChildren(T("Chapter " + (i + 1) + rest, "فصل " + faNum(i + 1) + (rest.includes("Hands-on") ? " · تمرین عملی" : "")));
+  }
+  if (s.dataset.fa === "todo") s.insertBefore(el("div", { class: "callout todo-note l-fa", text: "این فصل هنوز به فارسی ترجمه نشده است؛ فعلاً متن انگلیسی نمایش داده می‌شود. ترجمه در برنامه‌ی بهبود است." }), s.firstElementChild);
+});
+const GROUP_FA = { "Understand": "شناخت", "Automate": "خودکارسازی", "Grow & protect": "رشد و محافظت", "Act": "اقدام" };
+const titleOf = s => lang === "fa" ? (s.dataset.titleFa || s.dataset.title) : s.dataset.title;
 const doneSet = new Set(store.get("taa.done", []));
 const nav = $("#sidenav"), pick = $("#chapterPick");
 let current = ids[0];
@@ -1073,20 +1149,21 @@ function buildNav() {
   sections.forEach((s, i) => {
     if (s.dataset.group !== group) {
       group = s.dataset.group;
-      box = el("div", { class: "navgroup" }, el("span", { text: group })); nav.append(box);
-      og = el("optgroup", { label: group }); pick.append(og);
+      const gName = lang === "fa" ? (GROUP_FA[group] || group) : group;
+      box = el("div", { class: "navgroup" }, el("span", { text: gName })); nav.append(box);
+      og = el("optgroup", { label: gName }); pick.append(og);
     }
     const b = el("button", { class: "navlink", type: "button", "data-id": s.id },
-      el("span", { class: "n", text: String(i + 1).padStart(2, "0") }), el("span", { text: s.dataset.title }),
+      el("span", { class: "n", text: lang === "fa" ? faNum(i + 1) : String(i + 1).padStart(2, "0") }), el("span", { text: titleOf(s) }),
       el("span", { class: "tick", text: doneSet.has(s.id) ? "✓" : "" }));
     if (s.id === current) b.setAttribute("aria-current", "page");
     b.addEventListener("click", () => go(s.id, true));
     box.append(b);
-    const o = el("option", { value: s.id, text: `${i + 1}. ${s.dataset.title}${doneSet.has(s.id) ? " ✓" : ""}` });
+    const o = el("option", { value: s.id, text: `${lang === "fa" ? faNum(i + 1) : i + 1}. ${titleOf(s)}${doneSet.has(s.id) ? " ✓" : ""}` });
     if (s.id === current) o.selected = true;
     og.append(o);
   });
-  $("#overall").textContent = `${doneSet.size} of ${ids.length} chapters done`;
+  $("#overall").replaceChildren(T(`${doneSet.size} of ${ids.length} chapters done`, `${faNum(doneSet.size)} از ${faNum(ids.length)} فصل انجام شد`));
 }
 pick.addEventListener("change", () => go(pick.value, true));
 
@@ -1098,7 +1175,7 @@ function go(id, scroll) {
   $("#prevBtn").disabled = i === 0;
   $("#nextBtn").disabled = i === ids.length - 1;
   const d = doneSet.has(id);
-  $("#doneBtn").textContent = d ? "Done ✓" : "Mark as done";
+  $("#doneBtn").replaceChildren(d ? T("Done ✓", "انجام شد ✓") : T("Mark as done", "علامت انجام شد"));
   $("#doneBtn").classList.toggle("done", d);
   store.set("taa.cur", id);
   try { history.replaceState(null, "", "#" + id); } catch {}
@@ -1896,6 +1973,7 @@ INTERNAL NOTE:
 $("#replayBtn").addEventListener("click", replay);
 
 /* ================================================= start */
+navReady = true;
 window.addEventListener("hashchange", () => { const h = location.hash.slice(1); if (h && h !== current) go(h, true); });
 go((location.hash || "").slice(1) || store.get("taa.cur", ids[0]), false);
 })();

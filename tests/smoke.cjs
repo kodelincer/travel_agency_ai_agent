@@ -15,6 +15,8 @@ if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright)
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
 const MIN_CHAPTERS = 22;
+// Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
+const MAX_TODO = 20;
 const failures = [];
 const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (!ok) failures.push(msg); };
 
@@ -105,10 +107,10 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         const roleCards = await page.locator("#roleGrid .card").count();
         check(teamRows >= 16 && roleCards === 13, `team table (${teamRows} jobs) and AI roles (${roleCards})`);
 
-        // Persian quick guide renders right-to-left
+        // Quick guide exists in both languages (13 roles each)
         await page.evaluate(() => { location.hash = "farsi"; });
-        const fa = await page.evaluate(() => { const s = document.getElementById("farsi"); const cs = getComputedStyle(s); const td = s.querySelector("td"); return { dir: cs.direction, lang: s.lang, align: td ? getComputedStyle(td).textAlign : "", rows: s.querySelectorAll("tbody tr").length }; });
-        check(fa.dir === "rtl" && fa.lang === "fa" && fa.align === "right" && fa.rows === 13, `Persian chapter is RTL (${fa.dir}, ${fa.align}, ${fa.rows} roles)`);
+        const qg = await page.evaluate(() => ({ en: document.querySelectorAll("#farsi .l-en tbody tr").length, fa: document.querySelectorAll("#farsi .l-fa tbody tr").length }));
+        check(qg.en === 13 && qg.fa === 13, `quick guide has 13 roles in English and Persian (${qg.en}/${qg.fa})`);
 
         // progress button
         await page.click("#doneBtn");
@@ -117,6 +119,49 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
       check(errors.length === 0, `${scheme}: no script errors` + (errors.length ? " → " + errors.slice(0, 3).join(" | ") : ""));
       await page.close();
     }
+  }
+
+  // bilingual rule: language switch, RTL, real Persian in translated chapters, no overflow in Persian mode
+  console.log("\nbilingual");
+  {
+    const page = await browser.newPage({ viewport: { width: 390, height: 800 } });
+    const errs = [];
+    page.on("pageerror", e => errs.push(e.message));
+    await page.route(/fonts\.(googleapis|gstatic)/, r => r.abort());
+    await page.goto(FILE);
+    const persianRatio = id => page.evaluate(i => {
+      const t = document.getElementById(i).innerText.replace(/\s+/g, "");
+      const fa = (t.match(/[\u0600-\u06FF]/g) || []).length, la = (t.match(/[A-Za-z]/g) || []).length;
+      return { ratio: fa / Math.max(1, fa + la), len: t.length };
+    }, id);
+    const info = await page.evaluate(() => [...document.querySelectorAll("main > section")].map(s => ({ id: s.id, todo: s.dataset.fa === "todo", faTitle: !!s.dataset.titleFa })));
+    const todo = info.filter(s => s.todo).map(s => s.id);
+    check(todo.length <= MAX_TODO, `untranslated chapters: ${todo.length} (max ${MAX_TODO})`);
+    check(info.every(s => s.faTitle), "every chapter has a Persian title");
+    await page.click("#langBtn");
+    const root = await page.evaluate(() => ({ lang: document.documentElement.lang, dir: document.documentElement.dir, nav: document.querySelector(".navlink").innerText }));
+    check(root.lang === "fa" && root.dir === "rtl" && /[\u0600-\u06FF]/.test(root.nav), `switch to Persian sets lang=fa, dir=rtl (${root.lang}, ${root.dir})`);
+    const weak = [], overflow = [];
+    for (const s of info) {
+      await page.evaluate(i => { location.hash = i; }, s.id);
+      await page.waitForTimeout(40);
+      const w = await page.evaluate(() => document.documentElement.scrollWidth);
+      if (w > 391) overflow.push(`${s.id}: ${w}px`);
+      if (!s.todo) { const r = await persianRatio(s.id); if (r.ratio < 0.5 || r.len < 200) weak.push(`${s.id} (${Math.round(r.ratio * 100)}% Persian)`); }
+    }
+    check(weak.length === 0, "translated chapters show Persian text in Persian mode" + (weak.length ? " → " + weak.join(", ") : ""));
+    check(overflow.length === 0, "no horizontal scroll in Persian mode" + (overflow.length ? " → " + overflow.join(", ") : ""));
+    await page.click("#langBtn");
+    const back = await page.evaluate(() => document.documentElement.dir);
+    const enWeak = [];
+    for (const s of info.filter(x => !x.todo)) {
+      await page.evaluate(i => { location.hash = i; }, s.id);
+      const r = await persianRatio(s.id);
+      if (r.ratio > 0.25) enWeak.push(`${s.id} (${Math.round(r.ratio * 100)}% Persian)`);
+    }
+    check(back === "ltr" && enWeak.length === 0, "switching back shows English" + (enWeak.length ? " → " + enWeak.join(", ") : ""));
+    check(errs.length === 0, "no script errors while switching language" + (errs.length ? " → " + errs.join(" | ") : ""));
+    await page.close();
   }
 
   // storage blocked: the page must still work (private windows, blocked site data)

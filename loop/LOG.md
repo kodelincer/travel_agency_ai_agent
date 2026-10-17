@@ -96,3 +96,10 @@ Changed: New chapter "راهنمای سریع فارسی" right after Start here
 Tests: All checks passed (new: Persian chapter is RTL)
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
 Next: P2 — glossary chapter (or Persian part 2).
+
+## Iteration 12 · 2026-10-17 (owner rule: everything in English and Persian)
+Task: Make the app bilingual with a language switch; record the rule so every future change follows it.
+Changed: CLAUDE.md (new) and loop/PROMPT.md now require every visible text in both languages. Header language button; Persian mode sets lang=fa and dir=rtl (menu on the right, Vazirmatn font, Persian chapter numbers and titles, Persian group names, bilingual footer and chapter buttons). CSS converted to logical properties so layouts mirror correctly. `T(en, fa)` helper for script-built text and `l-en`/`l-fa` classes for static text. Start and Quick guide fully bilingual; 20 chapters marked data-fa="todo" show a Persian notice and English text until translated. Tests: switch, RTL, Persian titles for all chapters, real Persian text in translated chapters, no overflow in Persian mode, switching back, and a MAX_TODO ratchet (20).
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 5 · clarity 4
+Next: P1 — translate The whole job and Who works in an agency.
