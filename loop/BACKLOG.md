@@ -4,12 +4,12 @@ Priorities: **P1** = wrong, broken or high value for the owner now · **P2** = c
 The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new findings here with a priority and one line on why.
 
 ## P1
-- **Verify 1405 online-sales licence rules** (بند الف / ب, e-trust badge) from an official or association source; replace the "older guides" wording in the Iran chapter. Why: wrong licence advice can cost the agency its licence.
 - **Verify Sepehr, Parto and Charter724 integration details** (who sells API access, test accounts, what operations exist, typical contract terms). Add a short "how to ask your integrator" checklist to the Tool stack chapter. Why: the ticketing clerk role depends on it.
 - **Persian model evaluation guide:** a concrete, step-by-step test of 2–3 open models on 50 anonymised customer messages (what to measure, a scoring sheet, example Ollama commands that are verified against current docs). Why: choosing the wrong model breaks every role.
 - **Re-check the Iran situation** (flights at IKA, internet access, currency) and update the timeline with dated, sourced entries; mark conflicting reports. Why: the facts change monthly.
 
 ## P2
+- **Newer online-sales directive?** Look for a post-1400 version of the joint tourism–CAO directive on the association or CAO sites; update the Iran chapter if found. (Follow-up from iteration 1.)
 - **Persian (RTL) version** of the most-used chapters: The whole job, AI office of 10, Watch one working day, Templates. Add a language switch that sets `dir="rtl"` and uses Vazirmatn. Why: the owner and her staff work in Persian.
 - **Exit-tax and exit-permission facts:** find the official 1405 source for exit tax amounts and the official procedure for exit permission (military service, minors); replace "guides disagree" with the official answer if found.
 - **Tax e-invoicing (سامانه مودیان) for agencies:** confirm with an official or professional source how ticket and tour sales are invoiced; add a short accountant checklist.
