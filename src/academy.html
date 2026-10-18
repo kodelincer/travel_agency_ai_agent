@@ -1413,6 +1413,67 @@ multica daemon status      # this server becomes a "runtime" that can run the he
   <ol class="l-en"><li>Open the board (port 3000) from the office network or VPN, create the workspace, and invite your spouse and colleagues with the roles owner, admin or member. Then set <code>ALLOW_SIGNUP</code> so strangers cannot register.</li><li>Add agents that use the Hermes runtime, group people and agents into squads (for example “Sales” and “Back office”), and use autopilots for recurring tracked work such as the weekly refund review.</li><li>The board is built mainly for coding agents. Using it for office agents is new: start with one agent and check which Hermes profile it runs.</li></ol>
   <ol class="l-fa"><li>تخته را (درگاه ۳۰۰۰) از شبکه‌ی دفتر یا VPN باز کنید، فضای کاری بسازید و همسر و همکاران را با نقش owner، admin یا member دعوت کنید. بعد <code>ALLOW_SIGNUP</code> را تنظیم کنید تا غریبه‌ها نتوانند ثبت‌نام کنند.</li><li>عامل‌هایی اضافه کنید که از Hermes استفاده می‌کنند، آدم‌ها و عامل‌ها را در گروه‌های کاری (squad) بگذارید (مثلاً «فروش» و «پشت‌صحنه»)، و برای کارهای تکراری پیگیری‌شده مثل بازبینی هفتگی استردادها از autopilot استفاده کنید.</li><li>این تخته بیشتر برای عامل‌های برنامه‌نویسی ساخته شده است. استفاده از آن برای عامل‌های دفتری تازه است: با یک عامل شروع کنید و ببینید کدام پروفایل Hermes را اجرا می‌کند.</li></ol></div></div>
 
+  <div class="layer"><div><h3><span class="l-en">9b · How Multica runs a task, and where agents live</span><span class="l-fa">۹ب · Multica چطور یک کار را اجرا می‌کند، و عامل‌ها کجا هستند</span></h3><p class="note l-en">The server only coordinates; the work happens on a “runtime” machine.</p><p class="note l-fa">سرور فقط هماهنگ می‌کند؛ کار روی یک ماشین «runtime» انجام می‌شود.</p></div>
+  <div class="prose">
+    <ol class="l-en">
+      <li><b>Runtime:</b> a machine with agent programs installed (Hermes, OpenCode, Claude Code …) and the Multica daemon running. Each program uses the brain set in its own settings (AvalAI, Ollama …); the provider key stays on that machine.</li>
+      <li><b>Multica server (VPS):</b> stores issues, assignees, comments and status. It does not run models or agents.</li>
+      <li>You create an issue in the web app and assign it to an agent. Each agent is tied to one runtime and one agent program.</li>
+      <li>The daemon on that runtime picks the issue up, runs the agent program there with that machine’s files and tools, posts progress as comments and moves the issue to review.</li>
+      <li>A person reviews it and closes it or sends it back.</li>
+    </ol>
+    <ol class="l-fa">
+      <li><b>Runtime:</b> ماشینی که برنامه‌های عامل (Hermes، OpenCode، Claude Code و …) روی آن نصب است و daemon مولتیکا روی آن اجرا می‌شود. هر برنامه از مغزی استفاده می‌کند که در تنظیمات خودش آمده (AvalAI، Ollama و …)؛ کلید سرویس‌دهنده روی همان ماشین می‌ماند.</li>
+      <li><b>سرور Multica (روی VPS):</b> کارها، مسئول‌ها، نظرات و وضعیت را نگه می‌دارد. مدل یا عامل اجرا نمی‌کند.</li>
+      <li>شما در برنامه‌ی وب یک کار می‌سازید و آن را به یک عامل می‌سپارید. هر عامل به یک runtime و یک برنامه‌ی عامل وصل است.</li>
+      <li>daemon روی همان runtime کار را برمی‌دارد، برنامه‌ی عامل را با فایل‌ها و ابزارهای همان ماشین اجرا می‌کند، پیشرفت را به‌صورت نظر می‌نویسد و کار را به بازبینی می‌برد.</li>
+      <li>یک انسان بازبینی می‌کند و کار را می‌بندد یا برمی‌گرداند.</li>
+    </ol>
+    <p class="l-en"><b>Where to run agents.</b> Make the <b>VPS itself the main runtime</b>: it is always on, has Hermes already, and is one place to monitor and back up. Use a staff PC as a runtime only for a task that needs something that exists only on that PC (desktop accounting software, local files); that PC must be on and awake, or the task waits. People need no agent installed: they use the board in a browser.</p>
+    <p class="l-fa"><b>عامل‌ها کجا اجرا شوند.</b> <b>خود VPS را runtime اصلی کنید</b>: همیشه روشن است، Hermes روی آن هست و یک جا برای پایش و پشتیبان‌گیری است. یک رایانه‌ی همکار را فقط برای کاری runtime کنید که به چیزی نیاز دارد که فقط روی همان رایانه هست (نرم‌افزار حسابداری دسکتاپ، فایل‌های محلی)؛ آن رایانه باید روشن و بیدار باشد، وگرنه کار منتظر می‌ماند. آدم‌ها به نصب عامل نیازی ندارند: تخته را در مرورگر باز می‌کنند.</p>
+<pre># make a machine a runtime for YOUR server (VPS or a PC)
+multica config set server_url http://&lt;VPS VPN address&gt;:8080
+multica config set app_url http://&lt;VPS VPN address&gt;:3000
+multica login
+multica daemon start
+multica daemon status</pre>
+    <p class="l-en"><b>Web app or Desktop app?</b> The web app (port 3000) is the board for you and your colleagues, in any browser, phone included. Multica Desktop is the same screens in an app, and it also turns the computer it runs on into a runtime automatically. Its documentation does not say whether it can connect to a self-hosted server, so assume it connects to Multica’s cloud unless its sign-in screen offers a server address; if it does not, do not sign in there, and use the browser plus the command-line daemon above.</p>
+    <p class="l-fa"><b>برنامه‌ی وب یا برنامه‌ی دسکتاپ؟</b> برنامه‌ی وب (درگاه ۳۰۰۰) همان تخته برای شما و همکاران است، در هر مرورگری، حتی گوشی. Multica Desktop همان صفحه‌ها در قالب یک برنامه است و رایانه‌ای را که روی آن اجرا می‌شود خودکار به runtime تبدیل می‌کند. مستنداتش نمی‌گوید می‌تواند به سرور شخصی وصل شود یا نه؛ پس فرض کنید به فضای ابری Multica وصل می‌شود، مگر اینکه صفحه‌ی ورودش گزینه‌ای برای نشانی سرور داشته باشد. اگر نداشت، آنجا وارد نشوید و از مرورگر به‌علاوه‌ی daemon خط فرمان بالا استفاده کنید.</p>
+  </div></div>
+
+  <div class="callout ok l-en"><h3 class="h4">Keeping Multica fully local, with nothing on Multica’s cloud</h3><ul>
+    <li>Install only in self-host mode (<code>--with-server</code> and <code>multica setup self-host</code>); plain <code>multica setup</code> connects to the cloud.</li>
+    <li>Set <code>DO_NOT_TRACK=1</code> to stop the daily anonymous usage report to Multica.</li>
+    <li>Leave the outside email service and Google sign-in unconfigured; read sign-in codes from the server log, then close public sign-up.</li>
+    <li>Internet is needed once, to download the installer and images from GitHub. Afterwards, block the server’s outgoing traffic with the firewall and check that everything still works.</li>
+    <li>The agents’ brain is separate: Hermes still calls the provider you set (AvalAI over the internet, or Ollama offline).</li>
+    <li>Licence: self-hosting for your own office is allowed; offering it as a hosted service to other companies needs a commercial agreement.</li>
+  </ul></div>
+  <div class="callout ok l-fa"><h3 class="h4">کاملاً محلی نگه داشتن Multica، بدون هیچ چیز روی فضای ابری آن</h3><ul>
+    <li>فقط در حالت نصب روی سرور خود نصب کنید (<code>--with-server</code> و <code>multica setup self-host</code>)؛ دستور ساده‌ی <code>multica setup</code> به فضای ابری وصل می‌شود.</li>
+    <li><code>DO_NOT_TRACK=1</code> را تنظیم کنید تا گزارش روزانه‌ی ناشناس استفاده به Multica فرستاده نشود.</li>
+    <li>سرویس ایمیل بیرونی و ورود با گوگل را تنظیم نکنید؛ کد ورود را از گزارش سرور بخوانید و بعد ثبت‌نام عمومی را ببندید.</li>
+    <li>اینترنت فقط یک بار، برای دانلود نصب‌کننده و ایمیج‌ها از GitHub، لازم است. بعد از آن ترافیک خروجی سرور را با فایروال ببندید و بررسی کنید همه چیز هنوز کار می‌کند.</li>
+    <li>مغز عامل‌ها جداست: Hermes همچنان سرویس‌دهنده‌ای را صدا می‌زند که تنظیم کرده‌اید (AvalAI از راه اینترنت، یا Ollama بدون اینترنت).</li>
+    <li>مجوز: نصب روی سرور خود برای دفتر خودتان مجاز است؛ ارائه‌ی آن به‌صورت سرویس میزبانی‌شده به شرکت‌های دیگر قرارداد تجاری لازم دارد.</li>
+  </ul></div>
+
+  <div class="callout l-en"><h3 class="h4">Global track only: Claude Code as a runtime</h3>
+    <p>Multica can run Claude Code as an agent program, for example on the owner’s Mac with a Claude Pro subscription. Two rules come first:</p>
+    <ul>
+      <li><b>Location:</b> Anthropic does not offer its service in Iran, and what counts is where the person and the machine are. This route is for use from a supported country only.</li>
+      <li><b>Personal plan:</b> Pro is for one person’s own use. Colleagues assigning tasks that run under your login is account sharing, which the terms do not allow. For an office, use a Team or Enterprise plan (each person their own login) or an API key billed to the business.</li>
+    </ul>
+    <p>If both are satisfied: set Haiku as the default (<code>{"model": "haiku"}</code> in <code>~/.claude/settings.json</code>; Haiku 5.5 needs Claude Code 2.1.293 or later), because otherwise Pro defaults to Opus and uses your limit faster; check with <code>/model</code> that your plan offers it. Remove any <code>ANTHROPIC_API_KEY</code> setting unless you mean to pay through the API (<code>/status</code> shows which login is active). Agent tasks share the same usage limits as your claude.ai chats. The Mac must be on and awake. Keep the Claude login on that machine; never copy it to the VPS.</p></div>
+  <div class="callout l-fa"><h3 class="h4">فقط مسیر جهانی: Claude Code به‌عنوان runtime</h3>
+    <p>Multica می‌تواند Claude Code را به‌عنوان برنامه‌ی عامل اجرا کند، مثلاً روی مک مدیر با اشتراک Claude Pro. دو قاعده اول می‌آید:</p>
+    <ul>
+      <li><b>محل:</b> Anthropic در ایران خدمات نمی‌دهد و آنچه حساب می‌شود محل فرد و دستگاه است. این مسیر فقط برای استفاده از یک کشور پشتیبانی‌شده است.</li>
+      <li><b>اشتراک شخصی:</b> Pro برای استفاده‌ی خود یک نفر است. اینکه همکاران کارهایی بسپارند که با حساب شما اجرا شود، اشتراک‌گذاری حساب است و شرایط آن را مجاز نمی‌داند. برای دفتر از طرح Team یا Enterprise (هر نفر حساب خودش) یا کلید API به حساب شرکت استفاده کنید.</li>
+    </ul>
+    <p>اگر هر دو برقرار بود: Haiku را پیش‌فرض کنید (<code>{"model": "haiku"}</code> در <code>~/.claude/settings.json</code>؛ Haiku 5.5 به Claude Code نسخه‌ی 2.1.293 یا بالاتر نیاز دارد)، چون در غیر این صورت Pro به‌طور پیش‌فرض Opus را اجرا می‌کند و سقف استفاده‌تان سریع‌تر تمام می‌شود؛ با <code>/model</code> بررسی کنید طرح شما آن را دارد. هر تنظیم <code>ANTHROPIC_API_KEY</code> را بردارید، مگر اینکه بخواهید از راه API پرداخت کنید (<code>/status</code> نشان می‌دهد کدام ورود فعال است). کارهای عامل از همان سقف استفاده‌ی گفتگوهای claude.ai شما مصرف می‌کنند. مک باید روشن و بیدار باشد. ورود Claude را روی همان دستگاه نگه دارید؛ هرگز آن را به VPS کپی نکنید.</p></div>
+  <p class="src"><span class="l-en">Sources:</span><span class="l-fa">منابع:</span> <a href="https://github.com/multica-ai/multica" target="_blank" rel="noopener"><span class="l-en">Multica README (runtimes, Desktop)</span><span class="l-fa">راهنمای Multica (runtimeها، Desktop)</span></a> · <a href="https://code.claude.com/docs/en/model-config" target="_blank" rel="noopener"><span class="l-en">Claude Code: model configuration</span><span class="l-fa">Claude Code: تنظیم مدل</span></a> · <a href="https://code.claude.com/docs/en/authentication" target="_blank" rel="noopener"><span class="l-en">Claude Code: authentication</span><span class="l-fa">Claude Code: احراز هویت</span></a> · <a href="https://code.claude.com/docs/en/legal-and-compliance" target="_blank" rel="noopener"><span class="l-en">Claude Code: legal and compliance</span><span class="l-fa">Claude Code: حقوقی و انطباق</span></a> · <a href="https://support.claude.com/en/articles/11145838-using-claude-code-with-your-pro-or-max-plan" target="_blank" rel="noopener"><span class="l-en">Using Claude Code with Pro or Max</span><span class="l-fa">استفاده از Claude Code با Pro یا Max</span></a> · <a href="https://www.anthropic.com/supported-countries" target="_blank" rel="noopener"><span class="l-en">Anthropic supported countries</span><span class="l-fa">کشورهای تحت پشتیبانی Anthropic</span></a></p>
+
   <div class="layer"><div><h3><span class="l-en">10 · Access from outside the office</span><span class="l-fa">۱۰ · دسترسی از بیرون دفتر</span></h3><p class="note l-en">The bots already work from anywhere, because the messenger carries them. The web screens (board, monitoring) go through a private VPN.</p><p class="note l-fa">ربات‌ها از هر جا کار می‌کنند، چون پیام‌رسان آن‌ها را می‌رساند. صفحه‌های وب (تخته، پایش) از راه یک VPN خصوصی باز می‌شوند.</p></div>
   <div class="prose">
     <ul class="l-en"><li>Install WireGuard on the VPS (a web panel such as wg-easy makes adding a person a two-minute job) and give each person their own key on phone and laptop. Remove a key the day someone leaves.</li><li>Route A: connect the office server to the same VPN as a peer, so people at home reach it through the VPS.</li><li>Open the screens only on the VPN address, for example <code>http://10.8.0.1:3000</code> for Multica.</li><li><b>Never expose to the internet:</b> the Hermes API server (8642), Ollama (11434), LiteLLM (4000), Honcho (8000) or the databases. If you must publish the board publicly, use HTTPS through a reverse proxy, strong passwords and closed sign-up.</li><li>WireGuard traffic is sometimes disrupted in Iran: test from home and from a phone, and keep SMS as the fallback channel.</li></ul>

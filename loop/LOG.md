@@ -338,3 +338,9 @@ Task: The owner asked for a chapter teaching how to install Hermes, build a team
 Changed: New bilingual chapter "Hands-on setup" (after the toolbox): route A (office server + Ollama) vs route B (Iranian-data-centre VPS + AvalAI behind LiteLLM, with local fallback), inline SVG architecture diagram (bilingual, both themes), four-profile team table, group-chat answer, Telegram vs Bale, 12 install steps with commands from official docs, three ways to give work, a sample Multica board with 16 real tasks (filters, CSV download), Slack/Mattermost/messenger group/Multica comparison with each tool's mission and a joint workflow, monitoring table, consolidation cards, honest limits. Review fixes: a class-name clash with the departure-board style failed contrast (renamed); diagram labels flipped in RTL (diagram forced LTR, Persian labels RTL). README (30 chapters), MIN_CHAPTERS 29 → 30, FACTS #67–71, new setup test.
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+
+## Owner request · 2026-10-18 — Multica runtimes, Desktop app, fully local, Claude Code as runtime
+Task: Add the useful points from the chat answers about Multica and Claude Code to the app.
+Changed: Hands-on setup step "9b" (bilingual): how a task runs (runtime machine with agent programs and daemon; server only coordinates; assign → daemon runs the agent → comments → review), VPS as the main runtime and PCs only for PC-only needs, the daemon commands for a self-hosted server, web app vs Desktop app (Desktop may connect only to Multica's cloud); a "fully local, nothing on Multica's cloud" checklist; a global-track-only note on Claude Code as a runtime (supported-country and personal-plan rules first; Haiku default, API key precedence, shared limits, keep login on the Mac). FACTS #72–73.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 4 · robustness 4 · clarity 4
