@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 27;
+const MIN_CHAPTERS = 28;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -105,6 +105,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#harnessFilters [data-f="all"]');
         const hnLists = await page.evaluate(() => [...document.querySelectorAll("#harnessGrid .card")].every(c => c.querySelectorAll("ul").length === 2 && c.querySelectorAll("li").length >= 4));
         check(hn.all === 8 && hn.yes === 5 && hn.dev === 4 && hnLists, `agent harness cards and filters (${hn.all} all, ${hn.yes} offline in Iran, ${hn.dev} for developers)`);
+
+        // toolbox: 31 items in groups, each with a how-to-get label and a reference; the four filters split the list exactly
+        await page.evaluate(() => { location.hash = "toolbox"; });
+        const tb = {};
+        for (const f of ["all", "download", "buy", "build", "curate"]) { await page.click(`#toolFilters [data-f="${f}"]`); tb[f] = await page.locator("#toolGroups .card").count(); }
+        await page.click('#toolFilters [data-f="all"]');
+        const tbRefs = await page.evaluate(() => [...document.querySelectorAll("#toolGroups .card")].every(c => c.querySelector(".meta a[href]")));
+        check(tb.all === 31 && tb.download + tb.buy + tb.build + tb.curate === tb.all && tb.download > 0 && tb.buy > 0 && tb.build > 0 && tb.curate > 0 && tbRefs, `toolbox: ${tb.all} items (${tb.download} download, ${tb.buy} buy, ${tb.build} build, ${tb.curate} curate), each with a reference`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });

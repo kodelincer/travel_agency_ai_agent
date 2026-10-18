@@ -320,3 +320,9 @@ Task: The owner asked whether website UIs will change or disappear because agent
 Changed: New bilingual chapter "Agent-ready website" (after "The future of travel with AI"): honest answer (UI shrinks for simple bookings but does not disappear; two front doors to one back office, labelled as our judgement); eight building blocks with status pills (structured data, OpenAPI API, MCP server, A2A agent card, llms.txt, agent identity/control with Web Bot Auth, agent payments UCP/AP2/ACP as watch-only and unusable for rials, WebMCP/NLWeb experimental); seven agency tools with rules (holds behind partner keys, idempotency key and human approval); JSON-LD and MCP tool examples (invented data, IRR currency note); five-step build plan with tools; unchanged rules (licence, approval, private data, host inside Iran). README (27 chapters), MIN_CHAPTERS 26 → 27, FACTS #61–63. Review caught an unrealistic example price (18.5M rials) and changed it to 185M rials.
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+
+## Owner request · 2026-10-18 — AI office toolbox chapter
+Task: The owner asked for a section listing the tools and skills an agency needs to automate most work with AI agents, saying which to build, buy, download or curate, with explanations and references.
+Changed: New bilingual chapter "AI office toolbox" (after "Text, vision and voice"): 31 items in 8 groups (infrastructure, models, harness, channels, business systems, agent hands and document tools, safety and monitoring, agent skills), each with a download/buy/build/curate label, what it is, its use in the office, a caution and a reference link; filters by how you get it; a three-month starter kit; a staff-skills table; a pre-download checklist. README (28 chapters), MIN_CHAPTERS 27 → 28, FACTS #64–66, new toolbox test.
+Tests: All checks passed
+Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4

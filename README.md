@@ -22,19 +22,20 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 12 | Tool stack | Iran-resilient track (local model, Sepehr/Parto, Bale, SMS) vs global track |
 | 13 | Choosing an agent harness · انتخاب هارنس | Hermes Agent, n8n, Dify, OpenClaw, Claude, Goose, LangGraph and the agent SDKs compared (strengths, weaknesses, Iran fit), pick-by-job table, safety rules for any harness |
 | 14 | Text, vision and voice · متن، تصویر و صدا | Text-only vs vision vs voice agents, six agency uses (passport photos, transfer receipts, price screenshots, voice notes), local models, step-by-step rollout |
-| 15 | Grow revenue | 12 levers and the metric for each |
-| 16 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
-| 17 | The future of travel with AI · آینده‌ی سفر | Seven likely trends to 2030 with evidence level, what will not happen soon, a three-horizon plan, skills, signals to watch |
-| 18 | Agent-ready website · وب‌سایت آماده برای عامل‌ها | Will website UI disappear; two front doors; 8 building blocks with status (schema.org, API/OpenAPI, MCP, A2A, llms.txt, Web Bot Auth, UCP/AP2/ACP, WebMCP/NLWeb); seven agency tools; code examples; five-step build plan |
-| 19 | Products to sell | 10 AI products and services you could build for other agencies |
-| 20 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
-| 21 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 22 | 90-day plan | Checklist with saved progress |
-| 23 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 24 | Guardrails | Rules before going live, KPIs |
-| 25 | Self-review | What earlier versions got wrong and how it was corrected |
-| 26 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
-| 27 | Sources | Every source used, checked October 2026 |
+| 15 | AI office toolbox · جعبه‌ابزار دفتر هوش مصنوعی | 31 tools and agent skills in 8 groups, each marked download / buy / build / curate, with use, caution and reference link; starter kit by month; staff skills; checks before downloading |
+| 16 | Grow revenue | 12 levers and the metric for each |
+| 17 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
+| 18 | The future of travel with AI · آینده‌ی سفر | Seven likely trends to 2030 with evidence level, what will not happen soon, a three-horizon plan, skills, signals to watch |
+| 19 | Agent-ready website · وب‌سایت آماده برای عامل‌ها | Will website UI disappear; two front doors; 8 building blocks with status (schema.org, API/OpenAPI, MCP, A2A, llms.txt, Web Bot Auth, UCP/AP2/ACP, WebMCP/NLWeb); seven agency tools; code examples; five-step build plan |
+| 20 | Products to sell | 10 AI products and services you could build for other agencies |
+| 21 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
+| 22 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 23 | 90-day plan | Checklist with saved progress |
+| 24 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 25 | Guardrails | Rules before going live, KPIs |
+| 26 | Self-review | What earlier versions got wrong and how it was corrected |
+| 27 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
+| 28 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 
