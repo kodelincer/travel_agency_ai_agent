@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 26;
+const MIN_CHAPTERS = 27;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];

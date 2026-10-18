@@ -25,15 +25,16 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 15 | Grow revenue | 12 levers and the metric for each |
 | 16 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
 | 17 | The future of travel with AI · آینده‌ی سفر | Seven likely trends to 2030 with evidence level, what will not happen soon, a three-horizon plan, skills, signals to watch |
-| 18 | Products to sell | 10 AI products and services you could build for other agencies |
-| 19 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
-| 20 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 21 | 90-day plan | Checklist with saved progress |
-| 22 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 23 | Guardrails | Rules before going live, KPIs |
-| 24 | Self-review | What earlier versions got wrong and how it was corrected |
-| 25 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
-| 26 | Sources | Every source used, checked October 2026 |
+| 18 | Agent-ready website · وب‌سایت آماده برای عامل‌ها | Will website UI disappear; two front doors; 8 building blocks with status (schema.org, API/OpenAPI, MCP, A2A, llms.txt, Web Bot Auth, UCP/AP2/ACP, WebMCP/NLWeb); seven agency tools; code examples; five-step build plan |
+| 19 | Products to sell | 10 AI products and services you could build for other agencies |
+| 20 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
+| 21 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 22 | 90-day plan | Checklist with saved progress |
+| 23 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 24 | Guardrails | Rules before going live, KPIs |
+| 25 | Self-review | What earlier versions got wrong and how it was corrected |
+| 26 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
+| 27 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 
