@@ -24,19 +24,20 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 14 | Choosing an agent harness · انتخاب هارنس | Hermes Agent, n8n, Dify, OpenClaw, Claude, Goose, LangGraph and the agent SDKs compared (strengths, weaknesses, Iran fit), pick-by-job table, safety rules for any harness |
 | 15 | Text, vision and voice · متن، تصویر و صدا | Text-only vs vision vs voice agents, six agency uses (passport photos, transfer receipts, price screenshots, voice notes), local models, step-by-step rollout |
 | 16 | AI office toolbox · جعبه‌ابزار دفتر هوش مصنوعی | 31 tools and agent skills in 8 groups, each marked download / buy / build / curate, with use, caution and reference link; starter kit by month; staff skills; checks before downloading |
-| 17 | Grow revenue | 12 levers and the metric for each |
-| 18 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
-| 19 | The future of travel with AI · آینده‌ی سفر | Seven likely trends to 2030 with evidence level, what will not happen soon, a three-horizon plan, skills, signals to watch |
-| 20 | Agent-ready website · وب‌سایت آماده برای عامل‌ها | Will website UI disappear; two front doors; 8 building blocks with status (schema.org, API/OpenAPI, MCP, A2A, llms.txt, Web Bot Auth, UCP/AP2/ACP, WebMCP/NLWeb); seven agency tools; code examples; five-step build plan |
-| 21 | Products to sell | 10 AI products and services you could build for other agencies |
-| 22 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
-| 23 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 24 | 90-day plan | Checklist with saved progress |
-| 25 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 26 | Guardrails | Rules before going live, KPIs |
-| 27 | Self-review | What earlier versions got wrong and how it was corrected |
-| 28 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
-| 29 | Sources | Every source used, checked October 2026 |
+| 17 | Hands-on setup · راه‌اندازی عملی | Office server + local model vs VPS + provider such as AvalAI (with LiteLLM in front); architecture diagram; four Hermes profiles with their bots, allowlists, schedules and approvals; whether you need a group chat; 12 install steps (Hermes, profiles, bots, staff group, cron routines, Honcho, Multica, VPN access, monitoring, backups); a sample board with 16 real tasks and CSV download; Slack vs Mattermost vs messenger group vs Multica; monitoring from anywhere; pulling the office together; limits |
+| 18 | Grow revenue | 12 levers and the metric for each |
+| 19 | Resilience | Six shocks from 2026 and how to prepare; staying relevant in the AI wave |
+| 20 | The future of travel with AI · آینده‌ی سفر | Seven likely trends to 2030 with evidence level, what will not happen soon, a three-horizon plan, skills, signals to watch |
+| 21 | Agent-ready website · وب‌سایت آماده برای عامل‌ها | Will website UI disappear; two front doors; 8 building blocks with status (schema.org, API/OpenAPI, MCP, A2A, llms.txt, Web Bot Auth, UCP/AP2/ACP, WebMCP/NLWeb); seven agency tools; code examples; five-step build plan |
+| 22 | Products to sell | 10 AI products and services you could build for other agencies |
+| 23 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
+| 24 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 25 | 90-day plan | Checklist with saved progress |
+| 26 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 27 | Guardrails | Rules before going live, KPIs |
+| 28 | Self-review | What earlier versions got wrong and how it was corrected |
+| 29 | Glossary · واژه‌نامه | 37 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
+| 30 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 

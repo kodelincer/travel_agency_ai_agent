@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 29;
+const MIN_CHAPTERS = 30;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -113,6 +113,15 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.click('#toolFilters [data-f="all"]');
         const tbRefs = await page.evaluate(() => [...document.querySelectorAll("#toolGroups .card")].every(c => c.querySelector(".meta a[href]")));
         check(tb.all === 31 && tb.download + tb.buy + tb.build + tb.curate === tb.all && tb.download > 0 && tb.buy > 0 && tb.build > 0 && tb.curate > 0 && tbRefs, `toolbox: ${tb.all} items (${tb.download} download, ${tb.buy} buy, ${tb.build} build, ${tb.curate} curate), each with a reference`);
+
+        // setup chapter: architecture diagram, sample board (16 tasks in 5 columns), filters and CSV download
+        await page.evaluate(() => { location.hash = "setup"; });
+        const sb = { svg: await page.locator("#setup figure.diagram svg[role=img]").count(), cols: await page.locator("#taskboard .bcol").count() };
+        for (const f of ["all", "agent", "person", "approval"]) { await page.click(`#boardFilters [data-f="${f}"]`); sb[f] = await page.locator("#taskboard .bcard").count(); }
+        await page.click('#boardFilters [data-f="all"]');
+        const [bdl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#boardCsv")]);
+        const bcsv = bdl ? require("fs").readFileSync(await bdl.path(), "utf8") : "";
+        check(sb.svg === 1 && sb.cols === 5 && sb.all === 16 && sb.agent + sb.person === sb.all && sb.approval === 4 && bcsv.split("\r\n").length === 18 && /^\uFEFFColumn,Title,Assignee/.test(bcsv), `setup: diagram, sample board (${sb.all} tasks: ${sb.agent} agents, ${sb.person} people, ${sb.approval} need approval) and CSV download`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });

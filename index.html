@@ -220,6 +220,8 @@ code{unicode-bidi:isolate}
 .langbtn{font-family:var(--f-fa)}
 :root[data-lang="fa"] .langbtn{font-family:var(--f-body)}
 footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.diagram{margin:6px 0 4px;display:grid;gap:8px}.diagram svg{width:100%;height:auto;max-width:760px;color:var(--ink)}.diagram figcaption{font-size:14px;color:var(--muted)}
+.taskboard{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.bcol{background:var(--surface-2);border-radius:var(--r);padding:10px;display:grid;gap:8px;align-content:start}.bcol h4{display:flex;justify-content:space-between;gap:6px}.bcard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:6px;font-size:14px}.bcard .row{gap:4px}
 </style>
 
 <header class="top">
@@ -1233,6 +1235,352 @@ Send an SMS notice?  [Approve]
     <li>هشدارهای امنیتی: نام پروژه را با «CVE» یا «vulnerability» جستجو کنید.</li>
     <li>مهارت‌ها و افزونه‌ها: اول همه‌ی فایل‌ها را بخوانید؛ یک مهارت هر کاری را که عامل بتواند می‌تواند انجام دهد.</li>
   </ul></div>
+</section>
+
+<!-- =========================================================== HANDS-ON SETUP -->
+<section id="setup" data-title="Hands-on setup" data-group="Automate" data-title-fa="راه‌اندازی عملی" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2><span class="l-en">Hands-on setup: Hermes agents, a task board for people and agents, shared memory, access from anywhere</span><span class="l-fa">راه‌اندازی عملی: عامل‌های Hermes، تخته‌ی کار مشترک آدم‌ها و عامل‌ها، حافظه‌ی مشترک، دسترسی از هر جا</span></h2>
+  <p class="lead l-en">This chapter is the installation guide. It builds a small AI team on one Linux server: <b>Hermes Agent</b> profiles (one per job, each with its own bot), <b>Multica</b> as the board where you, your spouse, colleagues and agents share tasks, <b>Honcho</b> as long-term memory, and the access and monitoring that let you supervise it from home. Commands come from each project’s documentation in October 2026; check the links before you run them, because these projects change fast. This exact combination has not been tested end to end for this course: build it step by step and test each step.</p>
+  <p class="lead l-fa">این فصل راهنمای نصب است. یک تیم کوچک هوش مصنوعی روی یک سرور لینوکس می‌سازد: پروفایل‌های <b>Hermes Agent</b> (برای هر کار یکی، هر کدام با ربات خودش)، <b>Multica</b> به‌عنوان تخته‌ای که شما، همسرتان، همکاران و عامل‌ها کارها را در آن تقسیم می‌کنید، <b>Honcho</b> به‌عنوان حافظه‌ی بلندمدت، و دسترسی و پایشی که به شما اجازه می‌دهد از خانه هم نظارت کنید. دستورها از مستندات هر پروژه در مهر ۱۴۰۵ آمده‌اند؛ پیش از اجرا پیوندها را بررسی کنید، چون این پروژه‌ها سریع تغییر می‌کنند. این ترکیب دقیق برای این دوره از اول تا آخر آزمایش نشده است: قدم‌به‌قدم بسازید و هر قدم را آزمایش کنید.</p>
+
+  <div class="prose"><h3><span class="l-en">Two ways to run it</span><span class="l-fa">دو راه برای اجرا</span></h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th></th><th><span class="l-en">A · Office server + local model</span><span class="l-fa">الف · سرور دفتر + مدل محلی</span></th><th><span class="l-en">B · VPS + a provider such as AvalAI</span><span class="l-fa">ب · سرور مجازی (VPS) + سرویس‌دهنده‌ای مثل AvalAI</span></th></tr></thead>
+    <tbody>
+      <tr><td><b><span class="l-en">The brain</span><span class="l-fa">مغز</span></b></td><td><span class="l-en">An open model in Ollama on a GPU in the office</span><span class="l-fa">یک مدل متن‌باز در Ollama روی کارت گرافیک دفتر</span></td><td><span class="l-en">Strong cloud models through an OpenAI-compatible provider; no GPU needed</span><span class="l-fa">مدل‌های قوی ابری از راه یک سرویس‌دهنده‌ی سازگار با OpenAI؛ کارت گرافیک لازم نیست</span></td></tr>
+      <tr><td><b><span class="l-en">Persian quality</span><span class="l-fa">کیفیت فارسی</span></b></td><td><span class="l-en">Weaker; test carefully</span><span class="l-fa">ضعیف‌تر؛ با دقت آزمایش کنید</span></td><td><span class="l-en">Much better</span><span class="l-fa">خیلی بهتر</span></td></tr>
+      <tr><td><b><span class="l-en">Access from outside</span><span class="l-fa">دسترسی از بیرون</span></b></td><td><span class="l-en">Needs a VPN into the office, or a public IP</span><span class="l-fa">VPN به دفتر یا IP عمومی لازم دارد</span></td><td><span class="l-en">Easy: the VPS is always online</span><span class="l-fa">آسان: VPS همیشه روشن و در دسترس است</span></td></tr>
+      <tr><td><b><span class="l-en">During internet shutdowns</span><span class="l-fa">در قطعی اینترنت</span></b></td><td><span class="l-en">Keeps working on the domestic network</span><span class="l-fa">روی شبکه‌ی داخلی کار می‌کند</span></td><td><span class="l-en">The brain stops when international links are cut, even if the VPS is in Iran</span><span class="l-fa">با قطع ارتباط بین‌الملل مغز از کار می‌افتد، حتی اگر VPS در ایران باشد</span></td></tr>
+      <tr><td><b><span class="l-en">Customer data</span><span class="l-fa">اطلاعات مشتری</span></b></td><td><span class="l-en">Stays in the office</span><span class="l-fa">در دفتر می‌ماند</span></td><td><span class="l-en">Message text goes to the provider and on to foreign model makers</span><span class="l-fa">متن پیام‌ها به سرویس‌دهنده و از آنجا به سازندگان خارجی مدل می‌رود</span></td></tr>
+      <tr><td><b><span class="l-en">Cost</span><span class="l-fa">هزینه</span></b></td><td><span class="l-en">High one-time hardware cost</span><span class="l-fa">هزینه‌ی سخت‌افزاری بالا و یک‌باره</span></td><td><span class="l-en">Monthly VPS plus pay-per-use in rials</span><span class="l-fa">اجاره‌ی ماهانه‌ی VPS به‌علاوه‌ی پرداخت به‌ازای مصرف به ریال</span></td></tr>
+      <tr><td><b><span class="l-en">Main risk</span><span class="l-fa">خطر اصلی</span></b></td><td><span class="l-en">Hardware, power, someone to maintain it</span><span class="l-fa">سخت‌افزار، برق، کسی که نگهش دارد</span></td><td><span class="l-en">The provider depends on international links, and reselling may conflict with the original model makers’ terms (see Tool stack)</span><span class="l-fa">سرویس‌دهنده به ارتباط بین‌الملل وابسته است و فروش دوباره ممکن است با شرایط سازندگان اصلی مدل در تضاد باشد (فصل ابزارها)</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout ok l-en"><h3 class="h4">Recommended: start with B, keep a door open to A</h3><p>For a quick, practical start that works from anywhere, use <b>a VPS in an Iranian data centre</b> (so staff can reach it during filtering and shutdowns) with a provider such as AvalAI as the brain. Put a small proxy (LiteLLM) between Hermes and the provider: it logs every call, limits spending per agent, and lets you switch the brain to a local Ollama model later, or fall back to it during a shutdown, without touching the agents. Never send passport scans, national ID numbers or card details to the cloud brain.</p></div>
+  <div class="callout ok l-fa"><h3 class="h4">پیشنهاد: با «ب» شروع کنید و در «الف» را باز نگه دارید</h3><p>برای شروعی سریع و عملی که از هر جا کار کند، از <b>یک VPS در دیتاسنتر داخلی</b> استفاده کنید (تا همکاران در زمان فیلترینگ و قطعی هم به آن برسند) و سرویس‌دهنده‌ای مثل AvalAI را مغز قرار دهید. یک پراکسی کوچک (LiteLLM) بین Hermes و سرویس‌دهنده بگذارید: هر فراخوانی را ثبت می‌کند، هزینه‌ی هر عامل را محدود می‌کند و اجازه می‌دهد بعداً بدون دست زدن به عامل‌ها مغز را به یک مدل محلی Ollama عوض کنید یا در قطعی به آن برگردید. هرگز اسکن گذرنامه، کد ملی یا اطلاعات کارت را به مغز ابری نفرستید.</p></div>
+
+  <div class="prose"><h3><span class="l-en">How the pieces fit</span><span class="l-fa">اجزا چطور کنار هم قرار می‌گیرند</span></h3></div>
+  <figure class="diagram"><svg viewBox="0 0 760 415" style="direction:ltr" role="img" aria-label="Architecture: people reach the Multica board over the VPN and the Hermes agents through bots; Hermes sends every prompt through LiteLLM, which logs it and routes it to AvalAI over the international link or to the office Ollama server as a fallback."><defs><marker id="setupArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs><rect x="20" y="40" width="130" height="170" rx="8" fill="none" stroke="currentColor" stroke-width="1.2"/><text class="l-en" x="85" y="70" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">People</text><text class="l-fa" x="85" y="70" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">آدم‌ها</text><text class="l-en" x="85" y="100" text-anchor="middle" font-size="11" fill="currentColor">Owner, spouse</text><text class="l-fa" x="85" y="100" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">مدیر، همسر</text><text class="l-en" x="85" y="120" text-anchor="middle" font-size="11" fill="currentColor">Colleagues</text><text class="l-fa" x="85" y="120" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">همکاران</text><text class="l-en" x="85" y="140" text-anchor="middle" font-size="11" fill="currentColor">office or home</text><text class="l-fa" x="85" y="140" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">در دفتر یا خانه</text><text class="l-en" x="85" y="185" text-anchor="middle" font-size="11" fill="currentColor">approve money</text><text class="l-fa" x="85" y="185" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">تأیید کارهای مالی</text><rect x="200" y="55" width="125" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="262.5" y="82.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">VPN</text><text class="l-fa" x="262.5" y="82.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">VPN</text><text class="l-en" x="262.5" y="99.0" text-anchor="middle" font-size="11" fill="currentColor">WireGuard, phones</text><text class="l-fa" x="262.5" y="99.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">WireGuard، گوشی‌ها</text><rect x="200" y="135" width="125" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="262.5" y="162.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Bots + group</text><text class="l-fa" x="262.5" y="162.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">ربات‌ها + گروه</text><text class="l-en" x="262.5" y="179.0" text-anchor="middle" font-size="11" fill="currentColor">Telegram / Bale</text><text class="l-fa" x="262.5" y="179.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">تلگرام / بله</text><rect x="385" y="20" width="355" height="270" rx="10" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="6 5"/><text class="l-en" x="398" y="38" text-anchor="start" font-size="12" font-weight="700" fill="currentColor">VPS · Iranian data centre</text><text class="l-fa" x="398" y="38" text-anchor="end" direction="rtl" font-size="12" font-weight="700" fill="currentColor">VPS · دیتاسنتر داخلی</text><rect x="405" y="55" width="145" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="477.5" y="82.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Multica board</text><text class="l-fa" x="477.5" y="82.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">تخته‌ی Multica</text><text class="l-en" x="477.5" y="99.0" text-anchor="middle" font-size="11" fill="currentColor">people + agents</text><text class="l-fa" x="477.5" y="99.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">آدم‌ها + عامل‌ها</text><rect x="405" y="135" width="145" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="477.5" y="162.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Hermes Agent</text><text class="l-fa" x="477.5" y="162.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">Hermes Agent</text><text class="l-en" x="477.5" y="179.0" text-anchor="middle" font-size="11" fill="currentColor">4 profiles, schedules</text><text class="l-fa" x="477.5" y="179.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">۴ پروفایل، زمان‌بندی</text><rect x="405" y="215" width="145" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="477.5" y="242.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Memory and data</text><text class="l-fa" x="477.5" y="242.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">حافظه و داده</text><text class="l-en" x="477.5" y="259.0" text-anchor="middle" font-size="11" fill="currentColor">Honcho, CRM, files</text><text class="l-fa" x="477.5" y="259.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">Honcho، CRM، فایل‌ها</text><rect x="595" y="55" width="135" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="662.5" y="82.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Langfuse, Kuma</text><text class="l-fa" x="662.5" y="82.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">Langfuse، Kuma</text><text class="l-en" x="662.5" y="99.0" text-anchor="middle" font-size="11" fill="currentColor">logs, cost, alerts</text><text class="l-fa" x="662.5" y="99.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">گزارش، هزینه، هشدار</text><rect x="595" y="135" width="135" height="60" rx="8" fill="none" style="stroke:var(--accent);stroke-width:2"/><text class="l-en" x="662.5" y="162.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">LiteLLM</text><text class="l-fa" x="662.5" y="162.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">LiteLLM</text><text class="l-en" x="662.5" y="179.0" text-anchor="middle" font-size="11" fill="currentColor">one door to the brain</text><text class="l-fa" x="662.5" y="179.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">یک در به مغز</text><rect x="595" y="340" width="135" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2"/><text class="l-en" x="662.5" y="367.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">AvalAI</text><text class="l-fa" x="662.5" y="367.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">AvalAI</text><text class="l-en" x="662.5" y="384.0" text-anchor="middle" font-size="11" fill="currentColor">cloud models</text><text class="l-fa" x="662.5" y="384.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">مدل‌های ابری</text><rect x="405" y="340" width="145" height="60" rx="8" fill="none" style="stroke:currentColor;stroke-width:1.2" stroke-dasharray="5 4"/><text class="l-en" x="477.5" y="367.0" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Office server</text><text class="l-fa" x="477.5" y="367.0" text-anchor="middle" direction="rtl" font-size="13" font-weight="700" fill="currentColor">سرور دفتر</text><text class="l-en" x="477.5" y="384.0" text-anchor="middle" font-size="11" fill="currentColor">Ollama, fallback</text><text class="l-fa" x="477.5" y="384.0" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">Ollama، جایگزین</text><line x1="150" y1="85" x2="198" y2="85" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="174" y="78" text-anchor="middle" font-size="11" fill="currentColor">web</text><text class="l-fa" x="174" y="78" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">وب</text><line x1="150" y1="165" x2="198" y2="165" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="174" y="158" text-anchor="middle" font-size="11" fill="currentColor">chat</text><text class="l-fa" x="174" y="158" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">گفتگو</text><line x1="325" y1="85" x2="403" y2="85" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="364" y="78" text-anchor="middle" font-size="11" fill="currentColor">board</text><text class="l-fa" x="364" y="78" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">تخته</text><line x1="325" y1="165" x2="403" y2="165" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="364" y="158" text-anchor="middle" font-size="11" fill="currentColor">messages</text><text class="l-fa" x="364" y="158" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">پیام</text><line x1="477" y1="115" x2="477" y2="133" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="484" y="128" text-anchor="start" font-size="11" fill="currentColor">assigns tasks</text><text class="l-fa" x="484" y="128" text-anchor="end" direction="rtl" font-size="11" fill="currentColor">سپردن کار</text><line x1="477" y1="195" x2="477" y2="213" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="484" y="208" text-anchor="start" font-size="11" fill="currentColor">memory</text><text class="l-fa" x="484" y="208" text-anchor="end" direction="rtl" font-size="11" fill="currentColor">حافظه</text><line x1="550" y1="165" x2="593" y2="165" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="572" y="158" text-anchor="middle" font-size="11" fill="currentColor">prompts</text><text class="l-fa" x="572" y="158" text-anchor="middle" direction="rtl" font-size="11" fill="currentColor">درخواست</text><line x1="662" y1="135" x2="662" y2="117" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="669" y="130" text-anchor="start" font-size="11" fill="currentColor">logs, cost</text><text class="l-fa" x="669" y="130" text-anchor="end" direction="rtl" font-size="11" fill="currentColor">گزارش</text><line x1="662" y1="195" x2="662" y2="338" stroke="currentColor" stroke-width="1.4" marker-end="url(#setupArrow)"/><text class="l-en" x="670" y="318" text-anchor="start" font-size="11" fill="currentColor">international link</text><text class="l-fa" x="670" y="318" text-anchor="end" direction="rtl" font-size="11" fill="currentColor">ارتباط بین‌الملل</text><line x1="610" y1="195" x2="505" y2="338" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#setupArrow)"/><text class="l-en" x="540" y="318" text-anchor="end" font-size="11" fill="currentColor">fallback</text><text class="l-fa" x="540" y="318" text-anchor="start" direction="rtl" font-size="11" fill="currentColor">جایگزین</text></svg><figcaption><span class="l-en">How a request travels: people reach the task board through the VPN and the agents through the bots, from anywhere. Every prompt from Hermes passes through LiteLLM, which logs it to Langfuse and sends it to AvalAI over the international link, or to the office Ollama server when that link is cut.</span><span class="l-fa">مسیر یک درخواست: آدم‌ها از هر جا، از راه VPN به تخته‌ی کار و از راه ربات‌ها به عامل‌ها می‌رسند. هر درخواست Hermes از LiteLLM می‌گذرد که آن را در Langfuse ثبت می‌کند و از راه ارتباط بین‌الملل به AvalAI می‌فرستد، یا وقتی آن ارتباط قطع است به سرور Ollama دفتر.</span></figcaption></figure>
+
+  <div class="prose"><h3><span class="l-en">Your agent team: profiles and bots</span><span class="l-fa">تیم عامل‌های شما: پروفایل‌ها و ربات‌ها</span></h3>
+    <p class="l-en">In Hermes, each agent is a <b>profile</b>: its own folder under <code>~/.hermes/profiles/</code> with its own settings, personality file (<code>SOUL.md</code>), memory, skills, scheduled jobs and bot token. Start with four profiles, not thirteen. Each one covers several of the roles from “AI office of 10”; split a profile later only if it gets too busy.</p>
+    <p class="l-fa">در Hermes هر عامل یک <b>پروفایل</b> است: پوشه‌ای جدا زیر <code>~/.hermes/profiles/</code> با تنظیمات، فایل شخصیت (<code>SOUL.md</code>)، حافظه، مهارت‌ها، کارهای زمان‌بندی‌شده و توکن ربات خودش. با چهار پروفایل شروع کنید، نه سیزده. هر کدام چند نقش از فصل «دفتر هوش مصنوعی» را پوشش می‌دهد؛ اگر یکی خیلی شلوغ شد، بعداً آن را تقسیم کنید.</p>
+  </div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Profile and bot</span><span class="l-fa">پروفایل و ربات</span></th><th><span class="l-en">Roles it covers</span><span class="l-fa">نقش‌هایی که پوشش می‌دهد</span></th><th><span class="l-en">Who may talk to it</span><span class="l-fa">چه کسی می‌تواند با آن حرف بزند</span></th><th><span class="l-en">Daily routine (scheduled)</span><span class="l-fa">کار روزانه (زمان‌بندی‌شده)</span></th><th><span class="l-en">Always needs approval</span><span class="l-fa">همیشه تأیید لازم دارد</span></th></tr></thead>
+    <tbody>
+      <tr><td><code>frontdesk</code><br><span class="meta">@yourco_frontdesk_bot</span></td><td><span class="l-en">Receptionist, Sales, Trip designer</span><span class="l-fa">منشی، فروش، طراح سفر</span></td><td><span class="l-en">All staff; later customers, with a “talk to a person” option</span><span class="l-fa">همه‌ی همکاران؛ بعدها مشتری‌ها، با گزینه‌ی «گفتگو با کارشناس»</span></td><td><span class="l-en">10:00 and 16:00: follow up quotes with no answer after 48 h</span><span class="l-fa">ساعت ۱۰ و ۱۶: پیگیری پیش‌فاکتورهای بی‌جواب بعد از ۴۸ ساعت</span></td><td><span class="l-en">Sending quotes (first month), any booking</span><span class="l-fa">ارسال پیش‌فاکتور (ماه اول)، هر رزرو</span></td></tr>
+      <tr><td><code>ticketing</code><br><span class="meta">@yourco_tickets_bot</span></td><td><span class="l-en">Ticketing clerk, Hotel &amp; tour desk, Fare watch, Documents officer</span><span class="l-fa">کارشناس بلیت، هتل و تور، پایشگر نرخ، کارشناس مدارک</span></td><td><span class="l-en">Staff only</span><span class="l-fa">فقط همکاران</span></td><td><span class="l-en">Every hour 8–20: fare watch on main routes; 9:00: passport and visa reminders</span><span class="l-fa">هر ساعت از ۸ تا ۲۰: پایش نرخ مسیرهای اصلی؛ ساعت ۹: یادآوری گذرنامه و ویزا</span></td><td><span class="l-en">Every hold and every ticket</span><span class="l-fa">هر رزرو موقت و هر بلیت</span></td></tr>
+      <tr><td><code>backoffice</code><br><span class="meta">@yourco_backoffice_bot</span></td><td><span class="l-en">Accountant, Controller, Customer care and refunds</span><span class="l-fa">حسابدار، کنترلر مالی، پشتیبانی و استرداد</span></td><td><span class="l-en">Owner, spouse, accountant</span><span class="l-fa">مدیر، همسر، حسابدار</span></td><td><span class="l-en">8:30: unmatched payments, low supplier credit, cheques due; Thursday: open refunds</span><span class="l-fa">ساعت ۸:۳۰: پرداخت‌های تطبیق‌نشده، اعتبار کم تأمین‌کننده، چک‌های سررسید؛ پنجشنبه: استردادهای باز</span></td><td><span class="l-en">Every payment, refund and voucher</span><span class="l-fa">هر پرداخت، استرداد و سند</span></td></tr>
+      <tr><td><code>manager</code><br><span class="meta">@yourco_manager_bot</span></td><td><span class="l-en">Office manager, Operations, Marketing drafts</span><span class="l-fa">مدیر دفتر، عملیات، پیش‌نویس بازاریابی</span></td><td><span class="l-en">Owner and spouse</span><span class="l-fa">مدیر و همسر</span></td><td><span class="l-en">8:00 morning brief; 18:00 day report (what each agent and person did, errors, spend); 48 h flight reminders</span><span class="l-fa">ساعت ۸ گزارش صبح؛ ساعت ۱۸ گزارش روز (هر عامل و هر نفر چه کرد، خطاها، هزینه)؛ یادآوری ۴۸ ساعت پیش از پرواز</span></td><td><span class="l-en">Public posts and group messages</span><span class="l-fa">پست عمومی و پیام گروهی</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="layer">
+    <div><h3><span class="l-en">Do you need a bot group chat?</span><span class="l-fa">گروه چت ربات‌ها لازم است؟</span></h3><p class="note l-en">Not required, but useful. Use three places, each for one purpose.</p><p class="note l-fa">الزامی نیست، ولی مفید است. از سه جا استفاده کنید، هر کدام برای یک کار.</p></div>
+    <div class="prose">
+      <ul class="l-en">
+        <li><b>Direct chat with a bot</b> for personal, quick tasks: “draft a quote for the Karimi family”. Each person gets a private session. Access is denied unless the person is on the bot’s allowlist or approved with a pairing code.</li>
+        <li><b>One staff group, “Office control room”</b>, with all four bots and all staff, for shared work: morning brief, day report, approval requests, alerts. Turn on <code>require_mention</code> so a bot answers only when someone writes <code>@yourco_tickets_bot</code> or replies to it; otherwise four bots would answer every message. Run <code>/sethome</code> in the group so scheduled reports land there.</li>
+        <li><b>The Multica board</b> for anything that must be tracked to the end: a group booking, a refund, a supplier dispute. Chat is for talking; the board is the record.</li>
+      </ul>
+      <ul class="l-fa">
+        <li><b>گفتگوی مستقیم با ربات</b> برای کارهای شخصی و سریع: «برای خانواده‌ی کریمی پیش‌فاکتور بنویس». هر نفر جلسه‌ی خصوصی خودش را دارد. دسترسی بسته است مگر اینکه نام فرد در فهرست مجاز ربات باشد یا با کد جفت‌سازی تأیید شود.</li>
+        <li><b>یک گروه همکاران به نام «اتاق کنترل دفتر»</b> با هر چهار ربات و همه‌ی همکاران، برای کار مشترک: گزارش صبح، گزارش روز، درخواست تأیید، هشدارها. گزینه‌ی <code>require_mention</code> را روشن کنید تا ربات فقط وقتی جواب بدهد که کسی <code>@yourco_tickets_bot</code> بنویسد یا به پیامش پاسخ دهد؛ وگرنه هر چهار ربات به هر پیامی جواب می‌دهند. در گروه <code>/sethome</code> را اجرا کنید تا گزارش‌های زمان‌بندی‌شده آنجا برسد.</li>
+        <li><b>تخته‌ی Multica</b> برای هر کاری که باید تا آخر پیگیری شود: رزرو گروهی، استرداد، اختلاف با تأمین‌کننده. چت برای گفتگوست؛ تخته سابقه‌ی کار است.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout l-en"><h3 class="h4">Telegram or Bale?</h3><p>Hermes connects to Telegram natively, and its Telegram adapter accepts a custom server address. Bale’s bot API copies Telegram’s (at <code>tapi.bale.ai</code>), so pointing the adapter at Bale may work, but it is untested and Bale supports fewer features (Markdown only, fewer update types). Practical path: staff bots on Telegram where it is reachable, and test a Bale bot with one profile before you rely on it. Customer-facing chat should end up on Bale, which works on the domestic network.</p></div>
+  <div class="callout l-fa"><h3 class="h4">تلگرام یا بله؟</h3><p>Hermes مستقیم به تلگرام وصل می‌شود و رابط تلگرامش آدرس سرور دلخواه را می‌پذیرد. API ربات بله از تلگرام کپی شده (در <code>tapi.bale.ai</code>)، پس شاید بشود رابط را به بله وصل کرد، ولی آزمایش نشده است و بله امکانات کمتری دارد (فقط Markdown، انواع به‌روزرسانی کمتر). راه عملی: ربات‌های همکاران روی تلگرام، هر جا در دسترس است، و پیش از تکیه کردن، یک ربات بله را با یک پروفایل آزمایش کنید. گفتگو با مشتری در نهایت باید روی بله باشد که روی شبکه‌ی داخلی کار می‌کند.</p></div>
+
+  <div class="prose"><h3><span class="l-en">Install it in twelve steps</span><span class="l-fa">نصب در دوازده قدم</span></h3>
+    <p class="l-en">Commands are for Ubuntu Server 24.04 LTS. Text in angle brackets, such as <code>&lt;your key&gt;</code>, is yours to fill in. A developer or technician should do steps 1–9 with you; after that, daily use needs no command line.</p>
+    <p class="l-fa">دستورها برای Ubuntu Server 24.04 LTS است. متن داخل علامت‌های &lt; و &gt;، مثل <code>&lt;your key&gt;</code>، را خودتان پر کنید. قدم‌های ۱ تا ۹ را بهتر است یک برنامه‌نویس یا فنی همراه شما انجام دهد؛ بعد از آن، کار روزانه به خط فرمان نیازی ندارد.</p>
+  </div>
+
+  <div class="layer"><div><h3><span class="l-en">1 · Prepare the server</span><span class="l-fa">۱ · آماده کردن سرور</span></h3><p class="note l-en">VPS (route B): about 4–8 virtual CPUs, 16 GB RAM and 160 GB SSD is a sensible start for all services below, in an Iranian data centre. Office server (route A): add the GPU from the Toolbox chapter.</p><p class="note l-fa">VPS (مسیر ب): حدود ۴ تا ۸ پردازنده‌ی مجازی، ۱۶ گیگابایت رم و ۱۶۰ گیگابایت SSD برای همه‌ی سرویس‌های زیر شروع معقولی است، در یک دیتاسنتر داخلی. سرور دفتر (مسیر الف): کارت گرافیک فصل جعبه‌ابزار را اضافه کنید.</p></div>
+  <div class="prose"><pre>sudo adduser officeai &amp;&amp; sudo usermod -aG sudo officeai
+sudo timedatectl set-timezone Asia/Tehran
+sudo apt update &amp;&amp; sudo apt upgrade -y
+sudo apt install -y git curl ufw
+sudo ufw allow OpenSSH &amp;&amp; sudo ufw enable
+curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker officeai     # log out and in again</pre></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">2 · The brain</span><span class="l-fa">۲ · مغز</span></h3><p class="note l-en">Route B: an AvalAI API key, with LiteLLM in front so every agent talks to one address you control. Route A: Ollama on the office GPU.</p><p class="note l-fa">مسیر ب: یک کلید API از AvalAI، با LiteLLM در جلو تا همه‌ی عامل‌ها با یک نشانی که در اختیار شماست حرف بزنند. مسیر الف: Ollama روی کارت گرافیک دفتر.</p></div>
+  <div class="prose">
+    <p class="l-en"><b>Route B.</b> Copy the OpenAI-compatible base URL and a model ID from your AvalAI panel or documentation (the base URL ends in <code>/v1</code>); they are not filled in here because they could not be verified from outside Iran.</p>
+    <p class="l-fa"><b>مسیر ب.</b> نشانی پایه‌ی سازگار با OpenAI و شناسه‌ی یک مدل را از پنل یا مستندات AvalAI کپی کنید (نشانی پایه با <code>/v1</code> تمام می‌شود)؛ این‌جا پر نشده‌اند چون از بیرون ایران قابل بررسی نبودند.</p>
+<pre>mkdir -p ~/litellm &amp;&amp; cd ~/litellm
+cat &gt; config.yaml &lt;&lt;'EOF'
+model_list:
+  - model_name: office-brain
+    litellm_params:
+      model: openai/&lt;model id from AvalAI&gt;
+      api_base: &lt;AvalAI base URL ending in /v1&gt;
+      api_key: os.environ/AVALAI_API_KEY
+  - model_name: office-brain-local        # optional: route A as fallback
+    litellm_params:
+      model: openai/gemma4-64k
+      api_base: http://&lt;office server VPN address&gt;:11434/v1
+      api_key: none
+litellm_settings:
+  success_callback: ["langfuse"]          # after step 11
+EOF
+docker run -d --name litellm --restart unless-stopped \
+  -p 127.0.0.1:4000:4000 -v $PWD/config.yaml:/app/config.yaml \
+  -e AVALAI_API_KEY=&lt;your key&gt; \
+  ghcr.io/berriai/litellm:main-stable --config /app/config.yaml</pre>
+    <p class="l-en">To give each agent its own key and monthly budget, add LiteLLM’s database and master key (see its documentation).</p>
+    <p class="l-fa">برای اینکه هر عامل کلید و سقف هزینه‌ی ماهانه‌ی خودش را داشته باشد، پایگاه داده و کلید اصلی LiteLLM را اضافه کنید (مستندات آن را ببینید).</p>
+    <p class="l-en"><b>Route A</b>, from the Hermes guide for local Ollama (Hermes needs at least 64,000 tokens of context; Ollama’s default is 2,048):</p>
+    <p class="l-fa"><b>مسیر الف</b>، از راهنمای Hermes برای Ollama محلی (Hermes دست‌کم ۶۴ هزار توکن متن لازم دارد؛ پیش‌فرض Ollama ۲۰۴۸ است):</p>
+<pre>curl -fsSL https://ollama.com/install.sh | sh
+ollama pull gemma4:31b
+printf 'FROM gemma4:31b\nPARAMETER num_ctx 64000\n' &gt; Modelfile
+ollama create gemma4-64k -f Modelfile</pre>
+  </div></div>
+
+  <div class="layer"><div><h3><span class="l-en">3 · Install Hermes</span><span class="l-fa">۳ · نصب Hermes</span></h3><p class="note l-en">Choose “Custom Endpoint” in the setup wizard and give it LiteLLM’s address.</p><p class="note l-fa">در جادوگر راه‌اندازی «Custom Endpoint» را انتخاب کنید و نشانی LiteLLM را بدهید.</p></div>
+  <div class="prose"><pre>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc
+hermes setup          # Custom Endpoint → http://127.0.0.1:4000/v1, model: office-brain
+hermes doctor         # shows what is missing</pre>
+  <p class="l-en">The resulting settings in <code>~/.hermes/config.yaml</code> look like this (route A: base URL <code>http://localhost:11434/v1</code>, model <code>gemma4-64k</code>):</p>
+  <p class="l-fa">تنظیمات حاصل در <code>~/.hermes/config.yaml</code> این شکلی است (مسیر الف: نشانی <code>http://localhost:11434/v1</code> و مدل <code>gemma4-64k</code>):</p>
+<pre>model:
+  default: "office-brain"
+  provider: "custom"
+  base_url: "http://127.0.0.1:4000/v1"</pre></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">4 · Create the four profiles</span><span class="l-fa">۴ · ساختن چهار پروفایل</span></h3><p class="note l-en"><code>--clone</code> copies the brain settings and skills, not bot tokens. Each profile also gets its own command (<code>frontdesk</code>, <code>manager</code> …).</p><p class="note l-fa"><code>--clone</code> تنظیمات مغز و مهارت‌ها را کپی می‌کند، نه توکن ربات. هر پروفایل دستور خودش را هم می‌گیرد (<code>frontdesk</code>، <code>manager</code> و …).</p></div>
+  <div class="prose"><pre>hermes profile create frontdesk --clone
+hermes profile create ticketing --clone
+hermes profile create backoffice --clone
+hermes profile create manager --clone
+hermes profile list</pre>
+  <p class="l-en">Then, for each profile: write its role and rules in <code>~/.hermes/profiles/&lt;name&gt;/SOUL.md</code> (start from the office playbook in Templates), and put the matching role playbooks from Templates into its <code>skills</code> folder, one folder per skill with a <code>SKILL.md</code>. Never run two programs on the same profile at once.</p>
+  <p class="l-fa">بعد برای هر پروفایل: نقش و قوانینش را در <code>~/.hermes/profiles/&lt;name&gt;/SOUL.md</code> بنویسید (از دستورالعمل دفتر در فصل قالب‌ها شروع کنید) و دستورالعمل نقش‌های مربوط را از فصل قالب‌ها در پوشه‌ی <code>skills</code> آن بگذارید، برای هر مهارت یک پوشه با یک <code>SKILL.md</code>. هرگز دو برنامه را هم‌زمان روی یک پروفایل اجرا نکنید.</p></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">5 · One bot per profile</span><span class="l-fa">۵ · برای هر پروفایل یک ربات</span></h3><p class="note l-en">Create four bots with @BotFather. A token may be used by only one profile. The gateway refuses everyone not on the allowlist.</p><p class="note l-fa">با ‎@BotFather چهار ربات بسازید. هر توکن فقط برای یک پروفایل است. درگاه هر کسی را که در فهرست مجاز نیست رد می‌کند.</p></div>
+  <div class="prose"><pre># ~/.hermes/profiles/frontdesk/.env
+TELEGRAM_BOT_TOKEN=&lt;token from @BotFather&gt;
+TELEGRAM_ALLOWED_USERS=&lt;your numeric id&gt;,&lt;spouse id&gt;,&lt;colleague id&gt;
+
+# ~/.hermes/profiles/frontdesk/config.yaml (add)
+telegram:
+  require_mention: true
+
+# run each gateway as a service that survives reboots
+frontdesk gateway install
+ticketing gateway install
+backoffice gateway install
+manager gateway install
+sudo loginctl enable-linger $USER</pre>
+  <p class="l-en">Find a person’s numeric ID with @userinfobot. Someone not on the list can send the bot a message, get a one-time code, and you approve it with <code>hermes pairing approve telegram &lt;code&gt;</code>; remove access with <code>hermes pairing revoke</code>.</p>
+  <p class="l-fa">شناسه‌ی عددی هر نفر را با ‎@userinfobot پیدا کنید. کسی که در فهرست نیست می‌تواند به ربات پیام بدهد و یک کد یک‌بارمصرف بگیرد و شما با <code>hermes pairing approve telegram &lt;code&gt;</code> تأییدش کنید؛ با <code>hermes pairing revoke</code> دسترسی را بردارید.</p></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">6 · The staff group</span><span class="l-fa">۶ · گروه همکاران</span></h3><p class="note l-en">“Office control room”: all staff and all four bots.</p><p class="note l-fa">«اتاق کنترل دفتر»: همه‌ی همکاران و هر چهار ربات.</p></div>
+  <div class="prose">
+    <ol class="l-en"><li>In @BotFather, for each bot: Bot Settings → Group Privacy → Turn off; then add the bots to the group (or make them group admins). If you change privacy later, remove and re-add the bot.</li><li>Put the group’s chat ID in <code>TELEGRAM_GROUP_ALLOWED_CHATS</code> in each profile’s <code>.env</code> so members can use the bots there.</li><li>In the group, send <code>/sethome@yourco_manager_bot</code> (and the same for the other bots) so their scheduled reports arrive in the group.</li></ol>
+    <ol class="l-fa"><li>در ‎@BotFather برای هر ربات: Bot Settings ← Group Privacy ← Turn off؛ بعد ربات‌ها را به گروه اضافه کنید (یا مدیر گروه کنید). اگر بعداً این تنظیم را عوض کردید، ربات را حذف و دوباره اضافه کنید.</li><li>شناسه‌ی گروه را در <code>TELEGRAM_GROUP_ALLOWED_CHATS</code> در فایل <code>.env</code> هر پروفایل بگذارید تا اعضا بتوانند آنجا از ربات‌ها استفاده کنند.</li><li>در گروه <code>/sethome@yourco_manager_bot</code> را بفرستید (و همین را برای ربات‌های دیگر) تا گزارش‌های زمان‌بندی‌شده‌شان به گروه برسد.</li></ol>
+  </div></div>
+
+  <div class="layer"><div><h3><span class="l-en">7 · Daily routines</span><span class="l-fa">۷ · کارهای روزانه</span></h3><p class="note l-en">Scheduled jobs run inside each profile’s gateway. You can also create them by asking the bot in plain language.</p><p class="note l-fa">کارهای زمان‌بندی‌شده داخل درگاه هر پروفایل اجرا می‌شوند. می‌توانید با زبان ساده هم از ربات بخواهید آن‌ها را بسازد.</p></div>
+  <div class="prose"><pre>hermes -p manager cron create "every day at 8am" \
+  "Morning brief: new leads, quotes waiting, payments due, flights in the next 48 hours" \
+  --name morning-brief --deliver telegram
+hermes -p manager cron create "every day at 6pm" \
+  "Day report: tasks finished and blocked on the Multica board, by person and agent; errors; spend" \
+  --name day-report --deliver telegram
+hermes -p ticketing cron create "0 8-20 * * *" \
+  "Run fare watch on the main routes and alert on drops and sell-outs" \
+  --skill fare-watch --name fare-watch --deliver telegram
+hermes -p manager cron list</pre>
+  <p class="l-en">Or in the manager bot’s chat: “Every working day at 8 send me the morning brief”. The office week is Saturday to Thursday: say so in the instruction, or use a cron expression such as <code>0 8 * * 6,0-3</code>.</p>
+  <p class="l-fa">یا در گفتگو با ربات مدیر: «هر روز کاری ساعت ۸ گزارش صبح را برایم بفرست». هفته‌ی کاری دفتر شنبه تا پنجشنبه است: این را در دستور بگویید یا از عبارت زمان‌بندی مثل <code>0 8 * * 6,0-3</code> استفاده کنید.</p></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">8 · Long-term memory with Honcho (month 2)</span><span class="l-fa">۸ · حافظه‌ی بلندمدت با Honcho (ماه دوم)</span></h3><p class="note l-en">Hermes’ built-in memory is enough to start. Honcho adds memory of each customer and each staff member as separate “peers” across all chats.</p><p class="note l-fa">حافظه‌ی داخلی Hermes برای شروع کافی است. Honcho حافظه‌ی هر مشتری و هر همکار را به‌صورت «همتا»های جدا در همه‌ی گفتگوها اضافه می‌کند.</p></div>
+  <div class="prose"><pre>git clone https://github.com/plastic-labs/honcho.git &amp;&amp; cd honcho
+cp docker-compose.yml.example docker-compose.yml
+cp .env.template .env      # set the LLM key and base-URL overrides (point them at LiteLLM)
+docker compose up -d       # API on port 8000
+hermes plugins install honcho
+hermes -p frontdesk memory setup honcho   # choose self-hosted: http://localhost:8000</pre>
+  <p class="l-en">Honcho reads conversations with its own model in the background, so whatever brain you give it sees customer messages: apply the same data rules as the agents. Its models must support tool calling. Licence: AGPL-3.0.</p>
+  <p class="l-fa">Honcho در پس‌زمینه گفتگوها را با مدل خودش می‌خواند، پس هر مغزی که به آن بدهید پیام‌های مشتری را می‌بیند: همان قواعد داده‌ی عامل‌ها را اعمال کنید. مدل‌هایش باید فراخوانی ابزار را پشتیبانی کنند. مجوز: AGPL-3.0.</p></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">9 · The shared task board: Multica</span><span class="l-fa">۹ · تخته‌ی کار مشترک: Multica</span></h3><p class="note l-en">People and agents on one board: assign an issue to a colleague or to an agent, follow its comments, review the result.</p><p class="note l-fa">آدم‌ها و عامل‌ها روی یک تخته: یک کار را به همکار یا به عامل بسپارید، نظراتش را دنبال کنید و نتیجه را بازبینی کنید.</p></div>
+  <div class="prose"><pre>curl -fsSL https://raw.githubusercontent.com/multica-ai/multica/main/scripts/install.sh | bash -s -- --with-server
+multica setup self-host
+# in the Multica .env: DO_NOT_TRACK=1 (turns off the daily telemetry), then restart
+# first login: the email code can be read in the backend logs ("[DEV] Verification code for ...")
+multica daemon status      # this server becomes a "runtime" that can run the hermes CLI</pre>
+  <ol class="l-en"><li>Open the board (port 3000) from the office network or VPN, create the workspace, and invite your spouse and colleagues with the roles owner, admin or member. Then set <code>ALLOW_SIGNUP</code> so strangers cannot register.</li><li>Add agents that use the Hermes runtime, group people and agents into squads (for example “Sales” and “Back office”), and use autopilots for recurring tracked work such as the weekly refund review.</li><li>The board is built mainly for coding agents. Using it for office agents is new: start with one agent and check which Hermes profile it runs.</li></ol>
+  <ol class="l-fa"><li>تخته را (درگاه ۳۰۰۰) از شبکه‌ی دفتر یا VPN باز کنید، فضای کاری بسازید و همسر و همکاران را با نقش owner، admin یا member دعوت کنید. بعد <code>ALLOW_SIGNUP</code> را تنظیم کنید تا غریبه‌ها نتوانند ثبت‌نام کنند.</li><li>عامل‌هایی اضافه کنید که از Hermes استفاده می‌کنند، آدم‌ها و عامل‌ها را در گروه‌های کاری (squad) بگذارید (مثلاً «فروش» و «پشت‌صحنه»)، و برای کارهای تکراری پیگیری‌شده مثل بازبینی هفتگی استردادها از autopilot استفاده کنید.</li><li>این تخته بیشتر برای عامل‌های برنامه‌نویسی ساخته شده است. استفاده از آن برای عامل‌های دفتری تازه است: با یک عامل شروع کنید و ببینید کدام پروفایل Hermes را اجرا می‌کند.</li></ol></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">10 · Access from outside the office</span><span class="l-fa">۱۰ · دسترسی از بیرون دفتر</span></h3><p class="note l-en">The bots already work from anywhere, because the messenger carries them. The web screens (board, monitoring) go through a private VPN.</p><p class="note l-fa">ربات‌ها از هر جا کار می‌کنند، چون پیام‌رسان آن‌ها را می‌رساند. صفحه‌های وب (تخته، پایش) از راه یک VPN خصوصی باز می‌شوند.</p></div>
+  <div class="prose">
+    <ul class="l-en"><li>Install WireGuard on the VPS (a web panel such as wg-easy makes adding a person a two-minute job) and give each person their own key on phone and laptop. Remove a key the day someone leaves.</li><li>Route A: connect the office server to the same VPN as a peer, so people at home reach it through the VPS.</li><li>Open the screens only on the VPN address, for example <code>http://10.8.0.1:3000</code> for Multica.</li><li><b>Never expose to the internet:</b> the Hermes API server (8642), Ollama (11434), LiteLLM (4000), Honcho (8000) or the databases. If you must publish the board publicly, use HTTPS through a reverse proxy, strong passwords and closed sign-up.</li><li>WireGuard traffic is sometimes disrupted in Iran: test from home and from a phone, and keep SMS as the fallback channel.</li></ul>
+    <ul class="l-fa"><li>WireGuard را روی VPS نصب کنید (یک پنل وب مثل wg-easy اضافه کردن هر نفر را به کاری دو دقیقه‌ای تبدیل می‌کند) و به هر نفر برای گوشی و لپ‌تاپش کلید جدا بدهید. روزی که کسی می‌رود کلیدش را حذف کنید.</li><li>مسیر الف: سرور دفتر را هم به‌عنوان یک عضو به همین VPN وصل کنید تا افراد از خانه از راه VPS به آن برسند.</li><li>صفحه‌ها را فقط روی نشانی VPN باز کنید، مثلاً <code>http://10.8.0.1:3000</code> برای Multica.</li><li><b>هرگز روی اینترنت باز نکنید:</b> سرور API هرمس (۸۶۴۲)، Ollama (۱۱۴۳۴)، LiteLLM (۴۰۰۰)، Honcho (۸۰۰۰) یا پایگاه‌های داده را. اگر ناچارید تخته را عمومی کنید، از HTTPS پشت یک پراکسی معکوس، رمزهای قوی و ثبت‌نام بسته استفاده کنید.</li><li>ترافیک WireGuard در ایران گاهی مختل می‌شود: از خانه و از گوشی آزمایش کنید و پیامک را راه جایگزین نگه دارید.</li></ul>
+  </div></div>
+
+  <div class="layer"><div><h3><span class="l-en">11 · Monitoring</span><span class="l-fa">۱۱ · پایش</span></h3><p class="note l-en">So you can see, from home, what each agent did all day.</p><p class="note l-fa">تا از خانه ببینید هر عامل در طول روز چه کرد.</p></div>
+  <div class="prose"><pre># Langfuse: every model call with prompt, answer, tokens, cost, time and errors
+git clone https://github.com/langfuse/langfuse.git &amp;&amp; cd langfuse
+docker compose up -d        # then create a project and API keys in its web screen
+# give LiteLLM the keys: LANGFUSE_PUBLIC_KEY, LANGFUSE_SECRET_KEY, LANGFUSE_HOST
+
+# Uptime Kuma: alerts when a bot, the brain or a database stops
+docker run -d --restart=always -p 10.8.0.1:3001:3001 \
+  -v uptime-kuma:/app/data --name uptime-kuma louislam/uptime-kuma:1
+
+# Hermes: live log of one agent, and its scheduled jobs
+journalctl --user -u hermes-gateway-frontdesk -f
+hermes -p manager cron list</pre></div></div>
+
+  <div class="layer"><div><h3><span class="l-en">12 · Backups</span><span class="l-fa">۱۲ · پشتیبان‌گیری</span></h3><p class="note l-en">Nightly, with restic, to a second place; restore one copy every quarter.</p><p class="note l-fa">هر شب با restic در جای دوم؛ هر فصل یک نسخه را بازیابی کنید.</p></div>
+  <div class="prose">
+    <p class="l-en">Back up: the whole <code>~/.hermes</code> folder (profiles, memory, skills, schedules), the Multica, Honcho, LiteLLM and Langfuse databases (database dumps, not just the files), every <code>.env</code> and <code>config.yaml</code>, and the WireGuard keys. Store keys and passwords in a password manager, not in chats.</p>
+    <p class="l-fa">از این‌ها پشتیبان بگیرید: کل پوشه‌ی <code>~/.hermes</code> (پروفایل‌ها، حافظه، مهارت‌ها، زمان‌بندی‌ها)، پایگاه‌های داده‌ی Multica، Honcho، LiteLLM و Langfuse (خروجی پایگاه داده، نه فقط فایل‌ها)، همه‌ی فایل‌های <code>.env</code> و <code>config.yaml</code>، و کلیدهای WireGuard. کلیدها و رمزها را در یک مدیر رمز نگه دارید، نه در چت.</p>
+  </div></div>
+
+  <div class="prose"><h3><span class="l-en">Giving work to agents: three ways</span><span class="l-fa">کار دادن به عامل‌ها: سه راه</span></h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Way</span><span class="l-fa">راه</span></th><th><span class="l-en">Example</span><span class="l-fa">نمونه</span></th><th><span class="l-en">Use it for</span><span class="l-fa">برای چه</span></th></tr></thead>
+    <tbody>
+      <tr><td><b><span class="l-en">Direct message</span><span class="l-fa">پیام مستقیم</span></b></td><td><span class="l-en">To the frontdesk bot: “Draft two Dubai options for 3 people, 30 Azar to 4 Dey, budget 350 million.”</span><span class="l-fa">به ربات frontdesk: «برای ۳ نفر دبی، ۳۰ آذر تا ۴ دی، بودجه ۳۵۰ میلیون، دو گزینه پیش‌نویس کن.»</span></td><td><span class="l-en">Quick personal tasks; the answer comes back in the same chat</span><span class="l-fa">کارهای سریع شخصی؛ جواب در همان گفتگو برمی‌گردد</span></td></tr>
+      <tr><td><b><span class="l-en">Mention in the staff group</span><span class="l-fa">نام بردن در گروه همکاران</span></b></td><td><span class="l-en">“@yourco_backoffice_bot which supplier payments are due this week?”</span><span class="l-fa">«‎@yourco_backoffice_bot پرداخت کدام تأمین‌کننده‌ها این هفته سررسید است؟»</span></td><td><span class="l-en">Questions everyone should see; approvals and alerts</span><span class="l-fa">پرسش‌هایی که همه باید ببینند؛ تأییدها و هشدارها</span></td></tr>
+      <tr><td><b><span class="l-en">Issue on the Multica board</span><span class="l-fa">کار روی تخته‌ی Multica</span></b></td><td><span class="l-en">“Arbaeen group of 40: build the rooming list and check all passports” assigned to the ticketing agent, with your spouse as reviewer.</span><span class="l-fa">«گروه ۴۰ نفره‌ی اربعین: فهرست اتاق‌ها را بساز و همه‌ی گذرنامه‌ها را بررسی کن» به عامل ticketing سپرده شده، با همسرتان به‌عنوان بازبین.</span></td><td><span class="l-en">Work that takes days, has several steps or must be checked by a person</span><span class="l-fa">کاری که چند روز طول می‌کشد، چند مرحله دارد یا باید یک انسان بررسی‌اش کند</span></td></tr>
+      <tr><td><b><span class="l-en">Their own routine</span><span class="l-fa">کار روزمره‌ی خودشان</span></b></td><td><span class="l-en">The fare watch every hour, the 8:00 brief, the 18:00 report</span><span class="l-fa">پایش نرخ هر ساعت، گزارش ساعت ۸، گزارش ساعت ۱۸</span></td><td><span class="l-en">Jobs the agent does every day without being asked</span><span class="l-fa">کارهایی که عامل هر روز بدون درخواست انجام می‌دهد</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="meta l-en">Whatever the way, anything with money (hold, ticket, refund, payment link) ends as an approval request in the staff group or the approval queue, and a named person decides.</p>
+  <p class="meta l-fa">از هر راهی که باشد، هر کار مالی (رزرو موقت، بلیت، استرداد، لینک پرداخت) به یک درخواست تأیید در گروه همکاران یا صف تأیید ختم می‌شود و یک فرد مشخص تصمیم می‌گیرد.</p>
+  <div class="prose"><h3><span class="l-en">A sample board with real tasks</span><span class="l-fa">یک تخته‌ی نمونه با کارهای واقعی</span></h3>
+    <p class="l-en">This is what the first weeks could look like on the Multica board: setting up the system and real agency work, shared between people and agents. Customer names are invented. Filter it, then download the list and create these issues on your own board.</p>
+    <p class="l-fa">هفته‌های اول روی تخته‌ی Multica ممکن است این شکلی باشد: راه‌اندازی سیستم و کار واقعی آژانس، تقسیم‌شده بین آدم‌ها و عامل‌ها. نام مشتری‌ها ساختگی است. فیلتر کنید، بعد فهرست را دریافت کنید و این کارها را روی تخته‌ی خودتان بسازید.</p>
+  </div>
+  <div class="row" style="justify-content:space-between">
+    <div class="filters" id="boardFilters" role="group" aria-label="Filter the board">
+      <button class="chip" type="button" aria-pressed="true" data-f="all"><span class="l-en">All</span><span class="l-fa">همه</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="agent"><span class="l-en">Agents</span><span class="l-fa">عامل‌ها</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="person"><span class="l-en">People</span><span class="l-fa">آدم‌ها</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="approval"><span class="l-en">Needs approval</span><span class="l-fa">نیاز به تأیید</span></button>
+    </div>
+    <button class="btn ghost small" type="button" id="boardCsv"><span class="l-en">Download the task list (CSV)</span><span class="l-fa">دریافت فهرست کارها (CSV)</span></button>
+  </div>
+  <p class="status" id="boardStatus" aria-live="polite"></p>
+  <div class="taskboard" id="taskboard"></div>
+
+
+
+  <div class="prose"><h3><span class="l-en">Slack, Multica and the office chat: different jobs</span><span class="l-fa">Slack، Multica و چت دفتر: کارهای متفاوت</span></h3>
+    <p class="l-en">A chat tool and a task board are not rivals. <b>Chat</b> (Slack, Mattermost, a Telegram or Bale group) is where people and agents talk: quick questions, alerts, approvals. <b>Multica</b> is where work is tracked: every job has an owner, a reviewer, a status and a history. Most offices need both.</p>
+    <p class="l-fa">ابزار چت و تخته‌ی کار رقیب هم نیستند. <b>چت</b> (Slack، Mattermost، یک گروه تلگرام یا بله) جایی است که آدم‌ها و عامل‌ها حرف می‌زنند: پرسش سریع، هشدار، تأیید. <b>Multica</b> جایی است که کار پیگیری می‌شود: هر کار یک مسئول، یک بازبین، یک وضعیت و یک سابقه دارد. بیشتر دفترها به هر دو نیاز دارند.</p>
+  </div>
+  <div class="callout l-en"><h3 class="h4">Slack itself is not an option from Iran</h3><p>Since 2018 Slack has blocked use from Iran to comply with US sanctions, based on where people connect from. Getting around this with a VPN breaks Slack’s terms and risks losing the whole workspace, so this academy does not recommend it. The same design works with a Slack-style chat you host yourself: <b>Mattermost</b>, which Hermes supports directly, or <b>Matrix</b> (Element), also supported, or simply the Telegram or Bale staff group.</p></div>
+  <div class="callout l-fa"><h3 class="h4">خود Slack از ایران گزینه نیست</h3><p>Slack از ۲۰۱۸ برای رعایت تحریم‌های آمریکا، بر اساس محل اتصال، استفاده از ایران را مسدود کرده است. دور زدن آن با VPN شرایط Slack را نقض می‌کند و ممکن است کل فضای کاری از دست برود؛ پس این آکادمی آن را پیشنهاد نمی‌کند. همین طرح با یک چت شبیه Slack که خودتان میزبانی می‌کنید کار می‌کند: <b>Mattermost</b> که Hermes مستقیم پشتیبانی‌اش می‌کند، یا <b>Matrix</b> (Element) که آن هم پشتیبانی می‌شود، یا همان گروه همکاران در تلگرام یا بله.</p></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th></th><th>Slack</th><th><span class="l-en">Mattermost (self-hosted)</span><span class="l-fa">Mattermost (روی سرور خود)</span></th><th><span class="l-en">Telegram or Bale group</span><span class="l-fa">گروه تلگرام یا بله</span></th><th><span class="l-en">Multica board</span><span class="l-fa">تخته‌ی Multica</span></th></tr></thead>
+    <tbody>
+      <tr><td><b><span class="l-en">Job</span><span class="l-fa">کار</span></b></td><td><span class="l-en">Team chat with channels</span><span class="l-fa">چت تیمی با کانال‌ها</span></td><td><span class="l-en">Team chat with channels, on your server</span><span class="l-fa">چت تیمی با کانال‌ها، روی سرور شما</span></td><td><span class="l-en">One shared conversation</span><span class="l-fa">یک گفتگوی مشترک</span></td><td><span class="l-en">Tracked tasks for people and agents</span><span class="l-fa">کارهای پیگیری‌شده برای آدم‌ها و عامل‌ها</span></td></tr>
+      <tr><td><b><span class="l-en">Usable from Iran</span><span class="l-fa">قابل استفاده از ایران</span></b></td><td><span class="pill no"><span class="l-en">No</span><span class="l-fa">نه</span></span></td><td><span class="pill yes"><span class="l-en">Yes</span><span class="l-fa">بله</span></span></td><td><span class="pill yes"><span class="l-en">Bale yes; Telegram filtered</span><span class="l-fa">بله آری؛ تلگرام فیلتر</span></span></td><td><span class="pill yes"><span class="l-en">Yes, self-hosted</span><span class="l-fa">بله، روی سرور خود</span></span></td></tr>
+      <tr><td><b><span class="l-en">Hermes agents</span><span class="l-fa">عامل‌های Hermes</span></b></td><td><span class="l-en">Built-in gateway</span><span class="l-fa">درگاه داخلی</span></td><td><span class="l-en">Built-in gateway</span><span class="l-fa">درگاه داخلی</span></td><td><span class="l-en">Telegram built in; Bale needs testing</span><span class="l-fa">تلگرام داخلی؛ بله نیاز به آزمایش</span></td><td><span class="l-en">Runs the hermes command as a runtime</span><span class="l-fa">دستور hermes را به‌عنوان runtime اجرا می‌کند</span></td></tr>
+      <tr><td><b><span class="l-en">Strengths</span><span class="l-fa">نقاط قوت</span></b></td><td><span class="l-en">Polished, huge app ecosystem</span><span class="l-fa">جاافتاده، اکوسیستم بزرگ برنامه‌ها</span></td><td><span class="l-en">Channels per desk, searchable history you own, free edition for small teams</span><span class="l-fa">کانال برای هر بخش، تاریخچه‌ی قابل جستجو که مال شماست، نسخه‌ی رایگان برای تیم‌های کوچک</span></td><td><span class="l-en">Everyone already has it on their phone; nothing to install</span><span class="l-fa">همه از قبل روی گوشی دارند؛ نصب لازم نیست</span></td><td><span class="l-en">Nothing forgotten: owner, reviewer, status, history; scheduled “autopilots”</span><span class="l-fa">چیزی فراموش نمی‌شود: مسئول، بازبین، وضعیت، سابقه؛ کارهای زمان‌بندی‌شده (autopilot)</span></td></tr>
+      <tr><td><b><span class="l-en">Weaknesses</span><span class="l-fa">نقاط ضعف</span></b></td><td><span class="l-en">Blocked for Iran; data abroad; paid per user</span><span class="l-fa">برای ایران مسدود؛ داده در خارج؛ پرداخت به‌ازای هر کاربر</span></td><td><span class="l-en">One more service to run and back up; the free edition has user limits</span><span class="l-fa">یک سرویس دیگر برای نگهداری و پشتیبان‌گیری؛ نسخه‌ی رایگان سقف کاربر دارد</span></td><td><span class="l-en">Gets noisy; work gets lost in the scroll; mixed with private life</span><span class="l-fa">شلوغ می‌شود؛ کار در پیام‌ها گم می‌شود؛ با زندگی شخصی قاطی است</span></td><td><span class="l-en">Not for conversation; built mainly for coding agents; no documented chat integration found</span><span class="l-fa">برای گفتگو نیست؛ بیشتر برای عامل‌های برنامه‌نویسی ساخته شده؛ اتصال مستند به چت پیدا نشد</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="layer">
+    <div><h3><span class="l-en">Each tool’s mission in your agency</span><span class="l-fa">مأموریت هر ابزار در آژانس شما</span></h3></div>
+    <div class="prose">
+      <ul class="l-en">
+        <li><b>Chat = the office’s voice.</b> Fast questions, alerts, approvals and the daily report. If it needs an answer in minutes, it goes here.</li>
+        <li><b>Multica = the office’s to-do memory.</b> Every job that takes more than one step or one day: a group booking, a refund, a supplier dispute, a visa file. If it must not be forgotten, it goes here.</li>
+        <li><b>Hermes agents = the workers.</b> They read both, do the steps, and report back in both.</li>
+        <li><b>CRM and accounting = the truth</b> about customers and money. Chat and board point to them; they never replace them.</li>
+      </ul>
+      <ul class="l-fa">
+        <li><b>چت = صدای دفتر.</b> پرسش سریع، هشدار، تأیید و گزارش روزانه. اگر در چند دقیقه جواب لازم دارد، این‌جا می‌آید.</li>
+        <li><b>Multica = حافظه‌ی کارهای دفتر.</b> هر کاری که بیش از یک قدم یا یک روز طول بکشد: رزرو گروهی، استرداد، اختلاف با تأمین‌کننده، پرونده‌ی ویزا. اگر نباید فراموش شود، این‌جا می‌آید.</li>
+        <li><b>عامل‌های Hermes = کارکنان.</b> هر دو را می‌خوانند، قدم‌ها را انجام می‌دهند و در هر دو گزارش می‌دهند.</li>
+        <li><b>CRM و حسابداری = حقیقت</b> درباره‌ی مشتری و پول. چت و تخته به آن‌ها اشاره می‌کنند؛ هرگز جایشان را نمی‌گیرند.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="prose"><h3><span class="l-en">How chat and the board work together</span><span class="l-fa">چت و تخته چطور با هم کار می‌کنند</span></h3>
+    <ol class="l-en">
+      <li>A customer writes on Bale. The frontdesk agent drafts a reply and two options.</li>
+      <li>A simple sale: the agent posts an approval request in the <code>#approvals</code> channel; your spouse approves, and the quote goes out.</li>
+      <li>A big job, such as a group of 40: a person or the manager agent opens a Multica issue, assigns it to the ticketing agent and names a colleague as reviewer.</li>
+      <li>The agent works the steps and comments on the issue. When it is blocked (a missing passport, a price question) it asks in chat, mentioning the right person.</li>
+      <li>The reviewer checks and closes the issue. At 18:00 the manager agent posts the day report to <code>#daily-report</code>: finished, blocked and overdue issues, by person and agent.</li>
+    </ol>
+    <ol class="l-fa">
+      <li>مشتری در بله پیام می‌دهد. عامل frontdesk یک پاسخ و دو گزینه پیش‌نویس می‌کند.</li>
+      <li>یک فروش ساده: عامل درخواست تأیید را در کانال <code>#approvals</code> می‌گذارد؛ همسرتان تأیید می‌کند و پیش‌فاکتور فرستاده می‌شود.</li>
+      <li>یک کار بزرگ، مثل گروه ۴۰ نفره: یک نفر یا عامل manager یک کار در Multica باز می‌کند، آن را به عامل ticketing می‌سپارد و یک همکار را بازبین می‌کند.</li>
+      <li>عامل قدم‌ها را انجام می‌دهد و زیر کار نظر می‌نویسد. وقتی گیر می‌کند (گذرنامه‌ی جاافتاده، سؤال قیمت) در چت می‌پرسد و نام فرد درست را می‌آورد.</li>
+      <li>بازبین بررسی می‌کند و کار را می‌بندد. ساعت ۱۸ عامل manager گزارش روز را در <code>#daily-report</code> می‌گذارد: کارهای تمام‌شده، گیرکرده و عقب‌افتاده، به تفکیک فرد و عامل.</li>
+    </ol>
+    <p class="l-en">The link between the two is the agents themselves: no documented Multica integration with Slack or Mattermost was found, so the manager agent reads the board (Multica has a command-line tool agents can use) and posts to chat, or an n8n flow does it.</p>
+    <p class="l-fa">پل بین این دو خود عامل‌ها هستند: اتصال مستندی بین Multica و Slack یا Mattermost پیدا نشد؛ پس عامل manager تخته را می‌خواند (Multica یک ابزار خط فرمان دارد که عامل‌ها می‌توانند استفاده کنند) و در چت می‌نویسد، یا یک روال n8n این کار را می‌کند.</p>
+  </div>
+  <div class="callout ok l-en"><h3 class="h4">What to choose</h3><ul>
+    <li><b>2–10 people:</b> the staff group on Telegram or Bale plus the Multica board is enough.</li>
+    <li><b>Move to Mattermost</b> when you want a channel per desk (<code>#approvals</code>, <code>#alerts</code>, <code>#daily-report</code>, <code>#sales</code>, <code>#back-office</code>), searchable history on your own server, or the team grows. Put each bot only in the channels it needs, with mention required.</li>
+    <li><b>Skip Slack</b> for an office in Iran.</li>
+  </ul></div>
+  <div class="callout ok l-fa"><h3 class="h4">کدام را انتخاب کنیم</h3><ul>
+    <li><b>۲ تا ۱۰ نفر:</b> گروه همکاران در تلگرام یا بله به‌علاوه‌ی تخته‌ی Multica کافی است.</li>
+    <li><b>به Mattermost بروید</b> وقتی برای هر بخش کانال جدا می‌خواهید (<code>#approvals</code>، <code>#alerts</code>، <code>#daily-report</code>، <code>#sales</code>، <code>#back-office</code>)، تاریخچه‌ی قابل جستجو روی سرور خودتان، یا تیم بزرگ‌تر شده است. هر ربات را فقط در کانال‌هایی بگذارید که لازم دارد، با شرط نام بردن.</li>
+    <li><b>برای دفتری در ایران از Slack صرف‌نظر کنید.</b></li>
+  </ul></div>
+  <p class="src"><span class="l-en">Sources:</span><span class="l-fa">منابع:</span> <a href="https://techcrunch.com/?p=1762371" target="_blank" rel="noopener"><span class="l-en">TechCrunch: Slack and Iran (2018)</span><span class="l-fa">TechCrunch: Slack و ایران (۲۰۱۸)</span></a> · <a href="https://www.niacouncil.org/update-slack-responds-niacs-letter/" target="_blank" rel="noopener"><span class="l-en">NIAC: Slack’s revised sanctions policy</span><span class="l-fa">NIAC: سیاست اصلاح‌شده‌ی Slack درباره‌ی تحریم</span></a> · <a href="https://docs.mattermost.com/about/editions-and-offerings.html" target="_blank" rel="noopener"><span class="l-en">Mattermost editions</span><span class="l-fa">نسخه‌های Mattermost</span></a> · <a href="https://endoflife.date/mattermost" target="_blank" rel="noopener"><span class="l-en">Mattermost versions and limits</span><span class="l-fa">نسخه‌ها و محدودیت‌های Mattermost</span></a></p>
+
+  <div class="prose"><h3><span class="l-en">Watching the agents from anywhere</span><span class="l-fa">نظارت بر عامل‌ها از هر جا</span></h3></div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Where</span><span class="l-fa">کجا</span></th><th><span class="l-en">What you see</span><span class="l-fa">چه می‌بینید</span></th><th><span class="l-en">How often</span><span class="l-fa">هر چند وقت</span></th></tr></thead>
+    <tbody>
+      <tr><td><span class="l-en">The 18:00 day report in the staff group</span><span class="l-fa">گزارش ساعت ۱۸ در گروه همکاران</span></td><td><span class="l-en">What each agent and person finished, what is blocked, errors, spend</span><span class="l-fa">هر عامل و هر نفر چه تمام کرد، چه چیزی گیر کرده، خطاها، هزینه</span></td><td><span class="l-en">Every day, on your phone</span><span class="l-fa">هر روز، روی گوشی</span></td></tr>
+      <tr><td><span class="l-en">Multica board (through the VPN)</span><span class="l-fa">تخته‌ی Multica (از راه VPN)</span></td><td><span class="l-en">Every task, who has it, its comments and status</span><span class="l-fa">هر کار، دست چه کسی است، نظرات و وضعیتش</span></td><td><span class="l-en">Every day</span><span class="l-fa">هر روز</span></td></tr>
+      <tr><td><span class="l-en">Langfuse</span><span class="l-fa">Langfuse</span></td><td><span class="l-en">Each model call: the exact prompt and answer, tokens, cost, slow or failed calls, by agent</span><span class="l-fa">هر فراخوانی مدل: متن دقیق درخواست و پاسخ، توکن، هزینه، فراخوانی کند یا ناموفق، به تفکیک عامل</span></td><td><span class="l-en">Weekly, and whenever an answer looks wrong</span><span class="l-fa">هفتگی، و هر وقت جوابی اشتباه به نظر برسد</span></td></tr>
+      <tr><td><span class="l-en">LiteLLM spend per agent</span><span class="l-fa">هزینه‌ی هر عامل در LiteLLM</span></td><td><span class="l-en">How much each agent spent with the provider</span><span class="l-fa">هر عامل چقدر نزد سرویس‌دهنده خرج کرده</span></td><td><span class="l-en">Weekly</span><span class="l-fa">هفتگی</span></td></tr>
+      <tr><td><span class="l-en">Uptime Kuma alerts</span><span class="l-fa">هشدارهای Uptime Kuma</span></td><td><span class="l-en">A bot, the brain or a database stopped</span><span class="l-fa">یک ربات، مغز یا پایگاه داده متوقف شده</span></td><td><span class="l-en">Automatic message</span><span class="l-fa">پیام خودکار</span></td></tr>
+      <tr><td><span class="l-en">Gateway logs</span><span class="l-fa">گزارش درگاه‌ها</span></td><td><span class="l-en">Exactly what a bot received and did</span><span class="l-fa">دقیقاً ربات چه دریافت کرد و چه کرد</span></td><td><span class="l-en">Only when fixing a problem</span><span class="l-fa">فقط هنگام رفع مشکل</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="prose"><h3><span class="l-en">Pulling the office and the AI together</span><span class="l-fa">یکپارچه کردن دفتر و هوش مصنوعی</span></h3></div>
+  <div class="cards">
+    <div class="card"><h3 class="h4"><span class="l-en">One place for each kind of truth</span><span class="l-fa">برای هر نوع اطلاعات یک مرجع</span></h3><p class="l-en">Customers and trips in the CRM, tasks on the Multica board, files in one shared folder, money in the accounting software. Agents read and write these; nobody keeps private lists.</p><p class="l-fa">مشتری و سفر در CRM، کارها روی تخته‌ی Multica، فایل‌ها در یک پوشه‌ی مشترک، پول در نرم‌افزار حسابداری. عامل‌ها همین‌ها را می‌خوانند و می‌نویسند؛ هیچ‌کس فهرست شخصی نگه نمی‌دارد.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">A written data rule</span><span class="l-fa">یک قانون کتبی برای داده</span></h3><p class="l-en">What may go to the cloud brain (trip requests, prices, drafts) and what never leaves the server (passport scans, national IDs, card details, bank statements). Hide phone numbers in prompts where possible.</p><p class="l-fa">چه چیزی می‌تواند به مغز ابری برود (درخواست سفر، قیمت، پیش‌نویس) و چه چیزی هرگز از سرور بیرون نمی‌رود (اسکن گذرنامه، کد ملی، اطلاعات کارت، صورت‌حساب بانک). تا جای ممکن شماره تلفن را در درخواست‌ها پنهان کنید.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">An owner for every agent</span><span class="l-fa">برای هر عامل یک مسئول</span></h3><p class="l-en">Each profile has a named person who reads its report, fixes its skills and answers for its mistakes. One “AI operator” runs the server, updates and backups.</p><p class="l-fa">هر پروفایل یک فرد مشخص دارد که گزارشش را می‌خواند، مهارت‌هایش را اصلاح می‌کند و پاسخگوی اشتباه‌هایش است. یک «اپراتور هوش مصنوعی» سرور، به‌روزرسانی و پشتیبان‌گیری را اداره می‌کند.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">Accounts in and out</span><span class="l-fa">ورود و خروج حساب‌ها</span></h3><p class="l-en">A checklist for a new colleague (bot allowlists, board, VPN key) and for someone leaving (remove from allowlists, board and VPN on the same day).</p><p class="l-fa">یک چک‌لیست برای همکار تازه (فهرست مجاز ربات‌ها، تخته، کلید VPN) و برای کسی که می‌رود (حذف از فهرست‌های مجاز، تخته و VPN در همان روز).</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">Test before you change</span><span class="l-fa">پیش از تغییر آزمایش کنید</span></h3><p class="l-en">Keep a <code>test</code> profile with its own bot. Try a new skill, model or update there for a few days before copying it to a working profile.</p><p class="l-fa">یک پروفایل <code>test</code> با ربات خودش نگه دارید. مهارت، مدل یا به‌روزرسانی تازه را چند روز آنجا امتحان کنید، بعد به پروفایل اصلی ببرید.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">Costs and continuity</span><span class="l-fa">هزینه و تداوم کار</span></h3><p class="l-en">A monthly budget per agent and a monthly check of the provider bill. A printed list of bookings and phone numbers, and the manual way of working, ready for the day the brain or the internet is down.</p><p class="l-fa">سقف هزینه‌ی ماهانه برای هر عامل و بررسی ماهانه‌ی صورت‌حساب سرویس‌دهنده. فهرست چاپی رزروها و تلفن‌ها و روش دستی کار، آماده برای روزی که مغز یا اینترنت قطع است.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">A 30-minute weekly review</span><span class="l-fa">بازبینی هفتگی ۳۰ دقیقه‌ای</span></h3><p class="l-en">Owner, spouse and the AI operator: blocked tasks on the board, the agents’ worst answers in Langfuse, spend, and one skill to improve next week.</p><p class="l-fa">مدیر، همسر و اپراتور هوش مصنوعی: کارهای گیرکرده روی تخته، بدترین پاسخ‌های عامل‌ها در Langfuse، هزینه، و یک مهارت برای بهتر کردن در هفته‌ی بعد.</p></div>
+  </div>
+
+  <div class="callout l-en"><h3 class="h4">Honest limits of this setup</h3><ul>
+    <li>Hermes, Multica, Honcho and LiteLLM each work, but this office combination has not been tested end to end. Build it in the order above and stop at any step that does not work well.</li>
+    <li>Multica is built mainly for coding agents; how well it drives office agents through Hermes is unproven.</li>
+    <li>Bale is not a built-in Hermes platform; connecting it needs testing or a small bridge.</li>
+    <li>With route B, the brain stops in a shutdown and customer text leaves your server. Keep the local fallback and the data rule.</li>
+    <li>Multica’s sign-in emails use an outside email service that may not be reachable from Iran; reading the code from the server log works for a small office.</li>
+  </ul></div>
+  <div class="callout l-fa"><h3 class="h4">محدودیت‌های صادقانه‌ی این راه‌اندازی</h3><ul>
+    <li>Hermes، Multica، Honcho و LiteLLM هر کدام کار می‌کنند، ولی این ترکیب برای دفتر از اول تا آخر آزمایش نشده است. به همین ترتیب بسازید و هر قدمی که خوب کار نکرد همان‌جا بایستید.</li>
+    <li>Multica بیشتر برای عامل‌های برنامه‌نویسی ساخته شده است؛ اینکه عامل‌های دفتری را از راه Hermes چقدر خوب اداره کند ثابت نشده است.</li>
+    <li>بله جزو سکوهای داخلی Hermes نیست؛ اتصالش آزمایش یا یک پل کوچک لازم دارد.</li>
+    <li>در مسیر ب، مغز در قطعی از کار می‌افتد و متن مشتری از سرور شما بیرون می‌رود. راه جایگزین محلی و قانون داده را نگه دارید.</li>
+    <li>ایمیل‌های ورود Multica از یک سرویس ایمیل خارجی می‌آید که شاید از ایران در دسترس نباشد؛ خواندن کد از گزارش سرور برای یک دفتر کوچک کافی است.</li>
+  </ul></div>
+  <p class="src"><span class="l-en">Sources (October 2026; follow each project’s current documentation):</span><span class="l-fa">منابع (مهر ۱۴۰۵؛ مستندات فعلی هر پروژه را دنبال کنید):</span> <a href="https://github.com/NousResearch/hermes-agent/tree/main/website/docs" target="_blank" rel="noopener"><span class="l-en">Hermes docs: installation, profiles, messaging, Telegram, cron, API server, local Ollama</span><span class="l-fa">مستندات Hermes: نصب، پروفایل‌ها، پیام‌رسان، تلگرام، زمان‌بندی، سرور API، Ollama محلی</span></a> · <a href="https://github.com/multica-ai/multica" target="_blank" rel="noopener"><span class="l-en">Multica</span><span class="l-fa">Multica</span></a> · <a href="https://github.com/multica-ai/multica/blob/main/SELF_HOSTING.md" target="_blank" rel="noopener"><span class="l-en">Multica self-hosting guide</span><span class="l-fa">راهنمای نصب Multica روی سرور خود</span></a> · <a href="https://github.com/plastic-labs/honcho" target="_blank" rel="noopener"><span class="l-en">Honcho</span><span class="l-fa">Honcho</span></a> · <a href="https://honcho.dev/docs/v3/guides/integrations/hermes" target="_blank" rel="noopener"><span class="l-en">Honcho with Hermes</span><span class="l-fa">Honcho همراه Hermes</span></a> · <a href="https://docs.litellm.ai/" target="_blank" rel="noopener"><span class="l-en">LiteLLM proxy</span><span class="l-fa">پراکسی LiteLLM</span></a> · <a href="https://langfuse.com/self-hosting" target="_blank" rel="noopener"><span class="l-en">Langfuse self-hosting</span><span class="l-fa">نصب Langfuse روی سرور خود</span></a> · <a href="https://www.wireguard.com/" target="_blank" rel="noopener"><span class="l-en">WireGuard</span><span class="l-fa">WireGuard</span></a> · <a href="https://github.com/louislam/uptime-kuma" target="_blank" rel="noopener"><span class="l-en">Uptime Kuma</span><span class="l-fa">Uptime Kuma</span></a></p>
 </section>
 
 <!-- =========================================================== 8 REVENUE -->
@@ -2760,6 +3108,73 @@ function renderToolbox() {
 }
 wireChips($("#toolFilters"), v => { toolF = v; renderToolbox(); });
 renderToolbox();
+
+/* ================================================= sample Multica board */
+const BOARD_COLS = [["backlog", "Backlog", "انبار کارها"], ["todo", "To do", "برای انجام"], ["doing", "In progress", "در حال انجام"], ["review", "In review", "در بازبینی"], ["done", "Done", "انجام شد"]];
+const BOARD_WHO = {
+  owner: ["person", "Owner (AI operator)", "مدیر (اپراتور هوش مصنوعی)"], spouse: ["person", "Spouse (manager)", "همسر (مدیر دفتر)"],
+  reservations: ["person", "Colleague, reservations", "همکار رزرواسیون"], accountant: ["person", "Accountant", "حسابدار"],
+  frontdesk: ["agent", "Agent: frontdesk", "عامل: frontdesk"], ticketing: ["agent", "Agent: ticketing", "عامل: ticketing"],
+  backoffice: ["agent", "Agent: backoffice", "عامل: backoffice"], manager: ["agent", "Agent: manager", "عامل: manager"],
+};
+// [column, title en, title fa, assignee, reviewer or "", label en, label fa, needs approval, recurring]
+const BOARD = [
+  ["done", "Install Hermes and create the four profiles", "نصب Hermes و ساخت چهار پروفایل", "owner", "", "Setup", "راه‌اندازی", false, false],
+  ["done", "Create four bots and the “Office control room” group", "ساخت چهار ربات و گروه «اتاق کنترل دفتر»", "reservations", "owner", "Setup", "راه‌اندازی", false, false],
+  ["review", "Quote: Karimi family, Dubai 30 Azar–4 Dey, 3 travellers, budget 350M", "پیش‌فاکتور: خانواده‌ی کریمی، دبی ۳۰ آذر تا ۴ دی، ۳ نفر، بودجه ۳۵۰ میلیون", "frontdesk", "spouse", "Sales", "فروش", true, false],
+  ["review", "Refund: cancelled Istanbul charter, 2 travellers (supplier claim and customer reply)", "استرداد: چارتر لغوشده‌ی استانبول، ۲ نفر (مطالبه از تأمین‌کننده و پاسخ مشتری)", "backoffice", "accountant", "Finance", "مالی", true, false],
+  ["doing", "Arbaeen group of 40: rooming list and passport check", "گروه ۴۰ نفره‌ی اربعین: فهرست اتاق‌ها و بررسی گذرنامه‌ها", "ticketing", "reservations", "Pilgrimage", "زیارتی", false, false],
+  ["doing", "Fare watch: IKA–IST, THR–MHD, IKA–DXB every hour", "پایش نرخ: امام–استانبول، تهران–مشهد، امام–دبی هر ساعت", "ticketing", "", "Ticketing", "بلیت", false, true],
+  ["doing", "Match card-to-card receipts with the bank statement", "تطبیق رسیدهای کارت‌به‌کارت با صورت‌حساب بانک", "backoffice", "accountant", "Finance", "مالی", false, true],
+  ["todo", "Write the office playbook: fees, tone, refund rules, licence limits", "نوشتن دستورالعمل دفتر: کارمزد، لحن، قوانین استرداد، محدوده‌ی مجوز", "owner", "spouse", "Setup", "راه‌اندازی", false, false],
+  ["todo", "Ask the integrator for a read-only API key and a test account", "درخواست کلید API فقط‌خواندنی و حساب آزمایشی از ارائه‌دهنده‌ی وب‌سرویس", "owner", "", "Setup", "راه‌اندازی", false, false],
+  ["todo", "Visa checklist: Ahmadi family, Schengen, 4 travellers", "چک‌لیست ویزا: خانواده‌ی احمدی، شینگن، ۴ نفر", "ticketing", "reservations", "Documents", "مدارک", false, false],
+  ["todo", "Nowruz Mashhad package: page text and structured data", "پکیج نوروزی مشهد: متن صفحه و داده‌ی ساختاریافته", "manager", "spouse", "Marketing", "بازاریابی", true, false],
+  ["backlog", "Test a Bale bot with the test profile", "آزمایش ربات بله با پروفایل آزمایشی", "reservations", "owner", "Setup", "راه‌اندازی", false, false],
+  ["backlog", "Set up Honcho memory (month 2)", "راه‌اندازی حافظه‌ی Honcho (ماه دوم)", "owner", "", "Setup", "راه‌اندازی", false, false],
+  ["backlog", "Three Instagram drafts for Nowruz offers", "سه پیش‌نویس اینستاگرام برای پیشنهادهای نوروز", "manager", "spouse", "Marketing", "بازاریابی", true, false],
+  ["backlog", "Monthly travel report for a corporate client", "گزارش ماهانه‌ی سفر برای یک مشتری سازمانی", "manager", "spouse", "Corporate", "سازمانی", false, true],
+  ["backlog", "Monthly review: spend per agent and worst answers in Langfuse", "بازبینی ماهانه: هزینه‌ی هر عامل و بدترین پاسخ‌ها در Langfuse", "owner", "spouse", "Review", "بازبینی", false, true],
+];
+let boardF = "all";
+function renderBoard() {
+  const keep = b => boardF === "all" || (boardF === "approval" ? b[7] : BOARD_WHO[b[3]][0] === boardF);
+  $("#taskboard").replaceChildren(...BOARD_COLS.map(([id, en, fa]) => {
+    const cards = BOARD.filter(b => b[0] === id && keep(b));
+    return el("div", { class: "bcol" }, el("h4", {}, T(en, fa), el("span", { class: "status" }, T(String(cards.length), faNum(cards.length)))),
+      ...cards.map(([, tEn, tFa, who, rev, lEn, lFa, appr, rec]) => {
+        const w = BOARD_WHO[who];
+        return el("article", { class: "bcard" }, el("b", {}, T(tEn, tFa)),
+          el("div", { class: "row" },
+            el("span", { class: "pill " + (w[0] === "agent" ? "info" : "yes") }, T(w[1], w[2])),
+            el("span", { class: "pill info" }, T(lEn, lFa)),
+            appr ? el("span", { class: "pill part" }, T("Needs approval", "نیاز به تأیید")) : null,
+            rec ? el("span", { class: "pill info" }, T("Recurring", "تکراری")) : null),
+          rev ? el("div", { class: "meta" }, T("Reviewer: " + BOARD_WHO[rev][1], "بازبین: " + BOARD_WHO[rev][2])) : null);
+      }));
+  }));
+}
+wireChips($("#boardFilters"), v => { boardF = v; renderBoard(); });
+renderBoard();
+$("#boardCsv").addEventListener("click", async () => {
+  const fa = lang === "fa", col = Object.fromEntries(BOARD_COLS.map(c => [c[0], fa ? c[2] : c[1]]));
+  const head = fa ? ["ستون", "عنوان", "مسئول", "نوع", "بازبین", "برچسب", "نیاز به تأیید", "تکراری"] : ["Column", "Title", "Assignee", "Type", "Reviewer", "Label", "Needs approval", "Recurring"];
+  const yes = fa ? "بله" : "yes", no = fa ? "خیر" : "no";
+  const rows = BOARD.map(([c, tEn, tFa, who, rev, lEn, lFa, appr, rec]) => [col[c], fa ? tFa : tEn, BOARD_WHO[who][fa ? 2 : 1], BOARD_WHO[who][0] === "agent" ? (fa ? "عامل" : "agent") : (fa ? "انسان" : "person"), rev ? BOARD_WHO[rev][fa ? 2 : 1] : "", fa ? lFa : lEn, appr ? yes : no, rec ? yes : no]);
+  const data = "﻿" + [head, ...rows].map(r => r.map(csvCell).join(",")).join("\r\n") + "\r\n";
+  const filename = "multica-starter-tasks.csv", say = (en, f) => $("#boardStatus").replaceChildren(T(en, f));
+  const downloads = downloadsP ? await downloadsP : null;
+  if (downloads) {
+    try { await downloads.save({ filename, data }); say("Saved.", "ذخیره شد."); }
+    catch (e) { const c = e && e.code; if (c === "declined") say("Download cancelled.", "دریافت لغو شد."); else if (c === "rate_limited") say("A save window is already open.", "یک پنجره‌ی ذخیره باز است."); else { $("#boardCsv").hidden = true; say("Downloads are not available here.", "دریافت فایل اینجا در دسترس نیست."); } }
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([data], { type: "text/csv;charset=utf-8" }));
+  const a = el("a", { href: url, download: filename }); document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  say("Downloaded.", "دریافت شد.");
+});
+if (downloadsP) downloadsP.then(d => { if (!d) $("#boardCsv").hidden = true; });
 
 /* ================================================= glossary */
 // [group, term en, term fa, meaning en, meaning fa]
