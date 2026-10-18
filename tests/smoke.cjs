@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 23;
+const MIN_CHAPTERS = 26;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -97,6 +97,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         const none = await page.isVisible("#glossNone");
         await page.fill("#glossQ", "");
         check(gl.all >= 30 && gl.charter >= 1 && gl["سماح"] === 1 && gl.zzqx === 0 && none, `glossary search (${gl.all} terms; charter ${gl.charter}, سماح ${gl["سماح"]}, none ${gl.zzqx})`);
+
+        // agent harnesses: 8 cards with strengths and weaknesses; filters for offline-in-Iran and developer tools
+        await page.evaluate(() => { location.hash = "harness"; });
+        const hn = {};
+        for (const f of ["all", "yes", "dev"]) { await page.click(`#harnessFilters [data-f="${f}"]`); hn[f] = await page.locator("#harnessGrid .card").count(); }
+        await page.click('#harnessFilters [data-f="all"]');
+        const hnLists = await page.evaluate(() => [...document.querySelectorAll("#harnessGrid .card")].every(c => c.querySelectorAll("ul").length === 2 && c.querySelectorAll("li").length >= 4));
+        check(hn.all === 8 && hn.yes === 5 && hn.dev === 4 && hnLists, `agent harness cards and filters (${hn.all} all, ${hn.yes} offline in Iran, ${hn.dev} for developers)`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });
