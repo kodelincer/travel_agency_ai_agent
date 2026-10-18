@@ -326,3 +326,9 @@ Task: The owner asked for a section listing the tools and skills an agency needs
 Changed: New bilingual chapter "AI office toolbox" (after "Text, vision and voice"): 31 items in 8 groups (infrastructure, models, harness, channels, business systems, agent hands and document tools, safety and monitoring, agent skills), each with a download/buy/build/curate label, what it is, its use in the office, a caution and a reference link; filters by how you get it; a three-month starter kit; a staff-skills table; a pre-download checklist. README (28 chapters), MIN_CHAPTERS 27 → 28, FACTS #64–66, new toolbox test.
 Tests: All checks passed
 Scores: correctness 4 · usefulness 5 · robustness 4 · clarity 4
+
+## Owner request · 2026-10-18 — reality check chapter
+Task: The owner asked whether the academy is too much fantasy and not practical, and for all the challenges they would face; then asked to add the honest answer to the app.
+Changed: New bilingual chapter "Reality check" right after "Start here": three columns (practical now / possible with work / still a plan, including that "13 agents" is a way to organise work, not 13 running agents); limits of the academy itself (chain not tested end to end, secondary sources, no cost/ROI figures, forecasts); 12 challenges with what happens and how to reduce each (integrator access, Persian quality of local models, hardware in Iran, technical skills, cost vs benefit, people, channels, legal, security, money mistakes, fast-changing tools, crisis); a four-step realistic start with go/no-go conditions; the three answers that decide whether the big plan is possible. Start here now points to it. README (29 chapters), MIN_CHAPTERS 28 → 29.
+Tests: All checks passed
+Scores: correctness 5 · usefulness 5 · robustness 4 · clarity 4
