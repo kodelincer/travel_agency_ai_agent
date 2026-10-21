@@ -16,3 +16,4 @@ The loop takes the top item, finishes it, and moves it to `LOG.md`. Add new find
 - A printable one-page "AI office of 10" summary (as a page section, since the Artifact viewer cannot open the print dialog).
 - Case study: a full day of an Iranian agency, before and after the AI office, with honest time estimates.
 - Add Arabic and Chinese example messages to the simulator (inbound tourism).
+- Future, on the owner's request only (deferred 2026-10-21): turn the "Unified agency platform (demo)" into a real server app (logins and roles, shared database, audit trail, REST API and MCP server with the same 14 tools and approval rules, tax system through the accounting software or a certified provider). Do not start in the improvement loop.
