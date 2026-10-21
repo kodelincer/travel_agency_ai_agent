@@ -208,7 +208,7 @@ pre.rtl{direction:rtl;text-align:right;font-family:var(--f-fa);font-size:14px;wh
 .rtl-section table.grid th{font-family:var(--f-fa);letter-spacing:0;text-transform:none;font-size:13px}
 @media (max-width:640px){.rtl-section table.grid{min-width:0}.rtl-section table.grid th,.rtl-section table.grid td{padding:9px 8px;font-size:14px}}
 pre{direction:ltr;text-align:left}
-code{unicode-bidi:isolate}
+code{unicode-bidi:isolate;direction:ltr}
 :root[data-lang="fa"] .l-en{display:none!important}
 :root:not([data-lang="fa"]) .l-fa{display:none!important}
 :root[data-lang="fa"] body{font-family:var(--f-fa)}
@@ -2012,6 +2012,31 @@ hermes -p manager cron list</pre></div></div>
     </ol>
   </div>
 
+  <div class="prose"><h3><span class="l-en">Website spec for your office: services and the agent door</span><span class="l-fa">مشخصات وب‌سایت دفتر شما: خدمات و در عامل‌ها</span></h3>
+    <p class="l-en">This is the brief to give your web developer. The first table lists the services your office can offer on the site, the page for each, the licence behind it and what an AI agent can do through the site. The second lists the agent-compatible parts, so customers’ assistants and partner agencies’ agents can read and request your services without clicking through pages. Show only the services your licences cover.</p>
+    <p class="l-fa">این همان شرح کاری است که به برنامه‌نویس وب می‌دهید. جدول اول خدماتی را که دفتر شما می‌تواند روی سایت عرضه کند فهرست می‌کند: صفحه‌ی هر خدمت، مجوز پشت آن و اینکه عامل هوش مصنوعی از طریق سایت چه کاری می‌تواند بکند. جدول دوم بخش‌های سازگار با عامل‌ها را فهرست می‌کند تا دستیار مشتری‌ها و عامل آژانس‌های همکار بتوانند بدون کلیک در صفحه‌ها خدمات شما را بخوانند و درخواست بدهند. فقط خدماتی را نشان دهید که مجوزتان پوشش می‌دهد.</p>
+  </div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Service</span><span class="l-fa">خدمت</span></th><th><span class="l-en">Page and what the customer does</span><span class="l-fa">صفحه و کار مشتری</span></th><th><span class="l-en">Licence behind it</span><span class="l-fa">مجوز پشت آن</span></th><th><span class="l-en">Agent tools</span><span class="l-fa">ابزار عامل</span></th></tr></thead>
+    <tbody id="webServices"></tbody>
+  </table></div>
+
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Agent-compatible part</span><span class="l-fa">بخش سازگار با عامل</span></th><th><span class="l-en">Where</span><span class="l-fa">کجا</span></th><th><span class="l-en">What it contains</span><span class="l-fa">چه چیزی دارد</span></th><th><span class="l-en">When</span><span class="l-fa">کی</span></th></tr></thead>
+    <tbody id="webSpec"></tbody>
+  </table></div>
+
+  <div class="prose"><h3><span class="l-en">How a customer’s AI assistant books with you</span><span class="l-fa">دستیار هوش مصنوعی مشتری چطور از شما رزرو می‌کند</span></h3></div>
+  <ol class="loop" style="counter-reset:s">
+    <li><b><span class="l-en">Finds you</span><span class="l-fa">شما را پیدا می‌کند</span></b><span class="note"><span class="l-en">Reads search results, your structured data or <code>/llms.txt</code>, and sees your services and licence.</span><span class="l-fa">نتایج جستجو، داده‌ی ساختاریافته یا <code>/llms.txt</code> شما را می‌خواند و خدمات و مجوزتان را می‌بیند.</span></span></li>
+    <li><b><span class="l-en">Asks</span><span class="l-fa">می‌پرسد</span></b><span class="note"><span class="l-en">Calls <code>search_packages</code> and <code>get_package</code> through your MCP server or API.</span><span class="l-fa">از طریق سرور MCP یا API، <code>search_packages</code> و <code>get_package</code> را صدا می‌زند.</span></span></li>
+    <li><b><span class="l-en">Gets a price</span><span class="l-fa">قیمت می‌گیرد</span></b><span class="note"><span class="l-en"><code>quote_price</code> returns a quote ID in tomans with an expiry time; flights and hotels go through <code>request_quote</code>.</span><span class="l-fa"><code>quote_price</code> شناسه‌ی پیش‌فاکتور به تومان با زمان انقضا برمی‌گرداند؛ پرواز و هتل از <code>request_quote</code> می‌گذرند.</span></span></li>
+    <li><b><span class="l-en">Requests</span><span class="l-fa">درخواست می‌دهد</span></b><span class="note"><span class="l-en"><code>request_hold</code> with the customer’s name and phone; your front-desk agent opens a task on the board.</span><span class="l-fa"><code>request_hold</code> با نام و تلفن مشتری؛ عامل پذیرش شما روی تخته کار باز می‌کند.</span></span></li>
+    <li class="human"><b><span class="l-en">A person confirms</span><span class="l-fa">انسان تأیید می‌کند</span></b><span class="note"><span class="l-en">Checks seats, contacts the customer, sends the payment link; tickets and vouchers are issued only after payment and approval.</span><span class="l-fa">ظرفیت را بررسی می‌کند، با مشتری تماس می‌گیرد، لینک پرداخت را می‌فرستد؛ بلیت و واچر فقط پس از پرداخت و تأیید صادر می‌شود.</span></span></li>
+  </ol>
+  <div class="row"><button class="btn ghost small" type="button" id="webBrief"><span class="l-en">Download the website brief for your developer (.md)</span><span class="l-fa">دریافت شرح کار وب‌سایت برای برنامه‌نویس (.md)</span></button></div>
+  <p class="status" id="webBriefStatus" aria-live="polite"></p>
+
   <div class="prose"><h3><span class="l-en">Measure it monthly</span><span class="l-fa">ماهانه اندازه بگیرید</span></h3></div>
   <div class="stats">
     <div class="stat"><b><span class="l-en">Leads</span><span class="l-fa">درخواست‌ها</span></b><span><span class="l-en">quote requests and chats started from the site, per week</span><span class="l-fa">درخواست قیمت و گفتگوهایی که از سایت شروع شده، در هفته</span></span></div>
@@ -3638,6 +3663,76 @@ $("#boardCsv").addEventListener("click", async () => {
   say("Downloaded.", "دریافت شد.");
 });
 if (downloadsP) downloadsP.then(d => { if (!d) $("#boardCsv").hidden = true; });
+
+/* ================================================= customer website spec */
+// [service en, fa, page en, fa, licence en, fa, agent tools]
+const WEB_SERVICES = [
+  ["Domestic flights", "پرواز داخلی", "/flights: live search and booking from your provider’s white-label engine; a charter-deals list", "/flights: جستجو و رزرو زنده از موتور وایت‌لیبل ارائه‌دهنده؛ فهرست پیشنهادهای چارتر", "Air-ticket licence (بند الف) and CAO rules", "بند الف و مقررات سازمان هواپیمایی", "request_quote"],
+  ["International flights", "پرواز خارجی", "/flights: live search; foreign airlines through their offices or appointed agents in Iran", "/flights: جستجوی زنده؛ ایرلاین‌های خارجی از طریق دفتر یا نماینده‌ی آن‌ها در ایران", "Air-ticket licence with international scope", "بند الف با دامنه‌ی بین‌المللی", "request_quote"],
+  ["Hotels in Iran", "هتل‌های داخلی", "/hotels: live rates, photos and rooms from your provider", "/hotels: نرخ زنده، عکس و اتاق‌ها از ارائه‌دهنده", "Tour licence (بند ب); check the scope with your office", "بند ب؛ دامنه را با اداره کل بررسی کنید", "request_quote"],
+  ["Hotels abroad", "هتل‌های خارجی", "/hotels: live rates where your supplier allows; otherwise a request form", "/hotels: نرخ زنده هر جا تأمین‌کننده اجازه دهد؛ در غیر این صورت فرم درخواست", "A contract with a supplier you can legally pay", "قرارداد با تأمین‌کننده‌ای که بتوانید قانونی به او پرداخت کنید", "request_quote"],
+  ["Domestic tours", "تورهای داخلی", "/tours/<name>: itinerary, dates, what is included, documents, “ask for a quote”", "/tours/<نام>: برنامه، تاریخ‌ها، خدمات شامل، مدارک، «درخواست قیمت»", "Tour licence (بند ب)", "بند ب", "search_packages, get_package, check_availability, quote_price, request_hold"],
+  ["Outbound tours", "تورهای خارجی", "/tours/<name>: as above, plus visa and passport notes", "/tours/<نام>: مانند بالا، همراه با نکته‌های ویزا و گذرنامه", "Tour licence (بند ب), outbound", "بند ب (خروجی)", "search_packages, get_package, check_availability, quote_price, request_hold"],
+  ["Pilgrimage trips", "سفرهای زیارتی", "/pilgrimage: dates, documents, registration steps; shown only if you hold the licence", "/pilgrimage: تاریخ‌ها، مدارک، مراحل ثبت‌نام؛ فقط اگر مجوز دارید نمایش داده شود", "Pilgrimage office licence; Samah registration by a person", "مجوز دفتر زیارتی؛ ثبت‌نام سماح توسط انسان", "get_package, request_quote"],
+  ["Tours for foreign visitors", "تور برای گردشگران خارجی", "/en/iran-tours: tours, guide and visa steps, with Arabic pages too", "/en/iran-tours: تورها، راهنما و مراحل ویزا، همراه با صفحه‌های عربی", "Inbound tour licence; Foreign Ministry e-visa; licensed guide", "مجوز تور ورودی؛ ویزای الکترونیکی وزارت خارجه؛ راهنمای دارای کارت", "search_packages, get_package, request_quote"],
+  ["Visa help and documents", "کمک ویزا و مدارک", "/visa/<country>: checklist with a “checked on” date, appointment help; never a promised visa", "/visa/<کشور>: چک‌لیست با تاریخ «بررسی‌شده در»، کمک در نوبت؛ هرگز قول ویزا", "No agency accreditation found; follow each embassy’s rules", "اعتبارنامه‌ای برای آژانس پیدا نشد؛ طبق قوانین هر سفارت", "get_policies, request_quote"],
+  ["Travel insurance", "بیمه‌ی مسافرتی", "/insurance: plans from your insurer partner, with the policy wording", "/insurance: طرح‌های بیمه‌گر همکار، با متن بیمه‌نامه", "Sold under the insurer’s agency rules; check", "طبق مقررات نمایندگی بیمه‌گر؛ بررسی کنید", "request_quote"],
+  ["Transfers and car hire", "ترانسفر و خودرو", "/transfers: airport and city transfers, as part of a trip", "/transfers: ترانسفر فرودگاه و شهری، در قالب سفر", "Part of tour services (بند ب)", "بخشی از خدمات تور (بند ب)", "request_quote"],
+  ["Business and group travel", "سفر سازمانی و گروهی", "/business: company account request, group quotes, monthly invoice", "/business: درخواست حساب سازمانی، قیمت گروهی، صورتحساب ماهانه", "Your licences cover each part", "هر بخش زیر مجوز مربوط", "request_quote, get_booking_status"],
+];
+// [part en, fa, where (path, or [en, fa]), contains en, fa, phase 1|2|3]
+const WEB_SPEC = [
+  ["Structured data", "داده‌ی ساختاریافته", ["JSON-LD on every page", "JSON-LD در هر صفحه"], "TravelAgency on the home and trust pages (name, address, phone, hours, licence numbers, e-namad); TouristTrip with Offer on each tour (price in IRR, dates, availability, valid until); Article with author, reviewer and dates; BreadcrumbList", "TravelAgency در صفحه‌ی اصلی و صفحه‌ی اعتماد (نام، نشانی، تلفن، ساعت کار، شماره‌ی مجوزها، اینماد)؛ TouristTrip همراه با Offer در هر تور (قیمت به ریال، تاریخ‌ها، ظرفیت، اعتبار تا)؛ Article با نویسنده، بازبین و تاریخ‌ها؛ BreadcrumbList", 1],
+  ["One source of truth", "یک مرجع واحد", ["tours database", "پایگاه داده‌ی تورها"], "Pages, structured data, feed and API all read the same tour records, so a price or date is changed once and never disagrees", "صفحه‌ها، داده‌ی ساختاریافته، فید و API همه از همان رکوردهای تور می‌خوانند؛ قیمت یا تاریخ یک بار تغییر می‌کند و هرگز تناقض پیش نمی‌آید", 1],
+  ["Plain policies page", "صفحه‌ی ساده‌ی قوانین", "/policies", "Refund and change rules, documents, payment methods and licence numbers as text and tables, not images; the same page in English", "قوانین استرداد و تغییر، مدارک، روش‌های پرداخت و شماره‌ی مجوزها به‌صورت متن و جدول، نه تصویر؛ همین صفحه به انگلیسی هم", 1],
+  ["Sitemap with languages", "نقشه‌ی سایت با زبان‌ها", "/sitemap.xml", "Every page with its Persian and English versions linked (hreflang) and a last-changed date", "همه‌ی صفحه‌ها با نسخه‌ی فارسی و انگلیسی مرتبط (hreflang) و تاریخ آخرین تغییر", 1],
+  ["robots.txt", "robots.txt", "/robots.txt", "Public pages open to search engines and to assistants that fetch pages for a user; checkout, accounts and admin closed; a separate decision on crawlers that collect AI training data; points to the sitemap", "صفحه‌های عمومی برای موتورهای جستجو و دستیارهایی که برای کاربر صفحه می‌خوانند باز؛ پرداخت، حساب کاربری و مدیریت بسته؛ تصمیم جداگانه درباره‌ی خزنده‌هایی که داده‌ی آموزش هوش مصنوعی جمع می‌کنند؛ اشاره به نقشه‌ی سایت", 1],
+  ["llms.txt", "llms.txt", "/llms.txt", "A short bilingual summary: who you are, services, licences, links to policies, tours, API docs and contact", "خلاصه‌ی کوتاه دوزبانه: شما که هستید، خدمات، مجوزها، لینک قوانین، تورها، مستندات API و تماس", 1],
+  ["Tours feed", "فید تورها", "/api/tours.json", "All active tours with ID, dates, price from, seat status and updated time; public and read-only", "همه‌ی تورهای فعال با شناسه، تاریخ‌ها، قیمت از، وضعیت ظرفیت و زمان به‌روزرسانی؛ عمومی و فقط‌خواندنی", 2],
+  ["Documented API", "API مستند", "/api/openapi.json", "Eight tools: the seven in “Agent-ready website” plus request_quote for flights, hotels, visa and insurance", "هشت ابزار: هفت ابزار فصل «وب‌سایت آماده برای عامل‌ها» به‌علاوه‌ی request_quote برای پرواز، هتل، ویزا و بیمه", 2],
+  ["MCP server", "سرور MCP", "/mcp", "The same eight tools for AI agents; read-only tools need no login; request_hold, request_quote and get_booking_status need a partner key or the customer’s verified phone", "همان هشت ابزار برای عامل‌های هوش مصنوعی؛ ابزارهای فقط‌خواندنی ورود نمی‌خواهند؛ request_hold، request_quote و get_booking_status کلید همکار یا تلفن تأییدشده‌ی مشتری لازم دارند", 2],
+  ["Approvals built in", "تأیید داخل سیستم", ["inside the API", "داخل API"], "Every hold or quote request becomes a task on the board for a person; repeated requests do not duplicate (idempotency key); holds expire; the API never issues a ticket or takes payment", "هر درخواست نگه‌داشتن یا قیمت به یک کار روی تخته برای انسان تبدیل می‌شود؛ درخواست تکراری رزرو تکراری نمی‌سازد (کلید یکتایی)؛ نگه‌داشتن‌ها منقضی می‌شوند؛ API هرگز بلیت صادر نمی‌کند و پول نمی‌گیرد", 2],
+  ["Identity, limits and logs", "شناسایی، محدودیت و گزارش", ["API gateway", "دروازه‌ی API"], "Keys for partner agencies, rate limits per key and address, a log of every agent call; optionally verify signed agents with Web Bot Auth", "کلید برای آژانس‌های همکار، محدودیت تعداد درخواست برای هر کلید و نشانی، گزارش هر فراخوانی عامل؛ در صورت تمایل تأیید عامل‌های امضاشده با Web Bot Auth", 2],
+  ["Agent card", "کارت عامل", "/.well-known/agent-card.json", "Tells other agents what your front-desk agent can do and how to reach it (A2A); add when partners run their own agents", "به عامل‌های دیگر می‌گوید عامل پذیرش شما چه می‌کند و چطور به آن برسند (A2A)؛ وقتی همکاران عامل خودشان را دارند اضافه کنید", 3],
+];
+const PHASE = { 1: ["yes", "Phase 1 · launch", "فاز ۱ · راه‌اندازی"], 2: ["part", "Phase 2 · months 2–4", "فاز ۲ · ماه ۲ تا ۴"], 3: ["info", "Phase 3 · later", "فاز ۳ · بعداً"] };
+const codeList = s => s.split(", ").flatMap((c, i) => i ? [", ", el("code", {}, c)] : [el("code", {}, c)]);
+$("#webServices").replaceChildren(...WEB_SERVICES.map(([en, fa, pEn, pFa, lEn, lFa, tools]) =>
+  el("tr", {}, el("td", {}, el("b", {}, T(en, fa))), el("td", {}, el("code", {}, pEn.slice(0, pEn.indexOf(": "))), " ", T(pEn.slice(pEn.indexOf(": ") + 2), pFa.slice(pFa.indexOf(": ") + 2))), el("td", {}, T(lEn, lFa)), el("td", {}, ...codeList(tools)))));
+$("#webSpec").replaceChildren(...WEB_SPEC.map(([en, fa, where, cEn, cFa, ph]) =>
+  el("tr", {}, el("td", {}, el("b", {}, T(en, fa))), el("td", {}, Array.isArray(where) ? T(where[0], where[1]) : el("code", {}, where)), el("td", {}, T(cEn, cFa)), el("td", {}, el("span", { class: "pill " + PHASE[ph][0] }, T(PHASE[ph][1], PHASE[ph][2]))))));
+function webBrief() {
+  const md = (cells) => "| " + cells.map(c => String(c).replace(/\|/g, "\\|")).join(" | ") + " |";
+  const part = fa => {
+    const i = fa ? 1 : 0, L = [];
+    L.push(fa ? "# شرح کار وب‌سایت آژانس (فارسی)" : "# Travel agency website brief (English)", "");
+    L.push(fa ? "دو بخش روی یک دامنه: رزرو زنده از موتور وایت‌لیبل ارائه‌دهنده (روی زیردامنه‌ی book.) و سایت وردپرس برای تورها و مقاله‌ها. همه‌ی صفحه‌ها فارسی (راست‌به‌چپ) و انگلیسی. مقاله‌ها قیمت ندارند و به جستجوی زنده لینک می‌دهند. هیچ بلیت، رزرو یا پرداختی بدون تأیید انسان انجام نمی‌شود."
+      : "Two parts on one domain: live booking from the provider’s white-label engine (on a book. subdomain) and a WordPress site for tours and articles. Every page in Persian (right-to-left) and English. Articles carry no prices and link to the live search. No ticket, booking or payment happens without a person’s approval.", "");
+    L.push(fa ? "## خدمات و صفحه‌ها" : "## Services and pages", "", md(fa ? ["خدمت", "صفحه", "مجوز", "ابزار عامل"] : ["Service", "Page", "Licence", "Agent tools"]), md(["---", "---", "---", "---"]));
+    WEB_SERVICES.forEach(s => L.push(md([s[0 + i], s[2 + i], s[4 + i], s[6]])));
+    L.push("", fa ? "## بخش‌های سازگار با عامل‌های هوش مصنوعی" : "## AI-agent compatible parts", "", md(fa ? ["بخش", "کجا", "محتوا", "فاز"] : ["Part", "Where", "Contains", "Phase"]), md(["---", "---", "---", "---"]));
+    WEB_SPEC.forEach(s => L.push(md([s[0 + i], Array.isArray(s[2]) ? s[2][i] : s[2], s[3 + i], PHASE[s[5]][1 + i]])));
+    L.push("", fa ? "## قواعد" : "## Rules", "");
+    (fa ? ["قیمت‌ها فقط از سامانه؛ هرگز تخمینی.", "هر request_hold و request_quote یک کار برای انسان می‌سازد؛ API بلیت صادر نمی‌کند و پول نمی‌گیرد.", "اطلاعات گذرنامه و تماس فقط با درخواست احرازشده؛ هرگز در فید عمومی.", "میزبانی داخل ایران، با نسخه‌ی پشتیبان جای دیگر.", "شماره‌ی مجوزها، اینماد و قوانین استرداد در صفحه‌ی اعتماد و صفحه‌ی قوانین."]
+      : ["Prices only from the system; never estimated.", "Every request_hold and request_quote creates a task for a person; the API never issues tickets or takes payment.", "Passport and contact data only through verified requests; never in a public feed.", "Host inside Iran, with a backup elsewhere.", "Licence numbers, e-namad and refund rules on the trust page and the policies page."]).forEach(r => L.push("- " + r));
+    return L.join("\n");
+  };
+  return part(false) + "\n\n---\n\n" + part(true) + "\n";
+}
+$("#webBrief").addEventListener("click", async () => {
+  const filename = "agency-website-brief.md", data = webBrief(), say = (en, f) => $("#webBriefStatus").replaceChildren(T(en, f));
+  const downloads = downloadsP ? await downloadsP : null;
+  if (downloads) {
+    try { await downloads.save({ filename, data }); say("Saved. The file has the brief in English and Persian.", "ذخیره شد. فایل شرح کار را به انگلیسی و فارسی دارد."); }
+    catch (e) { const c = e && e.code; if (c === "declined") say("Download cancelled.", "دریافت لغو شد."); else if (c === "rate_limited") say("A save window is already open.", "یک پنجره‌ی ذخیره باز است."); else { $("#webBrief").hidden = true; say("Downloads are not available here.", "دریافت فایل اینجا در دسترس نیست."); } }
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([data], { type: "text/markdown;charset=utf-8" }));
+  const a = el("a", { href: url, download: filename }); document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  say("Downloaded. The file has the brief in English and Persian.", "دریافت شد. فایل شرح کار را به انگلیسی و فارسی دارد.");
+});
+if (downloadsP) downloadsP.then(d => { if (!d) $("#webBrief").hidden = true; });
 
 /* ================================================= glossary */
 // [group, term en, term fa, meaning en, meaning fa]

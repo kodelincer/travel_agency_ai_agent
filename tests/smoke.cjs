@@ -134,7 +134,7 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
             acctPills: rows("#accttasks tbody tr").every(r => r.querySelector(".pill")),
             lic: rows("#licmap tbody tr").length,
             licPills: rows("#licmap tbody tr").every(r => r.querySelectorAll(".pill").length === 2),
-            webSteps: rows("#website ol.loop li").length,
+            webSteps: document.querySelector("#website ol.loop").querySelectorAll("li").length,
             bad: links.filter(h => h && !ids.has(h)),
             toNew: ["migrate", "accountant", "website", "licences"].every(id => links.filter(h => h === id).length >= 2),
           };
@@ -143,6 +143,14 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.evaluate(() => { location.hash = "licences"; });
         const licVis = await page.isVisible("#licmap");
         check(licVis, "licences chapter opens from its link");
+
+        // website spec: 12 services, 12 agent-compatible parts with a phase each, and a bilingual brief download
+        await page.evaluate(() => { location.hash = "website"; });
+        const ws = await page.evaluate(() => ({ svc: document.querySelectorAll("#webServices tr").length, spec: document.querySelectorAll("#webSpec tr").length, phases: [...document.querySelectorAll("#webSpec tr")].every(r => r.querySelector(".pill")) }));
+        const [wdl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#webBrief")]);
+        const wmd = wdl ? require("fs").readFileSync(await wdl.path(), "utf8") : "";
+        const wOk = ["/llms.txt", "/mcp", "agent-card.json", "request_quote", "## Services and pages", "## خدمات و صفحه‌ها"].every(s => wmd.includes(s));
+        check(ws.svc === 12 && ws.spec === 12 && ws.phases && wOk, `website spec: ${ws.svc} services, ${ws.spec} agent-compatible parts, brief download in both languages`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });
