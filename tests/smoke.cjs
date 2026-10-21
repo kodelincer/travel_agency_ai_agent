@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 30;
+const MIN_CHAPTERS = 34;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -122,6 +122,27 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         const [bdl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#boardCsv")]);
         const bcsv = bdl ? require("fs").readFileSync(await bdl.path(), "utf8") : "";
         check(sb.svg === 1 && sb.cols === 5 && sb.all === 16 && sb.agent + sb.person === sb.all && sb.approval === 4 && bcsv.split("\r\n").length === 18 && /^\uFEFFColumn,Title,Assignee/.test(bcsv), `setup: diagram, sample board (${sb.all} tasks: ${sb.agent} agents, ${sb.person} people, ${sb.approval} need approval) and CSV download`);
+
+        // migration, accountant, website and licences chapters: full tables, a level or source label on every row, and every in-app link lands on a real chapter
+        const mg = await page.evaluate(() => {
+          const rows = sel => [...document.querySelectorAll(sel)];
+          const ids = new Set([...document.querySelectorAll("main section[id]")].map(s => s.id));
+          const links = [...document.querySelectorAll('main a[href^="#"]')].map(a => a.getAttribute("href").slice(1));
+          return {
+            stages: rows("#migrate ol.loop li").length,
+            acct: rows("#accttasks tbody tr").length,
+            acctPills: rows("#accttasks tbody tr").every(r => r.querySelector(".pill")),
+            lic: rows("#licmap tbody tr").length,
+            licPills: rows("#licmap tbody tr").every(r => r.querySelectorAll(".pill").length === 2),
+            webSteps: rows("#website ol.loop li").length,
+            bad: links.filter(h => h && !ids.has(h)),
+            toNew: ["migrate", "accountant", "website", "licences"].every(id => links.filter(h => h === id).length >= 2),
+          };
+        });
+        check(mg.stages === 4 && mg.acct === 18 && mg.acctPills && mg.lic === 11 && mg.licPills && mg.webSteps === 5 && mg.bad.length === 0 && mg.toNew, `migration (${mg.stages} stages), accountant (${mg.acct} tasks), licences (${mg.lic} activities), website (${mg.webSteps}-step content flow); in-app links all valid` + (mg.bad.length ? " → broken: " + mg.bad.join(", ") : ""));
+        await page.evaluate(() => { location.hash = "licences"; });
+        const licVis = await page.isVisible("#licmap");
+        check(licVis, "licences chapter opens from its link");
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });
