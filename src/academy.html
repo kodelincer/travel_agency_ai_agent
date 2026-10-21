@@ -214,6 +214,32 @@ code{unicode-bidi:isolate;direction:ltr}
 footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);font-size:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .diagram{margin:6px 0 4px;display:grid;gap:8px}.diagram svg{width:100%;height:auto;max-width:760px;color:var(--ink)}.diagram figcaption{font-size:14px;color:var(--muted)}
 .taskboard{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}.bcol{background:var(--surface-2);border-radius:var(--r);padding:10px;display:grid;gap:8px;align-content:start}.bcol h4{display:flex;justify-content:space-between;gap:6px}.bcard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;display:grid;gap:6px;font-size:14px}.bcard .row{gap:4px}
+.navlink.special{color:var(--accent);border:2px solid var(--risk);background:var(--surface);margin-block:2px}
+.navlink.special .n{color:var(--risk);opacity:1}
+.navlink.special:hover{background:var(--surface-2)}
+.navlink.special[aria-current="page"]{background:var(--accent);color:var(--accent-ink);border-color:var(--risk)}
+.navlink.special[aria-current="page"] .n{color:inherit}
+.callout.special{border:2px solid var(--risk);border-inline-start:6px solid var(--accent);background:var(--surface)}
+.callout.special h3{color:var(--accent)}
+.oa{display:grid;gap:14px;border:2px solid var(--accent);border-radius:var(--r);padding:14px;background:var(--surface);min-width:0}
+.oa-panel{display:grid;gap:14px;min-width:0}
+.oa-form{display:grid;gap:10px;align-content:start;min-width:0}
+.oa-form > div,.oa-fields > div{display:grid;gap:4px;min-width:0}
+.oa-fields{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.oa-fields .wide{grid-column:1/-1}
+.oa-form input,.oa-form select{width:100%;min-width:0}
+.oa-two{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.oa-inline input,.oa-inline select{flex:1 1 150px;min-width:0}
+.oa-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.oa-list li{background:var(--surface-2);border-radius:8px;padding:10px 12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.oa-list li > span:first-child{flex:1 1 240px;min-width:0;overflow-wrap:anywhere}
+.oa-vouchers{display:grid;gap:8px}
+.oa-voucher{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px;display:grid;gap:4px}
+.oa-voucher p{margin:0}
+.oa-voucher .ln{display:grid;grid-template-columns:minmax(0,1fr) 105px 105px;gap:8px;font-variant-numeric:tabular-nums}
+@media (max-width:480px){.oa-voucher .ln{grid-template-columns:minmax(0,1fr) 85px 85px;font-size:13px}}
+.chip .count:not(:empty){display:inline-block;min-width:18px;padding:0 5px;border-radius:999px;background:var(--risk);color:var(--surface);font-size:11px;text-align:center}
+#oaResult{max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}
 </style>
 
 <header class="top">
@@ -263,6 +289,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   </div>
   <p class="src"><span class="l-en">The message of these numbers: travelers want speed from AI <i>and</i> a human they trust. An agency that combines both wins. Sources are in the last chapter.</span><span class="l-fa">پیام این اعداد: مسافران از هوش مصنوعی سرعت می‌خواهند <i>و</i> از انسان اعتماد. آژانسی که هر دو را با هم ارائه کند برنده است. منابع در فصل آخر آمده است.</span></p>
   <div class="callout"><h3 class="h4"><span class="l-en">Read next: Reality check</span><span class="l-fa">بعدی را بخوانید: واقع‌بینی</span></h3><p><span class="l-en">Some of this academy works this week; some is still an ambitious plan. The <a href="#reality">Reality check</a> chapter says which is which, lists the challenges you will face and gives a step-by-step start where you decide at each step whether to go further.</span><span class="l-fa">بخشی از این آکادمی همین هفته کار می‌کند و بخشی هنوز نقشه‌ای بلندپروازانه است. فصل <a href="#reality">واقع‌بینی</a> می‌گوید کدام کدام است، چالش‌هایی را که با آن روبه‌رو می‌شوید فهرست می‌کند و یک شروع قدم‌به‌قدم می‌دهد که در هر قدم تصمیم می‌گیرید جلوتر بروید یا نه.</span></p><p><span class="l-en">When you are ready to move the whole office, follow the <a href="#migrate">Migration roadmap</a> (twelve months, one task at a time), with <a href="#accountant">The AI accountant</a> for the finance desk, <a href="#website">Customer website and content agent</a> for online sales, and <a href="#licences">Licences and permits</a> for what the office and its manager must hold.</span><span class="l-fa">وقتی آماده‌ی انتقال کل دفتر شدید، <a href="#migrate">نقشه‌ی راه گذار</a> را دنبال کنید (دوازده ماه، هر بار یک کار)، همراه با <a href="#accountant">حسابدار هوش مصنوعی</a> برای میز مالی، <a href="#website">وب‌سایت مشتری و عامل محتوا</a> برای فروش آنلاین، و <a href="#licences">مجوزها و پروانه‌ها</a> برای آنچه دفتر و مدیرش باید داشته باشند.</span></p></div>
+  <div class="callout special"><h3 class="h4"><span class="l-en">New: a unified platform for Iranian agencies</span><span class="l-fa">جدید: سامانه‌ی یکپارچه برای آژانس‌های ایران</span></h3><p><span class="l-en">Try the working demo of one system for accounting and every daily task, ready for AI agents: <a href="#officeapp">Unified agency platform (demo)</a>.</span><span class="l-fa">نسخه‌ی نمایشی و کارکننده‌ی یک سامانه برای حسابداری و همه‌ی کارهای روزانه، آماده برای عامل‌های هوش مصنوعی را امتحان کنید: <a href="#officeapp">سامانه‌ی یکپارچه‌ی آژانس (نمایشی)</a>.</span></p></div>
 </section>
 
 <!-- =========================================================== REALITY CHECK -->
@@ -620,7 +647,7 @@ footer{border-top:1px solid var(--line);padding-block:20px;color:var(--muted);fo
   <div class="prose"><h3><span class="l-en">What AI agents change, and what they do not</span><span class="l-fa">عامل‌های هوش مصنوعی چه چیزی را تغییر می‌دهند و چه چیزی را نه</span></h3></div>
   <div class="cards">
     <div class="card"><h3 class="h4"><span class="l-en">Licence-scope check on every quote</span><span class="l-fa">کنترل دامنه‌ی مجوز روی هر پیش‌فاکتور</span></h3><p class="l-en">The playbook lists what your licences allow. Before a quote leaves, the agent checks the product is inside that list (no pilgrimage trip without the pilgrimage licence, no inbound tour without the inbound scope) and stops it if not.</p><p class="l-fa">دستورالعمل دفتر فهرست می‌کند مجوزهای شما چه چیزی را اجازه می‌دهند. پیش از ارسال هر پیش‌فاکتور، عامل بررسی می‌کند محصول داخل همان فهرست باشد (بدون مجوز زیارتی سفر زیارتی نه، بدون دامنه‌ی ورودی تور ورودی نه) و اگر نبود متوقفش می‌کند.</p></div>
-    <div class="card"><h3 class="h4"><span class="l-en">Renewal calendar</span><span class="l-fa">تقویم تمدید</span></h3><p class="l-en">The manager agent tracks every expiry date: licence, guarantee, e-namad, guide cards, airline and supplier contracts, domain. Reminders at 60, 30 and 7 days, with the document checklist.</p><p class="l-fa">عامل مدیر همه‌ی تاریخ‌های انقضا را پیگیری می‌کند: مجوز، ضمانت‌نامه، اینماد، کارت راهنماها، قرارداد ایرلاین‌ها و تأمین‌کنندگان، دامنه. یادآوری در ۶۰، ۳۰ و ۷ روز مانده، همراه با چک‌لیست مدارک.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">Renewal calendar</span><span class="l-fa">تقویم تمدید</span></h3><p class="l-en">The manager agent tracks every expiry date: licence, guarantee, e-namad, guide cards, airline and supplier contracts, domain, and the monthly tour reports the renewal needs. Reminders at 60, 30 and 7 days, with the document checklist.</p><p class="l-fa">عامل مدیر همه‌ی تاریخ‌های انقضا را پیگیری می‌کند: مجوز، ضمانت‌نامه، اینماد، کارت راهنماها، قرارداد ایرلاین‌ها و تأمین‌کنندگان، دامنه، و گزارش‌های ماهانه‌ی تور که برای تمدید لازم است. یادآوری در ۶۰، ۳۰ و ۷ روز مانده، همراه با چک‌لیست مدارک.</p></div>
     <div class="card"><h3 class="h4"><span class="l-en">Circular watch</span><span class="l-fa">پایش بخشنامه‌ها</span></h3><p class="l-en">Each week the agent reads CAO, ministry, Hajj organisation and association announcements and posts a short summary of anything that changes what you may sell; a person confirms before the playbook changes.</p><p class="l-fa">عامل هر هفته اطلاعیه‌های سازمان هواپیمایی، وزارتخانه، سازمان حج و زیارت و انجمن را می‌خواند و خلاصه‌ی کوتاهی از هر چیزی که فروش شما را تغییر می‌دهد می‌فرستد؛ پیش از تغییر دستورالعمل، یک نفر تأیید می‌کند.</p></div>
     <div class="card"><h3 class="h4"><span class="l-en">The people stay</span><span class="l-fa">آدم‌ها می‌مانند</span></h3><p class="l-en">The licence belongs to named, present people: the holder and the technical managers. An agent can prepare their reports and checklists; it can never be the technical manager, sign for the office, or sell outside your licence.</p><p class="l-fa">مجوز متعلق به افراد مشخص و حاضر است: صاحب امتیاز و مدیران فنی. عامل می‌تواند گزارش و چک‌لیست آن‌ها را آماده کند؛ هرگز نمی‌تواند مدیر فنی باشد، به‌جای دفتر امضا کند یا خارج از مجوز شما بفروشد.</p></div>
   </div>
@@ -2055,6 +2082,7 @@ hermes -p manager cron list</pre></div></div>
   <h2><span class="l-en">AI products and services you could build and sell</span><span class="l-fa">محصولات و خدمات هوش مصنوعی که می‌توانید بسازید و بفروشید</span></h2>
   <p class="lead l-en">Thousands of Iranian agencies face the same problems you do, and few have software for them. Start with what you build for your own office, prove it works, then sell it. Effort: S = weeks, M = 2–4 months, L = 6+ months for a small team.</p>
   <p class="lead l-fa">هزاران آژانس ایرانی همان مشکلات شما را دارند و کمتر کسی نرم‌افزاری برایشان دارد. از چیزی شروع کنید که برای دفتر خودتان می‌سازید، ثابت کنید کار می‌کند، بعد بفروشید. حجم کار برای یک تیم کوچک: S = چند هفته، M = ۲ تا ۴ ماه، L = بیش از ۶ ماه.</p>
+  <div class="callout special"><h3 class="h4"><span class="l-en">The biggest product: one platform for all agencies</span><span class="l-fa">بزرگ‌ترین محصول: یک سامانه برای همه‌ی آژانس‌ها</span></h3><p><span class="l-en">The products below can grow into one unified system for accounting and daily work. See the working demo, the feature map and how it could earn in <a href="#officeapp">Unified agency platform (demo)</a>.</span><span class="l-fa">محصولات زیر می‌توانند به یک سامانه‌ی یکپارچه برای حسابداری و کار روزانه تبدیل شوند. نسخه‌ی نمایشی، نقشه‌ی امکانات و راه درآمدزایی را در <a href="#officeapp">سامانه‌ی یکپارچه‌ی آژانس (نمایشی)</a> ببینید.</span></p></div>
   <div class="filters" id="prodFilters" role="group" aria-label="Filter products">
     <button class="chip" aria-pressed="true" data-f="all"><span class="l-en">All</span><span class="l-fa">همه</span></button>
     <button class="chip" aria-pressed="false" data-f="S"><span class="l-en">Quick to build</span><span class="l-fa">ساخت سریع</span></button>
@@ -2245,6 +2273,8 @@ hermes -p manager cron list</pre></div></div>
     <div class="card"><h3 class="h4"><span class="l-en">Procedures written by watching</span><span class="l-fa">دستورالعمل‌هایی که با تماشا نوشته می‌شود</span></h3><p class="l-en">During “Shadow”, the agent writes down how the person does the task, step by step. The person corrects it. You get a written office procedure for every task, which you never had, and the agent’s skill at the same time.</p><p class="l-fa">در مرحله‌ی «سایه»، عامل قدم‌به‌قدم می‌نویسد آن نفر کار را چطور انجام می‌دهد. خود آن نفر اصلاحش می‌کند. هم برای هر کار یک دستورالعمل مکتوب دفتر دارید، که هرگز نداشتید، و هم مهارت عامل را.</p></div>
     <div class="card"><h3 class="h4"><span class="l-en">Peak-season drill</span><span class="l-fa">تمرین فصل شلوغی</span></h3><p class="l-en">Two weeks before Nowruz or Arbaeen, run a simulated busy day with invented requests through the agents. Find the bottlenecks before real customers do.</p><p class="l-fa">دو هفته پیش از نوروز یا اربعین، یک روز شلوغ شبیه‌سازی‌شده با درخواست‌های ساختگی را از عامل‌ها عبور دهید. گلوگاه‌ها را پیش از مشتری‌های واقعی پیدا کنید.</p></div>
     <div class="card"><h3 class="h4"><span class="l-en">Crisis switch</span><span class="l-fa">کلید بحران</span></h3><p class="l-en">One message from the owner (“crisis mode”) switches agents to disruption work: list affected passengers, draft messages, open refund issues, pause marketing. Practise it once a quarter.</p><p class="l-fa">با یک پیام از مدیر («حالت بحران») عامل‌ها به کار اختلال می‌روند: فهرست مسافران درگیر، پیش‌نویس پیام‌ها، باز کردن پرونده‌ی استرداد، توقف بازاریابی. هر فصل یک بار تمرینش کنید.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">No go-live before a peak</span><span class="l-fa">بدون راه‌اندازی پیش از فصل شلوغ</span></h3><p class="l-en">Never move a task up a stage, change software or switch suppliers in the six weeks before Nowruz or Arbaeen, or during them. Peaks are when charter prices jump, schedules change and refunds pile up; staff need tools they already trust.</p><p class="l-fa">در شش هفته‌ی پیش از نوروز یا اربعین و در طول آن‌ها هیچ کاری را یک مرحله بالا نبرید، نرم‌افزار عوض نکنید و تأمین‌کننده تغییر ندهید. فصل شلوغ زمان جهش قیمت چارتر، تغییر پروازها و انبوه استردادهاست؛ همکاران به ابزارهایی نیاز دارند که از قبل به آن اعتماد دارند.</p></div>
+    <div class="card"><h3 class="h4"><span class="l-en">One system under it all</span><span class="l-fa">یک سامانه زیر همه</span></h3><p class="l-en">Agents work best when bookings, money and tasks live in one place. Phase 2 is the natural moment to move onto a unified system; try the flow first in <a href="#officeapp">Unified agency platform (demo)</a>.</p><p class="l-fa">عامل‌ها وقتی بهتر کار می‌کنند که رزرو، پول و کارها در یک جا باشد. فاز ۲ زمان طبیعی رفتن روی یک سامانه‌ی یکپارچه است؛ اول روند را در <a href="#officeapp">سامانه‌ی یکپارچه‌ی آژانس (نمایشی)</a> امتحان کنید.</p></div>
   </div>
 </section>
 
@@ -2283,6 +2313,8 @@ hermes -p manager cron list</pre></div></div>
       <tr><td><b><span class="l-en">Month-end pack</span><span class="l-fa">بسته‌ی پایان ماه</span></b></td><td><span class="l-en">Trial balance checks, accruals list, receivables and payables ageing, profit by product and by staff member, a one-page summary in plain words</span><span class="l-fa">کنترل تراز آزمایشی، فهرست هزینه‌های تحقق‌یافته، عمرسنجی دریافتنی و پرداختنی، سود به تفکیک محصول و همکار، خلاصه‌ی یک‌صفحه‌ای به زبان ساده</span></td><td><span class="l-en">Reviews, adjusts, closes the period</span><span class="l-fa">بررسی و اصلاح می‌کند و دوره را می‌بندد</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
       <tr><td><b><span class="l-en">Cash-flow forecast</span><span class="l-fa">پیش‌بینی جریان نقدی</span></b></td><td><span class="l-en">Next 8 weeks: customer instalments, supplier deadlines, cheques, salaries, seasonal top-ups</span><span class="l-fa">۸ هفته‌ی آینده: اقساط مشتری، مهلت تأمین‌کنندگان، چک‌ها، حقوق، شارژهای فصلی</span></td><td><span class="l-en">Decides what to pay when</span><span class="l-fa">تصمیم می‌گیرد چه چیزی کی پرداخت شود</span></td><td><span class="pill yes"><span class="l-en">Agent prepares</span><span class="l-fa">عامل آماده می‌کند</span></span></td></tr>
       <tr><td><b><span class="l-en">Anomaly checks</span><span class="l-fa">کنترل موارد غیرعادی</span></b></td><td><span class="l-en">Flags duplicate payments, sales below cost, unusual discounts, refunds to a different card, changes to supplier bank details</span><span class="l-fa">پرداخت تکراری، فروش زیر قیمت تمام‌شده، تخفیف غیرعادی، استرداد به کارتی دیگر و تغییر اطلاعات بانکی تأمین‌کننده را علامت می‌زند</span></td><td><span class="l-en">Investigates every flag</span><span class="l-fa">هر علامت را بررسی می‌کند</span></td><td><span class="pill yes"><span class="l-en">Agent prepares</span><span class="l-fa">عامل آماده می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Charter seat blocks</span><span class="l-fa">بلوک صندلی چارتر</span></b></td><td><span class="l-en">Tracks each block bought or guaranteed: seats sold, seats to release before the deadline, and the cost of seats left unsold</span><span class="l-fa">هر بلوک خریده‌شده یا تضمینی را پیگیری می‌کند: صندلی فروخته‌شده، صندلی‌هایی که باید پیش از مهلت آزاد شود و هزینه‌ی صندلی‌های فروش‌نرفته</span></td><td><span class="l-en">Decides to release or sell below cost</span><span class="l-fa">درباره‌ی آزادسازی یا فروش زیر قیمت تصمیم می‌گیرد</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Insurance, visa and service-fee income</span><span class="l-fa">درآمد بیمه، ویزا و کارمزد خدمات</span></b></td><td><span class="l-en">Records commissions from insurers and visa fees as separate income, and checks every booking carried the service fee your policy sets</span><span class="l-fa">کمیسیون بیمه‌گران و کارمزد ویزا را جدا به‌عنوان درآمد ثبت می‌کند و بررسی می‌کند هر رزرو کارمزد خدماتی را که سیاست شما تعیین کرده داشته باشد</span></td><td><span class="l-en">Reviews the monthly totals</span><span class="l-fa">جمع ماهانه را بررسی می‌کند</span></td><td><span class="pill yes"><span class="l-en">Agent prepares</span><span class="l-fa">عامل آماده می‌کند</span></span></td></tr>
       <tr><td><b><span class="l-en">Annual statements and audit</span><span class="l-fa">صورت‌های مالی سالانه و حسابرسی</span></b></td><td><span class="l-en">Collects documents and answers the auditor’s list from the books</span><span class="l-fa">مدارک را جمع و فهرست درخواست‌های حسابرس را از روی دفاتر پاسخ می‌دهد</span></td><td><span class="l-en">Prepared and signed by qualified people; audited by an independent auditor where required</span><span class="l-fa">توسط افراد واجد شرایط تهیه و امضا می‌شود؛ هر جا لازم است، حسابرس مستقل حسابرسی می‌کند</span></td><td><span class="pill no"><span class="l-en">Person only</span><span class="l-fa">فقط انسان</span></span></td></tr>
     </tbody>
   </table></div>
@@ -2353,6 +2385,211 @@ hermes -p manager cron list</pre></div></div>
     <div class="card"><h3 class="h4"><span class="l-en">Owner’s plain-language dashboard</span><span class="l-fa">داشبورد ساده برای مدیر</span></h3><p class="l-en">Each Saturday: “last week you sold X, earned Y, Z is owed to you, W is due next week”, with the three files that need a decision.</p><p class="l-fa">هر شنبه: «هفته‌ی پیش X فروختید، Y سود کردید، Z از دیگران طلب دارید، W هفته‌ی بعد سررسید است»، همراه با سه پرونده‌ای که تصمیم لازم دارند.</p></div>
   </div>
   <p class="src"><span class="l-en">Sources: month-end close with AI agents, keeping humans in review (</span><span class="l-fa">منابع: بستن ماه با عامل‌های هوش مصنوعی و حفظ بازبینی انسانی (</span><a href="https://puzzle.io/blog/ai-agents-month-end-close-guide" target="_blank" rel="noopener">Puzzle</a> · <a href="https://corporatefinanceinstitute.com/resources/artificial-intelligence-ai/ai-agents-for-month-end-close-automation/" target="_blank" rel="noopener">CFI</a><span class="l-en">); Iranian tax deadlines 1405 (</span><span class="l-fa">)؛ مهلت‌های مالیاتی ۱۴۰۵ (</span><a href="https://www.sepidarsystem.com/news/new-tax-deadlines-updated-shahrivar-1405/" target="_blank" rel="noopener"><span class="l-en">Sepidar</span><span class="l-fa">سپیدار</span></a> · <a href="https://www.ekhtebar.ir/%DB%B3%DB%B1-%D8%B4%D9%87%D8%B1%DB%8C%D9%88%D8%B1%D8%9B-%D8%A2%D8%AE%D8%B1%DB%8C%D9%86-%D9%85%D9%87%D9%84%D8%AA-%D8%AA%D8%B3%D9%84%DB%8C%D9%85-%D8%A7%D8%B8%D9%87%D8%A7%D8%B1%D9%86%D8%A7%D9%85%D9%87/amp/" target="_blank" rel="noopener"><span class="l-en">Ekhtebar</span><span class="l-fa">اختبار</span></a><span class="l-en">); accounting-software web services are in “The AI-run office”. Not tax or legal advice: confirm every treatment with your tax advisor.</span><span class="l-fa">)؛ وب‌سرویس نرم‌افزارهای حسابداری در فصل «دفتری که هوش مصنوعی اداره می‌کند» آمده است. این مشاوره‌ی مالیاتی یا حقوقی نیست: هر روش ثبت را با مشاور مالیاتی تأیید کنید.</span></p>
+</section>
+
+<!-- =========================================================== OFFICE SOFTWARE DEMO -->
+<section id="officeapp" data-title="Unified agency platform (demo)" data-group="Act" data-title-fa="سامانه‌ی یکپارچه‌ی آژانس (نمایشی)" data-nav="special" hidden>
+  <div class="eyebrow">Chapter</div>
+  <h2><span class="l-en">A unified platform for Iranian travel agencies: accounting and every daily task in one place, ready for AI agents</span><span class="l-fa">سامانه‌ی یکپارچه برای آژانس‌های مسافرتی ایران: حسابداری و همه‌ی کارهای روزانه در یک جا، آماده برای عامل‌های هوش مصنوعی</span></h2>
+  <p class="lead l-en">Iranian agencies have no unified system. A normal day jumps between charter panels, airline and hotel supplier panels, Excel sheets, a separate accounting package, the tax system, Samah, the bank and a dozen messenger chats, and the same booking is typed three or four times. This chapter is a working demo of one platform any agency could use: customers and partner agencies, bookings, suppliers and their credit, receipts and cheques, cancellations and refunds, a real double-entry ledger in tomans with Persian dates, approvals and tasks. Every action is also an <b>agent tool</b>: an AI agent calls the same functions as staff, but anything that moves money or confirms a booking waits for a person.</p>
+  <p class="lead l-fa">آژانس‌های ایران سامانه‌ی یکپارچه ندارند. یک روز عادی بین پنل‌های چارتر، پنل ایرلاین‌ها و تأمین‌کنندگان هتل، فایل‌های اکسل، نرم‌افزار حسابداری جدا، سامانه مودیان، سماح، بانک و ده‌ها گفتگوی پیام‌رسان می‌گذرد و یک رزرو سه یا چهار بار تایپ می‌شود. این فصل نسخه‌ی نمایشی و کارکننده‌ی سامانه‌ای است که هر آژانسی می‌تواند از آن استفاده کند: مشتری‌ها و آژانس‌های همکار، رزروها، تأمین‌کنندگان و اعتبارشان، دریافت‌ها و چک‌ها، کنسلی و استرداد، دفتر حسابداری دوطرفه‌ی واقعی به تومان با تاریخ شمسی، تأییدها و کارها. هر کار در عین حال یک <b>ابزار عامل</b> است: عامل هوش مصنوعی همان توابعی را صدا می‌زند که همکاران استفاده می‌کنند، اما هر چیزی که پول جابه‌جا می‌کند یا رزرو را قطعی می‌کند منتظر تأیید انسان می‌ماند.</p>
+  <div class="callout risk l-en"><h3 class="h4">A demo, not your legal books</h3><p>The data is invented and stays in this browser only. Use it to try the workflow, to agree the accounting rules with your accountant and to show a developer what to build. Real books need an accountant’s approval of the chart of accounts and rules, multi-user login, backups and an audit trail, and tax e-invoices sent through your accounting software or a certified provider.</p></div>
+  <div class="callout risk l-fa"><h3 class="h4">نسخه‌ی نمایشی است، نه دفاتر قانونی شما</h3><p>داده‌ها ساختگی است و فقط در همین مرورگر می‌ماند. از آن برای امتحان روند کار، توافق قواعد حسابداری با حسابدارتان و نشان دادن کار به برنامه‌نویس استفاده کنید. دفاتر واقعی به تأیید حسابدار بر کدینگ و قواعد، ورود چندکاربره، پشتیبان‌گیری و رد کامل تغییرات نیاز دارد و صورتحساب‌های مالیاتی باید از طریق نرم‌افزار حسابداری یا شرکت معتمد ارسال شود.</p></div>
+
+  <div class="oa">
+    <div class="filters" id="oaTabs" role="group" aria-label="Software sections">
+      <button class="chip" type="button" aria-pressed="true" data-f="dash"><span class="l-en">Dashboard</span><span class="l-fa">داشبورد</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="book"><span class="l-en">Bookings</span><span class="l-fa">رزروها</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="money"><span class="l-en">Receipts and payments</span><span class="l-fa">دریافت و پرداخت</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="parties"><span class="l-en">Customers and suppliers</span><span class="l-fa">مشتریان و تأمین‌کنندگان</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="ledger"><span class="l-en">Ledger</span><span class="l-fa">دفتر حساب‌ها</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="appr"><span class="l-en">Approvals</span><span class="l-fa">تأییدها</span> <span class="count" id="oaApprCount"></span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="tasks"><span class="l-en">Tasks</span><span class="l-fa">کارها</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-f="agent"><span class="l-en">Agent tools</span><span class="l-fa">ابزار عامل</span></button>
+    </div>
+    <p class="status" id="oaStatus" aria-live="polite"></p>
+
+    <div class="oa-panel" data-p="dash">
+      <div class="stats" id="oaStats"></div>
+      <h3 class="h4"><span class="l-en">Needs attention</span><span class="l-fa">نیاز به رسیدگی</span></h3>
+      <ul id="oaAlerts" class="oa-list"></ul>
+    </div>
+
+    <div class="oa-panel" data-p="book" hidden>
+      <form id="oaBookForm" class="oa-form">
+        <h3 class="h4"><span class="l-en">New booking (draft)</span><span class="l-fa">رزرو جدید (پیش‌نویس)</span></h3>
+        <div class="oa-fields">
+          <div><label class="lbl" for="obCust"><span class="l-en">Customer</span><span class="l-fa">مشتری</span></label><select id="obCust"></select></div>
+          <div><label class="lbl" for="obSvc"><span class="l-en">Service</span><span class="l-fa">خدمت</span></label><select id="obSvc"></select></div>
+          <div><label class="lbl" for="obSup"><span class="l-en">Supplier</span><span class="l-fa">تأمین‌کننده</span></label><select id="obSup"></select></div>
+          <div class="wide"><label class="lbl" for="obDesc"><span class="l-en">Description</span><span class="l-fa">شرح</span></label><input id="obDesc" required dir="auto" maxlength="120"></div>
+          <div><label class="lbl" for="obCost"><span class="l-en">Cost (toman)</span><span class="l-fa">بهای تمام‌شده (تومان)</span></label><input id="obCost" type="number" min="1" step="1" required></div>
+          <div><label class="lbl" for="obPrice"><span class="l-en">Price to customer (toman)</span><span class="l-fa">قیمت فروش (تومان)</span></label><input id="obPrice" type="number" min="1" step="1" required></div>
+          <div><label class="lbl" for="obPax"><span class="l-en">Travellers</span><span class="l-fa">تعداد مسافر</span></label><input id="obPax" type="number" min="1" max="99" step="1" value="1" required></div>
+          <div><label class="lbl" for="obTravel"><span class="l-en">Travel date</span><span class="l-fa">تاریخ سفر</span></label><input id="obTravel" type="date" required><span class="meta" data-jal="obTravel"></span></div>
+          <div><label class="lbl" for="obTtl"><span class="l-en">Ticketing deadline (optional)</span><span class="l-fa">مهلت صدور (اختیاری)</span></label><input id="obTtl" type="date"><span class="meta" data-jal="obTtl"></span></div>
+        </div>
+        <button class="btn small" type="submit"><span class="l-en">Save draft</span><span class="l-fa">ذخیره‌ی پیش‌نویس</span></button>
+      </form>
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th><span class="l-en">Booking</span><span class="l-fa">رزرو</span></th><th><span class="l-en">Customer</span><span class="l-fa">مشتری</span></th><th><span class="l-en">Supplier</span><span class="l-fa">تأمین‌کننده</span></th><th><span class="l-en">Price / margin</span><span class="l-fa">قیمت / سود</span></th><th><span class="l-en">Status</span><span class="l-fa">وضعیت</span></th><th><span class="l-en">Actions</span><span class="l-fa">اقدام</span></th></tr></thead>
+        <tbody id="oaBookings"></tbody>
+      </table></div>
+      <form id="oaCancelForm" class="oa-form">
+        <h3 class="h4"><span class="l-en">Cancel a confirmed booking</span><span class="l-fa">کنسلی رزرو قطعی</span></h3>
+        <div class="oa-fields">
+          <div><label class="lbl" for="ocxBook"><span class="l-en">Booking</span><span class="l-fa">رزرو</span></label><select id="ocxBook"></select></div>
+          <div><label class="lbl" for="ocxPen"><span class="l-en">Supplier penalty (toman)</span><span class="l-fa">جریمه‌ی تأمین‌کننده (تومان)</span></label><input id="ocxPen" type="number" min="0" step="1" value="0"></div>
+          <div><label class="lbl" for="ocxFee"><span class="l-en">Your fee (toman)</span><span class="l-fa">کارمزد شما (تومان)</span></label><input id="ocxFee" type="number" min="0" step="1" value="0"></div>
+        </div>
+        <button class="btn ghost small" type="submit"><span class="l-en">Cancel booking</span><span class="l-fa">کنسل کن</span></button>
+      </form>
+    </div>
+
+    <div class="oa-panel" data-p="money" hidden>
+      <div class="oa-two">
+        <form id="oaRecvForm" class="oa-form">
+          <h3 class="h4"><span class="l-en">Receive from a customer</span><span class="l-fa">دریافت از مشتری</span></h3>
+          <div><label class="lbl" for="orCust"><span class="l-en">Customer</span><span class="l-fa">مشتری</span></label><select id="orCust"></select></div>
+          <div><label class="lbl" for="orAmt"><span class="l-en">Amount (toman)</span><span class="l-fa">مبلغ (تومان)</span></label><input id="orAmt" type="number" min="1" step="1" required></div>
+          <div><label class="lbl" for="orMethod"><span class="l-en">Method</span><span class="l-fa">روش</span></label><select id="orMethod"></select></div>
+          <div><label class="lbl" for="orDue"><span class="l-en">Cheque due date (for cheques)</span><span class="l-fa">سررسید چک (برای چک)</span></label><input id="orDue" type="date"><span class="meta" data-jal="orDue"></span></div>
+          <button class="btn small" type="submit"><span class="l-en">Record receipt</span><span class="l-fa">ثبت دریافت</span></button>
+        </form>
+        <form id="oaPayForm" class="oa-form">
+          <h3 class="h4"><span class="l-en">Pay or top up a supplier</span><span class="l-fa">پرداخت یا شارژ تأمین‌کننده</span></h3>
+          <div><label class="lbl" for="opSup"><span class="l-en">Supplier</span><span class="l-fa">تأمین‌کننده</span></label><select id="opSup"></select></div>
+          <div><label class="lbl" for="opAmt"><span class="l-en">Amount (toman)</span><span class="l-fa">مبلغ (تومان)</span></label><input id="opAmt" type="number" min="1" step="1" required></div>
+          <button class="btn small" type="submit"><span class="l-en">Record payment</span><span class="l-fa">ثبت پرداخت</span></button>
+          <h3 class="h4"><span class="l-en">Refund a customer</span><span class="l-fa">استرداد به مشتری</span></h3>
+          <div><label class="lbl" for="ofCust"><span class="l-en">Customer</span><span class="l-fa">مشتری</span></label><select id="ofCust"></select></div>
+          <div><label class="lbl" for="ofAmt"><span class="l-en">Amount (toman)</span><span class="l-fa">مبلغ (تومان)</span></label><input id="ofAmt" type="number" min="1" step="1"></div>
+          <button class="btn ghost small" type="button" id="ofBtn"><span class="l-en">Record refund</span><span class="l-fa">ثبت استرداد</span></button>
+        </form>
+      </div>
+      <h3 class="h4"><span class="l-en">Cheques received</span><span class="l-fa">چک‌های دریافتی</span></h3>
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th><span class="l-en">Cheque</span><span class="l-fa">چک</span></th><th><span class="l-en">From</span><span class="l-fa">از</span></th><th><span class="l-en">Amount</span><span class="l-fa">مبلغ</span></th><th><span class="l-en">Due</span><span class="l-fa">سررسید</span></th><th><span class="l-en">Status</span><span class="l-fa">وضعیت</span></th></tr></thead>
+        <tbody id="oaCheques"></tbody>
+      </table></div>
+    </div>
+
+    <div class="oa-panel" data-p="parties" hidden>
+      <h3 class="h4"><span class="l-en">Customers and partner agencies</span><span class="l-fa">مشتریان و آژانس‌های همکار</span></h3>
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th><span class="l-en">Name</span><span class="l-fa">نام</span></th><th><span class="l-en">Type</span><span class="l-fa">نوع</span></th><th><span class="l-en">Balance</span><span class="l-fa">مانده</span></th></tr></thead>
+        <tbody id="oaCustomers"></tbody>
+      </table></div>
+      <form id="oaCustForm" class="row oa-inline">
+        <label class="lbl" for="ocName"><span class="l-en">New customer</span><span class="l-fa">مشتری جدید</span></label><input id="ocName" required dir="auto" maxlength="60">
+        <label class="lbl" for="ocKind"><span class="l-en">Type</span><span class="l-fa">نوع</span></label><select id="ocKind"></select>
+        <button class="btn ghost small" type="submit"><span class="l-en">Add</span><span class="l-fa">افزودن</span></button>
+      </form>
+      <h3 class="h4"><span class="l-en">Suppliers and credit with them</span><span class="l-fa">تأمین‌کنندگان و اعتبار نزد آن‌ها</span></h3>
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th><span class="l-en">Supplier</span><span class="l-fa">تأمین‌کننده</span></th><th><span class="l-en">Type</span><span class="l-fa">نوع</span></th><th><span class="l-en">Balance</span><span class="l-fa">مانده</span></th><th><span class="l-en">Alert below</span><span class="l-fa">هشدار زیر</span></th></tr></thead>
+        <tbody id="oaSuppliers"></tbody>
+      </table></div>
+    </div>
+
+    <div class="oa-panel" data-p="ledger" hidden>
+      <h3 class="h4"><span class="l-en">Trial balance</span><span class="l-fa">تراز آزمایشی</span></h3>
+      <div class="tablewrap"><table class="grid">
+        <thead><tr><th><span class="l-en">Account</span><span class="l-fa">حساب</span></th><th><span class="l-en">Debit</span><span class="l-fa">بدهکار</span></th><th><span class="l-en">Credit</span><span class="l-fa">بستانکار</span></th></tr></thead>
+        <tbody id="oaTB"></tbody>
+      </table></div>
+      <div class="row"><h3 class="h4" style="flex:1"><span class="l-en">Vouchers, newest first</span><span class="l-fa">اسناد، جدیدترین اول</span></h3><button class="btn ghost small" type="button" id="oaCsv"><span class="l-en">Export ledger (CSV)</span><span class="l-fa">خروجی دفتر (CSV)</span></button></div>
+      <div id="oaVouchers" class="oa-vouchers"></div>
+    </div>
+
+    <div class="oa-panel" data-p="appr" hidden>
+      <p class="note"><span class="l-en">Requests from AI agents that move money or confirm a booking. Approve to post them to the ledger; reject to drop them.</span><span class="l-fa">درخواست‌های عامل‌های هوش مصنوعی که پول جابه‌جا می‌کنند یا رزرو را قطعی می‌کنند. با تأیید در دفتر ثبت می‌شوند؛ با رد حذف می‌شوند.</span></p>
+      <ul id="oaAppr" class="oa-list"></ul>
+    </div>
+
+    <div class="oa-panel" data-p="tasks" hidden>
+      <form id="oaTaskForm" class="row oa-inline">
+        <label class="lbl" for="otTitle"><span class="l-en">New task</span><span class="l-fa">کار جدید</span></label><input id="otTitle" required dir="auto" maxlength="100" style="flex:1;min-width:0">
+        <label class="lbl" for="otWho"><span class="l-en">For</span><span class="l-fa">برای</span></label><select id="otWho"></select>
+        <button class="btn ghost small" type="submit"><span class="l-en">Add</span><span class="l-fa">افزودن</span></button>
+      </form>
+      <ul id="oaTasks" class="oa-list"></ul>
+    </div>
+
+    <div class="oa-panel" data-p="agent" hidden>
+      <p class="note"><span class="l-en">Try the software as an AI agent would: pick a tool, edit the JSON arguments and run it. Tools marked “approval” go to the Approvals tab instead of posting. The same tools, with the same rules, are what an MCP server or API would expose.</span><span class="l-fa">نرم‌افزار را همان‌طور امتحان کنید که عامل هوش مصنوعی استفاده می‌کند: ابزاری را انتخاب کنید، آرگومان‌های JSON را ویرایش و اجرا کنید. ابزارهای دارای برچسب «تأیید» به‌جای ثبت، به بخش تأییدها می‌روند. همین ابزارها با همین قواعد همان چیزی است که سرور MCP یا API در اختیار عامل‌ها می‌گذارد.</span></p>
+      <div class="row"><label class="lbl" for="oaTool"><span class="l-en">Tool</span><span class="l-fa">ابزار</span></label><select id="oaTool" style="flex:1;min-width:0"></select></div>
+      <p class="note" id="oaToolDesc"></p>
+      <label class="lbl" for="oaArgs"><span class="l-en">Arguments (JSON)</span><span class="l-fa">آرگومان‌ها (JSON)</span></label>
+      <textarea id="oaArgs" spellcheck="false" dir="ltr" style="min-height:110px;font-family:var(--f-mono);font-size:13px"></textarea>
+      <div class="row"><button class="btn small" type="button" id="oaRun"><span class="l-en">Run as agent</span><span class="l-fa">اجرا به‌عنوان عامل</span></button><button class="btn ghost small" type="button" id="oaToolsJson"><span class="l-en">Download tool definitions (JSON)</span><span class="l-fa">دریافت تعریف ابزارها (JSON)</span></button></div>
+      <pre id="oaResult" aria-live="polite"></pre>
+    </div>
+    <div class="row"><button class="btn ghost small" type="button" id="oaReset"><span class="l-en">Reset to sample data</span><span class="l-fa">بازگشت به داده‌ی نمونه</span></button></div>
+  </div>
+
+  <div class="prose"><h3><span class="l-en">How each event is posted</span><span class="l-fa">هر رویداد چطور ثبت می‌شود</span></h3>
+    <p class="l-en">The demo records ticket and tour sales by the <b>net (agent) method</b>: only your margin is revenue. Some agencies must record the full price as their own sale; decide this with your tax advisor (see “The whole job”). The posting rules below are the ones the software and every agent tool follow.</p>
+    <p class="l-fa">این نسخه‌ی نمایشی فروش بلیت و تور را به <b>روش خالص (نمایندگی)</b> ثبت می‌کند: فقط سود شما درآمد است. بعضی آژانس‌ها باید کل مبلغ را فروش خود ثبت کنند؛ این را با مشاور مالیاتی تعیین کنید (فصل «همه‌ی کارهای آژانس»). قواعد ثبت زیر همان‌هایی است که نرم‌افزار و همه‌ی ابزارهای عامل از آن پیروی می‌کنند.</p>
+  </div>
+  <div class="tablewrap"><table class="grid">
+    <thead><tr><th><span class="l-en">Event</span><span class="l-fa">رویداد</span></th><th><span class="l-en">Debit</span><span class="l-fa">بدهکار</span></th><th><span class="l-en">Credit</span><span class="l-fa">بستانکار</span></th><th><span class="l-en">Who decides</span><span class="l-fa">تصمیم با</span></th></tr></thead>
+    <tbody>
+      <tr><td><b><span class="l-en">Booking confirmed</span><span class="l-fa">قطعی شدن رزرو</span></b></td><td><span class="l-en">Customers (price)</span><span class="l-fa">مشتریان (قیمت فروش)</span></td><td><span class="l-en">Suppliers (cost); service revenue (margin)</span><span class="l-fa">تأمین‌کنندگان (بهای تمام‌شده)؛ درآمد خدمات (سود)</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Receipt by transfer, card or gateway</span><span class="l-fa">دریافت با انتقال، کارت یا درگاه</span></b></td><td><span class="l-en">Bank</span><span class="l-fa">بانک</span></td><td><span class="l-en">Customers</span><span class="l-fa">مشتریان</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Receipt in cash</span><span class="l-fa">دریافت نقدی</span></b></td><td><span class="l-en">Cash</span><span class="l-fa">صندوق</span></td><td><span class="l-en">Customers</span><span class="l-fa">مشتریان</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Cheque received, then cleared</span><span class="l-fa">دریافت چک، سپس وصول</span></b></td><td><span class="l-en">Cheques receivable, then bank</span><span class="l-fa">اسناد دریافتنی، سپس بانک</span></td><td><span class="l-en">Customers, then cheques receivable</span><span class="l-fa">مشتریان، سپس اسناد دریافتنی</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Supplier paid or topped up</span><span class="l-fa">پرداخت یا شارژ تأمین‌کننده</span></b></td><td><span class="l-en">Suppliers</span><span class="l-fa">تأمین‌کنندگان</span></td><td><span class="l-en">Bank</span><span class="l-fa">بانک</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Booking cancelled</span><span class="l-fa">کنسلی رزرو</span></b></td><td><span class="l-en">Reverse the sale; customers (penalties)</span><span class="l-fa">برگشت فروش؛ مشتریان (جریمه‌ها)</span></td><td><span class="l-en">Suppliers (supplier penalty); cancellation fees (your fee)</span><span class="l-fa">تأمین‌کنندگان (جریمه‌ی تأمین‌کننده)؛ درآمد جریمه‌ی کنسلی (کارمزد شما)</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Refund paid</span><span class="l-fa">پرداخت استرداد</span></b></td><td><span class="l-en">Customers</span><span class="l-fa">مشتریان</span></td><td><span class="l-en">Bank</span><span class="l-fa">بانک</span></td><td><span class="pill part"><span class="l-en">Person approves</span><span class="l-fa">انسان تأیید می‌کند</span></span></td></tr>
+      <tr><td><b><span class="l-en">Draft booking, customer, task</span><span class="l-fa">رزرو پیش‌نویس، مشتری، کار</span></b></td><td>—</td><td>—</td><td><span class="pill yes"><span class="l-en">Agent may do</span><span class="l-fa">عامل مجاز است</span></span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="prose"><h3><span class="l-en">What the platform does: an agency’s day, area by area</span><span class="l-fa">سامانه چه می‌کند: روز یک آژانس، بخش به بخش</span></h3>
+    <p class="l-en">This is the feature list written from the counter, not from a software catalogue: the things staff must do and follow every day, and what the platform and its agents take over. The last column says how much of it this demo already shows.</p>
+    <p class="l-fa">این فهرست امکانات از پشت کانتر نوشته شده، نه از کاتالوگ نرم‌افزار: کارهایی که همکاران هر روز باید انجام دهند و پیگیری کنند، و آنچه سامانه و عامل‌هایش برعهده می‌گیرند. ستون آخر می‌گوید این نسخه‌ی نمایشی چه مقدارش را نشان می‌دهد.</p>
+  </div>
+  <div class="tablewrap"><table class="grid" id="oaModules">
+    <thead><tr><th><span class="l-en">Area</span><span class="l-fa">بخش</span></th><th><span class="l-en">What it handles every day</span><span class="l-fa">کارهای هرروزه</span></th><th><span class="l-en">What an agent does</span><span class="l-fa">کار عامل</span></th><th><span class="l-en">In this demo</span><span class="l-fa">در این نسخه</span></th></tr></thead>
+    <tbody>
+      <tr><td><b><span class="l-en">Morning control</span><span class="l-fa">کنترل صبح</span></b></td><td><span class="l-en">Cash and bank position, credit left with each supplier, today’s and tomorrow’s departures, ticketing deadlines, cheques due, travellers who have not paid</span><span class="l-fa">وضعیت نقد و بانک، اعتبار باقی‌مانده نزد هر تأمین‌کننده، حرکت‌های امروز و فردا، مهلت‌های صدور، چک‌های سررسید، مسافرانی که پرداخت نکرده‌اند</span></td><td><span class="l-en">Writes the 8:00 brief from the dashboard</span><span class="l-fa">گزارش ساعت ۸ را از داشبورد می‌نویسد</span></td><td><span class="pill yes"><span class="l-en">Yes</span><span class="l-fa">دارد</span></span></td></tr>
+      <tr><td><b><span class="l-en">Sales and quotes</span><span class="l-fa">فروش و پیش‌فاکتور</span></b></td><td><span class="l-en">Request to quote with two or three options, margin check before sending, quote expiry, follow-up after 48 hours, repeat customers’ preferences</span><span class="l-fa">از درخواست تا پیش‌فاکتور با دو یا سه گزینه، کنترل سود پیش از ارسال، انقضای پیش‌فاکتور، پیگیری پس از ۴۸ ساعت، سلیقه‌ی مشتریان تکراری</span></td><td><span class="l-en">Drafts quotes and follow-ups; creates draft bookings</span><span class="l-fa">پیش‌فاکتور و پیگیری را پیش‌نویس می‌کند؛ رزرو پیش‌نویس می‌سازد</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Flights: charter and scheduled</span><span class="l-fa">پرواز: چارتر و سیستمی</span></b></td><td><span class="l-en">PNR and ticket number per passenger, ticketing deadline, charter block seats and their release date, schedule changes, reissue, void and refund, CAO fare caps and circulars</span><span class="l-fa">PNR و شماره‌ی بلیت هر مسافر، مهلت صدور، صندلی‌های بلوک چارتر و تاریخ آزادسازی، تغییر برنامه‌ی پرواز، صدور مجدد، ابطال و استرداد، سقف نرخ و بخشنامه‌های سازمان هواپیمایی</span></td><td><span class="l-en">Watches deadlines and schedule changes, lists affected passengers</span><span class="l-fa">مهلت‌ها و تغییر پروازها را پایش و مسافران درگیر را فهرست می‌کند</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Hotels and tours</span><span class="l-fa">هتل و تور</span></b></td><td><span class="l-en">Tour cost sheet, hotel allotments, rooming lists, vouchers, passenger manifest, guide, transfer and insurance per departure, tour leader pack</span><span class="l-fa">برگه‌ی هزینه‌ی تور، سهمیه‌ی هتل، فهرست اتاق‌ها، واچر، فهرست مسافران، راهنما، ترانسفر و بیمه‌ی هر حرکت، بسته‌ی سرپرست تور</span></td><td><span class="l-en">Builds rooming lists, manifests and voucher drafts</span><span class="l-fa">فهرست اتاق، مانیفست و پیش‌نویس واچر می‌سازد</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Pilgrimage</span><span class="l-fa">سفر زیارتی</span></b></td><td><span class="l-en">Samah registration status per pilgrim, caravan lists, insurance, border documents, the year’s Arbaeen rules</span><span class="l-fa">وضعیت ثبت‌نام سماح هر زائر، فهرست کاروان، بیمه، مدارک مرزی، مقررات اربعین همان سال</span></td><td><span class="l-en">Checklists and reminders; registration stays with a person</span><span class="l-fa">چک‌لیست و یادآوری؛ ثبت‌نام با انسان می‌ماند</span></td><td><span class="pill no"><span class="l-en">Next</span><span class="l-fa">قدم بعد</span></span></td></tr>
+      <tr><td><b><span class="l-en">Passengers and documents</span><span class="l-fa">مسافران و مدارک</span></b></td><td><span class="l-en">Passport valid six months after travel, national ID, exit rules for conscripts, departure tax, visa and insurance per traveller</span><span class="l-fa">اعتبار شش‌ماهه‌ی گذرنامه پس از سفر، کد ملی، مقررات خروج مشمولان، عوارض خروج، ویزا و بیمه‌ی هر مسافر</span></td><td><span class="l-en">Checks every booking against the rules and warns early</span><span class="l-fa">هر رزرو را با قواعد مقایسه و زود هشدار می‌دهد</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Visa desk</span><span class="l-fa">میز ویزا</span></b></td><td><span class="l-en">Appointment dates, document list per embassy with a “checked on” date, file status, embassy closures</span><span class="l-fa">تاریخ نوبت، فهرست مدارک هر سفارت با تاریخ بررسی، وضعیت پرونده، تعطیلی سفارت‌ها</span></td><td><span class="l-en">Prepares checklists, tracks status</span><span class="l-fa">چک‌لیست آماده و وضعیت را پیگیری می‌کند</span></td><td><span class="pill no"><span class="l-en">Next</span><span class="l-fa">قدم بعد</span></span></td></tr>
+      <tr><td><b><span class="l-en">After-sales</span><span class="l-fa">پس از فروش</span></b></td><td><span class="l-en">Changes, cancellations with supplier penalty and agency fee, refunds owed both ways and their age, complaints</span><span class="l-fa">تغییرات، کنسلی با جریمه‌ی تأمین‌کننده و کارمزد آژانس، استردادهای دوطرفه و قدمت آن‌ها، شکایت‌ها</span></td><td><span class="l-en">Calculates penalties, chases supplier refunds</span><span class="l-fa">جریمه‌ها را حساب و استرداد تأمین‌کنندگان را پیگیری می‌کند</span></td><td><span class="pill yes"><span class="l-en">Yes</span><span class="l-fa">دارد</span></span></td></tr>
+      <tr><td><b><span class="l-en">Partner agencies (B2B)</span><span class="l-fa">آژانس‌های همکار</span></b></td><td><span class="l-en">Partner price lists, credit limits, running accounts, monthly statements, overdue reminders</span><span class="l-fa">نرخ همکاری، سقف اعتبار، حساب جاری، صورت‌حساب ماهانه، یادآوری بدهی</span></td><td><span class="l-en">Drafts statements and reminders</span><span class="l-fa">صورت‌حساب و یادآوری را پیش‌نویس می‌کند</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Company accounts</span><span class="l-fa">حساب‌های سازمانی</span></b></td><td><span class="l-en">Company travel policy, approval by the company’s manager, monthly invoice, cost centres</span><span class="l-fa">سیاست سفر شرکت، تأیید مدیر شرکت، صورتحساب ماهانه، مراکز هزینه</span></td><td><span class="l-en">Applies the policy to each request</span><span class="l-fa">سیاست را روی هر درخواست اعمال می‌کند</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Finance</span><span class="l-fa">مالی</span></b></td><td><span class="l-en">Vouchers, receipts, cheques, supplier top-ups, bank reconciliation, foreign-currency tours, profit per file, per staff member and per product</span><span class="l-fa">سند، دریافت، چک، شارژ تأمین‌کننده، مغایرت بانکی، تور ارزی، سود هر پرونده، هر همکار و هر محصول</span></td><td><span class="l-en">Prepares everything; people approve money (see “The AI accountant”)</span><span class="l-fa">همه را آماده می‌کند؛ پول با تأیید انسان (فصل «حسابدار هوش مصنوعی»)</span></td><td><span class="pill yes"><span class="l-en">Yes</span><span class="l-fa">دارد</span></span></td></tr>
+      <tr><td><b><span class="l-en">Tax and compliance</span><span class="l-fa">مالیات و مقررات</span></b></td><td><span class="l-en">Tax e-invoices, monthly tour reports to the ministry, licence, guarantee, e-namad and guide-card renewals, CAO and Hajj organisation circulars</span><span class="l-fa">صورتحساب مودیان، گزارش ماهانه‌ی تور به وزارتخانه، تمدید مجوز، ضمانت‌نامه، اینماد و کارت راهنما، بخشنامه‌های سازمان هواپیمایی و حج و زیارت</span></td><td><span class="l-en">Prepares data and reminds; people send and sign</span><span class="l-fa">داده آماده و یادآوری می‌کند؛ ارسال و امضا با انسان</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Marketing and loyalty</span><span class="l-fa">بازاریابی و وفاداری</span></b></td><td><span class="l-en">Customer groups, birthdays and Nowruz greetings, campaign lists, post-trip reviews, referrals</span><span class="l-fa">گروه‌بندی مشتریان، تبریک تولد و نوروز، فهرست کمپین، نظر پس از سفر، معرفی دوستان</span></td><td><span class="l-en">Drafts messages; a person approves bulk sends</span><span class="l-fa">پیام‌ها را پیش‌نویس می‌کند؛ ارسال گروهی با تأیید انسان</span></td><td><span class="pill no"><span class="l-en">Next</span><span class="l-fa">قدم بعد</span></span></td></tr>
+      <tr><td><b><span class="l-en">Management</span><span class="l-fa">مدیریت</span></b></td><td><span class="l-en">Sales and margin by product, season and staff member, supplier reliability, peak-season planning</span><span class="l-fa">فروش و سود به تفکیک محصول، فصل و همکار، قابلیت اطمینان تأمین‌کنندگان، برنامه‌ریزی فصل شلوغ</span></td><td><span class="l-en">Weekly plain-language report</span><span class="l-fa">گزارش هفتگی به زبان ساده</span></td><td><span class="pill part"><span class="l-en">Part</span><span class="l-fa">بخشی</span></span></td></tr>
+      <tr><td><b><span class="l-en">Many agencies on one platform</span><span class="l-fa">چند آژانس روی یک سامانه</span></b></td><td><span class="l-en">Each agency’s data and brand kept separate, roles (licence holder, technical manager, counter, accountant, agents), import from Excel and existing software, hosted in Iran so it works during international cuts, Persian first with Jalali dates</span><span class="l-fa">جدا ماندن داده و نام تجاری هر آژانس، نقش‌ها (صاحب امتیاز، مدیر فنی، کانتر، حسابدار، عامل‌ها)، ورود داده از اکسل و نرم‌افزار فعلی، میزبانی داخل ایران تا هنگام قطع اینترنت بین‌الملل کار کند، فارسی‌محور با تاریخ شمسی</span></td><td><span class="l-en">One agent pack per agency, each with its own keys</span><span class="l-fa">یک بسته‌ی عامل برای هر آژانس با کلیدهای جدا</span></td><td><span class="pill no"><span class="l-en">Next</span><span class="l-fa">قدم بعد</span></span></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout l-en"><h3 class="h4">Why one platform for every agency, and how it could pay</h3><p>Each agency rebuilds the same spreadsheets and pays for several disconnected tools. One platform gives every office the same daily routine, a shared language with partner agencies (a B2B network on the same system) and one agent toolset. It could earn from a monthly subscription per agency, a setup and data-import fee, and add-ons such as the customer website (see “Customer website and content agent”) and the agent pack. Before you build: several Iranian companies already sell booking engines, agency panels and accounting software, so interview ten agencies, list what they already pay for, and aim at the gap, usually the link between operations, accounting and agents. Use your own office as the first customer.</p></div>
+  <div class="callout l-fa"><h3 class="h4">چرا یک سامانه برای همه‌ی آژانس‌ها، و چطور درآمد می‌سازد</h3><p>هر آژانس همان جدول‌های اکسل را از نو می‌سازد و برای چند ابزار جدا از هم پول می‌دهد. یک سامانه به همه‌ی دفترها روال روزانه‌ی یکسان، زبان مشترک با آژانس‌های همکار (شبکه‌ی همکاری روی همان سامانه) و یک مجموعه ابزار عامل می‌دهد. درآمد آن می‌تواند از اشتراک ماهانه‌ی هر آژانس، هزینه‌ی راه‌اندازی و انتقال داده، و افزونه‌هایی مثل وب‌سایت مشتری (فصل «وب‌سایت مشتری و عامل محتوا») و بسته‌ی عامل‌ها باشد. پیش از ساخت: چند شرکت ایرانی همین حالا موتور رزرو، پنل آژانس و نرم‌افزار حسابداری می‌فروشند؛ پس با ده آژانس گفتگو کنید، فهرست کنید برای چه چیزهایی پول می‌دهند، و خلأ را هدف بگیرید، که معمولاً اتصال عملیات، حسابداری و عامل‌هاست. دفتر خودتان را اولین مشتری کنید.</p></div>
+
+  <div class="prose"><h3><span class="l-en">From this demo to real software</span><span class="l-fa">از این نسخه‌ی نمایشی تا نرم‌افزار واقعی</span></h3>
+    <ol class="l-en">
+      <li><b>Agree the rules.</b> Your accountant and tax advisor approve the chart of accounts and the posting table above, including net or gross recording.</li>
+      <li><b>Decide: extend or build.</b> Cheapest is to keep a known Iranian accounting package (it already handles legal books and the tax system) and build only the travel layer and agent tools on its web service. Build everything only if no package fits.</li>
+      <li><b>Build the travel layer</b> on your office server or VPS: the modules above, one database, login per person and per agent, every change logged.</li>
+      <li><b>Expose the tools</b> as an API and an MCP server with the same approval rules, so Hermes profiles (backoffice, frontdesk) work through them (see “Hands-on setup”).</li>
+      <li><b>Run in Shadow for a month</b> next to your current books, then move step by step (see “Migration roadmap” and “The AI accountant”).</li>
+    </ol>
+    <ol class="l-fa">
+      <li><b>قواعد را توافق کنید.</b> حسابدار و مشاور مالیاتی کدینگ حساب‌ها و جدول ثبت بالا، از جمله ثبت خالص یا ناخالص، را تأیید کنند.</li>
+      <li><b>تصمیم بگیرید: توسعه یا ساخت.</b> ارزان‌ترین راه این است که یک نرم‌افزار حسابداری شناخته‌شده‌ی ایرانی را نگه دارید (دفاتر قانونی و سامانه مودیان را دارد) و فقط لایه‌ی سفر و ابزارهای عامل را روی وب‌سرویس آن بسازید. فقط اگر هیچ نرم‌افزاری مناسب نبود همه چیز را بسازید.</li>
+      <li><b>لایه‌ی سفر را بسازید</b> روی سرور دفتر یا VPS: بخش‌های بالا، یک پایگاه داده، ورود برای هر نفر و هر عامل، ثبت همه‌ی تغییرات.</li>
+      <li><b>ابزارها را در دسترس بگذارید</b> به‌صورت API و سرور MCP با همان قواعد تأیید، تا پروفایل‌های Hermes (backoffice و frontdesk) از طریق آن کار کنند (فصل «راه‌اندازی عملی»).</li>
+      <li><b>یک ماه در حالت سایه کار کنید</b> کنار دفاتر فعلی، بعد قدم‌به‌قدم جلو بروید (فصل‌های «نقشه‌ی راه گذار» و «حسابدار هوش مصنوعی»).</li>
+    </ol>
+  </div>
 </section>
 
 <!-- =========================================================== WATCH ONE DAY -->
@@ -2665,13 +2902,13 @@ function buildNav() {
       box = el("div", { class: "navgroup" }, el("span", { text: gName })); nav.append(box);
       og = el("optgroup", { label: gName }); pick.append(og);
     }
-    const b = el("button", { class: "navlink", type: "button", "data-id": s.id },
+    const b = el("button", { class: s.dataset.nav === "special" ? "navlink special" : "navlink", type: "button", "data-id": s.id },
       el("span", { class: "n", text: lang === "fa" ? faNum(i + 1) : String(i + 1).padStart(2, "0") }), el("span", { text: titleOf(s) }),
       el("span", { class: "tick", text: doneSet.has(s.id) ? "✓" : "" }));
     if (s.id === current) b.setAttribute("aria-current", "page");
     b.addEventListener("click", () => go(s.id, true));
     box.append(b);
-    const o = el("option", { value: s.id, text: `${lang === "fa" ? faNum(i + 1) : i + 1}. ${titleOf(s)}${doneSet.has(s.id) ? " ✓" : ""}` });
+    const o = el("option", { value: s.id, text: `${s.dataset.nav === "special" ? "★ " : ""}${lang === "fa" ? faNum(i + 1) : i + 1}. ${titleOf(s)}${doneSet.has(s.id) ? " ✓" : ""}` });
     if (s.id === current) o.selected = true;
     og.append(o);
   });
@@ -3725,6 +3962,316 @@ $("#webBrief").addEventListener("click", async () => {
   say("Downloaded. The file has the brief in English and Persian.", "دریافت شد. فایل شرح کار را به انگلیسی و فارسی دارد.");
 });
 if (downloadsP) downloadsP.then(d => { if (!d) $("#webBrief").hidden = true; });
+
+/* ================================================= unified agency platform (demo) */
+const OA_ACCTS = { 1101: ["Bank", "بانک"], 1102: ["Cash", "صندوق"], 1103: ["Customers and partner agencies", "مشتریان و آژانس‌های همکار"], 1104: ["Cheques receivable", "اسناد دریافتنی"], 2101: ["Suppliers", "تأمین‌کنندگان"], 3101: ["Owner’s capital", "سرمایه"], 4101: ["Service revenue (margin)", "درآمد خدمات (سود)"], 4102: ["Cancellation fees", "درآمد جریمه‌ی کنسلی"] };
+const OA_SVC = { fdom: ["Domestic flight", "پرواز داخلی"], fint: ["International flight", "پرواز خارجی"], hotel: ["Hotel", "هتل"], tour: ["Tour", "تور"], pilg: ["Pilgrimage trip", "سفر زیارتی"], visa: ["Visa service", "خدمات ویزا"], ins: ["Travel insurance", "بیمه‌ی مسافرتی"], trf: ["Transfer", "ترانسفر"] };
+const OA_CK = { person: ["Person", "شخص"], partner: ["Partner agency", "آژانس همکار"], company: ["Company account", "حساب سازمانی"] };
+const OA_SK = { charter: ["Charter seller", "چارترکننده"], airline: ["Airline", "ایرلاین"], hotel: ["Hotel supplier", "تأمین‌کننده‌ی هتل"], insurer: ["Insurer", "بیمه‌گر"] };
+const OA_PM = { bank: ["Transfer, card or gateway", "انتقال، کارت یا درگاه"], cash: ["Cash", "نقد"], cheque: ["Cheque", "چک"] };
+const OA_WHO = { owner: ["Owner", "مدیر"], acct: ["Accountant", "حسابدار"], counter: ["Counter staff", "کانتر"], backoffice: ["Agent: backoffice", "عامل: backoffice"], frontdesk: ["Agent: frontdesk", "عامل: frontdesk"] };
+const oaToday = () => { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+const oaAdd = (iso, n) => { const d = new Date(iso + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const oaDays = (a, b) => Math.round((new Date(b + "T00:00:00Z") - new Date(a + "T00:00:00Z")) / 864e5);
+const oaJf = new Intl.DateTimeFormat("en-US-u-ca-persian-nu-latn", { year: "numeric", month: "2-digit", day: "2-digit", timeZone: "UTC" });
+const faDig = s => String(s).replace(/\d/g, d => "۰۱۲۳۴۵۶۷۸۹"[d]);
+const oaJ = iso => { if (!/^\d{4}-\d\d-\d\d$/.test(iso || "")) return ""; const p = Object.fromEntries(oaJf.formatToParts(new Date(iso + "T00:00:00Z")).map(x => [x.type, x.value])); return `${p.year}/${p.month}/${p.day}`; };
+const oaDate = iso => T(oaJ(iso), faDig(oaJ(iso)));
+const oaMoney = n => T(fmt(n), faNum(Math.round(n)));
+const oaErr = (en, fa) => { const e = new Error(en); e.fa = fa; return e; };
+const oaName = (x, l) => x ? (l === "fa" ? x.n.fa : x.n.en) : "?";
+let oa;
+
+function oaPost(en, fa, lines, date) {
+  lines = lines.filter(l => l[1] > 0 || l[2] > 0);
+  const dr = lines.reduce((s, l) => s + l[1], 0), cr = lines.reduce((s, l) => s + l[2], 0);
+  if (dr !== cr || dr <= 0) throw oaErr("Voucher does not balance.", "سند تراز نیست.");
+  const no = oa.vouchers.length + 1;
+  oa.vouchers.push({ no, date: date || oaToday(), d: { en, fa }, lines });
+  return no;
+}
+const oaBal = (acct, party) => oa.vouchers.reduce((s, v) => s + v.lines.reduce((t, l) => t + (l[0] === acct && (party == null || l[3] === party) ? l[1] - l[2] : 0), 0), 0);
+const oaCust = id => oa.customers.find(c => c.id === id);
+const oaSup = id => oa.suppliers.find(s => s.id === id);
+const oaBk = id => oa.bookings.find(b => b.id === id);
+const oaAmt = (v, en, fa) => { const n = Number(v); if (!Number.isInteger(n) || n <= 0 || n > 1e12) throw oaErr(`${en} must be a whole number of tomans above zero.`, `${fa} باید عدد صحیح تومان و بیشتر از صفر باشد.`); return n; };
+const oaStr = (v, max, en, fa) => { const s = String(v == null ? "" : v).trim().slice(0, max); if (!s) throw oaErr(`${en} is required.`, `${fa} لازم است.`); return s; };
+const oaIso = (v, en, fa, optional) => { if (optional && !v) return ""; if (!/^\d{4}-\d\d-\d\d$/.test(v || "")) throw oaErr(`${en} must be a date like 2026-11-05.`, `${fa} باید تاریخی مثل 2026-11-05 باشد.`); return v; };
+const oaNext = (k, p) => p + (oa.seq[k] = (oa.seq[k] || 0) + 1);
+
+const OA_OPS = {
+  get_dashboard: () => oaDash(),
+  list_bookings: a => oa.bookings.filter(b => !a.status || b.status === a.status).map(b => ({ id: b.id, customer: oaName(oaCust(b.cust), "en"), service: b.svc, description: b.d.en, passengers: b.pax, travel_date: b.travel, issue_by: b.ttl || null, cost: b.cost, price: b.price, margin: b.price - b.cost, status: b.status, e_invoice: b.inv })),
+  get_statement: a => {
+    const c = oaCust(a.party_id), s = oaSup(a.party_id);
+    if (!c && !s) throw oaErr("No customer or supplier with that ID.", "مشتری یا تأمین‌کننده‌ای با این شناسه نیست.");
+    const acct = c ? 1103 : 2101, rows = [];
+    oa.vouchers.forEach(v => v.lines.forEach(l => { if (l[0] === acct && l[3] === a.party_id) rows.push({ voucher: v.no, date: v.date, description: v.d.en, debit: l[1], credit: l[2] }); }));
+    const bal = oaBal(acct, a.party_id);
+    return { party: oaName(c || s, "en"), lines: rows, balance: bal, meaning: c ? (bal > 0 ? "customer owes us" : bal < 0 ? "we owe the customer" : "settled") : (bal > 0 ? "credit we hold with the supplier" : bal < 0 ? "we owe the supplier" : "settled") };
+  },
+  get_trial_balance: () => { const r = Object.keys(OA_ACCTS).map(Number).map(k => ({ account: k, name: OA_ACCTS[k][0], balance: oaBal(k) })).filter(x => x.balance !== 0); return { accounts: r, total_debit: r.reduce((s, x) => s + Math.max(x.balance, 0), 0), total_credit: r.reduce((s, x) => s + Math.max(-x.balance, 0), 0) }; },
+  list_approvals: () => oa.approvals.map(x => ({ id: x.id, tool: x.tool, arguments: x.args, requested_by: x.by, date: x.date })),
+  create_customer: a => {
+    const name = oaStr(a.name, 60, "Name", "نام"), kind = OA_CK[a.kind] ? a.kind : "person";
+    const id = oaNext("c", "C"); oa.customers.push({ id, n: { en: name, fa: name }, kind, pass: oaIso(a.passport_expiry, "Passport expiry", "انقضای گذرنامه", true) });
+    return { customer_id: id };
+  },
+  create_booking: a => {
+    if (!oaCust(a.customer_id)) throw oaErr("Unknown customer_id.", "شناسه‌ی مشتری نامعتبر است.");
+    if (!oaSup(a.supplier_id)) throw oaErr("Unknown supplier_id.", "شناسه‌ی تأمین‌کننده نامعتبر است.");
+    if (!OA_SVC[a.service]) throw oaErr("Unknown service.", "خدمت نامعتبر است.");
+    const d = oaStr(a.description, 120, "Description", "شرح"), cost = oaAmt(a.cost, "Cost", "بهای تمام‌شده"), price = oaAmt(a.price, "Price", "قیمت فروش");
+    const pax = Math.max(1, Math.min(99, parseInt(a.passengers, 10) || 1));
+    const id = oaNext("b", "B-");
+    oa.bookings.push({ id, cust: a.customer_id, svc: a.service, d: { en: d, fa: d }, sup: a.supplier_id, cost, price, pax, travel: oaIso(a.travel_date, "Travel date", "تاریخ سفر"), ttl: oaIso(a.issue_by, "Issue-by date", "مهلت صدور", true), status: "draft", inv: "none" });
+    return { booking_id: id, status: "draft", margin: price - cost, warning: price < cost ? "Price is below cost." : undefined };
+  },
+  confirm_booking: a => {
+    const b = oaBk(a.booking_id); if (!b) throw oaErr("Unknown booking_id.", "شناسه‌ی رزرو نامعتبر است.");
+    if (b.status !== "draft") throw oaErr("Only a draft can be confirmed.", "فقط رزرو پیش‌نویس قطعی می‌شود.");
+    const m = b.price - b.cost;
+    const no = oaPost(`Sale ${b.id}: ${b.d.en}`, `فروش ${b.id}: ${b.d.fa}`, [[1103, b.price, 0, b.cust], [2101, 0, b.cost, b.sup], [4101, m < 0 ? -m : 0, m > 0 ? m : 0]]);
+    b.status = "confirmed"; return { booking_id: b.id, status: "confirmed", voucher: no };
+  },
+  record_receipt: a => {
+    const c = oaCust(a.customer_id); if (!c) throw oaErr("Unknown customer_id.", "شناسه‌ی مشتری نامعتبر است.");
+    const amt = oaAmt(a.amount, "Amount", "مبلغ"), m = OA_PM[a.method] ? a.method : "bank";
+    const acct = m === "bank" ? 1101 : m === "cash" ? 1102 : 1104;
+    let chq;
+    if (m === "cheque") { const due = oaIso(a.due_date, "Cheque due date", "سررسید چک"); chq = oaNext("k", "CHQ-"); oa.cheques.push({ id: chq, cust: c.id, amt, due, status: "held" }); }
+    const no = oaPost(`Receipt from ${c.n.en} (${OA_PM[m][0].toLowerCase()})${chq ? " " + chq : ""}`, `دریافت از ${c.n.fa} (${OA_PM[m][1]})${chq ? " " + chq : ""}`, [[acct, amt, 0], [1103, 0, amt, c.id]]);
+    return { voucher: no, cheque_id: chq };
+  },
+  pay_supplier: a => {
+    const s = oaSup(a.supplier_id); if (!s) throw oaErr("Unknown supplier_id.", "شناسه‌ی تأمین‌کننده نامعتبر است.");
+    const amt = oaAmt(a.amount, "Amount", "مبلغ");
+    if (oaBal(1101) < amt) throw oaErr("Not enough money in the bank account.", "موجودی بانک کافی نیست.");
+    return { voucher: oaPost(`Payment to ${s.n.en}`, `پرداخت به ${s.n.fa}`, [[2101, amt, 0, s.id], [1101, 0, amt]]) };
+  },
+  cancel_booking: a => {
+    const b = oaBk(a.booking_id); if (!b) throw oaErr("Unknown booking_id.", "شناسه‌ی رزرو نامعتبر است.");
+    if (b.status !== "confirmed") throw oaErr("Only a confirmed booking can be cancelled; drafts can simply be left.", "فقط رزرو قطعی کنسل می‌شود.");
+    const sp = Number(a.supplier_penalty) || 0, fee = Number(a.agency_fee) || 0;
+    if (sp < 0 || fee < 0 || !Number.isInteger(sp) || !Number.isInteger(fee) || sp > b.cost || sp + fee > b.price) throw oaErr("Penalties must be whole tomans, the supplier penalty at most the cost and both together at most the price.", "جریمه‌ها باید عدد صحیح باشند؛ جریمه‌ی تأمین‌کننده حداکثر برابر بهای تمام‌شده و مجموع هر دو حداکثر برابر قیمت فروش.");
+    const m = b.price - b.cost;
+    const no = oaPost(`Cancellation ${b.id}`, `کنسلی ${b.id}`, [[4101, m > 0 ? m : 0, m < 0 ? -m : 0], [2101, b.cost, 0, b.sup], [1103, 0, b.price, b.cust], [1103, sp + fee, 0, b.cust], [2101, 0, sp, b.sup], [4102, 0, fee]]);
+    b.status = "cancelled"; return { booking_id: b.id, status: "cancelled", voucher: no, refund_due_to_customer: b.price - sp - fee };
+  },
+  refund_customer: a => {
+    const c = oaCust(a.customer_id); if (!c) throw oaErr("Unknown customer_id.", "شناسه‌ی مشتری نامعتبر است.");
+    const amt = oaAmt(a.amount, "Amount", "مبلغ");
+    if (-oaBal(1103, c.id) < amt) throw oaErr("The refund is larger than what we owe this customer.", "مبلغ استرداد از طلب این مشتری بیشتر است.");
+    if (oaBal(1101) < amt) throw oaErr("Not enough money in the bank account.", "موجودی بانک کافی نیست.");
+    return { voucher: oaPost(`Refund to ${c.n.en}`, `استرداد به ${c.n.fa}`, [[1103, amt, 0, c.id], [1101, 0, amt]]) };
+  },
+  clear_cheque: a => {
+    const q = oa.cheques.find(x => x.id === a.cheque_id); if (!q) throw oaErr("Unknown cheque_id.", "شناسه‌ی چک نامعتبر است.");
+    if (q.status !== "held") throw oaErr("This cheque is already cleared.", "این چک قبلاً وصول شده است.");
+    q.status = "cleared"; return { voucher: oaPost(`Cheque ${q.id} cleared`, `وصول چک ${q.id}`, [[1101, q.amt, 0], [1104, 0, q.amt]]) };
+  },
+  create_task: a => { const id = oaNext("t", "T-"); oa.tasks.push({ id, d: { en: oaStr(a.title, 100, "Title", "عنوان"), fa: String(a.title).trim().slice(0, 100) }, who: OA_WHO[a.assignee] ? a.assignee : "owner", done: false }); return { task_id: id }; },
+};
+// [name, needs approval, description en, fa, {arg: [type, description, enum?]}, required, example]
+const OA_TOOLS = [
+  ["get_dashboard", false, "Cash, balances, approvals waiting and today’s alerts (ticketing deadlines, passports, low supplier credit, cheques, unpaid departures).", "نقدینگی، مانده‌ها، تأییدهای منتظر و هشدارهای امروز (مهلت صدور، گذرنامه، کمبود اعتبار تأمین‌کننده، چک، مسافر بدهکار).", {}, [], {}],
+  ["list_bookings", false, "List bookings, optionally by status.", "فهرست رزروها، در صورت تمایل بر اساس وضعیت.", { status: ["string", "draft, confirmed or cancelled", ["draft", "confirmed", "cancelled"]] }, [], { status: "draft" }],
+  ["get_statement", false, "Statement and balance of one customer, partner agency or supplier.", "صورت‌حساب و مانده‌ی یک مشتری، آژانس همکار یا تأمین‌کننده.", { party_id: ["string", "Customer ID (C…) or supplier ID (S…)"] }, ["party_id"], { party_id: "C3" }],
+  ["get_trial_balance", false, "Trial balance of all accounts.", "تراز آزمایشی همه‌ی حساب‌ها.", {}, [], {}],
+  ["list_approvals", false, "Agent requests waiting for a person.", "درخواست‌های عامل که منتظر انسان هستند.", {}, [], {}],
+  ["create_customer", false, "Add a customer, partner agency or company account.", "افزودن مشتری، آژانس همکار یا حساب سازمانی.", { name: ["string", "Full name"], kind: ["string", "person, partner or company", ["person", "partner", "company"]], passport_expiry: ["string", "YYYY-MM-DD, optional"] }, ["name"], { name: "Invented Customer", kind: "person", passport_expiry: "2028-03-01" }],
+  ["create_booking", false, "Create a draft booking with cost and price; no money moves.", "ساخت رزرو پیش‌نویس با بهای تمام‌شده و قیمت؛ پولی جابه‌جا نمی‌شود.", { customer_id: ["string", "Customer ID"], service: ["string", "Service type", Object.keys(OA_SVC)], description: ["string", "Route, hotel or tour"], supplier_id: ["string", "Supplier ID"], cost: ["integer", "Cost in tomans"], price: ["integer", "Price to customer in tomans"], passengers: ["integer", "Number of travellers"], travel_date: ["string", "YYYY-MM-DD"], issue_by: ["string", "Ticketing deadline YYYY-MM-DD, optional"] }, ["customer_id", "service", "description", "supplier_id", "cost", "price", "travel_date"], { customer_id: "C1", service: "fdom", description: "Tehran–Mashhad, 2 passengers", supplier_id: "S2", cost: 6400000, price: 7000000, passengers: 2, travel_date: "2026-12-01" }],
+  ["confirm_booking", true, "Confirm a draft booking and post the sale.", "قطعی کردن رزرو پیش‌نویس و ثبت فروش.", { booking_id: ["string", "Booking ID"] }, ["booking_id"], { booking_id: "B-3" }],
+  ["record_receipt", true, "Record money received from a customer by transfer, cash or cheque.", "ثبت دریافت پول از مشتری با انتقال، نقد یا چک.", { customer_id: ["string", "Customer ID"], amount: ["integer", "Tomans"], method: ["string", "bank, cash or cheque", ["bank", "cash", "cheque"]], due_date: ["string", "Cheque due date YYYY-MM-DD"] }, ["customer_id", "amount", "method"], { customer_id: "C4", amount: 3500000, method: "bank" }],
+  ["pay_supplier", true, "Pay or top up a supplier from the bank.", "پرداخت یا شارژ تأمین‌کننده از بانک.", { supplier_id: ["string", "Supplier ID"], amount: ["integer", "Tomans"] }, ["supplier_id", "amount"], { supplier_id: "S1", amount: 50000000 }],
+  ["cancel_booking", true, "Cancel a confirmed booking with the supplier’s penalty and your fee.", "کنسل کردن رزرو قطعی با جریمه‌ی تأمین‌کننده و کارمزد شما.", { booking_id: ["string", "Booking ID"], supplier_penalty: ["integer", "Tomans kept by the supplier"], agency_fee: ["integer", "Your cancellation fee in tomans"] }, ["booking_id"], { booking_id: "B-1", supplier_penalty: 6400000, agency_fee: 500000 }],
+  ["refund_customer", true, "Pay back money we owe a customer.", "بازپرداخت پولی که به مشتری بدهکاریم.", { customer_id: ["string", "Customer ID"], amount: ["integer", "Tomans"] }, ["customer_id", "amount"], { customer_id: "C1", amount: 1000000 }],
+  ["clear_cheque", true, "Mark a received cheque as cleared in the bank.", "علامت‌گذاری وصول چک دریافتی در بانک.", { cheque_id: ["string", "Cheque ID"] }, ["cheque_id"], { cheque_id: "CHQ-1" }],
+  ["create_task", false, "Create a task for a person or an agent.", "ساخت کار برای یک نفر یا یک عامل.", { title: ["string", "What to do"], assignee: ["string", "Who", Object.keys(OA_WHO)] }, ["title"], { title: "Call the customer about passport renewal", assignee: "counter" }],
+];
+function oaRun(name, args, by) {
+  const t = OA_TOOLS.find(x => x[0] === name);
+  if (!t) return { error: "Unknown tool.", error_fa: "ابزار ناشناخته." };
+  if (!args || typeof args !== "object" || Array.isArray(args)) return { error: "Arguments must be a JSON object.", error_fa: "آرگومان‌ها باید یک شیء JSON باشد." };
+  const miss = t[5].filter(k => args[k] == null || args[k] === "");
+  if (miss.length) return { error: "Missing: " + miss.join(", "), error_fa: "کم است: " + miss.join("، ") };
+  if (by === "agent" && t[1]) {
+    const id = oaNext("a", "A-");
+    oa.approvals.push({ id, tool: name, args, by: "backoffice", date: oaToday() }); oaSave();
+    return { status: "waiting_for_approval", approval_id: id, note: "A person must approve this in the Approvals tab." };
+  }
+  try { const r = OA_OPS[name](args); if (!/^(get_|list_)/.test(name)) oaSave(); return { status: "done", result: r }; }
+  catch (e) { return { error: e.message, error_fa: e.fa || e.message }; }
+}
+function oaDash() {
+  const t = oaToday(), al = [];
+  oa.bookings.forEach(b => {
+    const c = oaCust(b.cust), d = oaDays(t, b.travel);
+    if (b.status === "draft" && b.ttl && oaDays(t, b.ttl) <= 2) al.push(["ttl", `${b.id}: ticketing deadline ${oaJ(b.ttl)}. Confirm and issue, or release the seats.`, `${b.id}: مهلت صدور ${faDig(oaJ(b.ttl))}. قطعی و صادر کنید یا صندلی‌ها را آزاد کنید.`]);
+    if (b.status !== "cancelled" && c && c.pass && oaDays(b.travel, c.pass) < 183 && /^(fint|tour|pilg|visa)$/.test(b.svc)) al.push(["pass", `${b.id}: ${c.n.en}’s passport expires ${oaJ(c.pass)}, less than six months after travel.`, `${b.id}: گذرنامه‌ی ${c.n.fa} در ${faDig(oaJ(c.pass))} منقضی می‌شود، کمتر از شش ماه پس از سفر.`]);
+    if (b.status === "confirmed" && d >= 0 && d <= 2 && c && oaBal(1103, c.id) > 0) al.push(["unpaid", `${b.id}: ${c.n.en} travels ${d === 0 ? "today" : d === 1 ? "tomorrow" : "in " + d + " days"} and still owes ${fmt(oaBal(1103, c.id))} tomans.`, `${b.id}: ${c.n.fa} ${d === 0 ? "امروز" : d === 1 ? "فردا" : faNum(d) + " روز دیگر"} سفر می‌کند و هنوز ${faNum(oaBal(1103, c.id))} تومان بدهکار است.`]);
+    if (b.status === "confirmed" && d >= 0 && d <= 1) al.push(["dep", `${b.id}: departure ${d === 0 ? "today" : "tomorrow"}; send the reminder and documents.`, `${b.id}: حرکت ${d === 0 ? "امروز" : "فردا"}؛ یادآوری و مدارک را بفرستید.`]);
+    if (b.status === "confirmed" && b.inv !== "sent") al.push(["inv", `${b.id}: tax e-invoice not sent yet.`, `${b.id}: صورتحساب مالیاتی هنوز ارسال نشده است.`]);
+  });
+  oa.suppliers.forEach(s => { const bal = oaBal(2101, s.id); if (s.min && bal < s.min) al.push(["credit", `${s.n.en}: credit ${fmt(Math.max(bal, 0))} tomans, below the ${fmt(s.min)} alert level.`, `${s.n.fa}: اعتبار ${faNum(Math.max(bal, 0))} تومان، کمتر از حد هشدار ${faNum(s.min)}.`]); });
+  oa.cheques.forEach(q => { if (q.status === "held" && oaDays(t, q.due) <= 7) al.push(["cheque", `${q.id} for ${fmt(q.amt)} tomans is due ${oaJ(q.due)}; deposit it.`, `${q.id} به مبلغ ${faNum(q.amt)} تومان در ${faDig(oaJ(q.due))} سررسید می‌شود؛ به بانک بسپارید.`]); });
+  const owe = oa.customers.reduce((s, c) => s + Math.max(oaBal(1103, c.id), 0), 0);
+  const supNet = oa.suppliers.map(s => oaBal(2101, s.id));
+  return { bank: oaBal(1101), cash: oaBal(1102), cheques_in_hand: oaBal(1104), customers_owe_us: owe, credit_with_suppliers: supNet.reduce((s, x) => s + Math.max(x, 0), 0), we_owe_suppliers: supNet.reduce((s, x) => s + Math.max(-x, 0), 0), margin_to_date: -oaBal(4101) - oaBal(4102), approvals_waiting: oa.approvals.length, departures_next_7_days: oa.bookings.filter(b => b.status === "confirmed" && oaDays(t, b.travel) >= 0 && oaDays(t, b.travel) <= 7).length, alerts: al.map(a => ({ kind: a[0], message: a[1], message_fa: a[2] })) };
+}
+function oaSample() {
+  const t = oaToday();
+  oa = { v: 1, seq: {}, customers: [], suppliers: [], bookings: [], vouchers: [], cheques: [], approvals: [], tasks: [] };
+  [["Sara Ahmadi", "سارا احمدی", "person", oaAdd(t, 150)], ["Reza Karimi", "رضا کریمی", "person", oaAdd(t, 900)], ["Arya Travel (partner)", "آژانس آریا (همکار)", "partner", ""], ["Narges Moradi", "نرگس مرادی", "person", oaAdd(t, 700)], ["Pars Tile Co.", "شرکت کاشی پارس", "company", ""]]
+    .forEach(([en, fa, kind, pass]) => oa.customers.push({ id: oaNext("c", "C"), n: { en, fa }, kind, pass }));
+  [["Charter seller A", "چارترکننده‌ی الف", "charter", 50000000], ["Domestic airline B", "ایرلاین داخلی ب", "airline", 0], ["Hotel supplier C", "تأمین‌کننده‌ی هتل ج", "hotel", 25000000], ["Insurer D", "بیمه‌گر د", "insurer", 0]]
+    .forEach(([en, fa, kind, min]) => oa.suppliers.push({ id: oaNext("s", "S"), n: { en, fa }, kind, min }));
+  oaPost("Opening balance", "مانده‌ی افتتاحیه", [[1101, 800000000, 0], [3101, 0, 800000000]], oaAdd(t, -20));
+  OA_OPS.pay_supplier({ supplier_id: "S1", amount: 150000000 });
+  OA_OPS.pay_supplier({ supplier_id: "S3", amount: 40000000 });
+  const mk = (cust, svc, en, fa, sup, cost, price, pax, travel, ttl) => { const id = oaNext("b", "B-"); oa.bookings.push({ id, cust, svc, d: { en, fa }, sup, cost, price, pax, travel: oaAdd(t, travel), ttl: ttl == null ? "" : oaAdd(t, ttl), status: "draft", inv: "none" }); return id; };
+  const b1 = mk("C1", "fint", "Tehran–Istanbul return, 2 passengers", "تهران–استانبول رفت و برگشت، ۲ مسافر", "S1", 64000000, 69000000, 2, 30);
+  const b2 = mk("C2", "hotel", "Mashhad, 3 nights, double room", "مشهد، ۳ شب، اتاق دوتخته", "S3", 18000000, 19800000, 2, 3);
+  mk("C3", "tour", "Kish, 4 nights, group of 6", "کیش، ۴ شب، گروه ۶ نفره", "S1", 156000000, 165000000, 6, 12, 1);
+  const b4 = mk("C4", "fdom", "Tehran–Shiraz, 1 passenger", "تهران–شیراز، ۱ مسافر", "S2", 3200000, 3500000, 1, 1);
+  [b1, b2, b4].forEach(id => OA_OPS.confirm_booking({ booking_id: id }));
+  oaBk(b1).inv = "sent";
+  OA_OPS.record_receipt({ customer_id: "C1", amount: 69000000, method: "bank" });
+  OA_OPS.record_receipt({ customer_id: "C2", amount: 19800000, method: "cheque", due_date: oaAdd(t, 5) });
+  oa.approvals.push({ id: oaNext("a", "A-"), tool: "pay_supplier", args: { supplier_id: "S3", amount: 30000000 }, by: "backoffice", date: t });
+  [["Call Narges Moradi about payment before tomorrow’s flight", "تماس با نرگس مرادی درباره‌ی پرداخت پیش از پرواز فردا", "counter"], ["Send Arya Travel the Kish group quote and deadline", "ارسال پیش‌فاکتور و مهلت گروه کیش به آژانس آریا", "frontdesk"], ["Renew e-namad before the end of the month", "تمدید اینماد پیش از پایان ماه", "owner"]]
+    .forEach(([en, fa, who]) => oa.tasks.push({ id: oaNext("t", "T-"), d: { en, fa }, who, done: false }));
+}
+function oaValid(x) {
+  const arr = k => Array.isArray(x[k]);
+  if (!x || x.v !== 1 || typeof x.seq !== "object" || !["customers", "suppliers", "bookings", "vouchers", "cheques", "approvals", "tasks"].every(arr)) return false;
+  const named = a => a.every(o => o && typeof o.id === "string" && o.n && typeof o.n.en === "string" && typeof o.n.fa === "string");
+  const txt = o => o && o.d && typeof o.d.en === "string" && typeof o.d.fa === "string";
+  return named(x.customers) && named(x.suppliers)
+    && x.vouchers.every(v => txt(v) && Number.isInteger(v.no) && Array.isArray(v.lines) && v.lines.every(l => Array.isArray(l) && OA_ACCTS[l[0]] && Number.isFinite(l[1]) && Number.isFinite(l[2])))
+    && x.bookings.every(b => txt(b) && typeof b.id === "string" && OA_SVC[b.svc] && Number.isFinite(b.cost) && Number.isFinite(b.price) && typeof b.travel === "string")
+    && x.cheques.every(q => q && typeof q.id === "string" && Number.isFinite(q.amt)) && x.tasks.every(txt) && x.approvals.every(a => a && typeof a.tool === "string" && a.args && typeof a.args === "object");
+}
+const oaSave = () => store.set("taa.office", oa);
+oa = store.get("taa.office", null);
+if (!oaValid(oa)) oaSample();
+
+let oaTab = "dash";
+const oaSay = (en, fa) => $("#oaStatus").replaceChildren(T(en, fa));
+const oaFill = (sel, items) => { const v = sel.value; sel.replaceChildren(...items.map(([val, en, fa]) => el("option", { value: val, text: lang === "fa" ? fa : en }))); if (items.some(i => i[0] === v)) sel.value = v; };
+const oaResult = r => { if (r.error) oaSay(r.error, r.error_fa); return r; };
+function oaRender() {
+  document.querySelectorAll("#officeapp .oa-panel").forEach(p => { p.hidden = p.dataset.p !== oaTab; });
+  $("#oaApprCount").textContent = oa.approvals.length ? (lang === "fa" ? faNum(oa.approvals.length) : String(oa.approvals.length)) : "";
+  const d = oaDash();
+  const st = [["Bank and cash", "بانک و صندوق", d.bank + d.cash], ["Customers owe us", "طلب از مشتریان", d.customers_owe_us], ["Credit with suppliers", "اعتبار نزد تأمین‌کنندگان", d.credit_with_suppliers], ["We owe suppliers", "بدهی به تأمین‌کنندگان", d.we_owe_suppliers], ["Cheques in hand", "چک‌های نزد ما", d.cheques_in_hand], ["Margin to date", "سود تا امروز", d.margin_to_date]];
+  $("#oaStats").replaceChildren(...st.map(([en, fa, n]) => el("div", { class: "stat" }, el("b", {}, oaMoney(n)), el("span", {}, T(en + " (toman)", fa + " (تومان)")))),
+    el("div", { class: "stat" + (d.approvals_waiting ? " alert" : "") }, el("b", {}, T(String(d.approvals_waiting), faNum(d.approvals_waiting))), el("span", {}, T("approvals waiting", "تأیید در انتظار"))),
+    el("div", { class: "stat" }, el("b", {}, T(String(d.departures_next_7_days), faNum(d.departures_next_7_days))), el("span", {}, T("departures in the next 7 days", "حرکت در ۷ روز آینده"))));
+  const AK = { ttl: ["no", "Deadline", "مهلت"], pass: ["no", "Passport", "گذرنامه"], unpaid: ["no", "Unpaid", "پرداخت‌نشده"], dep: ["info", "Departure", "حرکت"], inv: ["part", "Tax", "مالیات"], credit: ["part", "Credit", "اعتبار"], cheque: ["part", "Cheque", "چک"] };
+  $("#oaAlerts").replaceChildren(...(d.alerts.length ? d.alerts.map(a => el("li", {}, el("span", {}, T(a.message, a.message_fa)), el("span", { class: "pill " + AK[a.kind][0] }, T(AK[a.kind][1], AK[a.kind][2])))) : [el("li", {}, T("Nothing needs attention.", "موردی برای رسیدگی نیست."))]));
+  const custItems = oa.customers.map(c => [c.id, `${c.id} · ${c.n.en}`, `${c.id} · ${c.n.fa}`]), supItems = oa.suppliers.map(s => [s.id, `${s.id} · ${s.n.en}`, `${s.id} · ${s.n.fa}`]);
+  [$("#obCust"), $("#orCust"), $("#ofCust")].forEach(s => oaFill(s, custItems));
+  [$("#obSup"), $("#opSup")].forEach(s => oaFill(s, supItems));
+  oaFill($("#obSvc"), Object.entries(OA_SVC).map(([k, v]) => [k, ...v]));
+  oaFill($("#orMethod"), Object.entries(OA_PM).map(([k, v]) => [k, ...v]));
+  oaFill($("#ocKind"), Object.entries(OA_CK).map(([k, v]) => [k, ...v]));
+  oaFill($("#otWho"), Object.entries(OA_WHO).map(([k, v]) => [k, ...v]));
+  oaFill($("#ocxBook"), oa.bookings.filter(b => b.status === "confirmed").map(b => [b.id, `${b.id} · ${b.d.en}`, `${b.id} · ${b.d.fa}`]));
+  const SP = { draft: ["info", "Draft", "پیش‌نویس"], confirmed: ["yes", "Confirmed", "قطعی"], cancelled: ["no", "Cancelled", "کنسل"] };
+  $("#oaBookings").replaceChildren(...oa.bookings.slice().reverse().map(b => {
+    const acts = [];
+    if (b.status === "draft") acts.push(el("button", { class: "btn small", type: "button", "data-act": "confirm", "data-id": b.id }, T("Confirm", "قطعی کن")));
+    if (b.status === "confirmed" && b.inv !== "sent") acts.push(el("button", { class: "btn ghost small", type: "button", "data-act": "inv", "data-id": b.id }, T("E-invoice sent", "صورتحساب ارسال شد")));
+    return el("tr", {},
+      el("td", {}, el("b", {}, b.id), " ", T(OA_SVC[b.svc][0], OA_SVC[b.svc][1]), el("div", {}, T(b.d.en, b.d.fa)), el("div", { class: "meta" }, T("Travel ", "سفر "), oaDate(b.travel), T(` · ${b.pax} pax`, ` · ${faNum(b.pax)} نفر`), b.ttl && b.status === "draft" ? el("span", {}, T(" · issue by ", " · مهلت صدور "), oaDate(b.ttl)) : null)),
+      el("td", {}, T(oaName(oaCust(b.cust), "en"), oaName(oaCust(b.cust), "fa"))),
+      el("td", {}, T(oaName(oaSup(b.sup), "en"), oaName(oaSup(b.sup), "fa"))),
+      el("td", {}, oaMoney(b.price), el("div", { class: "meta" }, T("margin ", "سود "), oaMoney(b.price - b.cost))),
+      el("td", {}, el("span", { class: "pill " + SP[b.status][0] }, T(SP[b.status][1], SP[b.status][2])), b.status === "confirmed" ? el("div", { class: "meta" }, b.inv === "sent" ? T("e-invoice sent", "صورتحساب ارسال شد") : T("e-invoice pending", "صورتحساب در انتظار")) : null),
+      el("td", {}, ...acts));
+  }));
+  $("#oaCheques").replaceChildren(...(oa.cheques.length ? oa.cheques.map(q => el("tr", {}, el("td", {}, q.id), el("td", {}, T(oaName(oaCust(q.cust), "en"), oaName(oaCust(q.cust), "fa"))), el("td", {}, oaMoney(q.amt)), el("td", {}, oaDate(q.due)),
+    el("td", {}, q.status === "held" ? el("button", { class: "btn ghost small", type: "button", "data-act": "clear", "data-id": q.id }, T("Mark cleared", "وصول شد")) : el("span", { class: "pill yes" }, T("Cleared", "وصول شده"))))) : [el("tr", {}, el("td", { colspan: "5" }, T("No cheques.", "چکی نیست.")))]));
+  const balTxt = (n, posEn, posFa, negEn, negFa) => n === 0 ? T("Settled", "تسویه") : el("span", {}, oaMoney(Math.abs(n)), " ", n > 0 ? T(posEn, posFa) : T(negEn, negFa));
+  $("#oaCustomers").replaceChildren(...oa.customers.map(c => el("tr", {}, el("td", {}, el("b", {}, c.id), " ", T(c.n.en, c.n.fa), c.pass ? el("div", { class: "meta" }, T("Passport valid to ", "اعتبار گذرنامه تا "), oaDate(c.pass)) : null), el("td", {}, T(OA_CK[c.kind][0], OA_CK[c.kind][1])), el("td", {}, balTxt(oaBal(1103, c.id), "owes us", "بدهکار به ما", "we owe them", "طلبکار از ما")))));
+  $("#oaSuppliers").replaceChildren(...oa.suppliers.map(s => { const b = oaBal(2101, s.id); return el("tr", {}, el("td", {}, el("b", {}, s.id), " ", T(s.n.en, s.n.fa)), el("td", {}, T(OA_SK[s.kind][0], OA_SK[s.kind][1])), el("td", {}, balTxt(b, "credit with them", "اعتبار نزد آن‌ها", "we owe them", "بدهی ما")), el("td", {}, s.min ? oaMoney(s.min) : "—", s.min && b < s.min ? el("span", { class: "pill no" }, T("Low", "کم")) : null)); }));
+  const tb = OA_OPS.get_trial_balance();
+  $("#oaTB").replaceChildren(...tb.accounts.map(a => el("tr", {}, el("td", {}, el("code", {}, String(a.account)), " ", T(OA_ACCTS[a.account][0], OA_ACCTS[a.account][1])), el("td", {}, a.balance > 0 ? oaMoney(a.balance) : ""), el("td", {}, a.balance < 0 ? oaMoney(-a.balance) : ""))),
+    el("tr", {}, el("td", {}, el("b", {}, T("Total", "جمع"))), el("td", {}, el("b", {}, oaMoney(tb.total_debit))), el("td", {}, el("b", {}, oaMoney(tb.total_credit)))));
+  $("#oaVouchers").replaceChildren(...oa.vouchers.slice(-12).reverse().map(v => el("div", { class: "oa-voucher" },
+    el("p", {}, el("b", {}, T(`No. ${v.no}`, `سند ${faNum(v.no)}`)), " · ", oaDate(v.date), " · ", T(v.d.en, v.d.fa)),
+    ...v.lines.map(l => el("div", { class: "ln" }, el("span", {}, el("code", {}, String(l[0])), " ", T(OA_ACCTS[l[0]][0], OA_ACCTS[l[0]][1]), l[3] ? el("span", { class: "meta" }, " · ", T(oaName(oaCust(l[3]) || oaSup(l[3]), "en"), oaName(oaCust(l[3]) || oaSup(l[3]), "fa"))) : null), el("span", {}, l[1] ? oaMoney(l[1]) : ""), el("span", {}, l[2] ? oaMoney(l[2]) : ""))))));
+  $("#oaAppr").replaceChildren(...(oa.approvals.length ? oa.approvals.map(a => el("li", {}, el("span", {}, el("b", {}, a.id), " · ", el("code", {}, a.tool), " ", el("code", {}, JSON.stringify(a.args)), el("span", { class: "meta" }, " · ", T("requested by agent backoffice", "درخواست عامل backoffice"))),
+    el("span", { class: "row" }, el("button", { class: "btn small", type: "button", "data-act": "approve", "data-id": a.id }, T("Approve", "تأیید")), el("button", { class: "btn ghost small", type: "button", "data-act": "reject", "data-id": a.id }, T("Reject", "رد"))))) : [el("li", {}, T("Nothing is waiting.", "چیزی در انتظار نیست."))]));
+  $("#oaTasks").replaceChildren(...oa.tasks.map(t => { const cb = el("input", { type: "checkbox", "data-id": t.id }); cb.checked = t.done; return el("li", {}, el("label", { class: "check" }, cb, el("span", { style: t.done ? "text-decoration:line-through" : "" }, T(t.d.en, t.d.fa))), el("span", { class: "pill info" }, T(OA_WHO[t.who][0], OA_WHO[t.who][1]))); }));
+  const ts = $("#oaTool"), prev = ts.value;
+  ts.replaceChildren(...OA_TOOLS.map(t => el("option", { value: t[0], text: t[0] + (t[1] ? (lang === "fa" ? " · تأیید" : " · approval") : "") })));
+  ts.value = prev || OA_TOOLS[0][0];
+  oaToolDesc();
+}
+function oaToolDesc() { const t = OA_TOOLS.find(x => x[0] === $("#oaTool").value); $("#oaToolDesc").replaceChildren(T(t[2] + (t[1] ? " Needs a person’s approval." : ""), t[3] + (t[1] ? " به تأیید انسان نیاز دارد." : ""))); }
+wireChips($("#oaTabs"), v => { oaTab = v; oaRender(); });
+$("#oaTool").addEventListener("change", () => { const t = OA_TOOLS.find(x => x[0] === $("#oaTool").value); $("#oaArgs").value = JSON.stringify(t[6], null, 2); oaToolDesc(); });
+$("#oaArgs").value = JSON.stringify(OA_TOOLS[0][6], null, 2);
+$("#oaRun").addEventListener("click", () => {
+  let args; try { args = JSON.parse($("#oaArgs").value || "{}"); } catch { $("#oaResult").textContent = JSON.stringify({ error: "The arguments are not valid JSON.", error_fa: "آرگومان‌ها JSON معتبر نیست." }, null, 2); return; }
+  const r = oaRun($("#oaTool").value, args, "agent");
+  $("#oaResult").textContent = JSON.stringify(r, null, 2);
+  oaRender();
+});
+const oaAct = (fn, okEn, okFa) => { const r = fn(); if (r.error) oaSay(r.error, r.error_fa); else { oaSay(okEn, okFa); oaRender(); } return r; };
+$("#officeapp").addEventListener("click", e => {
+  const b = e.target.closest("button[data-act]"); if (!b) return;
+  const id = b.dataset.id, act = b.dataset.act;
+  if (act === "confirm") oaAct(() => oaRun("confirm_booking", { booking_id: id }, "person"), `${id} confirmed and posted.`, `${id} قطعی و ثبت شد.`);
+  if (act === "inv") { const bk = oaBk(id); if (bk) { bk.inv = "sent"; oaSave(); oaSay(`${id}: e-invoice marked as sent.`, `${id}: صورتحساب ارسال‌شده علامت خورد.`); oaRender(); } }
+  if (act === "clear") oaAct(() => oaRun("clear_cheque", { cheque_id: id }, "person"), `${id} cleared.`, `${id} وصول شد.`);
+  if (act === "approve" || act === "reject") {
+    const i = oa.approvals.findIndex(x => x.id === id); if (i < 0) return;
+    const a = oa.approvals[i];
+    if (act === "reject") { oa.approvals.splice(i, 1); oaSave(); oaSay(`${id} rejected.`, `${id} رد شد.`); oaRender(); return; }
+    const r = oaRun(a.tool, a.args, "person");
+    if (r.error) { oaSay(r.error, r.error_fa); return; }
+    oa.approvals.splice(i, 1); oaSave(); oaSay(`${id} approved and posted.`, `${id} تأیید و ثبت شد.`); oaRender();
+  }
+});
+$("#oaTasks").addEventListener("change", e => { const t = oa.tasks.find(x => x.id === e.target.dataset.id); if (t) { t.done = e.target.checked; oaSave(); oaRender(); } });
+$("#oaBookForm").addEventListener("submit", e => { e.preventDefault(); oaAct(() => oaRun("create_booking", { customer_id: $("#obCust").value, service: $("#obSvc").value, supplier_id: $("#obSup").value, description: $("#obDesc").value, cost: Number($("#obCost").value), price: Number($("#obPrice").value), passengers: Number($("#obPax").value), travel_date: $("#obTravel").value, issue_by: $("#obTtl").value }, "person"), "Draft saved.", "پیش‌نویس ذخیره شد.").error || e.target.reset(); });
+$("#oaRecvForm").addEventListener("submit", e => { e.preventDefault(); oaAct(() => oaRun("record_receipt", { customer_id: $("#orCust").value, amount: Number($("#orAmt").value), method: $("#orMethod").value, due_date: $("#orDue").value }, "person"), "Receipt posted.", "دریافت ثبت شد."); });
+$("#oaPayForm").addEventListener("submit", e => { e.preventDefault(); oaAct(() => oaRun("pay_supplier", { supplier_id: $("#opSup").value, amount: Number($("#opAmt").value) }, "person"), "Payment posted.", "پرداخت ثبت شد."); });
+$("#ofBtn").addEventListener("click", () => oaAct(() => oaRun("refund_customer", { customer_id: $("#ofCust").value, amount: Number($("#ofAmt").value) }, "person"), "Refund posted.", "استرداد ثبت شد."));
+$("#oaCancelForm").addEventListener("submit", e => { e.preventDefault(); if (!$("#ocxBook").value) { oaSay("No confirmed booking to cancel.", "رزرو قطعی برای کنسلی نیست."); return; } oaAct(() => oaRun("cancel_booking", { booking_id: $("#ocxBook").value, supplier_penalty: Number($("#ocxPen").value) || 0, agency_fee: Number($("#ocxFee").value) || 0 }, "person"), "Booking cancelled and posted; refund what the customer is owed from Receipts and payments.", "رزرو کنسل و ثبت شد؛ طلب مشتری را از بخش دریافت و پرداخت مسترد کنید."); });
+$("#oaCustForm").addEventListener("submit", e => { e.preventDefault(); oaAct(() => oaRun("create_customer", { name: $("#ocName").value, kind: $("#ocKind").value }, "person"), "Customer added.", "مشتری افزوده شد.").error || e.target.reset(); });
+$("#oaTaskForm").addEventListener("submit", e => { e.preventDefault(); oaAct(() => oaRun("create_task", { title: $("#otTitle").value, assignee: $("#otWho").value }, "person"), "Task added.", "کار افزوده شد.").error || e.target.reset(); });
+$("#oaReset").addEventListener("click", () => { oaSample(); oaSave(); $("#oaResult").textContent = ""; oaSay("Sample data restored.", "داده‌ی نمونه برگشت."); oaRender(); });
+async function oaSaveFile(btn, filename, data, type) {
+  const downloads = downloadsP ? await downloadsP : null;
+  if (downloads) {
+    try { await downloads.save({ filename, data }); oaSay("Saved.", "ذخیره شد."); }
+    catch (e) { const c = e && e.code; if (c === "declined") oaSay("Download cancelled.", "دریافت لغو شد."); else if (c === "rate_limited") oaSay("A save window is already open.", "یک پنجره‌ی ذخیره باز است."); else { btn.hidden = true; oaSay("Downloads are not available here.", "دریافت فایل اینجا در دسترس نیست."); } }
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([data], { type }));
+  const a = el("a", { href: url, download: filename }); document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  oaSay("Downloaded.", "دریافت شد.");
+}
+$("#oaCsv").addEventListener("click", () => {
+  const fa = lang === "fa", head = fa ? ["سند", "تاریخ", "شرح", "کد حساب", "حساب", "طرف حساب", "بدهکار", "بستانکار"] : ["Voucher", "Date", "Description", "Account code", "Account", "Party", "Debit", "Credit"];
+  const rows = []; oa.vouchers.forEach(v => v.lines.forEach(l => rows.push([v.no, oaJ(v.date), fa ? v.d.fa : v.d.en, l[0], OA_ACCTS[l[0]][fa ? 1 : 0], l[3] ? oaName(oaCust(l[3]) || oaSup(l[3]), fa ? "fa" : "en") : "", l[1], l[2]])));
+  oaSaveFile($("#oaCsv"), "agency-ledger.csv", "﻿" + [head, ...rows].map(r => r.map(csvCell).join(",")).join("\r\n") + "\r\n", "text/csv;charset=utf-8");
+});
+$("#oaToolsJson").addEventListener("click", () => {
+  const tools = OA_TOOLS.map(([name, appr, en, fa, props, req]) => ({ name, description: en, description_fa: fa, requires_human_approval: appr, inputSchema: { type: "object", properties: Object.fromEntries(Object.entries(props).map(([k, [type, d, en2]]) => [k, en2 ? { type, description: d, enum: en2 } : { type, description: d }])), required: req } }));
+  oaSaveFile($("#oaToolsJson"), "agency-office-tools.json", JSON.stringify({ name: "agency-office", note: "Demo tool definitions; money and confirmation tools must stay behind human approval.", tools }, null, 2) + "\n", "application/json");
+});
+if (downloadsP) downloadsP.then(d => { if (!d) { $("#oaCsv").hidden = true; $("#oaToolsJson").hidden = true; } });
+const oaJal = () => document.querySelectorAll("#officeapp [data-jal]").forEach(s => { const v = $("#" + s.dataset.jal).value; s.replaceChildren(...(v ? [T("Persian date: ", "تاریخ شمسی: "), oaDate(v)] : [])); });
+$("#officeapp").addEventListener("input", e => { if (e.target.type === "date") oaJal(); });
+$("#officeapp").addEventListener("reset", () => setTimeout(oaJal));
+langHooks.push(oaRender, oaJal);
+oaRender();
 
 /* ================================================= glossary */
 // [group, term en, term fa, meaning en, meaning fa]

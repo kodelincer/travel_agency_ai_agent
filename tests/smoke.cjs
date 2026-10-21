@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 34;
+const MIN_CHAPTERS = 35;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -139,7 +139,7 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
             toNew: ["migrate", "accountant", "website", "licences"].every(id => links.filter(h => h === id).length >= 2),
           };
         });
-        check(mg.stages === 4 && mg.acct === 18 && mg.acctPills && mg.lic === 11 && mg.licPills && mg.webSteps === 5 && mg.bad.length === 0 && mg.toNew, `migration (${mg.stages} stages), accountant (${mg.acct} tasks), licences (${mg.lic} activities), website (${mg.webSteps}-step content flow); in-app links all valid` + (mg.bad.length ? " → broken: " + mg.bad.join(", ") : ""));
+        check(mg.stages === 4 && mg.acct === 20 && mg.acctPills && mg.lic === 11 && mg.licPills && mg.webSteps === 5 && mg.bad.length === 0 && mg.toNew, `migration (${mg.stages} stages), accountant (${mg.acct} tasks), licences (${mg.lic} activities), website (${mg.webSteps}-step content flow); in-app links all valid` + (mg.bad.length ? " → broken: " + mg.bad.join(", ") : ""));
         await page.evaluate(() => { location.hash = "licences"; });
         const licVis = await page.isVisible("#licmap");
         check(licVis, "licences chapter opens from its link");
@@ -151,6 +151,35 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         const wmd = wdl ? require("fs").readFileSync(await wdl.path(), "utf8") : "";
         const wOk = ["/llms.txt", "/mcp", "agent-card.json", "request_quote", "## Services and pages", "## خدمات و صفحه‌ها"].every(s => wmd.includes(s));
         check(ws.svc === 12 && ws.spec === 12 && ws.phases && wOk, `website spec: ${ws.svc} services, ${ws.spec} agent-compatible parts, brief download in both languages`);
+
+        // unified agency platform demo: highlighted menu item, draft → confirm posts a balanced voucher, agent money requests wait for approval, tool definitions download
+        await page.evaluate(() => { localStorage.removeItem("taa.office"); location.hash = "officeapp"; });
+        await page.click('#oaReset');
+        const oa0 = await page.evaluate(() => ({ special: document.querySelectorAll('#sidenav .navlink.special[data-id="officeapp"]').length, v: JSON.parse(localStorage.getItem("taa.office")).vouchers.length, alerts: document.querySelectorAll("#oaAlerts li .pill").length }));
+        await page.click('#oaTabs [data-f="book"]');
+        await page.fill("#obDesc", "Test booking"); await page.fill("#obCost", "1000000"); await page.fill("#obPrice", "1200000"); await page.fill("#obTravel", "2030-01-10");
+        await page.click('#oaBookForm button[type=submit]');
+        const draftId = await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("taa.office")); return s.bookings[s.bookings.length - 1].id; });
+        await page.click(`#oaBookings button[data-act="confirm"][data-id="${draftId}"]`);
+        await page.click('#oaTabs [data-f="agent"]');
+        await page.selectOption("#oaTool", "pay_supplier");
+        await page.fill("#oaArgs", '{"supplier_id":"S3","amount":1000000}');
+        await page.click("#oaRun");
+        const runRes = JSON.parse(await page.textContent("#oaResult"));
+        await page.click('#oaTabs [data-f="appr"]');
+        const apprN = await page.locator('#oaAppr button[data-act="approve"]').count();
+        await page.click(`#oaAppr button[data-act="approve"][data-id="${runRes.approval_id}"]`);
+        const oa1 = await page.evaluate(() => { const s = JSON.parse(localStorage.getItem("taa.office")); const sum = s.vouchers.flatMap(v => v.lines).reduce((a, l) => [a[0] + l[1], a[1] + l[2]], [0, 0]); return { v: s.vouchers.length, appr: s.approvals.length, balanced: sum[0] === sum[1], status: s.bookings.find(b => b.status === "confirmed" && b.d.en === "Test booking") ? 1 : 0 }; });
+        await page.click('#oaTabs [data-f="agent"]');
+        const [tdl] = await Promise.all([page.waitForEvent("download", { timeout: 5000 }).catch(() => null), page.click("#oaToolsJson")]);
+        const tj = tdl ? JSON.parse(require("fs").readFileSync(await tdl.path(), "utf8")) : { tools: [] };
+        const apprTools = tj.tools.filter(x => x.requires_human_approval).map(x => x.name).sort().join(",");
+        check(oa0.special === 1 && oa0.alerts >= 4 && oa1.status === 1 && runRes.status === "waiting_for_approval" && apprN === 2 && oa1.appr === 1 && oa1.v === oa0.v + 2 && oa1.balanced && tj.tools.length === 14 && apprTools === "cancel_booking,clear_cheque,confirm_booking,pay_supplier,record_receipt,refund_customer",
+          `agency platform: highlighted menu item, ${oa0.alerts} alerts, draft → confirmed, agent payment waited for approval then posted, ledger balanced, ${tj.tools.length} tool definitions`);
+        await page.evaluate(() => localStorage.setItem("taa.office", JSON.stringify({ v: 1, seq: {}, customers: "x", vouchers: [[1]] })));
+        await page.reload(); await page.evaluate(() => { location.hash = "officeapp"; });
+        const oaRec = await page.evaluate(() => document.querySelectorAll("#oaStats .stat").length);
+        check(oaRec === 8, `agency platform recovers from corrupted saved data (${oaRec} dashboard figures)`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });

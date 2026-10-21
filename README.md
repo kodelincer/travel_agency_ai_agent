@@ -34,14 +34,15 @@ A self-contained web app that teaches a travel agency owner how to use AI agents
 | 24 | Products to sell | 10 AI products and services you could build for other agencies |
 | 25 | Online business ideas | How Alibaba.ir, Snapptrip and Jabama earn, world trends, 12 online businesses, opening an "Online Desk" |
 | 26 | Migration roadmap · نقشه‌ی راه گذار | Four stages every task passes (shadow, draft, prepare and approve, own with spot checks) with a gate; twelve months in six phases; each person’s job today and at month 12; fair treatment; weekly rituals; monthly measures; extra ideas |
-| 27 | The AI accountant · حسابدار هوش مصنوعی | Honest answer (replace the typing, not the legal responsibility); 18 travel-agency accounting tasks with what the agent does, what a person must do and the level; nine build steps; the accountant agent’s rhythm; three ways to keep the human accountant; six-month plan; extra ideas |
-| 28 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
-| 29 | 90-day plan | Checklist with saved progress |
-| 30 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
-| 31 | Guardrails | Rules before going live, KPIs |
-| 32 | Self-review | What earlier versions got wrong and how it was corrected |
-| 33 | Glossary · واژه‌نامه | 43 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
-| 34 | Sources | Every source used, checked October 2026 |
+| 27 | The AI accountant · حسابدار هوش مصنوعی | Honest answer (replace the typing, not the legal responsibility); 20 travel-agency accounting tasks with what the agent does, what a person must do and the level; nine build steps; the accountant agent’s rhythm; three ways to keep the human accountant; six-month plan; extra ideas |
+| 28 | Unified agency platform (demo) · سامانه‌ی یکپارچه‌ی آژانس | Highlighted in red and blue in the menu. Why Iranian agencies need one system; a working demo saved in the browser: dashboard with expert alerts (ticketing deadlines, passport validity, unpaid departures, low supplier credit, cheques, e-invoices), bookings with travel date and deadline, receipts by transfer/cash/cheque, supplier top-ups, cancellations with penalties, refunds, double-entry ledger in tomans with Persian dates, trial balance, CSV export, approvals, tasks; 14 agent tools with JSON schemas, a test console and a download of tool definitions; posting rules; a 15-area feature map of an agency’s day; how a platform for all agencies could earn; steps from demo to real software |
+| 29 | Watch one working day | Interactive time study: log tasks, see where the hours go and which AI role to build first |
+| 30 | 90-day plan | Checklist with saved progress |
+| 31 | Templates | Persian office playbook, Hermes skill, triage prompt, disruption message, approval policy |
+| 32 | Guardrails | Rules before going live, KPIs |
+| 33 | Self-review | What earlier versions got wrong and how it was corrected |
+| 34 | Glossary · واژه‌نامه | 43 terms (travel trade, Iranian official names, AI) in plain English and Persian, with search |
+| 35 | Sources | Every source used, checked October 2026 |
 
 ## Use it
 
