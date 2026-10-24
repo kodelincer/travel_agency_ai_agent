@@ -14,7 +14,7 @@ for (const m of [process.env.PLAYWRIGHT_MODULE, "playwright", "/opt/node-tools/n
 if (!pw) { console.error("Playwright not found. Install it (npm i -D playwright) or set PLAYWRIGHT_MODULE."); process.exit(2); }
 
 const FILE = "file://" + path.resolve(__dirname, "..", "index.html");
-const MIN_CHAPTERS = 35;
+const MIN_CHAPTERS = 36;
 // Chapters still marked data-fa="todo" (English only). This number may only go DOWN.
 const MAX_TODO = 0;
 const failures = [];
@@ -139,7 +139,7 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
             toNew: ["migrate", "accountant", "website", "licences"].every(id => links.filter(h => h === id).length >= 2),
           };
         });
-        check(mg.stages === 4 && mg.acct === 20 && mg.acctPills && mg.lic === 11 && mg.licPills && mg.webSteps === 5 && mg.bad.length === 0 && mg.toNew, `migration (${mg.stages} stages), accountant (${mg.acct} tasks), licences (${mg.lic} activities), website (${mg.webSteps}-step content flow); in-app links all valid` + (mg.bad.length ? " → broken: " + mg.bad.join(", ") : ""));
+        check(mg.stages === 4 && mg.acct === 20 && mg.acctPills && mg.lic === 12 && mg.licPills && mg.webSteps === 5 && mg.bad.length === 0 && mg.toNew, `migration (${mg.stages} stages), accountant (${mg.acct} tasks), licences (${mg.lic} activities), website (${mg.webSteps}-step content flow); in-app links all valid` + (mg.bad.length ? " → broken: " + mg.bad.join(", ") : ""));
         await page.evaluate(() => { location.hash = "licences"; });
         const licVis = await page.isVisible("#licmap");
         check(licVis, "licences chapter opens from its link");
@@ -180,6 +180,20 @@ const check = (ok, msg) => { console.log((ok ? "  ✓ " : "  ✗ ") + msg); if (
         await page.reload(); await page.evaluate(() => { location.hash = "officeapp"; });
         const oaRec = await page.evaluate(() => document.querySelectorAll("#oaStats .stat").length);
         check(oaRec === 8, `agency platform recovers from corrupted saved data (${oaRec} dashboard figures)`);
+
+        // crypto chapter: 6 ways, 9 rules rows with a label each, readiness gate (starts off, all eight = pilot), calculator numbers
+        await page.evaluate(() => { localStorage.removeItem("taa.cry"); location.hash = "crypto"; });
+        await page.reload(); await page.evaluate(() => { location.hash = "crypto"; });
+        const cr = await page.evaluate(() => ({ models: document.querySelectorAll("#cryModels tbody tr").length, rules: document.querySelectorAll("#cryRules tbody tr").length, labels: [...document.querySelectorAll("#cryRules tbody tr")].every(r => r.querySelector(".pill")), checks: document.querySelectorAll("#cryChecks input").length, start: document.querySelector("#cryResult").className }));
+        for (let i = 0; i < 8; i++) await page.check(`#cryChecks input[data-i="${i}"]`);
+        const crAll = await page.evaluate(() => document.querySelector("#cryResult").className);
+        await page.uncheck('#cryChecks input[data-i="3"]');
+        const crOne = await page.evaluate(() => document.querySelector("#cryResult").className);
+        await page.reload(); await page.evaluate(() => { location.hash = "crypto"; });
+        const crKept = await page.evaluate(() => document.querySelectorAll("#cryChecks input:checked").length);
+        const crOut = await page.evaluate(() => [...document.querySelectorAll("#cryOut .stat b")].map(b => b.innerText));
+        check(cr.models === 6 && cr.rules === 9 && cr.labels && cr.checks === 8 && /risk/.test(cr.start) && /ok/.test(crAll) && /risk/.test(crOne) && crKept === 7 && crOut[0] === "1,011" && crOut[1] === "1,000",
+          `crypto chapter: ${cr.models} ways, ${cr.rules} rules rows, gate stays off until all ${cr.checks} are yes (and survives reload), calculator ${crOut[0]} USDT`);
 
         // online business ideas: 12 cards, filters narrow the list
         await page.evaluate(() => { location.hash = "online"; });
